@@ -30,19 +30,19 @@
           <span style="font-family:'Cafe24Oneprettynight';">개</style> 
         </li>
         <li>
-          <span>github</span>
+          <span class="nav__sub-title">github</span>
           <ul>
             {% for category in site.categories %}
-            {% if category[0] == "github" %}
-            <li><a href="/github" class="">github ({{category[1].size}})</a></li>
-            {% endif %}
+              {% if category[0] == "github" %}
+                <li><a href="/github" class="">github ({{category[1].size}})</a></li>
+              {% endif %}
             {% endfor %}
           </ul>
           <ul>
             {% for category in site.categories %}
-            {% if category[0] == "STL" %}
-            <li><a href="/categories/stl" class="">C++ STL & 표준 ({{category[1].size}})</a></li>
-            {% endif %}
+              {% if category[0] == "STL" %}
+                <li><a href="/categories/stl" class="">C++ STL & 표준 ({{category[1].size}})</a></li>
+              {% endif %}
             {% endfor %}
           </ul>
           <span class="nav__sub-title">Coding Test</span>
