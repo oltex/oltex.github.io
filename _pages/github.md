@@ -1,7 +1,7 @@
 ---
 title: "github"
 layout: archive
-permalink: categories/github
+permalink: /github/
 author_profile: true
 sidebar_main: true
 ---
