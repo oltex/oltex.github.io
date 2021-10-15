@@ -1,5 +1,5 @@
 ---
-title: "Post: Standard"
+title: "post"
 excerpt_separator: "<!--more-->"
 
 categories:
