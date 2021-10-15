@@ -1,6 +1,6 @@
 ---
 title: "page"
-permalink: /page
+permalink: /page/
 layout: single
 ---
 
