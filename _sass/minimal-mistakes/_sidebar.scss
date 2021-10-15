@@ -126,7 +126,6 @@
   vertical-align: top;
   width: 36px;
   height: 36px;
-  color: Yellow;
 
   @include breakpoint($large) {
     display: block;
@@ -137,6 +136,7 @@
   img {
     max-width: 110px;
     border-radius: 50%;
+    object-fit: 
 
     @include breakpoint($large) {
       padding: 5px;
