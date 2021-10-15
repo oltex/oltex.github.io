@@ -1,12 +1,11 @@
 ---
 title: "Post: Standard"
 excerpt_separator: "<!--more-->"
+
 categories:
-  - Post Formats
+  - post
 tags:
-  - Post Formats
-  - readability
-  - standard
+  - tag
 ---
 
 post
