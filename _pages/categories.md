@@ -7,6 +7,7 @@
 #---
 ---
 title: "categories"
+permalink: /categories/
 layout: archive
 ---
 
