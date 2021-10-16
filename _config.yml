@@ -18,7 +18,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 locale                   : "ko-KR"
 title                    : "블로그"
 title_separator          : "-"
-subtitle                 : "Verson 1.0"# site tagline that appears below site title in masthead
+subtitle                 : "Verson 1.0" # site tagline that appears below site title in masthead
 name                     : "올텍스"
 description              : "An amazing website."
 url                      : http://oltex.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
