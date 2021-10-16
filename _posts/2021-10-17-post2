@@ -1,1 +1,13 @@
+---
+title: "post"
 
+layout: default
+
+categories:
+  - github
+tags:
+  - tag
+
+toc: true
+toc_sticky: true
+---
