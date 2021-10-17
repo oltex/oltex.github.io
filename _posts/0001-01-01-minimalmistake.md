@@ -10,6 +10,7 @@ tags:
 header:
   overlay_color: "#333"
   show_overlay_excerpt: false
+  tagline: "tagline"
 ---
 
 ### 변수
