@@ -59,51 +59,6 @@ layout: default
       
       <!--custom-->
       <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-      
-      
-      
-      {% assign _category = page.categories[0] %}
-      {% assign _posts = site.categories[_category] %}
-      {% for post in _posts %}
-        {% include archive-single.html type=entries_layout %}
-      {% endfor %}
-
-      <!--
-{% if prev_post or next_post %}
-  <nav class="pagination">
-    {% if prev_post %}
-      <a href="{{ prev_post.url }}" class="pagination--pager">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
-    {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
-    {% endif %}
-    {% if next_post %}
-      <a href="{{ next_post.url }}" class="pagination--pager">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
-    {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
-    {% endif %}
-  </nav>
-{% endif %}
-      -->
-      
-      <!--
-      {% if paginator %}
-        {% assign posts = paginator.posts %}
-      {% else %}
-        {% assign posts = site.posts %}
-      {% endif %}
-
-      {% assign entries_layout = page.entries_layout | default: 'list' %}
-      <div class="entries-{{ entries_layout }}">
-        {% for post in posts %}
-          {% include archive-single.html type=entries_layout %}
-        {% endfor %}
-      </div>
-
-      
-      
-      
-      {% include paginator.html %}
-      -->
       <!--custom-->
       
       
