@@ -8,3 +8,12 @@ tags:
 ---
 
 변수
+
+<h1>site.</h1>
+
+.categories.categoriesname
+
+
+<h1>page<h1>
+
+.categories
