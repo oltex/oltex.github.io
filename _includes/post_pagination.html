@@ -1,3 +1,4 @@
+<!--
 {% if page.previous or page.next %}
   <nav class="pagination">
     {% if page.previous %}
@@ -12,3 +13,12 @@
     {% endif %}
   </nav>
 {% endif %}
+-->
+
+<!--custom-->
+{% assign _category = page.categories[0] %}
+{% assign _posts = site.categories[_category] %}
+{% for post in _posts %}
+  {% include archive-single.html type=entries_layout %}
+{% endfor %}
+<!--custom-->
