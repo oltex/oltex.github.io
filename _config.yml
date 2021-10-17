@@ -291,13 +291,3 @@ defaults:
       toc: true
       toc_sticky: true
       toc_label: "목차"
-      
-  - scope:
-      path: ""
-      type: home
-    values:
-      title: "minimal mistake"
-      tagline: "tagline"
-      header:
-        overlay_color: "#333"
-        show_overlay_excerpt: false
