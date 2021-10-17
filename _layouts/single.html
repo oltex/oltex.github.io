@@ -65,7 +65,15 @@ layout: default
       {% assign _category = page.categories[0] %}
       {% assign _posts = site.categories[_category] %}
       {% for post in _posts %}
-          {% include archive-single.html type=entries_layout %}
+        {% assign title = post.title %}
+          <article class="archive__item">
+            <h2 class="archive__item-title no_toc" itemprop="headline">
+              <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+            </h2>
+            {% include page__meta.html type=include.type %}
+            {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
+          </article>
+        <!--{% include archive-single.html type=entries_layout %}-->
           <!--
           {% if post.url == page.url %}
   	        {% assign prevIndex = forloop.index0 | minus: 1 %}
