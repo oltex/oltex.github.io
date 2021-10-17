@@ -6,3 +6,5 @@ categories:
 tags:
   - tag
 ---
+
+변수
