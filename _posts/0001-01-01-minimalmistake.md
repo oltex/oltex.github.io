@@ -10,11 +10,11 @@ tags:
 
 ### 변수
 
-## site.
+#### site.
 
 .categories.categoriesname
 
 
-## page
+#### page
 
 .categories
