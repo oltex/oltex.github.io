@@ -1,5 +1,5 @@
 ---
-title: "post"
+title: "minimal mistake"
 
 categories:
   - github
