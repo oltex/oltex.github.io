@@ -68,9 +68,7 @@ layout: default
       {% for post in _posts %}
         {% assign title = post.title %}
           <article class="archive__item">
-            <h2 class="archive__item-title no_toc" itemprop="headline">
-              <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
-            </h2>
+
           </article>
         <!--{% include archive-single.html type=entries_layout %}-->
           <!--
