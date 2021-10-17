@@ -9,7 +9,12 @@ tags:
 ---
 
 ### 변수
+```html
+{% raw %}
+{{ site. }}
 
+{% endraw %}
+```
 #### site.
 
 .categories.categoriesname
