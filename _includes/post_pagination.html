@@ -19,6 +19,8 @@
 {% assign _category = page.categories[0] %}
 {% assign _posts = site.categories[_category] %}
 {% for post in _posts %}
-  {% include archive-single.html type=entries_layout %}
+  {% assign title = post.title %}
+  <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+  <!--{% include archive-single.html type=entries_layout %}-->
 {% endfor %}
 <!--custom-->
