@@ -10,7 +10,7 @@ tags:
 
 변수
 
-<h1>site.</h1>
+## site.
 
 .categories.categoriesname
 
