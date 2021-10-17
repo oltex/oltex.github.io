@@ -6,6 +6,8 @@ categories:
   - github
 tags:
   - tag
+
+paginate: 5
 ---
 
 ### 변수
