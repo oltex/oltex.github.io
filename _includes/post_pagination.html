@@ -16,8 +16,9 @@
 -->
 
 {% assign category = page.categories[0] %}
+{% assign categories = site.categories[category] %}
 
-{% for post in site.categories[category] %}
+{% for post in categories %}
   {% if post.url == page.url %}
   	{% assign prevIndex = forloop.index0 | minus: 1 %}
   	{% assign nextIndex = forloop.index0 | plus: 1 %}
