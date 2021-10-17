@@ -284,9 +284,12 @@ defaults:
     values:
       layout: single
       author_profile: true
+      
       read_time: true
       comments: true
       share: false
       related: false
+      
       toc: true
       toc_sticky: true
+      toc_label: "목차"
