@@ -9,6 +9,7 @@ tags:
 
 header:
   overlay_color: "#333"
+  show_overlay_excerpt: true
 ---
 
 ### 변수
