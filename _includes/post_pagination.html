@@ -1,3 +1,4 @@
+<!--
 {% if page.previous or page.next %}
   <nav class="pagination">
     {% if page.previous %}
@@ -12,11 +13,11 @@
     {% endif %}
   </nav>
 {% endif %}
+-->
 
-<!--
-{% assign cat = page.categories[0] %}
-{% assign cat_list = site.categories[cat] %}
-{% for post in cat_list %}
+{% assign category = page.categories[0] %}
+
+{% for post in site.categories[category] %}
   {% if post.url == page.url %}
   	{% assign prevIndex = forloop.index0 | minus: 1 %}
   	{% assign nextIndex = forloop.index0 | plus: 1 %}
@@ -44,4 +45,3 @@
     {% endif %}
   </nav>
 {% endif %}
--->
