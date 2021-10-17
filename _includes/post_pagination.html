@@ -15,8 +15,8 @@
 {% endif %}
 -->
 
-{% assign category = page.categories[0] %}
-{% assign categories = site.categories[category] %}
+{% assign _category = page.categories[0] %}
+{% assign _categories = site.categories[category] %}
 
 {% for post in categories %}
   {% if post.url == page.url %}
