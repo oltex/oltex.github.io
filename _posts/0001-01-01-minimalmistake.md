@@ -6,19 +6,11 @@ categories:
   - github
 tags:
   - tag
-
-tagline: "tagline"
-header:
-  overlay_color: "#333"
-  show_overlay_excerpt: false
 ---
 
 ### 변수
 ```html
-{% raw %}
-{{ site. }}
-
-{% endraw %}
+{% raw %}{{ site. }}{% endraw %}
 ```
 #### site.
 
