@@ -293,7 +293,7 @@ defaults:
       toc_label: "목차"
 
 # custom
-custom_theme_toggle: true
-custom_theme_skin: "dark" #"default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+custom_toggle_theme: true
+custom_toggle_theme_skin: "dark" #"default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 #footer_scripts:
 #  - /assets/js/custom/custom-theme.js
