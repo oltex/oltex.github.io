@@ -15,7 +15,7 @@
         }
     }
 
-    + .tgl-btn {
+    + .toggle-button {
         outline: 0;
         display: block;
         width: 3em;
@@ -41,13 +41,13 @@
         }
     }
 
-    &:checked + .tgl-btn:after {
+    &:checked + .toggle-button:after {
         left: 50%;
     }
 }
 
-.tgl-light {
-    + .tgl-btn {
+.toggle-button-light {
+    + .toggle-button {
         background: lightgray;
         border-radius: 1.5em;
         padding: 2px;
@@ -59,7 +59,7 @@
         }
     }
 
-    &:checked + .tgl-btn {
+    &:checked + .toggle-button {
         background: gray;
     }
 }
