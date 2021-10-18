@@ -296,4 +296,4 @@ defaults:
 custom_toggle_theme: true
 custom_toggle_theme_skin: "dark" #"default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 footer_scripts:
-  - /assets/js/custom/custom-theme.js
+  - /assets/js/custom/custom-toggle-theme.js
