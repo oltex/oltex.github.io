@@ -1,4 +1,4 @@
-.custom_toggle {
+.custom-toggle {
     display: none;
 
     // add default box-sizing for this scope
@@ -46,7 +46,7 @@
     }
 }
 
-.toggle-button-light {
+.custom-toggle-button-light {
     + .toggle-button {
         background: lightgray;
         border-radius: 1.5em;
