@@ -5,4 +5,11 @@
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+
+
+//custom
+@import "minimal-mistakes/skins/{{ site.custom_theme_skin | default: 'dark' }}"; // skin
+//custom
+
+
 @import "minimal-mistakes"; // main partials
