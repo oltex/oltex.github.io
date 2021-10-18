@@ -20,7 +20,7 @@ if (darkTheme) {
         document.cookie = `MDARK=${darkTheme.disabled ? 'N' : 'Y'}; path=/;`
     }
 
-    let toggleThemeBtn = document.getElementById("custom_theme_toggle")
+    let toggleThemeBtn = document.getElementById("custom_toggle")
     if (toggleThemeBtn) {
         toggleThemeBtn.checked = defaultTheme.disabled
     }
