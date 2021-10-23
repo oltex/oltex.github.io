@@ -72,11 +72,11 @@
   /* next/previous buttons */
   &--pager {
     display: block;
-    padding: 0;
+    padding: 1em, 1em;
     float: left;
     width: 100%;
     font-family: $sans-serif;
-    font-size: $type-size-6;
+    font-size: $type-size-5;
     //font-weight: bold;
     text-align: left;
     text-decoration: none;
@@ -87,7 +87,7 @@
     &:hover {
       @include yiq-contrasted($muted-text-color);
     }
-    
+    /*
     &:first-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -98,7 +98,7 @@
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
-    
+    */
     &.disabled {
       color: rgba($muted-text-color, 0.5);
       pointer-events: none;
