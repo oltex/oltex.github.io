@@ -20,7 +20,8 @@
 {% assign _posts = site.categories[_category] %}
 {% for post in _posts %}
   {% assign title = post.title %}
-  <a href="{{ post.url | relative_url }}" rel="permalink" class="custom-pagination--pager">{{ title }}</a>
+  <!--"custom-pagination--pager"-->
+  <a href="{{ post.url | relative_url }}" rel="permalink" class="test">{{ title }}</a>
   <!--{% include archive-single.html type=entries_layout %}-->
 {% endfor %}
 <!--custom-->
