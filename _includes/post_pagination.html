@@ -19,7 +19,7 @@
 {% assign _category = page.categories[0] %}
 {% assign _posts = site.categories[_category] %}
 <nav class="page__comments">
-  <h4 class="page__comments-title"> {{ _category }} 카테고리의 다른 글</h4>
+  <h4 class="page__comments-title"> {{ _category | capitalize }} 카테고리의 다른 글</h4>
   <ul>
     {% for post in _posts %}
     <li>
