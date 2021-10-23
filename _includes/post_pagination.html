@@ -18,10 +18,24 @@
 <!--custom-->
 {% assign _category = page.categories[0] %}
 {% assign _posts = site.categories[_category] %}
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+    <span style="font-family:'Cafe24Oneprettynight';">이 카테고리의 다른 글</style>
+    {% for post in _posts %}
+    <li>
+      <a href="{{ post.url | relative_url }}" rel="permalink" class="custom-pagination--pager">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
+<!--
 {% for post in _posts %}
-  {% assign title = post.title %}
   <!--"custom-pagination--pager"-->
-  <a href="{{ post.url | relative_url }}" rel="permalink" class="custom-pagination--pager">{{ title }}</a>
+<!--
+  <a href="{{ post.url | relative_url }}" rel="permalink" class="custom-pagination--pager">{{ post.title }}</a>
+-->
   <!--{% include archive-single.html type=entries_layout %}-->
+<!--
 {% endfor %}
+-->
 <!--custom-->
