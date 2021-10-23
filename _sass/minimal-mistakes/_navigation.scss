@@ -136,7 +136,7 @@
     &:hover {
       @include yiq-contrasted($muted-text-color);
     }
-
+    /*
     &:first-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -147,7 +147,7 @@
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
-
+    */
     &.disabled {
       color: rgba($muted-text-color, 0.5);
       pointer-events: none;
