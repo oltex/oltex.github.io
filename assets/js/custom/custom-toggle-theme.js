@@ -1,4 +1,3 @@
-/*
 var defaultTheme = [...document.styleSheets].find(style => /(main.css)$/.test(style.href))
 var darkTheme = [...document.styleSheets].find(style => /(custom-main.css)$/.test(style.href))
 
@@ -34,4 +33,3 @@ if (darkTheme) {
 
     toggleThemeBtn.addEventListener('click', changeTheme)
 }
-*/
