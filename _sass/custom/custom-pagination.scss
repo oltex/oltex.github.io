@@ -8,6 +8,7 @@
   width: 100%;
   clear: both;
 }
+
 .custom-page__pagination-display{
   display: flex;
   justify-content: space-between;
@@ -21,9 +22,10 @@
   font-size: $type-size-6;
   border-top: 1px solid $border-color;
   text-transform: uppercase;
-  .right{
+
+}
+.test{
     text-align:right;
-  }
 }
 
 .custom-pagination {
