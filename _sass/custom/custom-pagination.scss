@@ -33,20 +33,15 @@
 
 }
 
-.test2{
-    color: $text-color;
-}
 .test a:link {
-    color : pink;
+    color : $text-color;
    }
 .test a:visited {
-  color : black;
+  color : $text-color;
 }
 .test a:hover {
-  color : red;
+  color : $text-color;
 }
 .test a:active {
-  color : green
+  color : $text-color
 }
-
-
