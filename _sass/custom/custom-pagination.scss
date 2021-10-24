@@ -21,8 +21,10 @@
   font-size: $type-size-6;
   border-top: 1px solid $border-color;
   text-transform: uppercase;
+  &--right{
+    text-align:right;
+  }
 }
-//text-align:right;
 
 .custom-pagination {
   @include clearfix();
