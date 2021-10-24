@@ -2,13 +2,15 @@
      Post pagination navigation links
      ========================================================================== */
 .custom-page__pagination {
-  display: flex;
-  justify-content: space-between;
   float: left;
   margin-left: 0;
   margin-right: 0;
   width: 100%;
   clear: both;
+}
+.test{
+  display: flex;
+  justify-content: space-between;
 }
 
 .custom-page__pagination-title {
