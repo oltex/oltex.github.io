@@ -35,4 +35,16 @@
 
 .test2{
     color: $text-color;
+  :link {
+    color : pink;
+   }
+:visited {
+  color : black;
+}
+:hover {
+  color : red;
+}
+:active {
+  color : green
+}
 }
