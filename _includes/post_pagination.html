@@ -23,9 +23,10 @@
   <ul>
     {% for post in _posts %}
     <li>
-      <a href="{{ post.url | relative_url }}" rel="permalink" class="custom-pagination--pager">{{ post.title }}</a>
+      <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
     </li>
     {% endfor %}
   </ul>
 </nav>
 <!--custom-->
+<!--class="custom-pagination--pager"-->
