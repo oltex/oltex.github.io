@@ -1,6 +1,16 @@
 /*
      Post pagination navigation links
      ========================================================================== */
+.custom-page__pagination-title {
+  width: 80%;
+  margin-top: 2rem;
+  margin-bottom: 10px;
+  padding-top: 2rem;
+  font-size: $type-size-6;
+  border-top: 1px solid $border-color;
+  text-transform: uppercase;
+}
+
 
 .custom-pagination {
   @include clearfix();
