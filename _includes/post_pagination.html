@@ -1,25 +1,8 @@
-<!--
-{% if page.previous or page.next %}
-  <nav class="pagination">
-    {% if page.previous %}
-      <a href="{{ page.previous.url | relative_url }}" class="pagination--pager" title="{{ page.previous.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
-    {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
-    {% endif %}
-    {% if page.next %}
-      <a href="{{ page.next.url | relative_url }}" class="pagination--pager" title="{{ page.next.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
-    {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
-    {% endif %}
-  </nav>
-{% endif %}
--->
-
-<!--custom-->
 {% assign _category = page.categories[0] %}
 {% assign _posts = site.categories[_category] %}
 <nav class="custom-page__pagination">
   <h4 class="custom-page__pagination-title"> {{ _category }} 카테고리의 다른 글</h4>
+  <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
   <ul>
     {% for post in _posts %}
     <li>
@@ -27,6 +10,5 @@
     </li>
     {% endfor %}
   </ul>
-</nav>
-<!--custom-->
+</nav
 <!--class="custom-pagination--pager"-->
