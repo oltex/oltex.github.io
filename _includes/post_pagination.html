@@ -18,7 +18,7 @@
 <!--custom-->
 {% assign _category = page.categories[0] %}
 {% assign _posts = site.categories[_category] %}
-<nav class="page__comments">
+<nav class="custom-page__pagination">
   <h4 class="custom-page__pagination-title"> {{ _category }} 카테고리의 다른 글</h4>
   <ul>
     {% for post in _posts %}
