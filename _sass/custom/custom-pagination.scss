@@ -63,16 +63,18 @@
 .custom-pagination-timeline h1 {
   font-weight: 600;
 }
-
+.custom-pagination-timeline em {
+  font-weight: 400;
+}
 
 .custom-pagination-timeline-header {
-    margin: 0;
-    padding-left: 16px;
-    font-size: 14px;
-    color: #586069;
+  margin: 0;
+  padding-left: 16px;
+  font-size: 14px;
+  color: #586069;
 }
 @media screen and (min-width: 593px){
-.custom-pagination-timeline-header {
+  .custom-pagination-timeline-header {
     padding-left: 60px;
-}
+  }
 }
