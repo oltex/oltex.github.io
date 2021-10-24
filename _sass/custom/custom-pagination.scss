@@ -19,15 +19,16 @@
   font-size: $type-size-6;
   border-top: 1px solid $border-color;
   text-transform: uppercase;
-
 }
+
 .test{
-    width: 100%;
+  width: 100%;
   margin-top: 2rem;
   margin-bottom: 10px;
   padding-top: 2rem;
   font-size: $type-size-6;
   border-top: 1px solid $border-color;
   text-transform: uppercase;
-    text-align:right;
+  text-align: right;
+  color=: $text-color;
 }
