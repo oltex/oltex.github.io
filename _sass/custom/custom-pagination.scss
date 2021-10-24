@@ -30,7 +30,6 @@
   border-top: 1px solid $border-color;
   text-transform: uppercase;
   text-align: right;
-
 }
 
 .test a:link {
@@ -44,4 +43,15 @@
 }
 .test a:active {
   color : $text-color
+}
+
+.custom-page__pagination-header {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 14px;
+    color: #586069;
+}
+@media screen and (min-width: 544px)
+.custom-page__pagination-header {
+    padding-left: 60px;
 }
