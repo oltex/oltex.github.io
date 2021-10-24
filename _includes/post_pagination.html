@@ -5,6 +5,7 @@
     <h4 class="custom-page__pagination-title"> {{ _category }}카테고리의 다른 글</h4>
     <h4 class="test"><a href="/categories/#{{ _category }}">전체글 보기</a></h4>
   </div>
+  <div class="utterances">
   <ul>
     {% for post in _posts %}
     <li>
@@ -12,4 +13,5 @@
     </li>
     {% endfor %}
   </ul>
+  </div>
 </nav>
