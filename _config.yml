@@ -105,7 +105,7 @@ author:
   name             : "올텍스"
   avatar           : "/assets/images/avatar.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "개인 블로그 입니다"
-  location         : "Republic of Korea"
+  location         :
   email            :
   links:
     - label: "Email"
