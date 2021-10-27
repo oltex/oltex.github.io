@@ -59,6 +59,12 @@
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
   margin: 16px 0;
   padding: 0 4px;
+      position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .custom-pagination-timeline h1 {
