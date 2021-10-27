@@ -7,18 +7,18 @@
   </div>
   
   <div class="custom-pagination">
-  <div class="custom-pagination-timeline">
-    <h1 class="custom-pagination-timeline-header">0 Posts<em> - Github</em></h1>
-    <div class="custom-comment">
-  <ul>
-    {% for post in _posts %}
-    <li>
-      <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
+    <div class="custom-pagination-timeline">
+      <h1 class="custom-pagination-timeline-header">0 Posts<em> - Github</em></h1>
+      <div class="custom-comment">
+        <ul>
+          {% for post in _posts %}
+            <li>
+              <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
-  </div>
   </div>
   
 </nav>
