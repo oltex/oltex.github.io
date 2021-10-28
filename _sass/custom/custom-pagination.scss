@@ -102,5 +102,8 @@
 }
 .custom-comment li {
     padding: 8px;
-    border-bottom: 1px solid #e1e4e8;
+    border-bottom: 1px solid $border-color;
+    &:last-child {
+      border-bottom: 0px solid $border-color;
+    }
 }
