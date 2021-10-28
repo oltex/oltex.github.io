@@ -88,6 +88,14 @@
   margin: 16px 0;
   font-size: 14px;
   
+  .title{
+    color: #fff;
+    font-size: $type-size-6;
+    background: $primary-color;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+  
   li {
     border-bottom: 1px solid $border-color;
     &:last-child {
@@ -103,4 +111,3 @@
     }
   }
 }
-
