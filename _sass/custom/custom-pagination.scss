@@ -22,7 +22,13 @@
   text-transform: uppercase;
   
   &-right{
-    text-align: right;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 10px;
+    padding-top: 2rem;
+    font-size: $type-size-6;
+    border-top: 1px solid $border-color;
+    text-transform: uppercase;
     a:link {
       color : $text-color;
     }
