@@ -29,6 +29,7 @@
     font-size: $type-size-6;
     border-top: 1px solid $border-color;
     text-transform: uppercase;
+    text-align: right;
     a:link {
       color : $text-color;
     }
@@ -54,6 +55,13 @@
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
+  h1 {
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  em {
+    font-weight: 400;
+  }
 }
 
 .custom-pagination-timeline h1 {
