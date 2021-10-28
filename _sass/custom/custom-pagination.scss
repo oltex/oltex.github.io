@@ -20,6 +20,22 @@
   font-size: $type-size-6;
   border-top: 1px solid $border-color;
   text-transform: uppercase;
+  
+  &-right{
+    text-align: right;
+    a:link {
+      color : $text-color;
+    }
+    a:visited {
+      color : $text-color;
+    }
+    a:hover {
+      color : $text-color;
+    }
+    a:active {
+      color : $text-color
+    }
+  }
 }
 
 .test{
@@ -30,7 +46,7 @@
   font-size: $type-size-6;
   border-top: 1px solid $border-color;
   text-transform: uppercase;
-  text-align: right;
+
 }
 
 .test a:link {
