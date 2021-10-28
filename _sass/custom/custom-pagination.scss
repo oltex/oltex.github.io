@@ -84,7 +84,7 @@
   flex-basis: 0;
   min-width: 0;
   border: 1px solid $border-color;
-  border-radius: 6px;
+  border-radius: $border-radius;
   margin: 16px 0;
   font-size: 14px;
   
@@ -92,6 +92,8 @@
     color: #fff;
     background: $primary-color;
     padding: 0.25rem 0.75rem;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
   }
   
   li {
