@@ -101,7 +101,7 @@
     font-size: 14px;
 }
 .custom-comment li {
-    padding: 8px;
+    padding: 0.25rem 0.75rem;
     border-bottom: 1px solid $border-color;
     &:last-child {
       border-bottom: 0px solid $border-color;
