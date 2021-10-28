@@ -44,49 +44,16 @@
   }
 }
 
-.test{
-  width: 100%;
-  margin-top: 2rem;
-  margin-bottom: 10px;
-  padding-top: 2rem;
-  font-size: $type-size-6;
-  border-top: 1px solid $border-color;
-  text-transform: uppercase;
-
-}
-
-.test a:link {
-    color : $text-color;
-   }
-.test a:visited {
-  color : $text-color;
-}
-.test a:hover {
-  color : $text-color;
-}
-.test a:active {
-  color : $text-color
-}
-
-.custom-pagination {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .custom-pagination-timeline {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
   margin: 16px 0;
   padding: 0 4px;
-      position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .custom-pagination-timeline h1 {
