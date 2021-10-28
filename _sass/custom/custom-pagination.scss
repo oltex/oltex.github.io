@@ -90,8 +90,7 @@
   
   .title{
     color: #fff;
-    background: $active-color;
-    //background: $primary-color;
+    background: $primary-color;
     padding: 0.25rem 0.75rem;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
@@ -109,6 +108,7 @@
       color: $muted-text-color;
       &:hover {
         color: $text-color;
+        @include yiq-contrasted($active-color);
       }
     }
   }
