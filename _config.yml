@@ -291,6 +291,7 @@ defaults:
       toc: true
       toc_sticky: true
       toc_label: "목차"
+      classes: wide
 
 # custom
 custom_toggle_theme: true
