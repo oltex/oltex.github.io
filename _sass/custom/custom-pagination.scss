@@ -106,4 +106,17 @@
     &:last-child {
       border-bottom: 0px solid $border-color;
     }
+  
+    a {
+    display: block;
+    padding: 0.25rem 0.75rem;
+    color: $muted-text-color;
+    font-weight: bold;
+    line-height: 1.5;
+
+    &:hover {
+      color: $text-color;
+    }
+  }
 }
+
