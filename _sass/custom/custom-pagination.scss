@@ -88,23 +88,19 @@
   border-radius: 6px;
   margin: 16px 0;
   font-size: 14px;
-}
-.custom-comment li {
-    padding: 0.25rem 0.75rem;
+  
+  li {
     border-bottom: 1px solid $border-color;
     &:last-child {
       border-bottom: 0px solid $border-color;
     }
-  
     a {
-    display: block;
-    padding: 0.25rem 0.75rem;
-    color: $muted-text-color;
-    font-weight: bold;
-    line-height: 1.5;
-
-    &:hover {
-      color: $text-color;
+      display: block;
+      padding: 0.25rem 0.75rem;
+      color: $muted-text-color;
+      &:hover {
+        color: $text-color;
+      }
     }
   }
 }
