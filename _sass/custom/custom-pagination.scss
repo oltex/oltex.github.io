@@ -4,12 +4,11 @@
   margin-right: 0;
   width: 100%;
   clear: both;
-    line-height: 1.5;
-}
-
-.custom-page__pagination-display{
-  display: flex;
-  justify-content: space-between;
+  line-height: 1.5;
+  &-display{
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .custom-page__pagination-title {
