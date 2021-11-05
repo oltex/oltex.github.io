@@ -13,7 +13,7 @@
             <h4 class="title">목차</h4>
           </li>
           {% for post in _posts %}
-            <li class=".page__content li">
+            <li>
               <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
             </li>
           {% endfor %}
