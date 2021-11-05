@@ -16,8 +16,6 @@
     {% endif %}
   {% endif %}
     
-    
-  <!--custom-->
   {% assign sum = site.posts | size %}
   <nav class="nav__list">
     <input id="ac-toc" name="accordion-toc" type="checkbox" />
@@ -37,11 +35,17 @@
             {% endif %}
           {% endfor %}
         </ul>
+        <span class="nav__sub-title">Math</span>
+        <ul>
+          {% for category in site.categories %}
+            {% if category[0] == "Linear Algebra" %}
+              <li><a href="/categories/#Linear Algebra">Linear Algebra ({{category[1].size}})</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
       </li>
     </ul>
   </nav>
-  <!--custom-->
-    
     
   </div>
 {% endif %}
