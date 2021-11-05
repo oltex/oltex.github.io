@@ -15,4 +15,6 @@ tags:
 
 ## 2.벡터 공간의 용어
 
-### 기저벡터(Basis Vector)
+### 기저 벡터(Basis Vector)
+
+#### 표준 기저 벡터(Standard Basis Vector)
