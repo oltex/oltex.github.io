@@ -17,4 +17,6 @@ tags:
 
 ### 기저 벡터(Basis Vector)
 
-#### 표준 기저 벡터(Standard Basis Vector)
+### 표준 기저 벡터(Standard Basis Vector)
+
+### 선형 조합(linear combination)
