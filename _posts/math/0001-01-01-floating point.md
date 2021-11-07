@@ -22,9 +22,9 @@ IEEE 754는 전기 전자 기술 협회(IEEE)에서 개발한 컴퓨터 부동 �
 실수를 부동 소수점이라는 방법으로 표현한다.
 
 IEE 754부동 소수점 형식은  
-단정밀도(Single Precision), 
-배정밀도(Double Precision),  
-확장 배정밀도(Extended Double Precision)
+- 단정밀도(Single Precision): 32비트/부호 1비트, 지수부 8비트, 가수부 23비트
+- 배정밀도(Double Precision): 64비트/부호 1비트, 지수부 11비트, 가수부 52비트
+- 확장 배정밀도(Extended Double Precision): 128비트/부호 1비트, 지수부 15비트, 가수부 112비트
 가 있다.
 
 ### IEEE 754의 형식
