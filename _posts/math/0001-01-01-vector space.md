@@ -51,7 +51,7 @@ n차원(R^n)에서는 n개의 벡터가 있어야 기저 벡터가 이루어지�
 
 ## 3.벡터 공간의 예시
 
-![alt](/assets/images/math/0001-01-01-vector space/1.jpg)  
+![alt](/assets/images/math/[0001-01-01-vector space]/1.jpg)  
 
 
 앞서 내용에서 나온 표준 기저 벡터를 사용하면 선형 조합의 수식을 만들 수 있다.
