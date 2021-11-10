@@ -14,5 +14,6 @@ tags:
 
 벡터 공간을 변형하는 것을 선형 변환(Linear Transformation)이라고 하고  
 수학적으로는 아래와 같이 표현한다.
+![alt](/assets/images/math/0001-01-01-linear-transformation/1.jpg)  
 
 ## 2.행렬
