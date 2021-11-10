@@ -18,7 +18,6 @@ tags:
 ```html
 L:V → W
 ```
-![alt](/assets/images/math/0001-01-01-linear-transformation/1.jpg)  
 
 ## 2.선형 변환의 행렬 표현
 수학에서 선형대수학의 기본 정리(Fundamental theorem of linear algebra)라는 것이 있다.  
@@ -26,4 +25,8 @@ L:V → W
 L:V → W라는 선형 변환이 있다고 했는데, 선형대수학의 정리는 이에 대응하는 행렬이 있다는 것을 의미한다.  
 
 ### 예시
-앞서 선형 변환을 설명하기 위해 임의의 2차원 벡터 공간을 만들고 이위에 임의의 좌표를 찍어보았다.
+![alt](/assets/images/math/0001-01-01-linear-transformation/1.jpg)  
+
+앞서 선형 변환의 행렬 표현을 설명하기 위해 임의의 2차원 벡터 공간을 만들고 이위에 임의의 좌표를 찍어보았다.
+
+이 좌표를 표시하는 수식을 행렬로 표현하면 다음과 같다
