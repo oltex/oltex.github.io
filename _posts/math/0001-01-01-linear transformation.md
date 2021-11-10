@@ -16,7 +16,7 @@ tags:
 변환을 L 두 벡터 공간을 V, W라 가정 했을 때  
 수학적으로는 아래와 같이 표현한다.  
 ```html
-L:V→W
+L:V → W
 ```
 ![alt](/assets/images/math/0001-01-01-linear-transformation/1.jpg)  
 
