@@ -18,3 +18,6 @@ tags:
 ![alt](/assets/images/math/0001-01-01-linear-transformation/1.jpg)  
 
 ## 2.선형 변환의 행렬 표현
+수학에서 선형대수학의 기본 정리(Fundamental theorem of linear algebra)라는 것이 있다. 
+이는 행렬과 선형 변환은 본질적으로 같다는 것을 증명한 내용을 담고 있다. 
+L:V→W라는 선형 변환이 있다고 했는데, 선형대수학의 정리는 이에 대응하는 행렬이 있다는 것을 의미한다.
