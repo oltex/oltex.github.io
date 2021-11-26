@@ -2,7 +2,7 @@
 title: "BCDEdit"
 
 categories:
-  - etc
+  - etcc
 tags:
   - tag
 ---
