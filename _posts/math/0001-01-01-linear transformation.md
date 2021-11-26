@@ -36,7 +36,7 @@ x와 y는 기존 벡터 공간의 기저벡터의 성분이고 x’과 y’은 �
 ![alt](/assets/images/math/0001-01-01-linear-transformation/2.jpg)  
 
 이 수식에 선형 변환을 하기위해 임의의 선형 변환의 행렬을 곱해보도록 하자  
-![alt](/assets/images/math/0001-01-01-linear-transformation/3.jpg)  
+![alt](/assets/images/math/0001-01-01-linear-transformation/4.jpg)  
 
 
 
