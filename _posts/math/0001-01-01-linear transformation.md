@@ -48,3 +48,10 @@ x와 y는 기존 벡터 공간의 기저벡터의 성분이고 x’과 y’은 �
 앞선 선형 변환을 거친후 나온 벡터공간의 형태는 이러할 것이다.  
 ![alt](/assets/images/math/0001-01-01-linear-transformation/3.jpg)  
 
+## 3.선형변환의 행렬들
+
+### 이동행렬
+
+### 크기 행렬
+
+### 회전 행렬 (Rotation Matrix)
