@@ -14,7 +14,7 @@ Specify power management settings for your hard disk. Group GUID: `0012ee47-9041
 
 * AHCI Link Power Management - HIPM/DIPM
 
->   * GUID: `0b2d69d7-a2a1-449c-9680-f91c70521c60`
+  * GUID: `0b2d69d7-a2a1-449c-9680-f91c70521c60`
 >   * Configures the LPM state.
 >   * Possible values: Active, HIPM, HIPM+DIPM, DIPM, Lowest
 > * Maximum Power Level
