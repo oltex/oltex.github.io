@@ -73,48 +73,40 @@ Specify sleep settings. Group GUID: `238c9fa8-0aad-41ed-83f4-97be242c8f20`
   * Allow away mode to be enabled for your computer
   * Possible values: No, Yes
 * Sleep after
->   
->   * GUID: `29f6c1db-86da-48c5-9fdb-f2b67b1f44da`
->   * Specify how long your computer is inactive before going to sleep.
->   * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
-> * System unattended sleep timeout
->   
->   * GUID: `7bc4a2f9-d8fc-4469-b07b-33eb785aaca0`
->   * Idle timeout before the system returns to a low power sleep state after waking unattended.
->   * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
-> * Allow hybrid sleep
->   
->   * GUID: `94ac6d29-73ce-41a6-809f-6363ba21b47e`
->   * Allow Windows to save your work and enter a low-power state so that you can resume working almost immediately.
->   * Possible values: Off, On
-> * Hibernate after
->   
->   * GUID: `9d7815a6-7ee4-497e-8888-515a05f02364`
->   * Specify how long your computer is inactive before hibernating.
->   * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
-> * Allow system required policy
->   
->   * GUID: `a4b195f5-8225-47d8-8012-9d41369786e2`
->   * Allow programs to prevent machine from going to sleep automatically
->   * Possible values: No, Yes
-> * Allow Standby States
->   
->   * GUID: `abfc2519-3608-4c2a-94ea-171b0ed546ab`
->   * Allow Windows to use the standby states when sleeping your computer.
->   * Possible values: Off, On
-> * Allow wake timers
->   
->   * GUID: `bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d`
->   * Specify if timed events should be allowed to wake the computer from sleep.
->   * Possible values: Disable, Enable, Important Wake Timers Only
-> * Allow sleep with remote opens
->   
->   * GUID: `d4c1d4c8-d5cc-43d3-b83e-fc51215cb04d`
->   * Allow your machine to go to sleep when files opened remotely have not been written to.
->   * Possible values: Off, On
-> 
-> # USB settings
-> Specify USB power settings for the USB hub driver Group GUID: `2a737441-1930-4402-8d77-b2bebba308a3`
+  * GUID: `29f6c1db-86da-48c5-9fdb-f2b67b1f44da`
+  * Specify how long your computer is inactive before going to sleep.
+  * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
+* System unattended sleep timeout
+  * GUID: `7bc4a2f9-d8fc-4469-b07b-33eb785aaca0`
+  * Idle timeout before the system returns to a low power sleep state after waking unattended.
+  * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
+* Allow hybrid sleep
+  * GUID: `94ac6d29-73ce-41a6-809f-6363ba21b47e`
+  * Allow Windows to save your work and enter a low-power state so that you can resume working almost immediately.
+  * Possible values: Off, On
+* Hibernate after
+  * GUID: `9d7815a6-7ee4-497e-8888-515a05f02364`
+  * Specify how long your computer is inactive before hibernating.
+  * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
+* Allow system required policy
+  * GUID: `a4b195f5-8225-47d8-8012-9d41369786e2`
+  * Allow programs to prevent machine from going to sleep automatically
+  * Possible values: No, Yes
+* Allow Standby States
+  * GUID: `abfc2519-3608-4c2a-94ea-171b0ed546ab`
+  * Allow Windows to use the standby states when sleeping your computer.
+  * Possible values: Off, On
+* Allow wake timers
+  * GUID: `bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d`
+  * Specify if timed events should be allowed to wake the computer from sleep.
+  * Possible values: Disable, Enable, Important Wake Timers Only
+* Allow sleep with remote opens
+  * GUID: `d4c1d4c8-d5cc-43d3-b83e-fc51215cb04d`
+  * Allow your machine to go to sleep when files opened remotely have not been written to.
+  * Possible values: Off, On
+
+# USB settings
+Specify USB power settings for the USB hub driver Group GUID: `2a737441-1930-4402-8d77-b2bebba308a3`
 > 
 > * Hub Selective Suspend Timeout
 >   
