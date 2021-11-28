@@ -43,31 +43,29 @@ Specify power management settings for your hard disk. Group GUID: `0012ee47-9041
   * ValueMax: 60000 milliseconds | ValueMin: 0 milliseconds | ValueIncrement: 1 milliseconds
 
 # Internet Explorer
-> Specify Internet Explorer power management settings. Group GUID: `02f815b5-a5cf-4c84-bf20-649d1f75d3d8`
-> 
-> * JavaScript Timer Frequency
->   
->   * GUID: `4c793e7d-a264-42e1-87d3-7a0d2f523ccd`
->   * Possible values: Maximum Power Savings, Maximum Performance
-> 
-> # Desktop background settings
-> Change power management settings for your desktop background. Group GUID: `0d7dbae2-4294-402a-ba8e-26777e8488cd`
-> 
-> * Slide show
->   
->   * GUID: `309dce9b-bef4-4119-9921-a851fb12f0f4`
->   * Specify when you want the desktop background slide show to be available.
->   * Possible values: Available, Paused
-> 
-> # Wireless Adapter Settings
-> Configure wireless adapter power settings. Group GUID: `19cbb8fa-5279-450e-9fac-8a3d5fedd0c1`
-> 
-> * Power Saving Mode
->   
->   * GUID: `12bbebe6-58d6-4636-95bb-3217ef867c1a`
->   * Control the power saving mode of wireless adapters.
->   * Possible values: Maximum Performance, Low Power Saving, Medium Power Saving, Maximum Power Saving
-> 
+Specify Internet Explorer power management settings. Group GUID: `02f815b5-a5cf-4c84-bf20-649d1f75d3d8`
+
+* JavaScript Timer Frequency
+  * GUID: `4c793e7d-a264-42e1-87d3-7a0d2f523ccd`
+  * Possible values: Maximum Power Savings, Maximum Performance
+
+# Desktop background settings
+Change power management settings for your desktop background. Group GUID: `0d7dbae2-4294-402a-ba8e-26777e8488cd`
+
+* Slide show
+  * GUID: `309dce9b-bef4-4119-9921-a851fb12f0f4`
+  * Specify when you want the desktop background slide show to be available.
+  * Possible values: Available, Paused
+
+# Wireless Adapter Settings
+Configure wireless adapter power settings. Group GUID: `19cbb8fa-5279-450e-9fac-8a3d5fedd0c1`
+
+* Power Saving Mode
+
+  * GUID: `12bbebe6-58d6-4636-95bb-3217ef867c1a`
+  * Control the power saving mode of wireless adapters.
+  * Possible values: Maximum Performance, Low Power Saving, Medium Power Saving, Maximum Power Saving
+
 > # Sleep
 > Specify sleep settings. Group GUID: `238c9fa8-0aad-41ed-83f4-97be242c8f20`
 > 
