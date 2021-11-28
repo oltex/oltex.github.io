@@ -7,7 +7,8 @@ tags:
   - tag
 ---
 
-Example output:
+경로
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Power\PowerSettings
 
 # Hard disk
 Specify power management settings for your hard disk. Group GUID: `0012ee47-9041-4b5d-9b77-535fba8b1442`
