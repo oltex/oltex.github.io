@@ -14,37 +14,30 @@ HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Power\PowerSettings
 Specify power management settings for your hard disk. Group GUID: `0012ee47-9041-4b5d-9b77-535fba8b1442`
 
 * AHCI Link Power Management - HIPM/DIPM
-
   * GUID: `0b2d69d7-a2a1-449c-9680-f91c70521c60`
   * Configures the LPM state.
   * Possible values: Active, HIPM, HIPM+DIPM, DIPM, Lowest
 * Maximum Power Level
-
   * GUID: `51dea550-bb38-4bc4-991b-eacf37be5ec8`
   * Specifies the the power consumption level storage devices should not exceed.
   * ValueMax: 100 % | ValueMin: 0 % | ValueIncrement: 1 %
 * Turn off hard disk after
-
   * GUID: `6738e2c4-e8a5-4a42-b16a-e040e769756e`
   * Specify how long your hard drive is inactive before the disk turns off.
   * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
 * Hard disk burst ignore time
-
   * GUID: `80e3c60e-bb94-4ad8-bbe0-0d3195efc663`
   * Ignore a burst of disk activity up to the specified time when determining if the disk is idle.
   * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
 * NVMe Idle Timeout
-
   * GUID: `d639518a-e56d-4345-8af2-b9f32fb26109`
   * Specifies the amount of time the NVMe device must be idle before transitioning to a non-operational power state.
   * ValueMax: 60000 milliseconds | ValueMin: 0 milliseconds | ValueIncrement: 1 milliseconds
 * AHCI Link Power Management - Adaptive
-
   * GUID: `dab60367-53fe-4fbc-825e-521d069d2456`
   * Automatically transit from Partial to Slumber.
   * ValueMax: 300000 millisecond | ValueMin: 0 millisecond | ValueIncrement: 1 millisecond
 * NVMe Power State Transition Latency Tolerance
-
   * GUID: `fc95af4d-40e7-4b6d-835a-56d131dbc80e`
   * When the NVMe device has been idle for a certain amount of time, transition to the lowest non-operational power state whose ENLAT+EXLAT value is less than or equal to the value specified by this setting.
   * ValueMax: 60000 milliseconds | ValueMin: 0 milliseconds | ValueIncrement: 1 milliseconds
