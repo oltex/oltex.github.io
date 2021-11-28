@@ -20,7 +20,7 @@ Specify power management settings for your hard disk. Group GUID: `0012ee47-9041
 * Maximum Power Level
   * GUID: `51dea550-bb38-4bc4-991b-eacf37be5ec8`
   * Specifies the the power consumption level storage devices should not exceed.
-  * ValueMax: 100 % &#124; ValueMin: 0 % | ValueIncrement: 1 %
+  * ValueMax: 100 % &#124; ValueMin: 0 % &#124; ValueIncrement: 1 %
   * 
 * Turn off hard disk after
   * GUID: `6738e2c4-e8a5-4a42-b16a-e040e769756e`
