@@ -21,7 +21,6 @@ Specify power management settings for your hard disk. Group GUID: `0012ee47-9041
   * GUID: `51dea550-bb38-4bc4-991b-eacf37be5ec8`
   * Specifies the the power consumption level storage devices should not exceed.
   * ValueMax: 100 % &#124; ValueMin: 0 % &#124; ValueIncrement: 1 %
-  * 
 * Turn off hard disk after
   * GUID: `6738e2c4-e8a5-4a42-b16a-e040e769756e`
   * Specify how long your hard drive is inactive before the disk turns off.
@@ -62,20 +61,18 @@ Change power management settings for your desktop background. Group GUID: `0d7db
 Configure wireless adapter power settings. Group GUID: `19cbb8fa-5279-450e-9fac-8a3d5fedd0c1`
 
 * Power Saving Mode
-
   * GUID: `12bbebe6-58d6-4636-95bb-3217ef867c1a`
   * Control the power saving mode of wireless adapters.
   * Possible values: Maximum Performance, Low Power Saving, Medium Power Saving, Maximum Power Saving
 
-> # Sleep
-> Specify sleep settings. Group GUID: `238c9fa8-0aad-41ed-83f4-97be242c8f20`
-> 
-> * Allow Away Mode Policy
->   
->   * GUID: `25dfa149-5dd1-4736-b5ab-e8a37b5b8187`
->   * Allow away mode to be enabled for your computer
->   * Possible values: No, Yes
-> * Sleep after
+# Sleep
+Specify sleep settings. Group GUID: `238c9fa8-0aad-41ed-83f4-97be242c8f20`
+
+* Allow Away Mode Policy
+  * GUID: `25dfa149-5dd1-4736-b5ab-e8a37b5b8187`
+  * Allow away mode to be enabled for your computer
+  * Possible values: No, Yes
+* Sleep after
 >   
 >   * GUID: `29f6c1db-86da-48c5-9fdb-f2b67b1f44da`
 >   * Specify how long your computer is inactive before going to sleep.
