@@ -23,3 +23,7 @@ interaction, review, and repository synchronization.
 git config --global user.name “[firstname lastname]”
 ```
 버전 기록을 검토할 때 크레딧으로 식별 가능한 이름 설정
+```
+git config --global user.email “[valid-email]”
+```
+각 기록 마커와 연결할 이메일 주소 설정
