@@ -32,14 +32,6 @@ interaction, review, and repository synchronization.
 |---|
 |git config --global color.ui auto|
 
-||
-|---|
-||
-
-||
-|---|
-||
-
 ## SETUP & INIT
 사용자 정보 구성, 리포지토리 초기화 및 복제
 
