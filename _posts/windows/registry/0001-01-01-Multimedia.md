@@ -42,3 +42,15 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\Syste
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Audio
 ```
+|이름|종류|데이터(기본값)|
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_DWORD|0x00000000(0)|
+|Clock Rate|REG_DWORD|0x00000000(0)|
+|GPU Priority|REG_DWORD|0x00000000(0)|
+|Latency Sensitive|REG_DWORD|0x00000000(0)|
+|Priority|REG_DWORD|0x00000000(0)|
+|Scheduling Category|REG_DWORD|0x00000000(0)|
+|SFIO Priority|REG_DWORD|0x00000000(0)|
+
+
