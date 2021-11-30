@@ -20,4 +20,4 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\Syste
 
 ### NoLazyMode
 
-### SystemResponsiveness
+### 시스템 응답성(SystemResponsiveness)
