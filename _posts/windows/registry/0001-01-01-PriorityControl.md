@@ -8,7 +8,7 @@ tags:
 ```
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 ```
-## IQR 우선순위(IQRPriority)
+### IQR 우선순위(IQRPriority)
 
 |이름|종류|데이터(기본값)|
 |---|---|---|
