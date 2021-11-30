@@ -54,9 +54,25 @@ interaction, review, and repository synchronization.
 ## STAGE & SNAPSHOT
 스냅샷 및 Git 준비 영역 작업
 
-||
+|다음 커밋을 위해 준비된 작업 디렉토리의 수정된 파일 표시|
 |---|
 |git status|
+
+|다음 커밋(단계)에 지금 보이는 대로 파일을 추가|
+|---|
+|git add [file]|
+
+||
+|---|
+||
+
+||
+|---|
+||
+
+||
+|---|
+||
 
 ||
 |---|
