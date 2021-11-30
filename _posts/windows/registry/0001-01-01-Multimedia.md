@@ -14,7 +14,7 @@ MMCSS는 레지스트리에 저장된 정보를 사용하여 지원되는 작업
 
 ## 시스템 프로필(SystemProfile)
 ```
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile
+\SystemProfile
 ```
 ### 네트워크 조절 인덱스(NetworkThrottlingIndex)
 
@@ -40,11 +40,11 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\Syste
 
 ## 작업(Tasks)
 ```
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks
+SystemProfile\Tasks
 ```
 ### 오디오(Audio)
 ```
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Audio
+\Audio
 ```
 |이름|종류|데이터(기본값)|
 |---|---|---|
