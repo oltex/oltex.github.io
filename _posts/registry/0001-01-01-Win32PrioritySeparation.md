@@ -22,8 +22,8 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 
 세부적인 세팅벨류는 비트자리로 구분된다.
 
-||||
-|---|---|---|
-|Quantum Long, Short|01XXXX|10XXXX|
-|Interval Fixed, Variable|XX10XX|XX01XX|
+|||||
+|---|---|---|---|
+|Quantum Long, Short|01XXXX|10XXXX||
+|Interval Fixed, Variable|XX10XX|XX01XX||
 |Ratio 1:1, 2:1, 3:1|XXXX00|XXXX01|XXXX10, XXXX11|
