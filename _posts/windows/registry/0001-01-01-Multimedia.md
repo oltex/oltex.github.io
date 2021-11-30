@@ -59,9 +59,21 @@ SystemProfile\Tasks
 |SFIO Priority|REG_SZ|Normal|
 
 ### 캡처(Capture)
+```
+\
+```
 ### DisplayPostProcessing
+```
+\
+```
 ### Distribution
+```
+\
+```
 ### Games
+```
+\
+```
 ### Playback
 ### Pro Audio
 ### Window Manager
