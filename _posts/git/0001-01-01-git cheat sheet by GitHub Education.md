@@ -1,5 +1,5 @@
 ---
-title: "깃 치트 시트(Git Cheat Sheet)"
+title: "깃 치트 시트(Git Cheat Sheet) by GitHub Education"
 
 categories:
   - git
@@ -51,9 +51,12 @@ interaction, review, and repository synchronization.
 |---|
 |git clone [url]|
 
+## STAGE & SNAPSHOT
+스냅샷 및 Git 준비 영역 작업
+
 ||
 |---|
-||
+|git status|
 
 ||
 |---|
