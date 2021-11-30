@@ -62,10 +62,33 @@ SystemProfile\Tasks
 ```
 \
 ```
+
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_SZ|True|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
+|Latency Sensitive|REG_SZ||
+|Priority|REG_DWORD|0x00000006(5)|
+|Scheduling Category|REG_SZ|Medium|
+|SFIO Priority|REG_SZ|Normal|
+
 ### DisplayPostProcessing
 ```
 \
 ```
+
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_SZ|True|
+|BackgroundPriority|REG_DWORD|0x00000008(8)|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
+|Latency Sensitive|REG_SZ||
+|Priority|REG_DWORD|0x00000008(8)|
+|Scheduling Category|REG_SZ|High|
+|SFIO Priority|REG_SZ|Normal|
+
 ### Distribution
 ```
 \
