@@ -26,5 +26,4 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 |---|---|---|
 |Quantum Long, Short|01XXXX|10XXXX|
 |Interval Fixed, Variable|XX10XX|XX01XX|
-||||
-||||
+|Ratio 1:1, 2:1, 3:1|XXXX00|XXXX01|XXXX10, XXXX11|
