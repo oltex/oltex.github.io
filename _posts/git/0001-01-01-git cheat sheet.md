@@ -12,3 +12,10 @@ related that happens locally on your computer. This cheat sheet features the mos
 used Git commands for easy reference.
 
 ## INSTALLATION & GUIS
+With platform specific installers for Git, GitHub also provides the
+ease of staying up-to-date with the latest releases of the command
+line tool while providing a graphical user interface for day-to-day
+interaction, review, and repository synchronization.
+
+## SET UP
+모든 로컬 리포지토리에서 사용되는 사용자 정보 구성
