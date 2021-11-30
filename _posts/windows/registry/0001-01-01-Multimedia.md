@@ -42,15 +42,15 @@ MMCSS는 레지스트리에 저장된 정보를 사용하여 지원되는 작업
 ```
 SystemProfile\Tasks
 ```
-### 오디오(Audio)
+### 오디오(Audio) 캡처(Capture)
 ```
-\Audio
+\Audio \Capture
 ```
 
-|이름               |종류      |데이터(기본값)| 오디오(Audio)\Audio|
+|이름               |종류      |데이터(기본값)|오디오(Audio)\Audio|
 |---|---|---|---|
-|Affinity           |REG_DWORD|             |0x00000000(0)|
-|Background Only    |REG_SZ   |             |True|
+|Affinity           |REG_DWORD||0x00000000(0)|
+|Background Only    |REG_SZ   ||True|
 |BackgroundPriority |REG_DWORD|             ||
 |Clock Rate         |REG_DWORD|             |0x00002710(10000)|
 |GPU Priority       |REG_DWORD|             |0x00000008(8)|
