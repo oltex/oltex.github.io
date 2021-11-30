@@ -52,7 +52,7 @@ SystemProfile\Tasks
 |Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)|
 |Background Only    |REG_SZ   |             |True             |True             |True             |True|
 |BackgroundPriority |REG_DWORD|             |                 |                 |0x00000008(8)    |
-|Clock Rate         |REG_DWORD|             |0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|
+|Clock Rate         |REG_DWORD|AAAAAAAAAAAAA|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|
 |GPU Priority       |REG_DWORD|             |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)|
 |Latency Sensitive  |REG_SZ   |             |                 |                 |                 ||
 |Priority           |REG_DWORD|             |0x00000006(6)    |0x00000006(5)    |0x00000008(8)    |0x00000008(4)|
