@@ -18,19 +18,19 @@ line tool while providing a graphical user interface for day-to-day
 interaction, review, and repository synchronization.
 
 ## SET UP
-모든 로컬 리포지토리에서 사용되는 사용자 정보 구성
+모든 로컬 저장소에서 사용되는 사용자 정보 구성
 
-|버전 기록을 검토할 때 크레딧으로 식별 가능한 이름 설정|
+|버전 기록을 검토할 때 크레딧으로 식별할 수 있는 이름 설정|
 |---|
 |git config --global user.name “[firstname lastname]”|
 
-|각 기록 마커와 연결할 이메일 주소 설정|
+|각 기록 마커와 연결될 이메일 주소 설정|
 |---|
 |git config --global user.email “[valid-email]”|
 
-||
+|쉽게 검토할 수 있도록 Git에 대한 자동 명령줄 색상 설정|
 |---|
-||
+|git config --global color.ui auto|
 
 ||
 |---|
