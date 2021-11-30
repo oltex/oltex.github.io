@@ -58,3 +58,14 @@ SystemProfile\Tasks
 |Priority|REG_DWORD|0x00000006(6)|0x00000005(5)|0x00000008(8)|0x00000004(4)|0x00000002(2)|0x00000003(3)|0x00000001(1)|0x00000005(5)|
 |Scheduling Category|REG_SZ|Medium|Medium|High|Medium|Medium|Medium|High|Medium|
 |SFIO Priority|REG_SZ|Normal|Normal|Normal|Normal|Normal|Normal|Normal|Normal|
+
+|이름|종류|가능한 데이터|
+|---|---|---|
+|Affinity|REG_DWORD|프로세서 선호도를 나타내는 비트맵입니다. 0x00 및 0xFFFFFFFF 모두 프로세서 선호도가 사용되지 않음을 나타냅니다.|
+|Background Only|REG_SZ|이 작업이 백그라운드 작업(사용자 인터페이스 없음)인지 여부를 나타냅니다. 창 포커스가 변경되어 백그라운드 작업의 스레드가 변경되지 않습니다. 이 값은 True 또는 False로 설정할 수 있습니다.|
+|Clock Rate|REG_DWORD|
+|GPU Priority|REG_DWORD|
+|Latency Sensitive|REG_SZ|
+|Priority|REG_DWORD|
+|Scheduling Category|REG_SZ|
+|SFIO Priority|REG_SZ|
