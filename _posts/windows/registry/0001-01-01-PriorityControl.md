@@ -29,7 +29,7 @@ IRQ18Priority를 입력합니다. (IRQ가 10번이면 IRQ10Priority를 하면 �
 
 그리고 값을 1로 주고 재부팅하면 IRQ 18번이 우선순위를 가지게 되어 만약 우선 순위에 밀려서 일어나는 문제가 있었다면 어느 정도 효과를 볼 수 있습니다.
 
-## 프로세서 사용 계획(Win32PrioritySeparation)
+### 프로세서 사용 계획(Win32PrioritySeparation)
 
 |이름|종류|데이터(기본값)|
 |---|---|---|
