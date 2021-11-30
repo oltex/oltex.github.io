@@ -33,3 +33,8 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\Syste
 |이름|종류|데이터(기본값)|
 |---|---|---|
 |SystemResponsiveness|REG_DWORD|0x00000014(20)|
+
+## 작업(Tasks)
+```
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Audio
+```
