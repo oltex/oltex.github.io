@@ -34,6 +34,10 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\Syste
 |---|---|---|
 |SystemResponsiveness|REG_DWORD|0x00000014(20)|
 
+이 키에는 우선 순위가 낮은 작업으로 보장되어야 하는 CPU 리소스의 비율을 결정하는 값이 포함되어 있다.  
+예를 들어 이 값이 20이면 CPU 리소스의 20%가 우선 순위가 낮은 작업을 위해 예약된다.  
+10으로 균등하게 나눌 수 없는 값은 10의 가장 가까운 배수로 반올림된다. 값 0도 10으로 처리된다.
+
 ## 작업(Tasks)
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Audio
