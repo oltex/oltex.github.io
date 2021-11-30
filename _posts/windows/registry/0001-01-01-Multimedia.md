@@ -46,6 +46,7 @@ SystemProfile\Tasks
 ```
 \Audio \Capture \DisplayPostProcessing \Distribution \Games \Playback \Pro Audio \Window Manager
 ```
+키에는 작업 목록을 포함하는 Tasks라는 하위 키도 포함되어 있습니다. 기본적으로 Windows 다음 작업을 지원합니다.
 
 이름|종류|오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|배포(Distribution)|게임(Games)|재생(Playback)|Pro 오디오(Pro Audio)|창 관리자(Window Manager)
 ---|---|---|---|---|---|---|---|---|---
@@ -58,6 +59,8 @@ Latency Sensitive|REG_SZ||||||||
 Priority|REG_DWORD|0x00000006(6)|0x00000005(5)|0x00000008(8)|0x00000004(4)|0x00000002(2)|0x00000003(3)|0x00000001(1)|0x00000005(5)
 Scheduling Category|REG_SZ|Medium|Medium|High|Medium|Medium|Medium|High|Medium
 SFIO Priority|REG_SZ|Normal|Normal|Normal|Normal|Normal|Normal|Normal|Normal
+
+각 작업 키에는 태스크와 연결된 스레드에 적용할 특성을 나타내는 다음 값 집합이 포함되어 있습니다.
 
 이름|종류|가능한 데이터|
 ---|---|---|
