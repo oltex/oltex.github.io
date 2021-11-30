@@ -47,6 +47,7 @@ SystemProfile\Tasks
 \Audio \Capture \DisplayPostProcessing
 ```
 
+```
 |이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|
 |---|---|---|---|---|---|
 |Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |
@@ -58,6 +59,7 @@ SystemProfile\Tasks
 |Priority           |REG_DWORD|             |0x00000006(6)    |0x00000006(5)    |0x00000008(8)    |
 |Scheduling Category|REG_SZ   |             |Medium           |Medium           |High             |
 |SFIO Priority      |REG_SZ   |             |Normal           |Normal           |Normal           |
+```
 
 ### 디스플레이 후처리(DisplayPostProcessing)
 ```
