@@ -20,8 +20,12 @@ interaction, review, and repository synchronization.
 ## SET UP
 모든 로컬 리포지토리에서 사용되는 사용자 정보 구성
 
-|---|
+
+
+
 |git config --global user.name “[firstname lastname]|
+|---|
+
 ```
 git config --global user.name “[firstname lastname]”
 ```
