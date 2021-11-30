@@ -60,7 +60,7 @@ SystemProfile\Tasks
 
 ### 캡처(Capture)
 ```
-\
+\Capture
 ```
 
 |이름|종류|데이터(기본값)|
@@ -74,9 +74,9 @@ SystemProfile\Tasks
 |Scheduling Category|REG_SZ|Medium|
 |SFIO Priority|REG_SZ|Normal|
 
-### DisplayPostProcessing
+### 디스플레이 후처리(DisplayPostProcessing)
 ```
-\
+\DisplayPostProcessing
 ```
 
 |이름|종류|데이터(기본값)|
@@ -91,14 +91,75 @@ SystemProfile\Tasks
 |Scheduling Category|REG_SZ|High|
 |SFIO Priority|REG_SZ|Normal|
 
-### Distribution
+### 배포(Distribution)
 ```
-\
+\Distribution
 ```
-### Games
+
+|이름|종류|데이터(기본값)|
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_SZ|True|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
+|Latency Sensitive|REG_SZ||
+|Priority|REG_DWORD|0x00000008(4)|
+|Scheduling Category|REG_SZ|Medium|
+|SFIO Priority|REG_SZ|Normal|
+
+### 게임(Games)
 ```
-\
+\Games
 ```
-### Playback
-### Pro Audio
-### Window Manager
+
+|이름|종류|데이터(기본값)|
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_SZ|False|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
+|Latency Sensitive|REG_SZ||
+|Priority|REG_DWORD|0x00000008(2)|
+|Scheduling Category|REG_SZ|Medium|
+|SFIO Priority|REG_SZ|Normal|
+
+### 재생(Playback)
+
+|이름|종류|데이터(기본값)|
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_SZ|False|
+|BackgroundPriority|REG_DWORD|0x00000004(4)|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
+|Latency Sensitive|REG_SZ||
+|Priority|REG_DWORD|0x00000008(3)|
+|Scheduling Category|REG_SZ|Medium|
+|SFIO Priority|REG_SZ|Normal|
+
+### Pro 오디오(Pro Audio)
+
+|이름|종류|데이터(기본값)|
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_SZ|False|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
+|Latency Sensitive|REG_SZ||
+|Priority|REG_DWORD|0x00000008(1)|
+|Scheduling Category|REG_SZ|High|
+|SFIO Priority|REG_SZ|Normal|
+
+### 창 관리자(Window Manager)
+
+|이름|종류|데이터(기본값)|
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_SZ|True|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
+|Latency Sensitive|REG_SZ||
+|Priority|REG_DWORD|0x00000008(5)|
+|Scheduling Category|REG_SZ|Medium|
+|SFIO Priority|REG_SZ|Normal|
+
