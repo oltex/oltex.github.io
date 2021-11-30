@@ -46,12 +46,15 @@ interaction, review, and repository synchronization.
 |기존 디렉토리를 Git 저장소로 초기화|
 |---|
 |git init|
+
 |retrieve an entire repository from a hosted location via URL|
 |---|
 |git clone [url]|
+
 ||
 |---|
 ||
+
 ||
 |---|
 ||
