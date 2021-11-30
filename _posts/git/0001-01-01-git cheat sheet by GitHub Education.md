@@ -78,7 +78,7 @@ interaction, review, and repository synchronization.
 |---|
 |git commit -m “[descriptive message]”|
 
-BRANCH & MERGE
+## BRANCH & MERGE
 Isolating work in branches, changing context, and integrating changes
 
 |list your branches. a * will appear next to the currently active branch|
