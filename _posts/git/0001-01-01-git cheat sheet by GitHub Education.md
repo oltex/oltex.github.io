@@ -62,13 +62,13 @@ interaction, review, and repository synchronization.
 |---|
 |git add [file]|
 
-||
+|작업 디렉토리의 변경 사항을 유지하면서 파일을 언스테이징|
 |---|
-||
+|git reset [file]|
 
-||
+|변경되었지만 스테이징되지 않은 차이점|
 |---|
-||
+|git diff|
 
 ||
 |---|
