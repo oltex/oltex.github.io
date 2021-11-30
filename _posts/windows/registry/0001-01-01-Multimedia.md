@@ -47,7 +47,7 @@ SystemProfile\Tasks
 \Audio \Capture \DisplayPostProcessing \Distribution \Games
 ```
 
-|이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|배포(Distribution)|게임(Games)|재생(Playback)|Pro 오디오(Pro Audio)|
+|이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|배포(Distribution)|게임(Games)|재생(Playback)|Pro 오디오(Pro Audio)|창 관리자(Window Manager)|
 |---|---|---|---|---|---|---|---|---|---|
 |Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |
 0x00000000(0)|
