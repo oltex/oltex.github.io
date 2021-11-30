@@ -12,4 +12,7 @@ MMCSS(멀티미디어 클래스 스케줄러 서비스)를 사용하면 멀티�
 
 MMCSS는 레지스트리에 저장된 정보를 사용하여 지원되는 작업을 식별하고 이러한 작업을 수행하는 스레드의 상대적 우선 순위를 결정합니다. 특정 작업과 관련된 작업을 수행하는 각 스레드는 AvSetMmMaxThreadCharacteristics 또는 AvSetMmThreadCharacteristics 함수를 호출하여 해당 작업에서 작업 중임을 MMCSS에 알릴 수 있습니다.
 
-## SystemProfile
+## 시스템 프로필(SystemProfile)
+```
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile
+```
