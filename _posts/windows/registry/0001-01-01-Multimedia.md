@@ -42,38 +42,22 @@ MMCSS는 레지스트리에 저장된 정보를 사용하여 지원되는 작업
 ```
 SystemProfile\Tasks
 ```
-### 오디오(Audio) 캡처(Capture)
+### 오디오(Audio) 캡처(Capture) 디스플레이 후처리(DisplayPostProcessing)
 ```
-\Audio \Capture
-```
-
-|이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|
-|---|---|---|---|---|
-|Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |
-|Background Only    |REG_SZ   |             |True             |True             |
-|BackgroundPriority |REG_DWORD|             |                 |                 |
-|Clock Rate         |REG_DWORD|             |0x00002710(10000)|0x00002710(10000)|
-|GPU Priority       |REG_DWORD|             |0x00000008(8)    |0x00000008(8)    |
-|Latency Sensitive  |REG_SZ   |             |                 |                 |
-|Priority           |REG_DWORD|             |0x00000006(6)    |0x00000006(5)    |
-|Scheduling Category|REG_SZ   |             |Medium           |Medium           |
-|SFIO Priority      |REG_SZ   |             |Normal           |Normal           |
-
-### 캡처(Capture)
-```
-\Capture
+\Audio \Capture \DisplayPostProcessing
 ```
 
-|이름|종류|데이터(기본값)|
-|---|---|---|
-|Affinity|REG_DWORD|0x00000000(0)|
-|Background Only|REG_SZ|True|
-|Clock Rate|REG_DWORD|0x00002710(10000)|
-|GPU Priority|REG_DWORD|0x00000008(8)|
-|Latency Sensitive|REG_SZ||
-|Priority|REG_DWORD|0x00000006(5)|
-|Scheduling Category|REG_SZ|Medium|
-|SFIO Priority|REG_SZ|Normal|
+|이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|
+|---|---|---|---|---|---|
+|Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |
+|Background Only    |REG_SZ   |             |True             |True             |True             |
+|BackgroundPriority |REG_DWORD|             |                 |                 |0x00000008(8)    |
+|Clock Rate         |REG_DWORD|             |0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|
+|GPU Priority       |REG_DWORD|             |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |
+|Latency Sensitive  |REG_SZ   |             |                 |                 |                 |
+|Priority           |REG_DWORD|             |0x00000006(6)    |0x00000006(5)    |0x00000008(8)    |
+|Scheduling Category|REG_SZ   |             |Medium           |Medium           |High             |
+|SFIO Priority      |REG_SZ   |             |Normal           |Normal           |Normal           |
 
 ### 디스플레이 후처리(DisplayPostProcessing)
 ```
@@ -164,3 +148,18 @@ SystemProfile\Tasks
 |Scheduling Category|REG_SZ|Medium|
 |SFIO Priority|REG_SZ|Normal|
 
+### 캡처(Capture)
+```
+\Capture
+```
+
+|이름|종류|데이터(기본값)|
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_SZ|True|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
+|Latency Sensitive|REG_SZ||
+|Priority|REG_DWORD|0x00000006(5)|
+|Scheduling Category|REG_SZ|Medium|
+|SFIO Priority|REG_SZ|Normal|
