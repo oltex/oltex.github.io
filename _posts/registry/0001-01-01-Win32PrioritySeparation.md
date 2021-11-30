@@ -30,7 +30,8 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 
 **퀀텀 길게(Long) VS 짧게(Short)**  
 스레드가 CPU를 얼마 동안 사용할지를 정의한 시간 단위를 퀀텀(Quantum)이라고 한다.  
-퀀텀을 길게 설정하면 (36, 대략 12 Click)의 퀀텀을 가지고, 짧게 설정하면 (6, 대략 2 Click)의 퀀텀을 가진다.
+퀀텀을 길게 설정하면 (36, 대략 12 Click)의 퀀텀을 가지고,  
+짧게 설정하면 (6, 대략 2 Click)의 퀀텀을 가진다.
 
 고정(Fixed) VS 가변(Variable)  
 퀀텀의 실행 시간을 설정한다.  
