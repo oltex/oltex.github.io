@@ -16,7 +16,7 @@ MMCSS는 레지스트리에 저장된 정보를 사용하여 지원되는 작업
 ```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile
 ```
-### NetworkThrottlingIndex
+### 네트워크 조절 인덱스(NetworkThrottlingIndex)
 
 ### NoLazyMode
 
