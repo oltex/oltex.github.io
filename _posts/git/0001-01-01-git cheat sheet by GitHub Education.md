@@ -85,21 +85,21 @@ Isolating work in branches, changing context, and integrating changes
 |---|
 |git branch|
 
-||
+|create a new branch at the current commit|
 |---|
-||
+|git branch [branch-name]|
 
-||
+|switch to another branch and check it out into your working directory|
 |---|
-||
+|git checkout|
 
-||
+|merge the specified branch’s history into the current one|
 |---|
-||
+|git merge [branch]|
 
-||
+|show all commits in the current branch’s history|
 |---|
-||
+|git log|
 
 ||
 |---|
