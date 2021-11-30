@@ -47,17 +47,17 @@ SystemProfile\Tasks
 \Audio \Capture \DisplayPostProcessing aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 ```
 
-|이름               |종류      |데이터(기본값)오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|배포(Distribution)|
-|---|---|---|---|---|---|
-|Affinity           |REG_DWORD|             0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)|
-|Background Only    |REG_SZ   |             True             |True             |True             |True|
-|BackgroundPriority |REG_DWORD|                              |                 |0x00000008(8)    |
-|Clock Rate         |REG_DWORD|             0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|
-|GPU Priority       |REG_DWORD|             0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)|
-|Latency Sensitive  |REG_SZ   |                              |                 |                 ||
-|Priority           |REG_DWORD|             0x00000006(6)    |0x00000006(5)    |0x00000008(8)    |0x00000008(4)|
-|Scheduling Category|REG_SZ   |             Medium           |Medium           |High             |Medium|
-|SFIO Priority      |REG_SZ   |             Normal           |Normal           |Normal           |Normal|
+|이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|배포(Distribution)|
+|---|---|---|---|---|---|---|
+|Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)|
+|Background Only    |REG_SZ   |             |True             |True             |True             |True|
+|BackgroundPriority |REG_DWORD|             |                 |                 |0x00000008(8)    |
+|Clock Rate         |REG_DWORD|             |0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|
+|GPU Priority       |REG_DWORD|             |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)|
+|Latency Sensitive  |REG_SZ   |             |                 |                 |                 ||
+|Priority           |REG_DWORD|             |0x00000006(6)    |0x00000006(5)    |0x00000008(8)    |0x00000008(4)|
+|Scheduling Category|REG_SZ   |             |Medium           |Medium           |High             |Medium|
+|SFIO Priority      |REG_SZ   |             |Normal           |Normal           |Normal           |Normal|
 
 
 
