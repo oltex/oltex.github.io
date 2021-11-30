@@ -47,17 +47,17 @@ SystemProfile\Tasks
 \Audio \Capture
 ```
 
-|이름               |종류      |데이터(기본값)|오디오(Audio)\Audio|
-|---|---|---|---|
-|Affinity           |REG_DWORD||0x00000000(0)|
-|Background Only    |REG_SZ   ||True|
-|BackgroundPriority |REG_DWORD|             ||
-|Clock Rate         |REG_DWORD|             |0x00002710(10000)|
-|GPU Priority       |REG_DWORD|             |0x00000008(8)|
-|Latency Sensitive  |REG_SZ   |             ||
-|Priority           |REG_DWORD|             |0x00000006(6)|
-|Scheduling Category|REG_SZ   |             |Medium|
-|SFIO Priority      |REG_SZ   |             |Normal|
+|이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|
+|---|---|---|---|---|
+|Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |
+|Background Only    |REG_SZ   |             |True             |True             |
+|BackgroundPriority |REG_DWORD|             |                 |                 |
+|Clock Rate         |REG_DWORD|             |0x00002710(10000)|0x00002710(10000)|
+|GPU Priority       |REG_DWORD|             |0x00000008(8)    |0x00000008(8)    |
+|Latency Sensitive  |REG_SZ   |             |                 |                 |
+|Priority           |REG_DWORD|             |0x00000006(6)    |0x00000006(5)    |
+|Scheduling Category|REG_SZ   |             |Medium           |Medium           |
+|SFIO Priority      |REG_SZ   |             |Normal           |Normal           |
 
 ### 캡처(Capture)
 ```
