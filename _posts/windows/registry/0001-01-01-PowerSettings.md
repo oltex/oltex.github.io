@@ -1,13 +1,10 @@
 ---
-title: "PowerSettings"
-
+title: "전원 설정(PowerSettings)"
 categories:
   - registry
 tags:
   - tag
 ---
-
-경로
 ```
 HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Power\PowerSettings
 ```
