@@ -55,7 +55,6 @@ SystemProfile\Tasks
 |BackgroundPriority |REG_DWORD|             |                 |                 |0x00000008(8)    |                 |                 |0x00000004(4)    |                 ||
 |Clock Rate         |REG_DWORD|AAAAAAAAAAAAA|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|
 |GPU Priority       |REG_DWORD|             |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)|
-
 |Latency Sensitive  |REG_SZ   |             |                 |                 |                 |                 |                 |                 |                 ||
 |Priority           |REG_DWORD|             |0x00000006(6)    |0x00000006(5)    |0x00000008(8)    |0x00000008(4)    |0x00000008(2)    |0x00000008(3)    |0x00000008(1)    |0x00000008(5)|
 |Scheduling Category|REG_SZ   |             |Medium           |Medium           |High             |Medium           |Medium           |Medium           |High             |Medium|
