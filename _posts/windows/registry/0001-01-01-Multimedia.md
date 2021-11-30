@@ -18,6 +18,18 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\Syste
 ```
 ### 네트워크 조절 인덱스(NetworkThrottlingIndex)
 
+|이름|종류|데이터(기본값)|
+|---|---|---|
+||REG_DWORD|0x00000000(0)|
+
 ### NoLazyMode
 
+|이름|종류|데이터(기본값)|
+|---|---|---|
+||REG_DWORD|0x00000000(0)|
+
 ### 시스템 응답성(SystemResponsiveness)
+
+|이름|종류|데이터(기본값)|
+|---|---|---|
+||REG_DWORD|0x00000000(0)|
