@@ -42,53 +42,39 @@ MMCSS는 레지스트리에 저장된 정보를 사용하여 지원되는 작업
 ```
 SystemProfile\Tasks
 ```
-### 오디오(Audio) 캡처(Capture) 디스플레이 후처리(DisplayPostProcessing) 배포(Distribution) 게임(Games)
+### 오디오(Audio) 캡처(Capture) 디스플레이 후처리(DisplayPostProcessing) 배포(Distribution) 게임(Games) 재생(Playback)
 ```
 \Audio \Capture \DisplayPostProcessing \Distribution \Games
 ```
 
-|이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|배포(Distribution)|게임(Games)|
-|---|---|---|---|---|---|---|---|
-|Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |
-|Background Only    |REG_SZ   |             |True             |True             |True             |True             |False            |
-|BackgroundPriority |REG_DWORD|             |                 |                 |0x00000008(8)    |                 |                 |
-|Clock Rate         |REG_DWORD|AAAAAAAAAAAAA|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|
-|GPU Priority       |REG_DWORD|             |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |
-|Latency Sensitive  |REG_SZ   |             |                 |                 |                 |                 |                 |
-|Priority           |REG_DWORD|             |0x00000006(6)    |0x00000006(5)    |0x00000008(8)    |0x00000008(4)    |0x00000008(2)    |
-|Scheduling Category|REG_SZ   |             |Medium           |Medium           |High             |Medium           |Medium           |
-|SFIO Priority      |REG_SZ   |             |Normal           |Normal           |Normal           |Normal           |Normal           |
+|이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|배포(Distribution)|게임(Games)|재생(Playback)|
+|---|---|---|---|---|---|---|---|---|
+|Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |
+|Background Only    |REG_SZ   |             |True             |True             |True             |True             |False            |False            |
+|BackgroundPriority |REG_DWORD|             |                 |                 |0x00000008(8)    |                 |                 |0x00000004(4)    |
+|Clock Rate         |REG_DWORD|AAAAAAAAAAAAA|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|
+|GPU Priority       |REG_DWORD|             |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |0x00000008(8)    |
+|Latency Sensitive  |REG_SZ   |             |                 |                 |                 |                 |                 |                 |
+|Priority           |REG_DWORD|             |0x00000006(6)    |0x00000006(5)    |0x00000008(8)    |0x00000008(4)    |0x00000008(2)    |0x00000008(3)    |
+|Scheduling Category|REG_SZ   |             |Medium           |Medium           |High             |Medium           |Medium           |Medium           |
+|SFIO Priority      |REG_SZ   |             |Normal           |Normal           |Normal           |Normal           |Normal           |Normal           |
 
 
-### 게임(Games)
-```
-\Games
-```
 
-|이름|종류|데이터(기본값)|
-|---|---|---|
-|Affinity|REG_DWORD|0x00000000(0)|
-|Background Only|REG_SZ|False|
-|Clock Rate|REG_DWORD|0x00002710(10000)|
-|GPU Priority|REG_DWORD|0x00000008(8)|
-|Latency Sensitive|REG_SZ||
-|Priority|REG_DWORD|0x00000008(2)|
-|Scheduling Category|REG_SZ|Medium|
-|SFIO Priority|REG_SZ|Normal|
 
 ### 재생(Playback)
 
 |이름|종류|데이터(기본값)|
 |---|---|---|
-|Affinity|REG_DWORD|0x00000000(0)|
-|Background Only|REG_SZ|False|
-|BackgroundPriority|REG_DWORD|0x00000004(4)|
-|Clock Rate|REG_DWORD|0x00002710(10000)|
-|GPU Priority|REG_DWORD|0x00000008(8)|
-|Latency Sensitive|REG_SZ||
-|Priority|REG_DWORD|0x00000008(3)|
-|Scheduling Category|REG_SZ|Medium|
-|SFIO Priority|REG_SZ|Normal|
+|Affinity|REG_DWORD|
+|Background Only|REG_SZ|
+|BackgroundPriority|REG_DWORD|
+|Clock Rate|REG_DWORD|
+|GPU Priority|REG_DWORD|
+|Latency Sensitive|REG_SZ|
+|Priority|REG_DWORD|
+|Scheduling Category|REG_SZ|
+|SFIO Priority|REG_SZ|
 
 ### Pro 오디오(Pro Audio)
 
@@ -164,3 +150,19 @@ SystemProfile\Tasks
 |Priority|REG_DWORD|0x00000008(4)|
 |Scheduling Category|REG_SZ|
 |SFIO Priority|REG_SZ|
+
+### 게임(Games)
+```
+\Games
+```
+
+|이름|종류|데이터(기본값)|
+|---|---|---|
+|Affinity|REG_DWORD|0x00000000(0)|
+|Background Only|REG_SZ|False|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
+|Latency Sensitive|REG_SZ||
+|Priority|REG_DWORD|0x00000008(2)|
+|Scheduling Category|REG_SZ|Medium|
+|SFIO Priority|REG_SZ|Normal|
