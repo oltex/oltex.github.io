@@ -19,7 +19,7 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 
 ||||
 |---|---|---|
-|프로그램|0x26 (38)|SHORT VARIABLE 3:1|
+|프로그램|0x26(38)|SHORT VARIABLE 3:1|
 |백그라운드 서비스|0x18(24)|LONG FIXED 1:1|
 
 쉽게 설명하면 어플리케이션이 종종 렉을 유발하는경우 포그라운드로 설정하면 나아진다.  
