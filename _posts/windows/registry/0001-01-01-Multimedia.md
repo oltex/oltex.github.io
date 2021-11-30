@@ -49,8 +49,7 @@ SystemProfile\Tasks
 
 |이름               |종류      |데이터(기본값)|오디오(Audio)|캡처(Capture)|디스플레이 후처리(DisplayPostProcessing)|배포(Distribution)|게임(Games)|재생(Playback)|Pro 오디오(Pro Audio)|창 관리자(Window Manager)|
 |---|---|---|---|---|---|---|---|---|---|---|
-|Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |
-0x00000000(0)|
+|Affinity           |REG_DWORD|             |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)    |0x00000000(0)|
 |Background Only    |REG_SZ   |             |True             |True             |True             |True             |False            |False            |False            |True|
 |BackgroundPriority |REG_DWORD|             |                 |                 |0x00000008(8)    |                 |                 |0x00000004(4)    |                 ||
 |Clock Rate         |REG_DWORD|AAAAAAAAAAAAA|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|0x00002710(10000)|
