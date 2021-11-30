@@ -33,12 +33,12 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 퀀텀을 길게 설정하면 (36, 대략 12 Click)의 퀀텀을 가지고,  
 짧게 설정하면 (6, 대략 2 Click)의 퀀텀을 가진다.
 
-고정(Fixed) VS 가변(Variable)  
+**고정(Fixed) VS 가변(Variable)**  
 퀀텀의 실행 시간을 설정한다.  
 고정 - 고정된 실행 시간을 가진다. 이 경우 3단계 값은 무시한다.  
 가변 - 실행시간이 3단계 설정에 따라 달라진다.
 
-비율(Ratio) 1:1 VS 2:1 VS 3:1  
+**비율(Ratio) 1:1 VS 2:1 VS 3:1**  
 비율 세팅이다. 이 설정은 포그라운드 기준으로 몇 회의 CPU를 할당 하는지를 결정한다.  
 1:1 - 포그라운드와 백그라운드 프로그램에 같은 시간을 할당한다.
 2:1 - 포그라운드에 2배 많은 시간을 할당한다.  
