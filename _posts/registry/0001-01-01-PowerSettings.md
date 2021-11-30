@@ -8,7 +8,9 @@ tags:
 ---
 
 경로
+```
 HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Power\PowerSettings
+```
 
 # Hard disk
 Specify power management settings for your hard disk. Group GUID: `0012ee47-9041-4b5d-9b77-535fba8b1442`
@@ -107,71 +109,60 @@ Specify sleep settings. Group GUID: `238c9fa8-0aad-41ed-83f4-97be242c8f20`
 
 # USB settings
 Specify USB power settings for the USB hub driver Group GUID: `2a737441-1930-4402-8d77-b2bebba308a3`
-> 
-> * Hub Selective Suspend Timeout
->   
->   * GUID: `0853a681-27c8-4100-a2fd-82013e970683`
->   * This value will be used as idle timeouts for all USB hubs
->   * ValueMax: 100000 Millisecond | ValueMin: 0 Millisecond | ValueIncrement: 1 Millisecond
-> * USB selective suspend setting
->   
->   * GUID: `48e6b7a6-50f5-4782-a5d4-53bb8f07e226`
->   * Specify whether USB selective suspend is turned on or off
->   * Possible values: Disabled, Enabled
-> * Setting IOC on all TDs
->   
->   * GUID: `498c044a-201b-4631-a522-5c744ed4e678`
->   * Should IOC be set for all TDs
->   * Possible values: Disabled, Enabled
-> * USB 3 Link Power Mangement
->   
->   * GUID: `d4e98f31-5ffe-4ce1-be31-1b38b384c009`
->   * Specifies the power management policy to use for USB 3 links when they are idle
->   * Possible values: Off, Minimum power savings, Moderate power savings, Maximum power savings
-> 
-> # Idle Resiliency
-> Idle resiliency settings. Group GUID: `2e601130-5351-4d9d-8e04-252966bad054`
-> 
-> * Execution Required power request timeout
->   
->   * GUID: `3166bc41-7e98-4e03-b34e-ec0f5f2b218e`
->   * Specifies Execution Required power request timeout
->   * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
-> * IO coalescing timeout
->   
->   * GUID: `c36f0eb4-2988-4a70-8eee-0884fc2c2433`
->   * Specifies IO coalescing timeout
->   * ValueMax: 4294967295 Milliseconds | ValueMin: 0 Milliseconds | ValueIncrement: 1 Milliseconds
-> * Processor Idle Resiliency Timer Resolution
->   
->   * GUID: `c42b79aa-aa3a-484b-a98f-2cf32aa90a28`
->   * Specifies Processor Idle Resiliency Timer Resolution
->   * ValueMax: 65000 Milliseconds | ValueMin: 0 Milliseconds | ValueIncrement: 1 Milliseconds
-> * Deep Sleep Enabled/Disabled
->   
->   * GUID: `d502f7ee-1dc7-4efd-a55d-f04b6f5c0545`
->   * Specifies if Deep Sleep is Enabled
->   * Possible values: Deep Sleep Disabled, Deep Sleep Enabled
-> 
-> # Interrupt Steering Settings
-> Interrupt Steering Settings Group GUID: `48672f38-7a9a-4bb2-8bf8-3d85be19de4e`
-> 
-> * Interrupt Steering Mode
->   
->   * GUID: `2bfc24f9-5ea2-4801-8213-3dbae01aa39d`
->   * Interrupt Steering Mode
->   * Possible values: Default, Any processor, Any unparked processor with time delay, Any unparked processor, Lock Interrupt Routing, Processor 0, Processor 1
-> * Target Load
->   
->   * GUID: `73cde64d-d720-4bb2-a860-c755afe77ef2`
->   * Target Load for each Processor
->   * ValueMax: 10000 Tenths of a percent | ValueMin: 0 Tenths of a percent | ValueIncrement: 1 Tenths of a percent
-> * Unparked time trigger
->   
->   * GUID: `d6ba4903-386f-4c2c-8adb-5c21b3328d25`
->   * Time a processor must remain unparked before interrupts are moved onto it
->   * ValueMax: 100000 Milliseconds | ValueMin: 0 Milliseconds | ValueIncrement: 1 Milliseconds
-> 
+
+* Hub Selective Suspend Timeout
+  * GUID: `0853a681-27c8-4100-a2fd-82013e970683`
+  * This value will be used as idle timeouts for all USB hubs
+  * ValueMax: 100000 Millisecond | ValueMin: 0 Millisecond | ValueIncrement: 1 Millisecond
+* USB selective suspend setting
+  * GUID: `48e6b7a6-50f5-4782-a5d4-53bb8f07e226`
+  * Specify whether USB selective suspend is turned on or off
+  * Possible values: Disabled, Enabled
+* Setting IOC on all TDs
+  * GUID: `498c044a-201b-4631-a522-5c744ed4e678`
+  * Should IOC be set for all TDs
+  * Possible values: Disabled, Enabled
+* USB 3 Link Power Mangement
+  * GUID: `d4e98f31-5ffe-4ce1-be31-1b38b384c009`
+  * Specifies the power management policy to use for USB 3 links when they are idle
+  * Possible values: Off, Minimum power savings, Moderate power savings, Maximum power savings
+
+# Idle Resiliency
+Idle resiliency settings. Group GUID: `2e601130-5351-4d9d-8e04-252966bad054`
+
+* Execution Required power request timeout
+  * GUID: `3166bc41-7e98-4e03-b34e-ec0f5f2b218e`
+  * Specifies Execution Required power request timeout
+  * ValueMax: 4294967295 Seconds | ValueMin: 0 Seconds | ValueIncrement: 1 Seconds
+* IO coalescing timeout
+  * GUID: `c36f0eb4-2988-4a70-8eee-0884fc2c2433`
+  * Specifies IO coalescing timeout
+  * ValueMax: 4294967295 Milliseconds | ValueMin: 0 Milliseconds | ValueIncrement: 1 Milliseconds
+* Processor Idle Resiliency Timer Resolution
+  * GUID: `c42b79aa-aa3a-484b-a98f-2cf32aa90a28`
+  * Specifies Processor Idle Resiliency Timer Resolution
+  * ValueMax: 65000 Milliseconds | ValueMin: 0 Milliseconds | ValueIncrement: 1 Milliseconds
+* Deep Sleep Enabled/Disabled
+  * GUID: `d502f7ee-1dc7-4efd-a55d-f04b6f5c0545`
+  * Specifies if Deep Sleep is Enabled
+  * Possible values: Deep Sleep Disabled, Deep Sleep Enabled
+
+# Interrupt Steering Settings
+Interrupt Steering Settings Group GUID: `48672f38-7a9a-4bb2-8bf8-3d85be19de4e`
+
+* Interrupt Steering Mode
+  * GUID: `2bfc24f9-5ea2-4801-8213-3dbae01aa39d`
+  * Interrupt Steering Mode
+  * Possible values: Default, Any processor, Any unparked processor with time delay, Any unparked processor, Lock Interrupt Routing, Processor 0, Processor 1
+* Target Load
+  * GUID: `73cde64d-d720-4bb2-a860-c755afe77ef2`
+  * Target Load for each Processor
+  * ValueMax: 10000 Tenths of a percent | ValueMin: 0 Tenths of a percent | ValueIncrement: 1 Tenths of a percent
+* Unparked time trigger
+  * GUID: `d6ba4903-386f-4c2c-8adb-5c21b3328d25`
+  * Time a processor must remain unparked before interrupts are moved onto it
+  * ValueMax: 100000 Milliseconds | ValueMin: 0 Milliseconds | ValueIncrement: 1 Milliseconds
+
 > # Power buttons and lid
 > Specify what your computer does when you close the lid and press the power buttons. Group GUID: `4f971e89-eebd-4455-a8de-9e59040e7347`
 > 
