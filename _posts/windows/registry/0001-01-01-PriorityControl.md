@@ -1,6 +1,5 @@
 ---
-title: "프로세서 사용 계획(Win32PrioritySeparation)"
-
+title: "우선 순위 제어(PriorityControl)"
 categories:
   - registry
 tags:
