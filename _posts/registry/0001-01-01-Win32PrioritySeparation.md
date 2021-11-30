@@ -6,7 +6,6 @@ categories:
 tags:
   - tag
 ---
-경로
 ```
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 ```
