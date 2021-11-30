@@ -22,8 +22,7 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 
 세부적인 세팅벨류는 비트자리로 구분된다.
 
-기본값
-2:DEFAULT
-||Win32PrioritySeparation|SETTING|
+|Quantum Long, Short|01XXXX|10XXXX|
+|Interval Fixed, Variable|XX10XX|XX01XX|
 ||||
 ||||
