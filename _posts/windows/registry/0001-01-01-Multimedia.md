@@ -48,7 +48,7 @@ SystemProfile\Tasks
 ```
 
 |이름|종류|데이터(기본값)|오디오(Audio)\Audio|
-|---|---|---||
+|---|---|---|---|
 |Affinity|REG_DWORD|0x00000000(0)||
 |Background Only|REG_SZ|True||
 |Clock Rate|REG_DWORD|0x00002710(10000)||
