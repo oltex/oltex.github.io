@@ -26,7 +26,7 @@ MMCSS는 레지스트리에 저장된 정보를 사용하여 지원되는 작업
 
 |이름|종류|데이터(기본값)|
 |---|---|---|
-||REG_DWORD||
+|NoLazyMode|REG_DWORD||
 
 ### 시스템 응답성(SystemResponsiveness)
 
