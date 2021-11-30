@@ -10,6 +10,7 @@ tags:
 ```
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 ```
+
 |이름|종류|데이터(기본값)|
 |---|---|---|
 |Win32PrioritySeparation|REG_DWORD|0x00000002(2)|
