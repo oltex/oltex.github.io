@@ -63,7 +63,8 @@ SFIO Priority|REG_SZ|Normal|Normal|Normal|Normal|Normal|Normal|Normal|Normal
 ---|---|---|
 Affinity|REG_DWORD|프로세서 선호도를 나타내는 비트맵입니다. 0x00 및 0xFFFFFFFF 모두 프로세서 선호도가 사용되지 않음을 나타냅니다.
 Background Only|REG_SZ|이 작업이 백그라운드 작업(사용자 인터페이스 없음)인지 여부를 나타냅니다. 창 포커스가 변경되어 백그라운드 작업의 스레드가 변경되지 않습니다. 이 값은 True 또는 False로 설정할 수 있습니다.
-Clock Rate|REG_DWORD|백그라운드 우선 순위입니다. 값의 범위는 1~8입니다.
+BackgroundPriority|REG_DWORD|백그라운드 우선 순위입니다. 값의 범위는 1~8입니다.
+Clock Rate|REG_DWORD|프로세서 리소스 예약의 세분성을 확인하기 위해 MMCSS에서 사용하는 힌트입니다. Windows Server 2008 및 Windows Vista: 스레드가 이 작업에 조인하는 경우 시스템에서 사용하는 최대 보장 클록 속도(100나노초 간격)입니다. Windows 7 및 Windows Server 2008 R2부터 시스템 전원 소비를 줄이기 위해 이 보장이 제거되었습니다.
 GPU Priority|REG_DWORD|
 Latency Sensitive|REG_SZ|
 Priority|REG_DWORD|
