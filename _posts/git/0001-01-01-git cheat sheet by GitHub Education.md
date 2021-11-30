@@ -18,6 +18,7 @@ line tool while providing a graphical user interface for day-to-day
 interaction, review, and repository synchronization.
 
 ## SET UP
+
 |모든 로컬 저장소에서 사용되는 사용자 정보 구성|
 |---|
 |버전 기록을 검토할 때 크레딧으로 식별할 수 있는 이름 설정|
