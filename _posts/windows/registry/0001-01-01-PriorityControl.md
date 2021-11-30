@@ -12,7 +12,7 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 
 |이름|종류|데이터(기본값)|
 |---|---|---|
-|IQR`?`Priority|REG_DWORD|0x00000000(0)|
+|IQR`?`Priority|REG_DWORD||
 
 
 간혹 일부 주변기기가 인터럽트 핸들러에서 오래 홀드하는 경우, 사운드 카드 등이 우선 순위에 밀려 문제가 일어나는 경우가 있을 수 있습니다.  
