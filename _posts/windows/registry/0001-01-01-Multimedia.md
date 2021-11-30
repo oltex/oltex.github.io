@@ -51,12 +51,12 @@ SystemProfile\Tasks
 |---|---|---|
 |Affinity|REG_DWORD|0x00000000(0)|
 |Background Only|REG_SZ|True|
-|Clock Rate|REG_DWORD|0x00000000(0)|
-|GPU Priority|REG_DWORD|0x00000000(0)|
+|Clock Rate|REG_DWORD|0x00002710(10000)|
+|GPU Priority|REG_DWORD|0x00000008(8)|
 |Latency Sensitive|REG_SZ||
-|Priority|REG_DWORD|0x00000000(0)|
-|Scheduling Category|REG_SZ||
-|SFIO Priority|REG_SZ||
+|Priority|REG_DWORD|0x00000006(6)|
+|Scheduling Category|REG_SZ|Medium|
+|SFIO Priority|REG_SZ|Normal|
 
 ### 캡처(Capture)
 ### DisplayPostProcessing
