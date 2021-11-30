@@ -8,6 +8,6 @@ tags:
 ---
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 2:DEFAULT
-||||
+||Win32PrioritySeparation|SETTING|
 ||||
 ||||
