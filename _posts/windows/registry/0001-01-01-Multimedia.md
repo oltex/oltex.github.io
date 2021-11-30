@@ -63,6 +63,7 @@ SystemProfile\Tasks
 \
 ```
 
+|이름|종류|데이터(기본값)|
 |---|---|---|
 |Affinity|REG_DWORD|0x00000000(0)|
 |Background Only|REG_SZ|True|
@@ -78,6 +79,7 @@ SystemProfile\Tasks
 \
 ```
 
+|이름|종류|데이터(기본값)|
 |---|---|---|
 |Affinity|REG_DWORD|0x00000000(0)|
 |Background Only|REG_SZ|True|
