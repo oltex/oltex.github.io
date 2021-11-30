@@ -27,6 +27,9 @@ interaction, review, and repository synchronization.
 |git config --global user.name “[firstname lastname]”|
 
 
+|git config --global user.name “[firstname lastname]”|
+|---|
+
 ```
 git config --global user.name “[firstname lastname]”
 ```
