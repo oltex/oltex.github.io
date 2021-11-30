@@ -46,6 +46,7 @@ SystemProfile\Tasks
 ```
 \Audio
 ```
+
 |이름|종류|데이터(기본값)|
 |---|---|---|
 |Affinity|REG_DWORD|0x00000000(0)|
@@ -57,4 +58,10 @@ SystemProfile\Tasks
 |Scheduling Category|REG_SZ||
 |SFIO Priority|REG_SZ||
 
-
+### 캡처(Capture)
+### DisplayPostProcessing
+### Distribution
+### Games
+### Playback
+### Pro Audio
+### Window Manager
