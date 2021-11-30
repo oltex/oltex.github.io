@@ -41,9 +41,17 @@ interaction, review, and repository synchronization.
 ||
 
 ## SETUP & INIT
+사용자 정보 구성, 리포지토리 초기화 및 복제
 
-
-```
-
-```
-
+|기존 디렉토리를 Git 저장소로 초기화|
+|---|
+|git init|
+|retrieve an entire repository from a hosted location via URL|
+|---|
+|git clone [url]|
+||
+|---|
+||
+||
+|---|
+||
