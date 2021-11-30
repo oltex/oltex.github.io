@@ -16,6 +16,7 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl
 
 윈도우즈 시스템 성능 옵션에가면 '프로세서 사용 계획' 항목으로  
 '다음의 최적 성능을 위해 조정' 프로그램 \| 백그라운드 선택하게 되어있다.
+
 ||||
 |---|---|---|
 |프로그램|0x26 (38)|SHORT VARIABLE 3:1|
