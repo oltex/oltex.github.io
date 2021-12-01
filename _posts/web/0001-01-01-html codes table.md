@@ -76,4 +76,3 @@ Symbol|HTML Number|HTML Name|Description
 &#97;|\&#97;||
 &#98;|\&#98;||
 &#99;|\&#99;||
-&#31;
