@@ -8,7 +8,7 @@ tags:
 
 Symbol|HTML Number|HTML Name|Description
 ---|---|---|---
-&#32;|&#32\;||space
+&#32;|\*||space
 &#33;|\&#33;||exclamation point
 &#34;|\&#34;|\&quot;|double quotes
 &#35;|\&#35;||number sign
