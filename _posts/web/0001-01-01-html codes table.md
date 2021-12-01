@@ -1,5 +1,6 @@
 |Symbol|HTML Number|HTML Name|Description|
 |---|---|---|---|
+|&#32;|\&#32;||
 |&#33;|\&#33;||exclamation point|
 |&#34;|||
 |&#35;|||
