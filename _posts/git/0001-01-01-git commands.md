@@ -6,7 +6,7 @@ $ git config --global user.email you@example.com
 ```
 리스트 확인
 ```
-
+git config --global --list
 ```
 
 ### init
