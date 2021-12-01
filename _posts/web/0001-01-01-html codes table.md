@@ -7,15 +7,15 @@ Symbol|HTML Number|HTML Name|Description
 &#36;|\&#36;||dollar sign
 &#37;|\&#37;||percent sign
 &#38;|\&#38;|\&amp;|ampersand
-&#39;|\&#39;||
-&#40;|\&#40;||
-&#41;|\&#41;||
-&#42;|\&#42;||
-&#43;|\&#43;||
-&#44;|\&#44;||
-&#45;|\&#45;||
-&#46;|\&#46;||
-&#47;|\&#47;||
+&#39;|\&#39;||single quote
+&#40;|\&#40;||opening parenthesis
+&#41;|\&#41;||closing parenthesis
+&#42;|\&#42;||asterisk
+&#43;|\&#43;||plus sign
+&#44;|\&#44;||comma
+&#45;|\&#45;||minus sign - hyphen
+&#46;|\&#46;||period
+&#47;|\&#47;||slash
 &#48;|\&#48;||
 &#49;|\&#49;||
 &#50;|\&#50;||
@@ -29,4 +29,13 @@ Symbol|HTML Number|HTML Name|Description
 &#58;|\&#58;||
 &#59;|\&#59;||
 &#60;|\&#60;||
+
+
+
+
+
+
+
+
+
 
