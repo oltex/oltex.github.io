@@ -40,4 +40,4 @@ Symbol|HTML Number|HTML Name|Description
 &#69;|\&#69;||
 &#70;|\&#70;||
 
-&#130;
+&#131;
