@@ -9,8 +9,8 @@ tags:
 Symbol|HTML Number|HTML Name|Description
 ---|---|---|---
 &#32;|&#32;||space
-&#33;|&#33\;||exclamation point
-&#34;|<code>&#34;</code>|&quot;|double quotes
+&#33;|&#33;||exclamation point
+&#34;|&#34;|\&quot;|double quotes
 &#35;|\&#35;||number sign
 &#36;|\&#36;||dollar sign
 &#37;|\&#37;||percent sign
