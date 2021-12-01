@@ -14,7 +14,7 @@ Symbol|HTML Number|HTML Name|Description
 &#35;|`&#35;`||number sign
 &#36;|`&#36;`||dollar sign
 &#37;|`&#37;`||percent sign
-&#38;|`&#38;`|\&amp;|ampersand
+&#38;|`&#38;`|`&amp;`|ampersand
 &#39;|`&#39;`||single quote
 &#40;|`&#40;`||opening parenthesis
 &#41;|`&#41;`||closing parenthesis
