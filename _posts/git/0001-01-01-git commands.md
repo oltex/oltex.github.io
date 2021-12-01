@@ -9,6 +9,11 @@ $ git config --global user.email you@example.com
 git config --global --list
 ```
 
+```
+git config --unset user.name
+git config --unset user.email
+```
+
 ### init
 ```
 git init
