@@ -1,8 +1,8 @@
 # main links
 main:
-  - title: "카테고리 categories"
+  - title: "카테고리"
     url: https://oltex.github.io/categories/
-  - title: "teg"
+  - title: "태그"
     url: https://oltex.github.io/tags/
   # - title: "Quick-Start Guide"
   #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
