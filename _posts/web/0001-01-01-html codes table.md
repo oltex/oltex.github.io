@@ -29,9 +29,9 @@ Symbol|HTML Number|HTML Name|Description
 &#58;|\&#58;||colon
 &#59;|\&#59;||semicolon
 &#60;|\&#60;||less than sign
-&#61;|\&#61;||
-&#62;|\&#62;||
-&#63;|\&#63;||
+&#61;|\&#61;||equal sign
+&#62;|\&#62;||greater than sign
+&#63;|\&#63;||question mark
 &#64;|\&#64;||
 &#65;|\&#65;||
 &#66;|\&#66;||
@@ -40,26 +40,4 @@ Symbol|HTML Number|HTML Name|Description
 &#69;|\&#69;||
 &#70;|\&#70;||
 
-
-
-
-
-
-
-
-
-
-
-
-
-equal sign
-greater than sign
-question mark
-
-
-
-
-
-
-
-
+&#130;
