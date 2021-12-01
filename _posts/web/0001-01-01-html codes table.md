@@ -32,7 +32,7 @@ Symbol|HTML Number|HTML Name|Description
 &#61;|\&#61;||equal sign
 &#62;|\&#62;||greater than sign
 &#63;|\&#63;||question mark
-&#64;|\&#64;||
+&#64;|\&#64;||at symbol
 &#65;|\&#65;||
 &#66;|\&#66;||
 &#67;|\&#67;||
