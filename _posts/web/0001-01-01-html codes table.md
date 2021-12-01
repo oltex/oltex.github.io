@@ -2,11 +2,11 @@ Symbol|HTML Number|HTML Name|Description
 ---|---|---|---
 &#32;|\&#32;||space
 &#33;|\&#33;||exclamation point
-&#34;|\&#34;|&quot;|double quotes
+&#34;|\&#34;|\&quot;|double quotes
 &#35;|\&#35;||number sign
 &#36;|\&#36;||dollar sign
 &#37;|\&#37;||percent sign
-&#38;|\&#38;||
+&#38;|\&#38;|\&amp;|ampersand
 &#39;|\&#39;||
 &#40;|\&#40;||
 &#41;|\&#41;||
