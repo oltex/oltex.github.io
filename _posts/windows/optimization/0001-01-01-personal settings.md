@@ -21,6 +21,19 @@ Enabled : 0 (Default : 1)
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management  
 DisablePagingExecutive : 1 (Default : 1)
 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations]
+".tif"="PhotoViewer.FileAssoc.Tiff"  
+".tiff"="PhotoViewer.FileAssoc.Tiff"  
+".bmp"="PhotoViewer.FileAssoc.Tiff"  
+".dib"="PhotoViewer.FileAssoc.Tiff"  
+".gif"="PhotoViewer.FileAssoc.Tiff"  
+".jfif"="PhotoViewer.FileAssoc.Tiff"  
+".jpe"="PhotoViewer.FileAssoc.Tiff"  
+".jpeg"="PhotoViewer.FileAssoc.Tiff"  
+".jpg"="PhotoViewer.FileAssoc.Tiff"  
+".jxr"="PhotoViewer.FileAssoc.Tiff"  
+".png"="PhotoViewer.FileAssoc.Tiff"
+
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
 "ExitLatency"=dword:00000001  
 "ExitLatencyCheckEnabled"=dword:00000001  
