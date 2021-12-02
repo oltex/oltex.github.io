@@ -136,205 +136,114 @@ netsh int 6to4 set state state=enabled
 There seems to be a bug with Windows Firewall and IPsec when disabling the local firewall. This causes IPsec to ignore all the advanced tunneling settings that have been set in the source program / connector, and this causes IPSec servers to refuse the connection in some cases. To revert:
 netsh advfirewall set allprofiles state on
 
-
-
-Enable Winsock Send Autotuning (dynamic send-buffer)
+### Enable Winsock Send Autotuning (dynamic send-buffer)
 netsh winsock set autotuning on
 
-
-
-Decrease mouse and keyboard buffer sizes.
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\mouclass\Parameters
-
+### Decrease mouse and keyboard buffer sizes.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\mouclass\Parameters  
 MouseDataQueueSize -> 16 decimal
 
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\kbdclass\Parameters
-
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\kbdclass\Parameters  
 KeyboardDataQueueSize -> 16 decimal
 
-
-
-Tell Windows to stop tolerating high DPC/ISR latencies.
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power
-
-ExitLatency -> 1
-
-ExitLatencyCheckEnabled -> 1
-
-Latency -> 1
-
-LatencyToleranceDefault -> 1
-
-LatencyToleranceFSVP -> 1
-
-LatencyTolerancePerfOverride -> 1
-
-LatencyToleranceScreenOffIR -> 1
-
-LatencyToleranceVSyncEnabled -> 1
-
+### Tell Windows to stop tolerating high DPC/ISR latencies.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power  
+ExitLatency -> 1  
+ExitLatencyCheckEnabled -> 1  
+Latency -> 1  
+LatencyToleranceDefault -> 1  
+LatencyToleranceFSVP -> 1  
+LatencyTolerancePerfOverride -> 1  
+LatencyToleranceScreenOffIR -> 1  
+LatencyToleranceVSyncEnabled -> 1  
 RtlCapabilityCheckLatency -> 1
 
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Power
-
-DefaultD3TransitionLatencyActivelyUsed -> 1
-
-DefaultD3TransitionLatencyIdleLongTime -> 1
-
-DefaultD3TransitionLatencyIdleMonitorOff -> 1
-
-DefaultD3TransitionLatencyIdleNoContext -> 1
-
-DefaultD3TransitionLatencyIdleShortTime -> 1
-
-DefaultD3TransitionLatencyIdleVeryLongTime -> 1
-
-DefaultLatencyToleranceIdle0 -> 1
-
-DefaultLatencyToleranceIdle0MonitorOff -> 1
-
-DefaultLatencyToleranceIdle1 -> 1
-
-DefaultLatencyToleranceIdle1MonitorOff -> 1
-
-DefaultLatencyToleranceMemory -> 1
-
-DefaultLatencyToleranceNoContext -> 1
-
-DefaultLatencyToleranceNoContextMonitorOff -> 1
-
-DefaultLatencyToleranceOther -> 1
-
-DefaultLatencyToleranceTimerPeriod -> 1
-
-DefaultMemoryRefreshLatencyToleranceActivelyUsed -> 1
-
-DefaultMemoryRefreshLatencyToleranceMonitorOff -> 1
-
-DefaultMemoryRefreshLatencyToleranceNoContext -> 1
-
-Latency -> 1
-
-MaxIAverageGraphicsLatencyInOneBucket -> 1
-
-MiracastPerfTrackGraphicsLatency -> 1
-
-MonitorLatencyTolerance -> 1
-
-MonitorRefreshLatencyTolerance -> 1
-
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Power  
+DefaultD3TransitionLatencyActivelyUsed -> 1  
+DefaultD3TransitionLatencyIdleLongTime -> 1  
+DefaultD3TransitionLatencyIdleMonitorOff -> 1  
+DefaultD3TransitionLatencyIdleNoContext -> 1  
+DefaultD3TransitionLatencyIdleShortTime -> 1  
+DefaultD3TransitionLatencyIdleVeryLongTime -> 1  
+DefaultLatencyToleranceIdle0 -> 1  
+DefaultLatencyToleranceIdle0MonitorOff -> 1  
+DefaultLatencyToleranceIdle1 -> 1  
+DefaultLatencyToleranceIdle1MonitorOff -> 1  
+DefaultLatencyToleranceMemory -> 1  
+DefaultLatencyToleranceNoContext -> 1  
+DefaultLatencyToleranceNoContextMonitorOff -> 1  
+DefaultLatencyToleranceOther -> 1  
+DefaultLatencyToleranceTimerPeriod -> 1  
+DefaultMemoryRefreshLatencyToleranceActivelyUsed -> 1  
+DefaultMemoryRefreshLatencyToleranceMonitorOff -> 1  
+DefaultMemoryRefreshLatencyToleranceNoContext -> 1  
+Latency -> 1  
+MaxIAverageGraphicsLatencyInOneBucket -> 1  
+MiracastPerfTrackGraphicsLatency -> 1  
+MonitorLatencyTolerance -> 1  
+MonitorRefreshLatencyTolerance -> 1  
 TransitionLatency -> 1
 
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000
-
-(NVIDIA GPU)
-D3PCLatency -> 1
-
-F1TransitionLatency -> 1
-
-LOWLATENCY -> 1
-
-Node3DLowLatency -> 1
-
-PciLatencyTimerControl -> 32 decimal
-
-RMDeepL1EntryLatencyUsec -> 1
-
-RmGspcMaxFtuS -> 1
-
-RmGspcMinFtuS -> 1
-
-RmGspcPerioduS -> 1
-
-RMLpwrEiIdleThresholdUs -> 1
-
-RMLpwrGrIdleThresholdUs -> 1
-
-RMLpwrGrRgIdleThresholdUs -> 1
-
-RMLpwrMsIdleThresholdUs -> 1
-
-VRDirectFlipDPCDelayUs -> 1
-
-VRDirectFlipTimingMarginUs -> 1
-
-VRDirectJITFlipMsHybridFlipDelayUs -> 1
-
-vrrCursorMarginUs -> 1
-
-vrrDeflickerMarginUs -> 1
-
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000  
+(NVIDIA GPU)  
+D3PCLatency -> 1  
+F1TransitionLatency -> 1  
+LOWLATENCY -> 1  
+Node3DLowLatency -> 1  
+PciLatencyTimerControl -> 32 decimal  
+RMDeepL1EntryLatencyUsec -> 1  
+RmGspcMaxFtuS -> 1  
+RmGspcMinFtuS -> 1  
+RmGspcPerioduS -> 1  
+RMLpwrEiIdleThresholdUs -> 1  
+RMLpwrGrIdleThresholdUs -> 1  
+RMLpwrGrRgIdleThresholdUs -> 1  
+RMLpwrMsIdleThresholdUs -> 1  
+VRDirectFlipDPCDelayUs -> 1  
+VRDirectFlipTimingMarginUs -> 1  
+VRDirectJITFlipMsHybridFlipDelayUs -> 1  
+vrrCursorMarginUs -> 1  
+vrrDeflickerMarginUs -> 1  
 vrrDeflickerMaxUs -> 1
 
-(AMD GPU)
-LTRSnoopL1Latency -> 1
-
-LTRSnoopL0Latency -> 1
-
-LTRNoSnoopL1Latency -> 1
-
-LTRMaxNoSnoopLatency -> 1
-
-KMD_RpmComputeLatency -> 1
-
-DalUrgentLatencyNs -> 1
-
-memClockSwitchLatency -> 1
-
-PP_RTPMComputeF1Latency -> 1
-
-PP_DGBMMMaxTransitionLatencyUvd -> 1
-
-PP_DGBPMMaxTransitionLatencyGfx -> 1
-
-DalNBLatencyForUnderFlow -> 1
-
-DalDramClockChangeLatencyNs -> 1
-
-BGM_LTRSnoopL1Latency -> 1
-
-BGM_LTRSnoopL0Latency -> 1
-
-BGM_LTRNoSnoopL1Latency -> 1
-
-BGM_LTRNoSnoopL0Latency -> 1
-
-BGM_LTRMaxSnoopLatencyValue -> 1
-
+(AMD GPU)  
+LTRSnoopL1Latency -> 1  
+LTRSnoopL0Latency -> 1  
+LTRNoSnoopL1Latency -> 1  
+LTRMaxNoSnoopLatency -> 1  
+KMD_RpmComputeLatency -> 1  
+DalUrgentLatencyNs -> 1  
+memClockSwitchLatency -> 1  
+PP_RTPMComputeF1Latency -> 1  
+PP_DGBMMMaxTransitionLatencyUvd -> 1  
+PP_DGBPMMaxTransitionLatencyGfx -> 1  
+DalNBLatencyForUnderFlow -> 1  
+DalDramClockChangeLatencyNs -> 1  
+BGM_LTRSnoopL1Latency -> 1  
+BGM_LTRSnoopL0Latency -> 1  
+BGM_LTRNoSnoopL1Latency -> 1  
+BGM_LTRNoSnoopL0Latency -> 1  
+BGM_LTRMaxSnoopLatencyValue -> 1  
 BGM_LTRMaxNoSnoopLatencyValue -> 1
 
-
-
-LOGGING OPTIONALS
-Enable detailed startup/shutdown messages.
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
-
+## LOGGING OPTIONALS
+### Enable detailed startup/shutdown messages.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System  
 VerboseStatus -> 1
 
-
-
-ANTIVIRUS OPTIONALS
-Disable Windows Defender Antivirus
-bcdedit /set disableelamdrivers Yes
-
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender
-
-DisableAntiSpyware -> 1
-
-DisableRoutinelyTakingAction -> 1
-
+## ANTIVIRUS OPTIONALS
+### Disable Windows Defender Antivirus
+bcdedit /set disableelamdrivers Yes  
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender  
+DisableAntiSpyware -> 1  
+DisableRoutinelyTakingAction -> 1  
 ServiceKeepAlive -> 0
 
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
-
-DisableBehaviorMonitoring -> 1
-
-DisableIOAVProtection -> 1
-
-DisableOnAccessProtection -> 1
-
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection  
+DisableBehaviorMonitoring -> 1  
+DisableIOAVProtection -> 1  
+DisableOnAccessProtection -> 1  
 DisableRealtimeMonitoring -> 1
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Reporting
-
 DisableEnhancedNotifications -> 1
