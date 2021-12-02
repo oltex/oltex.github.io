@@ -180,7 +180,7 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu]  
 "Start"=dword:00000004 (Default:2)
 
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\kbdclass\Parameters]  
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\kbdclass\Parameters]  
 "KeyboardDataQueueSize"=dword:00000000
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\mouclass\Parameters]  
