@@ -9,8 +9,20 @@ tags:
 ## 레지스트리
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance]  
-"MaintenanceDisabled"=dword:00000001
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]  
+"AltTabSettings"=dword:00000001
+
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH]  
+"Enabled"=dword:00000000 (Default:1)
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection]  
+"AllowTelemetry"=dword:00000000 (그룹정책에 있음)  
+"DoNotShowFeedbackNotifications"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\TouchPrediction]  
+"Latency"=dword:00000002 (Default:8)  
+"SampleTime"=dword:00000002 (Default:8)
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]  
 "NetworkThrottlingIndex"=dword:0000000a (Default:10)  
@@ -99,19 +111,8 @@ Windows Registry Editor Version 5.00
 "SFIO Priority"="Low"  
 "Latency Sensitive"="False"
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\TouchPrediction]  
-"Latency"=dword:00000002 (Default:8)  
-"SampleTime"=dword:00000002 (Default:8)
-
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]  
-"AltTabSettings"=dword:00000001  
-
-[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection]  
-"AllowTelemetry"=dword:00000000 (그룹정책에 있음)  
-"DoNotShowFeedbackNotifications"=dword:00000001
-
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH]  
-"Enabled"=dword:00000000 (Default:1)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance]  
+"MaintenanceDisabled"=dword:00000001
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations]  
 ".tif"="PhotoViewer.FileAssoc.Tiff"  
