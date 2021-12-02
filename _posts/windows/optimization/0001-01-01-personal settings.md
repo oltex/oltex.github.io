@@ -224,4 +224,8 @@ Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsMaps  | Remove-AppxPackage  
 Get-AppxPackage microsoft.windowscommunicationsapps  | Remove-AppxPackage
 
-##Services
+## Services
+AllJoyn Router Service : 사용 안 함
+App Readiness : 사용 안 함
+Application Identity : 사용 안 함
+
