@@ -227,6 +227,43 @@ Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsMaps  | Remove-AppxPackage  
 Get-AppxPackage microsoft.windowscommunicationsapps  | Remove-AppxPackage
 
+## Inter(R) Ethernet Connection (7) 1219-V
+IPv4 체크섬 오프로드 : Rx & Tx 활성화됨
+RME 활성화
+RSS 로드 밸런싱 프로파일
+TCP 체크섬 오프로드(IPv4)
+TCP 체크섬 오프로드(IPv6)
+UDP 체크섬 오프로드(IPv4)
+UDP 체크섬 오프로드(IPv6)
+Wake on 매직 패킷
+Wake on 패턴 일치
+기가비트 매스터 슬레이브 모드
+대형 전송 오프로드 V2(IPv4)
+대형 전송 오프로드 V2(IPv6)
+레거시 스위치 호환 모드
+로컬 관리 주소
+링크 대기
+링크 상태 이벤트 기록
+링크 설정 시 깨우기
+링크 속도 배터리 절전
+속도 및 이중
+수신 버퍼
+수신측 배율
+시스템 휴지 절전기
+에너지 효율적인 이더넷
+인터럽트 조절
+인터럽트 조절 속도
+적응 프레임간 간격
+전송 버퍼
+전원 차단 시 속도 감소
+점보 패킷
+초저전력 모드
+최대 RSS 대기열 수
+패킷 우선순위 및 VLAN
+프로토콜 ARP 오프로드
+프로토콜 NS 오프로드
+흐름제어
+
 ## Services
 사용 안 함
 AllJoyn Router Service
