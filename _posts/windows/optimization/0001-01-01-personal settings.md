@@ -99,16 +99,9 @@ Windows Registry Editor Version 5.00
 "SFIO Priority"="Low"  
 "Latency Sensitive"="False"
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl]  
-"IQR4294967294Priority"=dword:00000001  
-"IQR4294967293Priority"=dword:00000001  
-"Win32PrioritySeparation"=dword:00000026 (Default:2)
-
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\TouchPrediction]  
 "Latency"=dword:00000002 (Default:8)  
 "SampleTime"=dword:00000002 (Default:8)
-
-
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]  
 "AltTabSettings"=dword:00000001  
@@ -132,20 +125,6 @@ Windows Registry Editor Version 5.00
 ".jpg"="PhotoViewer.FileAssoc.Tiff"  
 ".jxr"="PhotoViewer.FileAssoc.Tiff"  
 ".png"="PhotoViewer.FileAssoc.Tiff"
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]  
-"DisablePagingExecutive"=dword:00000001 (Default:0)
-
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]  
-"ExitLatency"=dword:00000001  
-"ExitLatencyCheckEnabled"=dword:00000001  
-"Latency"=dword:00000001  
-"LatencyToleranceDefault"=dword:00000001  
-"LatencyToleranceFSVP"=dword:00000001  
-"LatencyTolerancePerfOverride"=dword:00000001  
-"LatencyToleranceScreenOffIR"=dword:00000001  
-"LatencyToleranceVSyncEnabled"=dword:00000001  
-"RtlCapabilityCheckLatency"=dword:00000001
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Power]  
 "DefaultD3TransitionLatencyActivelyUsed"=dword:00000001  
@@ -172,6 +151,27 @@ Windows Registry Editor Version 5.00
 "MonitorLatencyTolerance"=dword:00000001  
 "MonitorRefreshLatencyTolerance"=dword:00000001  
 "TransitionLatency"=dword:00000001  
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]  
+"ExitLatency"=dword:00000001  
+"ExitLatencyCheckEnabled"=dword:00000001  
+"Latency"=dword:00000001  
+"LatencyToleranceDefault"=dword:00000001  
+"LatencyToleranceFSVP"=dword:00000001  
+"LatencyTolerancePerfOverride"=dword:00000001  
+"LatencyToleranceScreenOffIR"=dword:00000001  
+"LatencyToleranceVSyncEnabled"=dword:00000001  
+"RtlCapabilityCheckLatency"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl]  
+"IQR4294967294Priority"=dword:00000001  
+"IQR4294967293Priority"=dword:00000001  
+"Win32PrioritySeparation"=dword:00000026 (Default:2)
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]  
+"DisablePagingExecutive"=dword:00000001 (Default:0)
+
+
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu]  
 "Start"=dword:00000004 (Default:2)
