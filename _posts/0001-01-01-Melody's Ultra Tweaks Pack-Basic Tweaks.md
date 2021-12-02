@@ -25,12 +25,12 @@ bcdedit /set isolatedcontext No
 
 ### Disable DMA memory protection and cores isolation ("virtualization-based protection").
 bcdedit /set vsmlaunchtype Off  
-bcdedit /set vm No  
-**HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE**  
-DisableExternalDMAUnderLock -> 0  
-```
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
-```  
+bcdedit /set vm No
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE  
+DisableExternalDMAUnderLock -> 0
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard  
 EnableVirtualizationBasedSecurity -> 0  
 HVCIMATRequired -> 0
 
@@ -89,85 +89,51 @@ bcdedit /deletevalue disabledynamictick
 bcdedit /set useplatformtick Yes  
 bcdedit /set tscsyncpolicy Enhanced
 
-Set a reliable 1 ms (minimum) timestamp. Only for untweaked systems (disabling it with 0 is recommended on tweaked systems).
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Reliability
-
+### Set a reliable 1 ms (minimum) timestamp. Only for untweaked systems (disabling it with 0 is recommended on tweaked systems).
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Reliability  
 TimeStampInterval -> 1
 
-
-
-Force contiguous memory allocation in the DirectX Graphics Kernel.
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers
-
+### Force contiguous memory allocation in the DirectX Graphics Kernel.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers  
 DpiMapIommuContiguous -> 1
 
-
-
-Force contiguous memory allocation in the NVIDIA driver.
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000
-
-PreferSystemMemoryContiguous -> 1
-
+### Force contiguous memory allocation in the NVIDIA driver.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000  
+PreferSystemMemoryContiguous -> 1  
 (0000 may vary depending on the GPU number)
 
-
-
-Enforce Security-Only Telemetry (disable other kinds of Telemetry).
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection
-
+### Enforce Security-Only Telemetry (disable other kinds of Telemetry).
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection  
 AllowTelemetry -> 0
 
-
-
-Disable Application Telemetry.
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppCompat
-
+### Disable Application Telemetry.
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppCompat  
 AITEnable -> 0
 
-
-
-Disable Windows Error Reporting.
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting
-
+### Disable Windows Error Reporting.
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting  
 Disabled -> 1
 
-
-
-Enable Experimental Autotuning and NEWRENO congestion provider.
-netsh int tcp set global autotuning=experimental
-
-netsh int tcp set supp internet congestionprovider=newreno
-
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\QoS
-
-Tcp Autotuning Level -> Experimental
-
+### Enable Experimental Autotuning and NEWRENO congestion provider.
+netsh int tcp set global autotuning=experimental  
+netsh int tcp set supp internet congestionprovider=newreno  
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\QoS  
+Tcp Autotuning Level -> Experimental  
 Application DSCP Marking Request -> Allowed
 
-
-
-Enable WH send and WH receive.
+### Enable WH send and WH receive.
 powershell "Get-NetAdapter -IncludeHidden | Set-NetIPInterface -WeakHostSend Enabled -WeakHostReceive Enabled -ErrorAction SilentlyContinue"
 
-
-
-Enable UDP offloading.
+### Enable UDP offloading.
 netsh int udp set global uro=enabled
 
-
-
-Enable Teredo and 6to4 (Win 2004 Xbox LIVE fix).
-netsh int teredo set state natawareclient
-
+### Enable Teredo and 6to4 (Win 2004 Xbox LIVE fix).
+netsh int teredo set state natawareclient  
 netsh int 6to4 set state state=enabled
 
-
-
-Disable local firewall (you're behind a NAT / router dude).
-netsh advfirewall set allprofiles state off
-
+### Disable local firewall (you're behind a NAT / router dude).
+~~netsh advfirewall set allprofiles state off~~  
 There seems to be a bug with Windows Firewall and IPsec when disabling the local firewall. This causes IPsec to ignore all the advanced tunneling settings that have been set in the source program / connector, and this causes IPSec servers to refuse the connection in some cases. To revert:
-
 netsh advfirewall set allprofiles state on
 
 
