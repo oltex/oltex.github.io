@@ -225,7 +225,71 @@ Get-AppxPackage Microsoft.WindowsMaps  | Remove-AppxPackage
 Get-AppxPackage microsoft.windowscommunicationsapps  | Remove-AppxPackage
 
 ## Services
-AllJoyn Router Service : 사용 안 함
-App Readiness : 사용 안 함
-Application Identity : 사용 안 함
-
+AllJoyn Router Service : 사용 안 함  
+App Readiness : 사용 안 함  
+Application Identity : 사용 안 함  
+Application Layer Gateway Service
+AppX Deployment Service (AppXSVC)
+AssignedAccessManager 서비스
+*AsusUpdateCheck*
+AVCTP 서비스
+Background Intelligent Transfer Service
+BitLocker Drive Encryption Service
+Block Level Backup Engine Service
+Bluetooth 사용자 지원 서비스_19e1a
+Bluetooth 오디오 게이트웨이 서비스
+Bluetooth 지원 서비스
+BranchCache
+CaptureService_19e1a
+Certificate Propagation
+Client License Service (ClipSVC)
+CNG Key Isolation
+COM+ Event System
+COM+ System Application
+Connected User Experiences and Telemetry
+Contact Data_19e1a
+Data Sharing Service
+Device Association Service
+DevicePicker_19e1a
+DevicesFlow_19e1a
+DevQuery Background Discovery Broker
+Diagnostic Policy Service
+Diagnostic Service Host
+Diagnostic System Host
+Distributed Link Tracking Client
+Distributed Transaction Coordinator
+dmwappushsvc
+DNS Client
+Downloaded Maps Manager
+Encrypting File System (EFS)
+Extensible Authentication Protocol
+File History Service
+Function Discovery Provider Host
+Function Discovery Resource Publication
+GameDVR 및 브로드캐스트 사용자 서비스_19e1a
+Geolocation Service
+*Google Chrome Elevation Service (GoogleChromeElevationService)*
+*Google 업데이트 서비스 (gupdate)*
+*Google 업데이트 서비스 (gupdatem)*
+GraphicsPerfSvc
+HV 호스트 서비스
+Hyper-V Data Exchange Service
+Hyper-V Guest Service Interface
+Hyper-V Guest Shutdown Service
+Hyper-V Heartbeat Service
+Hyper-V PowerShell Direct Service
+Hyper-V Time Synchronization Service
+Hyper-V 볼륨 섀도 복사본 요청자
+Hyper-V 원격 데스크톱 가상화 서비스
+IKE and AuthIP IPsec Keying Modules
+Infrared monitor service
+Internet Connection Sharing (ICS)
+IP Helper
+IP 변환 구성 서비스
+IPsec Policy Agent
+KtmRm for Distributed Transaction Coordinator
+Link-Layer Topology Discovery Mapper
+MessagingService_19e1a
+Microsoft (R) 진단 허브 표준 수집기 서비스
+Microsoft Account Sign-in Assistant
+Microsoft App-V Client
