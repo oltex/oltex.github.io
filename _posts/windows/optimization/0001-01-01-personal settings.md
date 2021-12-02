@@ -19,9 +19,6 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH]
 "Enabled"=dword:00000000 (Default : 1)
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
-"DisablePagingExecutive"=dword:00000001 (Default : 1)
-
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations]
 ".tif"="PhotoViewer.FileAssoc.Tiff"  
 ".tiff"="PhotoViewer.FileAssoc.Tiff"  
@@ -34,6 +31,9 @@ Windows Registry Editor Version 5.00
 ".jpg"="PhotoViewer.FileAssoc.Tiff"  
 ".jxr"="PhotoViewer.FileAssoc.Tiff"  
 ".png"="PhotoViewer.FileAssoc.Tiff"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+"DisablePagingExecutive"=dword:00000001 (Default : 1)
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
 "ExitLatency"=dword:00000001  
