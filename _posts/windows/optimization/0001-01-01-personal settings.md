@@ -227,7 +227,7 @@ Get-AppxPackage microsoft.windowscommunicationsapps  | Remove-AppxPackage
 ## Services
 사용 안 함
 AllJoyn Router Service
-App Readiness  
+App Readiness
 Application Identity
 Application Layer Gateway Service
 AppX Deployment Service (AppXSVC)
