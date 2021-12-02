@@ -8,8 +8,8 @@ tags:
 
 ## 레지스트리
 
-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer  
-AltTabSettings : 1
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]  
+"AltTabSettings"=dword:00000001  
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection  
 AllowTelemetry : 0 (그룹정책에 있음)  
