@@ -135,7 +135,7 @@ Windows Registry Editor Version 5.00
 ".png"="PhotoViewer.FileAssoc.Tiff"
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]  
-"DisablePagingExecutive"=dword:00000001 (Default:1)
+"DisablePagingExecutive"=dword:00000001 (Default:0)
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]  
 "ExitLatency"=dword:00000001  
