@@ -29,9 +29,9 @@ bcdedit /set isolatedcontext No
 ### Disable DMA memory protection and cores isolation ("virtualization-based protection").
 bcdedit /set vsmlaunchtype Off  
 bcdedit /set vm No
-#### HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE  
+*HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE*  
 DisableExternalDMAUnderLock -> 0  
-#### HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+`HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard`
 EnableVirtualizationBasedSecurity -> 0
 HVCIMATRequired -> 0
 
