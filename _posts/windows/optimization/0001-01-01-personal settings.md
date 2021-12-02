@@ -293,3 +293,28 @@ MessagingService_19e1a
 Microsoft (R) 진단 허브 표준 수집기 서비스
 Microsoft Account Sign-in Assistant
 Microsoft App-V Client
+Microsoft iSCSI Initiator Service
+Microsoft Passport
+Microsoft Passport Container
+Microsoft Software Shadow Copy Provider
+Microsoft Storage Spaces SMP
+Microsoft Store 설치 서비스
+Microsoft Windows SMS 라우터 서비스
+Network Connected Devices Auto-Setup
+Network Connection Broker
+Network Connectivity Assistant
+Offline Files
+Peer Name Resolution Protocol
+Peer Networking Grouping
+Peer Networking Identity Manager
+Performance Counter DLL Host
+Performance Logs & Alerts
+Phone Service
+PNRP Machine Name Publication Service
+Print Spooler
+Printer Extensions and Notifications
+PrintWorkflow_19e1a
+Problem Reports and Solutions Control Panel Support
+Program Compatibility Assistant Service
+Quality Windows Audio Video Experience
+Remote Access Auto Connection Manager
