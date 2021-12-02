@@ -9,17 +9,17 @@ tags:
 ## 레지스트리
 Windows Registry Editor Version 5.00
 
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]  
 "AltTabSettings"=dword:00000001  
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection]  
 "AllowTelemetry"=dword:00000000 (그룹정책에 있음)  
 "DoNotShowFeedbackNotifications"=dword:00000001
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH]  
 "Enabled"=dword:00000000 (Default : 1)
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations]  
 ".tif"="PhotoViewer.FileAssoc.Tiff"  
 ".tiff"="PhotoViewer.FileAssoc.Tiff"  
 ".bmp"="PhotoViewer.FileAssoc.Tiff"  
@@ -32,10 +32,10 @@ Windows Registry Editor Version 5.00
 ".jxr"="PhotoViewer.FileAssoc.Tiff"  
 ".png"="PhotoViewer.FileAssoc.Tiff"
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]  
 "DisablePagingExecutive"=dword:00000001 (Default : 1)
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]  
 "ExitLatency"=dword:00000001  
 "ExitLatencyCheckEnabled"=dword:00000001  
 "Latency"=dword:00000001  
@@ -46,7 +46,7 @@ Windows Registry Editor Version 5.00
 "LatencyToleranceVSyncEnabled"=dword:00000001  
 "RtlCapabilityCheckLatency"=dword:00000001
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Power]
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Power]  
 "DefaultD3TransitionLatencyActivelyUsed"=dword:00000001  
 "DefaultD3TransitionLatencyIdleLongTime"=dword:00000001  
 "DefaultD3TransitionLatencyIdleMonitorOff"=dword:00000001  
