@@ -172,6 +172,9 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]  
 "DisablePagingExecutive"=dword:00000001 (Default:0)
 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]  
+"EnablePrefetcher"=dword:00000000 (Default:3)
+
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu]  
 "Start"=dword:00000004 (Default:2)
 
