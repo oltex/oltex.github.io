@@ -188,3 +188,27 @@ powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
 ## Netsh
 netsh int tcp set global rss=disable  
 netsh int tcp set global autotuninglevel=disable
+
+## PowerShell
+Get-AppxPackage Microsoft.XboxApp | Remove-AppxPackage  
+Get-AppxPackage Microsoft.WindowsSoundRecorder | Remove-AppxPackage  
+Get-AppxPackage Microsoft.WindowsAlarms | Remove-AppxPackage  
+Get-AppxPackage Microsoft.XboxGameOverlay | Remove-AppxPackage  
+Get-AppxPackage Microsoft.MSPaint | Remove-AppxPackage  
+Get-AppxPackage Microsoft.Messaging | Remove-AppxPackage  
+Get-AppxPackage Microsoft.MicrosoftStickyNotes | Remove-AppxPackage  
+Get-AppxPackage Microsoft.Microsoft3DViewer | Remove-AppxPackage  
+Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage  
+Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage  
+Get-AppxPackage Microsoft.WindowsStore | Remove-AppxPackage  
+Get-AppxPackage Microsoft.StorePurchaseApp | Remove-AppxPackage  
+Get-AppxPackage Microsoft.XboxIdentityProvider | Remove-AppxPackage  
+Get-AppxPackage Microsoft.WindowsCamera | Remove-AppxPackage  
+Get-AppxPackage Microsoft.Windows.Photos | Remove-AppxPackage  
+Get-AppxPackage Microsoft.XboxGamingOverlay | Remove-AppxPackage  
+Get-AppxPackage Microsoft.People | Remove-AppxPackage  
+Get-AppxPackage Microsoft.XboxSpeechToTextOverlay | Remove-AppxPackage  
+Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage  
+Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage  
+Get-AppxPackage Microsoft.WindowsMaps  | Remove-AppxPackage  
+Get-AppxPackage microsoft.windowscommunicationsapps  | Remove-AppxPackage
