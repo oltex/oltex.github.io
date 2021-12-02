@@ -1,7 +1,7 @@
 ---
 title: "전원 설정(PowerSettings)"
 categories:
-  - registry
+  - windows-registry
 tags:
   - tag
 ---
