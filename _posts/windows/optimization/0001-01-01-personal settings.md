@@ -7,19 +7,20 @@ tags:
 ---
 
 ## 레지스트리
+Windows Registry Editor Version 5.00
 
-[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]  
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]
 "AltTabSettings"=dword:00000001  
 
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection  
-AllowTelemetry : 0 (그룹정책에 있음)  
-DoNotShowFeedbackNotifications : 1
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection]
+"AllowTelemetry"=dword:00000000 (그룹정책에 있음)  
+"DoNotShowFeedbackNotifications"=dword:00000001
 
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH  
-Enabled : 0 (Default : 1)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH]
+"Enabled"=dword:00000000 (Default : 1)
 
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management  
-DisablePagingExecutive : 1 (Default : 1)
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+"DisablePagingExecutive"=dword:00000001 (Default : 1)
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations]
 ".tif"="PhotoViewer.FileAssoc.Tiff"  
