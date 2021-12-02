@@ -318,3 +318,95 @@ Problem Reports and Solutions Control Panel Support
 Program Compatibility Assistant Service
 Quality Windows Audio Video Experience
 Remote Access Auto Connection Manager
+Remote Access Connection Manager
+Remote Desktop Configuration
+Remote Desktop Services
+Remote Desktop Services UserMode Port Redirector
+Remote Procedure Call (RPC) Locator
+Remote Registry
+Routing and Remote Access
+Secure Socket Tunneling Protocol Service
+Security Center
+Sensor Data Service
+Sensor Monitoring Service
+Sensor Service
+Server
+Shared PC Account Manager
+Shell Hardware Detection
+Smart Card
+Smart Card Device Enumeration Service
+Smart Card Removal Policy
+SNMP Trap
+Spot Verifier
+SSDP Discovery
+Still Image Acquisition Events
+Superfetch
+System Event Notification Service
+System Guard 런타임 모니터 브로커
+TCP/IP NetBIOS Helper
+Telephony
+Themes
+Touch Keyboard and Handwriting Panel Service
+Update Orchestrator Service
+UPnP Device Host
+User Data Access_19e1a
+User Data Storage_19e1a
+User Experience Virtualization 서비스
+Volume Shadow Copy
+WalletService
+WarpJITSvc
+WebClient
+Wi-Fi Direct 서비스 연결 관리자 서비스
+Windows Biometric Service
+Windows Connect Now - Config Registrar
+Windows Defender Advanced Threat Protection Service
+Windows Defender Antivirus Network Inspection Service
+Windows Defender Antivirus Service
+Windows Defender Firewall
+Windows Defender 보안 센터 서비스
+Windows Encryption Provider Host Service
+Windows Error Reporting Service
+Windows Event Collector
+Windows Image Acquisition (WIA)
+Windows Perception 서비스
+Windows Push Notifications User Service_19e1a
+Windows PushToInstall 서비스
+Windows Remote Management (WS-Management)
+Windows Search
+Windows Time
+Windows Update
+Windows Update Medic Service
+Windows 라이선스 관리자 서비스
+Windows 모바일 핫스팟 서비스
+Windows 백업
+Windows 참가자 서비스
+Windows 카메라 프레임 서버
+Windows 푸시 알림 시스템 서비스
+WinHTTP Web Proxy Auto-Discovery Service
+Wired AutoConfig
+WLAN AutoConfig
+WMI Performance Adapter
+Workstation
+WWAN AutoConfig
+Xbox Accessory Management Service
+Xbox Game Monitoring
+Xbox Live 게임 저장
+Xbox Live 네트워킹 서비스
+Xbox Live 인증 관리자
+결제 및 NFC/SE 관리자
+공간 데이터 서비스
+기본 인증
+데이터 사용량
+로컬 프로필 관리자 서비스
+무선 송수신 장치 관리 서비스
+볼륨 오디오 컴포지터 서비스
+소매 데모 서비스
+언어 환경 서비스
+연결된 디바이스 플랫폼 사용자 서비스_19e1a
+연결된 디바이스 플랫폼 서비스
+웹 계정 관리자
+자녀 보호
+자동 표준 시간대 업데이트 프로그램
+장치 관리 등록 서비스
+포함된 모드
+호스트 동기화_19e1a
