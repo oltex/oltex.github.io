@@ -1,12 +1,12 @@
 ---
 title: "전원 설정(PowerSettings)"
 categories:
-  - windows-registry
+  -windows registry
 tags:
   - tag
 ---
 ```
-HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Power\PowerSettings
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerSettings
 ```
 
 # Hard disk
