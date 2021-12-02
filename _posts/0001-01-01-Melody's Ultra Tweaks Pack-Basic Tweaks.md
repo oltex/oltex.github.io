@@ -247,3 +247,5 @@ DisableRealtimeMonitoring -> 1
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Reporting
 DisableEnhancedNotifications -> 1
+
+https://sites.google.com/view/melodystweaks/basictweaks
