@@ -228,19 +228,19 @@ Get-AppxPackage Microsoft.WindowsMaps  | Remove-AppxPackage
 Get-AppxPackage microsoft.windowscommunicationsapps  | Remove-AppxPackage
 
 ## Inter(R) Ethernet Connection (7) 1219-V
-IPv4 체크섬 오프로드 : Rx & Tx 활성화됨
-RME 활성화
-RSS 로드 밸런싱 프로파일
-TCP 체크섬 오프로드(IPv4)
-TCP 체크섬 오프로드(IPv6)
-UDP 체크섬 오프로드(IPv4)
-UDP 체크섬 오프로드(IPv6)
-Wake on 매직 패킷
-Wake on 패턴 일치
-기가비트 매스터 슬레이브 모드
-대형 전송 오프로드 V2(IPv4)
-대형 전송 오프로드 V2(IPv6)
-레거시 스위치 호환 모드
+IPv4 체크섬 오프로드 : Rx & Tx 활성화됨  
+RME 활성화 : 비활성화됨  
+RSS 로드 밸런싱 프로파일 : 보수적 조정  
+TCP 체크섬 오프로드(IPv4) : Rx & Tx 활성화됨  
+TCP 체크섬 오프로드(IPv6) : Rx & Tx 활성화됨  
+UDP 체크섬 오프로드(IPv4) : Rx & Tx 활성화됨  
+UDP 체크섬 오프로드(IPv6) : Rx & Tx 활성화됨  
+Wake on 매직 패킷 : 비활성화됨  
+Wake on 패턴 일치 : 비활성화됨  
+기가비트 매스터 슬레이브 모드 : 강제 슬레이브 모드  
+대형 전송 오프로드 V2(IPv4) : 활성화됨  
+대형 전송 오프로드 V2(IPv6) : 활성화됨  
+레거시 스위치 호환 모드 : 비활성화됨  
 로컬 관리 주소
 링크 대기
 링크 상태 이벤트 기록
