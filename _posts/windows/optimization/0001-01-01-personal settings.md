@@ -178,7 +178,7 @@ Windows Registry Editor Version 5.00
 "EnablePrefetcher"=dword:00000000 (Default:3)
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\USB\AutomaticSurpriseRemoval]  
-"AttemptRecoveryFromUsbPowerDrain"=dword:00000000
+"AttemptRecoveryFromUsbPowerDrain"=dword:00000000 (Default : 1)
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu]  
 "Start"=dword:00000004 (Default:2)
@@ -414,3 +414,6 @@ Xbox Live 인증 관리자
 장치 관리 등록 서비스
 포함된 모드
 호스트 동기화_19e1a
+
+## 확인되지 않음
+
