@@ -223,3 +223,5 @@ Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage
 Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage  
 Get-AppxPackage Microsoft.WindowsMaps  | Remove-AppxPackage  
 Get-AppxPackage microsoft.windowscommunicationsapps  | Remove-AppxPackage
+
+##Services
