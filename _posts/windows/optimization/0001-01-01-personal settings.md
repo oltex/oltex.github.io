@@ -9,7 +9,11 @@ tags:
 ## 레지스트리
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Ndu]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\TouchPrediction]  
+"Latency"=dword:00000002 (Default:8)  
+"SampleTime"=dword:00000002 (Default:8)
+
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Ndu]  
 "Start"=dword:00000004 (Default:2)
 
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]  
