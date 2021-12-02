@@ -170,8 +170,8 @@ Windows Registry Editor Version 5.00
 "Win32PrioritySeparation"=dword:00000026 (Default:2)
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]  
-"DisablePagingExecutive"=dword:00000001 (Default:0)
-"FeatureSettingsOverride"=dword:00000003
+"DisablePagingExecutive"=dword:00000001 (Default:0)  
+"FeatureSettingsOverride"=dword:00000003  
 "FeatureSettingsOverrideMask"=dword:00000003
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]  
