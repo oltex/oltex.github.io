@@ -7,15 +7,23 @@ tags:
 ---
 
 ## 레지스트리
+
+### 사용중
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection  
 **원격 분석 허용**  
 AllowTelemetry : 0  
-기본 : 없음  
 그룹정책에 있음  
 
 **Windows에서 내 피드백 요청 안 함**  
 DoNotShowFeedbackNotifications : 1
-기본 : 없음
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH
+Enabled : 0 (Default : 1)
+
+### 사용안함
+
+
+
 
 
 |이름|종류|데이터(기본값)|
@@ -26,11 +34,8 @@ DoNotShowFeedbackNotifications : 1
 |이름|종류|데이터(기본값)|
 |---|---|---|
 |DoNotShowFeedbackNotifications|REG_DWORD||
-
-권장 : 1
-
 ```
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH
+
 ```
 
 |이름|종류|데이터(기본값)|
