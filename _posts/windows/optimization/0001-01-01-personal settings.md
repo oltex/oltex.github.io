@@ -1,20 +1,21 @@
 ---
-title: "기타(etc)"
+title: "개인 설정"
 categories:
   - windows-optimization
 tags:
   - tag
 ---
-```
+
+**원격 분석 허용** 
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection
-```
-**원격 분석 허용** 그룹정책에 있음
+AllowTelemetry : 0
 
 |이름|종류|데이터(기본값)|
 |---|---|---|
 |AllowTelemetry|REG_DWORD||
 
-권장 : 0
+ : 0
+그룹정책에 있음
 
 **Windows에서 내 피드백 요청 안 함**
 
