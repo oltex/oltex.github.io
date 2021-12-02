@@ -1,7 +1,7 @@
 ---
 title: "멀티미디어(Multimedia)"
 categories:
-  - registry
+  - windows-registry
 tags:
   - tag
 ---
