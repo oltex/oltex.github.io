@@ -28,28 +28,22 @@ bcdedit /set vsmlaunchtype Off
 bcdedit /set vm No  
 **HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE**  
 DisableExternalDMAUnderLock -> 0  
-`HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard`  
+```HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard```  
 EnableVirtualizationBasedSecurity -> 0  
 HVCIMATRequired -> 0
 
-Disable Process and Kernel Mitigations.
-powershell "ForEach($v in (Get-Command -Name \"Set-ProcessMitigation\").Parameters[\"Disable\"].Attributes.ValidValues){Set-ProcessMitigation -System -Disable $v.ToString() -ErrorAction SilentlyContinue}"
+### Disable Process and Kernel Mitigations.
+powershell "ForEach($v in (Get-Command -Name \"Set-ProcessMitigation\").Parameters[\"Disable\"].Attributes.ValidValues){Set-ProcessMitigation -System -Disable $v.ToString() -ErrorAction SilentlyContinue}"  
+powershell "Remove-Item -Path \"HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*\" -Recurse -ErrorAction SilentlyContinue"  
 
-powershell "Remove-Item -Path \"HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*\" -Recurse -ErrorAction SilentlyContinue"
-
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\kernel
-
-DisableExceptionChainValidation -> 1
-
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\kernel  
+DisableExceptionChainValidation -> 1  
 KernelSEHOPEnabled -> 0
 
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management  
+EnableCfg -> 0  
 
-EnableCfg -> 0
-
-
-
-Use realtime priority for csrss.exe.
+### Use realtime priority for csrss.exe.
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions
 
 CpuPriorityClass -> 4
