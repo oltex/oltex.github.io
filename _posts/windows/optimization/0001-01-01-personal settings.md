@@ -7,18 +7,16 @@ tags:
 ---
 
 **원격 분석 허용** 
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection
-AllowTelemetry : 0
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection  
+AllowTelemetry : 0  
+기본 : 없음  
+그룹정책에 있음  
 
 |이름|종류|데이터(기본값)|
 |---|---|---|
 |AllowTelemetry|REG_DWORD||
 
- : 0
-그룹정책에 있음
-
 **Windows에서 내 피드백 요청 안 함**
-
 |이름|종류|데이터(기본값)|
 |---|---|---|
 |DoNotShowFeedbackNotifications|REG_DWORD||
