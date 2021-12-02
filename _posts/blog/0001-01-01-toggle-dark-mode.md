@@ -2,7 +2,7 @@
 title: minimal-mistakes 테마 다크 모드 토글 적용 - Github Pages 운영
 excerpt: Github Pages의 minimal-mistakes 테마에 다크 모드 적용기
 categories:
-    - Blog
+    - blog
 tags:
     - Blog
     - Dark Mode
