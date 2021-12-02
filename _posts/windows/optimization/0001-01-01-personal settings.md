@@ -9,6 +9,9 @@ tags:
 ## 레지스트리
 Windows Registry Editor Version 5.00
 
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Ndu]
+"Start"=dword:00000004 (Default:2)
+
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]  
 "AltTabSettings"=dword:00000001  
 
@@ -17,7 +20,7 @@ Windows Registry Editor Version 5.00
 "DoNotShowFeedbackNotifications"=dword:00000001
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH]  
-"Enabled"=dword:00000000 (Default : 1)
+"Enabled"=dword:00000000 (Default:1)
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations]  
 ".tif"="PhotoViewer.FileAssoc.Tiff"  
@@ -33,7 +36,7 @@ Windows Registry Editor Version 5.00
 ".png"="PhotoViewer.FileAssoc.Tiff"
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]  
-"DisablePagingExecutive"=dword:00000001 (Default : 1)
+"DisablePagingExecutive"=dword:00000001 (Default:1)
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]  
 "ExitLatency"=dword:00000001  
