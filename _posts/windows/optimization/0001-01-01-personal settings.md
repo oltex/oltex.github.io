@@ -9,6 +9,93 @@ tags:
 ## 레지스트리
 Windows Registry Editor Version 5.00
 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"NetworkThrottlingIndex"=dword:0000000a
+"SystemResponsiveness"=dword:0000000a
+"NoLazyMode"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Audio]
+"Affinity"=dword:00000000
+"Background Only"="True"
+"Clock Rate"=dword:00002710
+"GPU Priority"=dword:00000000
+"Priority"=dword:00000001
+"Scheduling Category"="Low"
+"SFIO Priority"="Low"
+"Latency Sensitive"="False"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Capture]
+"Affinity"=dword:00000000
+"Background Only"="True"
+"Clock Rate"=dword:00002710
+"GPU Priority"=dword:00000000
+"Priority"=dword:00000001
+"Scheduling Category"="Low"
+"SFIO Priority"="Low"
+"Latency Sensitive"="False"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\DisplayPostProcessing]
+"Affinity"=dword:00000000
+"Background Only"="True"
+"BackgroundPriority"=dword:00000008
+"Clock Rate"=dword:00002710
+"GPU Priority"=dword:0000001f
+"Priority"=dword:00000008
+"Scheduling Category"="High"
+"SFIO Priority"="High"
+"Latency Sensitive"="True"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Distribution]
+"Affinity"=dword:00000000
+"Background Only"="True"
+"Clock Rate"=dword:00002710
+"GPU Priority"=dword:00000000
+"Priority"=dword:00000001
+"Scheduling Category"="Low"
+"SFIO Priority"="Low"
+"Latency Sensitive"="False"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games]
+"Affinity"=dword:00000000
+"Background Only"="False"
+"Clock Rate"=dword:00002710
+"Priority"=dword:00000008
+"Scheduling Category"="High"
+"SFIO Priority"="High"
+"GPU Priority"=dword:0000001f
+"Latency Sensitive"="True"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Playback]
+"Affinity"=dword:00000000
+"Background Only"="False"
+"BackgroundPriority"=dword:00000001
+"Clock Rate"=dword:00002710
+"GPU Priority"=dword:00000000
+"Priority"=dword:00000001
+"Scheduling Category"="Low"
+"SFIO Priority"="Low"
+"Latency Sensitive"="False"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Pro Audio]
+"Affinity"=dword:00000000
+"Background Only"="False"
+"Clock Rate"=dword:00002710
+"GPU Priority"=dword:00000000
+"Priority"=dword:00000001
+"Scheduling Category"="Low"
+"SFIO Priority"="Low"
+"Latency Sensitive"="False"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Window Manager]
+"Affinity"=dword:00000000
+"Background Only"="True"
+"Clock Rate"=dword:00002710
+"GPU Priority"=dword:00000000
+"Priority"=dword:00000001
+"Scheduling Category"="Low"
+"SFIO Priority"="Low"
+"Latency Sensitive"="False"
+
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl]  
 "IQR4294967294Priority"=dword:00000001  
 "IQR4294967293Priority"=dword:00000001  
