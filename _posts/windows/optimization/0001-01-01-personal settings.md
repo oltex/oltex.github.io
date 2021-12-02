@@ -9,6 +9,11 @@ tags:
 ## 레지스트리
 Windows Registry Editor Version 5.00
 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl]  
+"IQR4294967294Priority"=dword:00000001  
+"IQR4294967293Priority"=dword:00000001  
+"Win32PrioritySeparation"=dword:00000026 (Default:2)
+
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\TouchPrediction]  
 "Latency"=dword:00000002 (Default:8)  
 "SampleTime"=dword:00000002 (Default:8)
