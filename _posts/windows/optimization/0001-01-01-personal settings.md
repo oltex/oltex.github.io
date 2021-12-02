@@ -466,3 +466,12 @@ Xbox Live 인증 관리자
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]  
 "AlwaysOn"=dword:00000001
 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+"LargeSystemCache"= 0
+"IoPageLockLimit"= 2147483648
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR]  
+"AllowGameDVR"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem]  
+"NtfsMemoryUsage"=dword:00000000
