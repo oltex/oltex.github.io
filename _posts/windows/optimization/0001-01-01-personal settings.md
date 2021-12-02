@@ -184,3 +184,6 @@ bcdedit /set disabledynamictick yes
 ## Powercfg
 powercfg -h off  
 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
+
+## Netsh
+netsh int tcp set global rss=disable  
