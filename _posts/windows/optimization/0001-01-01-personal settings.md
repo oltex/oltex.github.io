@@ -8,49 +8,17 @@ tags:
 
 ## 레지스트리
 
-### 사용중
-HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection  
-**원격 분석 허용**  
-AllowTelemetry : 0  
-그룹정책에 있음  
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer  
+AltTabSettings : 1
 
-**Windows에서 내 피드백 요청 안 함**  
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection  
+AllowTelemetry : 0 (그룹정책에 있음)  
 DoNotShowFeedbackNotifications : 1
 
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH  
 Enabled : 0 (Default : 1)
 
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management  
+DisablePagingExecutive : 1 (Default : 1)
+
 ### 사용안함
-
-
-
-
-
-|이름|종류|데이터(기본값)|
-|---|---|---|
-|AllowTelemetry|REG_DWORD||
-
-
-|이름|종류|데이터(기본값)|
-|---|---|---|
-|DoNotShowFeedbackNotifications|REG_DWORD||
-```
-
-```
-
-|이름|종류|데이터(기본값)|
-|---|---|---|
-|Enabled|REG_DWORD|0x00000001(1)|
-
-권장 : 0
-
-```
-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer
-```
-**알트 탭 설정**
-
-|이름|종류|데이터(기본값)|
-|---|---|---|
-|AltTabSettings|REG_DWORD||
-
-권장 : 1
