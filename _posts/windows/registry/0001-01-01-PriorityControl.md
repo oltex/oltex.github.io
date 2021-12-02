@@ -1,7 +1,7 @@
 ---
 title: "우선 순위 제어(PriorityControl)"
 categories:
-  - registry
+  - windows-registry
 tags:
   - tag
 ---
