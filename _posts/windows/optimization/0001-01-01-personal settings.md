@@ -416,4 +416,53 @@ Xbox Live 인증 관리자
 호스트 동기화_19e1a
 
 ## 확인되지 않음
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Input\Settings\ControllerProcessor\CursorMagnetism]  
+"AttractionRectInsetInDIPS"=dword:00000005  
+"DistanceThresholdInDIPS"=dword:00000028  
+"MagnetismDelayInMilliseconds"=dword:00000032  
+"MagnetismUpdateIntervalInMilliseconds"=dword:00000010  
+"VelocityInDIPSPerSecond"=dword:00000168
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Input\Settings\ControllerProcessor\CursorSpeed]  
+"CursorUpdateInterval"=dword:00000001  
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Psched]  
+"NonBestEffortLimit"=dword:00000000  
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider]  
+"LocalPriority"=dword:00000004  
+"HostsPriority"=dword:00000005  
+"DnsPriority"=dword:00000006  
+"NetbtPriority"=dword:00000007
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Winsock]  
+"UseDelayedAcceptance"=dword:00000000  
+"MaxSockAddrLength"=dword:00000010  
+"MinSockAddrLength"=dword:00000010
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters]  
+"EnableICMPRedirect"=dword:00000001  
+"EnablePMTUDiscovery"=dword:00000001  
+"Tcp1323Opts"=dword:00000000  
+"GlobalMaxTcpWindowSize"=dword:000016d0  
+"TcpWindowSize"=dword:000016d0  
+"MaxConnectionsPerServer"=dword:00000000  
+"MaxUserPort"=dword:0000fffe  
+"TcpTimedWaitDelay"=dword:00000020  
+"EnablePMTUBHDetect"=dword:00000000  
+"DisableTaskOffload"=dword:00000000  
+"DefaultTTL"=dword:00000040  
+"SackOpts"=dword:00000000  
+"TcpMaxDupAcks"=dword:00000002
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\{Your NIC's GUID}]  
+"TcpAckFrequency"=dword:00000001  
+"TcpDelAckTicks"=dword:00000000  
+"TCPNoDelay"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSMQ\Parameters]  
+"TCPNoDelay"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]  
+"AlwaysOn"=dword:00000001
 
