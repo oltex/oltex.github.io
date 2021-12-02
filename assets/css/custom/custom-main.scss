@@ -6,3 +6,4 @@
 
 @import "minimal-mistakes/skins/{{ site.custom_toggle_theme_skin | default: 'dark' }}"; // skin
 @import "minimal-mistakes"; // main partials
+@import url('//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css');
