@@ -46,83 +46,48 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Manag
 EnableCfg -> 0  
 
 ### Use realtime priority for csrss.exe.
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions
-
-CpuPriorityClass -> 4
-
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions  
+CpuPriorityClass -> 4  
 IoPriority -> 3
 
-
-
-Disable RAM compression.
+### Disable RAM compression.
 powershell "Disable-MMAgent -MemoryCompression"
 
-
-
-Enable Kernel-Managed Memory and disable Meltdown/Spectre patches.
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
-
-FeatureSettings -> 1
-
-FeatureSettingsOverride -> 3
-
+### Enable Kernel-Managed Memory and disable Meltdown/Spectre patches.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management  
+FeatureSettings -> 1  
+FeatureSettingsOverride -> 3  
 FeatureSettingsOverrideMask -> 3
 
-
-
-Disallow drivers to get paged into virtual memory.
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
-
+### Disallow drivers to get paged into virtual memory.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management  
 DisablePagingExecutive -> 1
 
+### Use big system memory caching to improve microstuttering.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management  
+LargeSystemCache -> 1  
 
-
-Use big system memory caching to improve microstuttering.
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
-
-LargeSystemCache -> 1
-
-
-
-Use big pagefile to improve microstuttering (reboot or system might become unstable and BSoD).
-wmic computersystem where name="%computername%" set AutomaticManagedPagefile=False
-
+### Use big pagefile to improve microstuttering (reboot or system might become unstable and BSoD).
+wmic computersystem where name="%computername%" set AutomaticManagedPagefile=False  
 wmic pagefileset where name="C:\\pagefile.sys" set InitialSize=32768,MaximumSize=32768
 
-
-
-Disable additional NTFS/ReFS mitigations.
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager
-
+### Disable additional NTFS/ReFS mitigations.
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager  
 ProtectionMode -> 0
 
-
-
-Enable X2Apic and enable Memory Mapping for PCI-E devices.
+### Enable X2Apic and enable Memory Mapping for PCI-E devices.
 (for best results, further more enable MSI mode for all devices using MSI utility or manually)
-
-bcdedit /set x2apicpolicy Enable
-
-bcdedit /set configaccesspolicy Default
-
-bcdedit /set MSI Default
-
-bcdedit /set usephysicaldestination No
-
+bcdedit /set x2apicpolicy Enable  
+bcdedit /set configaccesspolicy Default  
+bcdedit /set MSI Default  
+bcdedit /set usephysicaldestination No  
 bcdedit /set usefirmwarepcisettings No
 
-
-
-Disable synthetic TSC tick and use accurate RTC instead (not to be confused with useplatformclock). Enable HPET in BIOS for best results. Only for untweaked systems (TSC recommended instead on tweaked systems).
-bcdedit /deletevalue useplatformclock
-
-bcdedit /deletevalue disabledynamictick
-
-bcdedit /set useplatformtick Yes
-
+### Disable synthetic TSC tick and use accurate RTC instead (not to be confused with useplatformclock). Enable HPET in BIOS for best results. Only for untweaked systems (TSC recommended instead on tweaked systems).
+bcdedit /deletevalue useplatformclock  
+bcdedit /deletevalue disabledynamictick  
+bcdedit /set useplatformtick Yes  
 bcdedit /set tscsyncpolicy Enhanced
-
-
 
 Set a reliable 1 ms (minimum) timestamp. Only for untweaked systems (disabling it with 0 is recommended on tweaked systems).
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Reliability
