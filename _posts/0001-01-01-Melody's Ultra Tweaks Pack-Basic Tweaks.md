@@ -28,11 +28,9 @@ bcdedit /set vsmlaunchtype Off
 bcdedit /set vm No  
 **HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\FVE**  
 DisableExternalDMAUnderLock -> 0  
-`HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard`
-EnableVirtualizationBasedSecurity -> 0
+`HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard`  
+EnableVirtualizationBasedSecurity -> 0  
 HVCIMATRequired -> 0
-
-
 
 Disable Process and Kernel Mitigations.
 powershell "ForEach($v in (Get-Command -Name \"Set-ProcessMitigation\").Parameters[\"Disable\"].Attributes.ValidValues){Set-ProcessMitigation -System -Disable $v.ToString() -ErrorAction SilentlyContinue}"
