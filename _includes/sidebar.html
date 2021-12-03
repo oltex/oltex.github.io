@@ -46,7 +46,7 @@
         <ul>
           {% for category in site.categories %}
             {% if category[0] == "git github" %}
-              <li><a href="/categories/#git">깃 허브 ({{category[1].size}})</a></li>
+              <li><a href="/categories/#git hub">깃 허브 ({{category[1].size}})</a></li>
             {% endif %}
           {% endfor %}
         </ul>
@@ -59,12 +59,6 @@
           {% endfor %}
         </ul>
         <ul>
-          {% for category in site.categories %}
-            {% if category[0] == "git" %}
-              <li><a href="/categories/#git">깃 ({{category[1].size}})</a></li>
-            {% endif %}
-          {% endfor %}
-        </ul>
           {% for category in site.categories %}
             {% if category[0] == "windows optimization" %}
               <li><a href="/categories/#windows optimization">최적화 ({{category[1].size}})</a></li>
