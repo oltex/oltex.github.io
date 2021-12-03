@@ -93,7 +93,7 @@ Other|1.7%(1)
 
 다음으로 제안된 명명 규칙에 대한 결과를 검토했습니다.
 
-|1|2|3
+..|1|2|3
 ---|---|---|---
 [product/project name]-[purpose]-[framework/language] e.g. myproject-api-rails|15|30|15|
 [product/project name]-[purpose] e.g. myproject-rest-api|36|15|9|
