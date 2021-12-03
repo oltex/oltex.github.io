@@ -79,6 +79,7 @@ CamelCase의 경우 문제는 단어에 대한 해석이 다른 경우가 많다
 ```
 #### 결과
 총 68명이 설문에 응답했습니다. 응답자가 수행한 직무 역할 분석은 다음과 같습니다.
+
 Separator type|Respondents who used this formet
 ---|---
 Hyphens (-) e.g. my-repo|81.7%(49)
@@ -87,6 +88,7 @@ None e.g. myrepo|0%(0)
 Camel Case e.g. myRepo|6.7%(4)
 Pascal Case e.g. MyRepo|5%(3)
 Other|1.7%(1)
+
 전체 결과는 하이픈이 단연 가장 많이 사용되는 구분 기호임을 보여줍니다.
 
 
