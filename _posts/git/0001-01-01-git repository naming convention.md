@@ -30,6 +30,7 @@ GitHub는 스타일 가이드 표준을 유지 하지만 저장소 이름 자체
 <details>
 <summary>내용</summary>
 <div markdown="1">
+
 ### GitHub 문서 명명 저장소에 대한 브리티시 컬럼비아 정책 프레임워크
 GitHub repo의 이름을 지정하는 것은 매우 간단해 보입니다. 다음과 같은 것을 원할 것입니다.
 - 설명
