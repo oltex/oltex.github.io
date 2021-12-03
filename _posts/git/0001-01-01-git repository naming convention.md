@@ -71,7 +71,7 @@ CamelCase의 경우 문제는 단어에 대한 해석이 다른 경우가 많다
 
 다음은 이름 자체에 어떤 정보가 포함되어야 하는지에 대한 규칙이었습니다. 
 즉, 구분 기호로 구분해야 하는 정보는 무엇입니까? 
-연구를 기반으로 세 가지 옵션을 제시하고 응답자에게 1에서 3까지 순위를 매기도록 요청했습니다.
+연구를 기반으로 세 가지 옵션을 제시하고 응답자에게 1(낮은)에서 3(높은)까지 순위를 매기도록 요청했습니다.
 ```
 [product/project name]-[purpose]-[framework/language] e.g. myproject-api-rails
 [product/project name]-[purpose] e.g. myproject-rest-api
@@ -93,13 +93,17 @@ Other|1.7%(1)
 
 다음으로 제안된 명명 규칙에 대한 결과를 검토했습니다.
 
-..|1|2|3
+Option|1|2|3
 ---|---|---|---
 [product/project name]-[purpose]-[framework/language] e.g. myproject-api-rails|15|30|15|
 [product/project name]-[purpose] e.g. myproject-rest-api|36|15|9|
 [language/framework]-[product/project] e.g. python-security-scripts|16|27|17|
 
+결과를 종합하면 하이픈이 81.7%가 하이픈을 선호하는 가장 인기 있는 구분 기호 규칙임을 알 수 있습니다.  
 
+옵션 3은 옵션 1보다 약간 더 인기가 많았으므로 일관되게 사용하기만 하면 이 옵션 중 하나를 프로젝트 팀에서 수용할 수 있습니다.
+요약하자면, 개인이 Python 도구 또는 JavaScript 도구를 찾고 있을 수 있으므로 언어 정의가 유용한 오픈 소스 프로젝트에 규칙 3이 더 적합할 수 있습니다.  
+반면에 규칙 1은 여러 제품이 존재하고 마이크로서비스와 같은 하위 구성요소로 구성된 프로젝트 팀이나 부서에 더 적합할 수 있습니다.
 
 
 
@@ -157,6 +161,3 @@ Other|1.7%(1)
 |tools||
 |util||
 |...|그 외 용도를 잘 설명하는 단어|
-
-요약하자면, 개인이 Python 도구 또는 JavaScript 도구를 찾고 있을 수 있으므로 언어 정의가 유용한 오픈 소스 프로젝트에 규칙 3이 더 적합할 수 있습니다.  
-반면에 컨벤션 1은 여러 제품이 존재하고 마이크로서비스와 같은 하위 구성요소로 구성된 프로젝트 팀이나 부서에 더 적합할 수 있습니다.
