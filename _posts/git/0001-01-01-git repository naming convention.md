@@ -73,9 +73,9 @@ CamelCase의 경우 문제는 단어에 대한 해석이 다른 경우가 많다
 즉, 구분 기호로 구분해야 하는 정보는 무엇입니까? 
 연구를 기반으로 세 가지 옵션을 제시하고 응답자에게 1에서 3까지 순위를 매기도록 요청했습니다.
 ```
-[product/project name]-[purpose]-[framework/language] e.g. myproject-api-railsproduct/project name]-[purpose]-[framework/language] e.g. myproject-api-rails
-[product/project name]-[purpose] e.g. myproject-rest-api[product/project name]-[purpose] e.g. myproject-rest-api
-[language/framework]-[product/project] e.g. python-security-scripts[language/framework]-[product/project] e.g. python-security-scripts
+[product/project name]-[purpose]-[framework/language] e.g. myproject-api-rails
+[product/project name]-[purpose] e.g. myproject-rest-api
+[language/framework]-[product/project] e.g. python-security-scripts
 ```
 #### 결과
 총 68명이 설문에 응답했습니다. 응답자가 수행한 직무 역할 분석은 다음과 같습니다.
@@ -90,6 +90,14 @@ Pascal Case e.g. MyRepo|5%(3)
 Other|1.7%(1)
 
 전체 결과는 하이픈이 단연 가장 많이 사용되는 구분 기호임을 보여줍니다.
+
+다음으로 제안된 명명 규칙에 대한 결과를 검토했습니다.
+
+|1|2|3
+---|---|---|---
+[product/project name]-[purpose]-[framework/language] e.g. myproject-api-rails|15|30|15|
+[product/project name]-[purpose] e.g. myproject-rest-api|36|15|9|
+[language/framework]-[product/project] e.g. python-security-scripts|16|27|17|
 
 
 
