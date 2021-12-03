@@ -1,7 +1,7 @@
 ---
 title: "개인 설정"
 categories:
-  - windows-optimization
+  - windows optimization
 tags:
   - tag
 ---
