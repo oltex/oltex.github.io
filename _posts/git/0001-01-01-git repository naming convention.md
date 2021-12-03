@@ -19,9 +19,38 @@ GitHub는 스타일 가이드 표준을 유지 하지만 저장소 이름 자체
 일관되지 않은 규칙으로 작성된 저장소 이름으로 인해 어려움을 겪는 것을 방지하고자 함에 목적이 있습니다.
 
 ## 규칙
-저장소 이름에는 전부 소문자 및 하이픈(-) 만을 사용합니다.
-저장소 이름 순서는 Project Name-purpose
+- 저장소 이름에는 전부 소문자 및 하이픈(-) 만을 사용합니다.  
+- 저장소 이름 순서는 Project Name-Purpose를 사용합니다.
+- GitHub는 저장소 아래 사용 언어를 표기해 주기 때문에 언어는 적지 않았습니다.
 
+### 프로젝트 이름(Project Name)
+이 Keyword는 프로젝트의 이름을 나타내는 Keyword입니다.
+
+- 웹 사이트의 경우 특별히 명명한 프로젝트 명이 없을 경우 도메인(Domaion) 자체가 프로젝트 명이 될 수 있습니다. 
+  - http://domain.com ➔ domain.com
+  - http://sub.domain.com ➔ sub.domain.com
+
+### 용도(Purpose)
+이 Keyword는 프로젝트가 어떠한 용도로 사용되는 지를 나타내는 Keyword입니다.
+
+|이름(Name)|설명(Description)|
+|---|---|
+|backend||
+|cli||
+|client||
+|core||
+|documents||
+|extention||
+|frontend||
+|gui||
+|interface||
+|lib||
+|samples||
+|sdk||
+|server||
+|tools||
+|util||
+|...|그 외 용도를 잘 설명하는 단어|
 
 ## 참고 자료
 ### GitHub 문서 명명 저장소에 대한 브리티시 컬럼비아 정책 프레임워크
@@ -123,12 +152,7 @@ Option|1|2|3
 5. Git 저장소 이름 규칙(Naming convention)은 Proejct name-Project development enviroment-Project purpose 의 형태로 제안합니다.
 6. (선택 사항) Git 저장소 이름 규칙은 git repository라는 것을 나타내기 위해 git.으로 시작합니다.
 
-### product/Project Name
-이 Keyword는 프로젝트의 이름을 나타내는 Keyword입니다.
 
-- 웹 사이트의 경우 특별히 명명한 프로젝트 명이 없을 경우 도메인(Domaion) 자체가 프로젝트 명이 될 수 있습니다. 
-  - http://domain.com ➔ domain.com
-  - http://sub.domain.com ➔ sub.domain.com
 
 ### language/framework
 이 Keyword는 프로젝트의 개발 환경을 나타내는 Keyword입니다.
@@ -146,24 +170,4 @@ Option|1|2|3
 |windows||
 |...|그 외 개발 환경 잘 설명하는 단어|
 
-### 용도(Purpose)
-이 Keyword는 프로젝트가 어떠한 용도로 사용되는 지를 나타내는 Keyword입니다.
 
-|이름(Name)|설명(Description)|
-|---|---|
-|backend||
-|cli||
-|client||
-|core||
-|documents||
-|extention||
-|frontend||
-|gui||
-|interface||
-|lib||
-|samples||
-|sdk||
-|server||
-|tools||
-|util||
-|...|그 외 용도를 잘 설명하는 단어|
