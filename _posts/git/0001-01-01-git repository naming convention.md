@@ -1,5 +1,5 @@
 ---
-title: "깃 저장소 이름 규칙(git repository naming convention)"
+title: "깃 저장소 이름 규칙(Git Repository Naming Convention)"
 categories:
   - git
 tags:
@@ -23,35 +23,16 @@ GitHub는 스타일 가이드 표준을 유지 하지만 저장소 이름 자체
 - Git 저장소 이름에 사용되는 Keyword 간의 구분은 '하이픈(-)'을 사용합니다.
 - Git 저장소 이름에 사용되는 Keyword 순서는 Project Name-Purpose를 사용합니다.
 - GitHub는 저장소 아래 사용 language를 표기해 주기 때문에 적지 않았습니다.
-
-### 프로젝트 이름(Project Name)
-이 Keyword는 프로젝트의 이름을 나타내는 Keyword입니다.
-
 - 웹 사이트의 경우 특별히 명명한 프로젝트 명이 없을 경우 도메인(Domaion) 자체가 프로젝트 명이 될 수 있습니다. 
   - http://domain.com ➔ domain.com
   - http://sub.domain.com ➔ sub.domain.com
 
+### 프로젝트 이름(Project Name)
+이 Keyword는 프로젝트의 이름을 나타내는 Keyword입니다.
+
 ### 용도(Purpose)
 이 Keyword는 프로젝트가 어떠한 용도로 사용되는 지를 나타내는 Keyword입니다.
 
-|이름(Name)|설명(Description)|
-|---|---|
-|backend||
-|cli||
-|client||
-|core||
-|documents||
-|extention||
-|frontend||
-|gui||
-|interface||
-|lib||
-|samples||
-|sdk||
-|server||
-|tools||
-|util||
-|...|그 외 용도를 잘 설명하는 단어|
 
 ## 참고 자료
 ### GitHub 문서 명명 저장소에 대한 브리티시 컬럼비아 정책 프레임워크
