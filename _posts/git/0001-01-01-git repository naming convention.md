@@ -18,6 +18,11 @@ GitHub는 스타일 가이드 표준을 유지 하지만 저장소 이름 자체
 프로젝트를 생성하거나 기존에 작성된 프로젝트를 참고하고자 할 떄,  
 일관되지 않은 규칙으로 작성된 저장소 이름으로 인해 어려움을 겪는 것을 방지하고자 함에 목적이 있습니다.
 
+## 규칙
+저장소 이름에는 전부 소문자 및 하이픈(-) 만을 사용합니다.
+저장소 이름 순서는 Project Name-purpose
+
+
 ## 참고 자료
 ### GitHub 문서 명명 저장소에 대한 브리티시 컬럼비아 정책 프레임워크
 GitHub repo의 이름을 지정하는 것은 매우 간단해 보입니다. 다음과 같은 것을 원할 것입니다.
@@ -78,7 +83,7 @@ CamelCase의 경우 문제는 단어에 대한 해석이 다른 경우가 많다
 [language/framework]-[product/project] e.g. python-security-scripts
 ```
 #### 결과
-총 68명이 설문에 응답했습니다. 응답자가 수행한 직무 역할 분석은 다음과 같습니다.
+총 68명이 설문에 응답했습니다.
 
 Separator type|Respondents who used this formet
 ---|---
@@ -99,6 +104,7 @@ Option|1|2|3
 [product/project name]-[purpose] e.g. myproject-rest-api|36|15|9|
 [language/framework]-[product/project] e.g. python-security-scripts|16|27|17|
 
+#### 종합
 결과를 종합하면 하이픈이 81.7%가 하이픈을 선호하는 가장 인기 있는 구분 기호 규칙임을 알 수 있습니다.  
 
 옵션 3은 옵션 1보다 약간 더 인기가 많았으므로 일관되게 사용하기만 하면 이 옵션 중 하나를 프로젝트 팀에서 수용할 수 있습니다.
@@ -109,7 +115,7 @@ Option|1|2|3
 
 
 ## 기본적인 명명 규칙(Default naming convention)
-저장소 네이밍에는 전부 소문자 및 하이픈(-) 만을 이용합시다.
+
 1. Git 저장소 이름에 사용되는 Keyword는 의미론(Sementic)적으로 작성합니다.
 2. Git 저장소 이름에 사용되는 Keyword의 표기는 카멜(Camel) 표기법을 사용합니다.
 3. Git 저장소 이름 규칙(Naming convention)에 사용되는 고유 명사는 대문자로 표기합니다.
