@@ -6,16 +6,17 @@ tags:
   - tag
 ---
 ## 개요
-일관적이고, 색인이 간편한 Git 저장소 명명 규칙을 정합니다.  
-프로젝트를 생성하거나 기존에 작성된 프로젝트를 참고하고자 할 떄,  
-일관되지 않은 규칙으로 작성된 저장소 이름으로 인해 어려움을 겪는 것을 방지하고자 함에 목적이 있습니다.
-
 GitHub는 스타일 가이드 표준을 유지 하지만 저장소 이름 자체에 대한 표준을 명시적으로 나열하지 않습니다. 
 
-다른 기사, 가이드, 리포지토리 및 스택 오버플로를 조사한 결과 리포지토리 이름의 일부를 구분하기 위해 하이픈을 사용하는 것이 합의로 나타났습니다.  
+다른 기사, 가이드, 리포지토리 및 스택 오버플로를 조사한 결과  
+리포지토리 이름의 일부를 구분하기 위해 하이픈을 사용하는 것이 합의로 나타났습니다.  
 일부 조직에서는 이를 공식화하는 조치를 취했습니다.
 
 한 가지 예는 GitHub 문서 명명 저장소에 대한 브리티시 컬럼비아 정책 프레임워크입니다. 
+
+이를 종합하여 일관적이고, 색인이 간편한 Git 저장소 명명 규칙을 정합니다.  
+프로젝트를 생성하거나 기존에 작성된 프로젝트를 참고하고자 할 떄,  
+일관되지 않은 규칙으로 작성된 저장소 이름으로 인해 어려움을 겪는 것을 방지하고자 함에 목적이 있습니다.
 
 ## 참고 자료
 ### GitHub 문서 명명 저장소에 대한 브리티시 컬럼비아 정책 프레임워크
@@ -59,16 +60,34 @@ CamelCase의 경우 문제는 단어에 대한 해석이 다른 경우가 많다
 이름에 "BC"를 넣는 것은 "브리티시 컬럼비아 주"의 컨텍스트를 제공하는 데 적합하지만 모든 리포지토리를 그런 식으로 시작하지 맙시다.  
 정렬 및 검색을 어렵게 만듭니다.
 
-### 토론
+### Modus Create 토론
 #### 규칙
+응답자에게 저장소 이름에서 선호하는 다음 구분 기호를 선택하도록 요청했습니다.
+- Hyphens (-) e.g. my-repo
+- Underscores/Snake Case (\_) e.g. my_repo
+- None e.g. myrepo
+- Camel Case e.g. myRepo
+- Pascal Case e.g. MyRepo
 
-
-
-
-
-
-
-
+다음은 이름 자체에 어떤 정보가 포함되어야 하는지에 대한 규칙이었습니다. 
+즉, 구분 기호로 구분해야 하는 정보는 무엇입니까? 
+연구를 기반으로 세 가지 옵션을 제시하고 응답자에게 1에서 3까지 순위를 매기도록 요청했습니다.
+```
+[product/project name]-[purpose]-[framework/language] e.g. myproject-api-railsproduct/project name]-[purpose]-[framework/language] e.g. myproject-api-rails
+[product/project name]-[purpose] e.g. myproject-rest-api[product/project name]-[purpose] e.g. myproject-rest-api
+[language/framework]-[product/project] e.g. python-security-scripts[language/framework]-[product/project] e.g. python-security-scripts
+```
+#### 결과
+총 68명이 설문에 응답했습니다. 응답자가 수행한 직무 역할 분석은 다음과 같습니다.
+Separator type|Respondents who used this formet
+---|---
+Hyphens (-) e.g. my-repo|81.7%(49)
+Underscores/Snake Case (\_) e.g. my_repo|5%(3)
+None e.g. myrepo|0%(0)
+Camel Case e.g. myRepo|6.7%(4)
+Pascal Case e.g. MyRepo|5%(3)
+Other|1.7%(1)
+전체 결과는 하이픈이 단연 가장 많이 사용되는 구분 기호임을 보여줍니다.
 
 
 
