@@ -38,21 +38,26 @@
         <span class="nav__sub-title">윈도우</span>
         <ul>
           {% for category in site.categories %}
-            {% if category[0] == "registry" %}
-              <li><a href="/categories/#registry">레지스트리 ({{category[1].size}})</a></li>
+            {% if category[0] == "windows registry" %}
+              <li><a href="/categories/#windows registry">레지스트리 ({{category[1].size}})</a></li>
+            {% endif %}
+          {% endfor %}
+          {% for category in site.categories %}
+            {% if category[0] == "windows optimization" %}
+              <li><a href="/categories/#windows optimization">최적화 ({{category[1].size}})</a></li>
             {% endif %}
           {% endfor %}
         </ul>
         <span class="nav__sub-title">웹</span>
         <ul>
           {% for category in site.categories %}
-            {% if category[0] == "markdown" %}
-              <li><a href="/categories/#github">마크다운 ({{category[1].size}})</a></li>
+            {% if category[0] == "web markdown" %}
+              <li><a href="/categories/#web markdown">마크다운 ({{category[1].size}})</a></li>
             {% endif %}
           {% endfor %}
           {% for category in site.categories %}
-            {% if category[0] == "html" %}
-              <li><a href="/categories/#github">HTML ({{category[1].size}})</a></li>
+            {% if category[0] == "web html" %}
+              <li><a href="/categories/#web html">HTML ({{category[1].size}})</a></li>
             {% endif %}
           {% endfor %}
         </ul>
