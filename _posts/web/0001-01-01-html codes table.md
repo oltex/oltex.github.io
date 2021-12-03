@@ -1,7 +1,7 @@
 ---
 title: "HTML 코드 테이블(html codes table)"
 categories:
-  - html
+  - web html
 tags:
   - tag
 ---
