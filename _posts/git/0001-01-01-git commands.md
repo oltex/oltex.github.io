@@ -1,5 +1,10 @@
-## 2.깃 명령어
-
+---
+title: "깃 명령어(Git Commands)"
+categories:
+  - git
+tags:
+  - tag
+---
 ```
 $ git config --global user.name "Your Name"
 $ git config --global user.email you@example.com
