@@ -9,9 +9,11 @@ tags:
 ## Registry
 Windows Registry Editor Version 5.00
 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions]  
+"CpuPriorityClass"=dword:00000004
+
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]  
 "AltTabSettings"=dword:00000001
-
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\FTH]  
 "Enabled"=dword:00000000 (Default:1)
