@@ -1,5 +1,5 @@
 ---
-title: "Melody's Ultra Tweaks Pack-Basic Tweaks"
+title: "Melody's Ultra Tweaks Pack - Basic Tweaks"
 categories:
   - windows optimization
 tags:
