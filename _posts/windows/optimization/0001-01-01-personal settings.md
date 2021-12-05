@@ -9,6 +9,21 @@ tags:
 ## Registry
 Windows Registry Editor Version 5.00
 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB\VID_056A&PID_030E\5&38e97a59&0&1\Device Parameters]  
+"DeviceSelectiveSuspended"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB\VID_056A&PID_030E&MI_00\6&aeb242b&0&0000\Device Parameters]  
+"AllowIdleIrpInD3"=dword:00000000  
+"SelectiveSuspendEnabled"=hex:00  
+"EnhancedPowerManagementEnabled"=dword:00000000  
+"LegacyTouchScaling"=dword:00000000  
+"WriteReportExSupported"=dword:00000000  
+"DeviceResetNotificationEnabled"=dword:00000000  
+"VendorRevision"=dword:00000000  
+"RevisionId"=dword:00000100  
+"ExtPropDescSemaphore"=dword:00000000  
+"SelectiveSuspendOn"=dword:00000000
+
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions]  
 "CpuPriorityClass"=dword:00000004
 
