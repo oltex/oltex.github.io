@@ -227,6 +227,9 @@ Get-AppxPackage Microsoft.GetHelp | Remove-AppxPackage
 Get-AppxPackage Microsoft.WindowsMaps  | Remove-AppxPackage  
 Get-AppxPackage microsoft.windowscommunicationsapps  | Remove-AppxPackage
 
+Get-AppxPackage -Allusers *edge*
+Add-AppxPackage -register "C:\Windows\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\AppxManifest.xml" -DisableDevelopmentMode
+
 ## Inter(R) Ethernet Connection (7) 1219-V
 IPv4 체크섬 오프로드 : Rx & Tx 활성화됨  
 RME 활성화 : 비활성화됨  
