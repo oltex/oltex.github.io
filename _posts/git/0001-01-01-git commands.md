@@ -46,7 +46,10 @@ git add .
 모든 변경 내용을 스테이징 영역에 추가한다.
 
 ### commit
-
+```
+git commit
+```
+작업 디렉토
 ### push
 
 ### status
