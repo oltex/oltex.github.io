@@ -61,6 +61,10 @@ git add -p
 git commit
 ```
 작업 디렉토리의 변경 내용을 기록한다 vim 사용
+```
+git commit -amend
+```
+커밋 메세지를 잘못 적은 경우 커밋메세지를 변경한다.
 ### push
 
 ### status
