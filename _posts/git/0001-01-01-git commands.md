@@ -5,6 +5,10 @@ categories:
 tags:
   - tag
 ---
+
+`-`
+옵션
+
 ### config
 ```
 $ git config --global user.name "Your Name"
@@ -77,3 +81,7 @@ git pull origin master
 git log
 ```
 깃의 로그를 보여준다.
+```
+git log -p
+```
+각각의 커밋과 커밋 사이의 소스상의 차이점을 보여준다.
