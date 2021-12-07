@@ -10,17 +10,17 @@ tags:
 $ git config --global user.name "Your Name"
 $ git config --global user.email you@example.com
 ```
-깃의 정보에 name과 email을 입력한다.  
+깃의 구성에 name과 email을 입력한다.  
 입력하지 않으면 commit을 할 수 없다.
 ```
 git config --global --list
 ```
-깃 정보 리스트 확인
+깃 구성 리스트 확인
 ```
 git config --unset user.name
 git config --unset user.email
 ```
-깃의 정보에 저장돼 있던 name과 email을 삭제한다.
+깃의 구성에 저장돼 있던 name과 email을 삭제한다.
 
 ### init
 ```
