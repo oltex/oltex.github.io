@@ -5,19 +5,24 @@ categories:
 tags:
   - tag
 ---
+### 
 ```
 $ git config --global user.name "Your Name"
 $ git config --global user.email you@example.com
 ```
-리스트 확인
+깃의 정보에 name과 email을 입력한다.
+입력하지 않으면 commit을 할 수 없다.
+
 ```
 git config --global --list
 ```
+깃 정보 리스트 확인
 
 ```
 git config --unset user.name
 git config --unset user.email
 ```
+깃의 정보에 저장돼 있던 name과 email을 삭제한다.
 
 ### init
 ```
@@ -33,6 +38,14 @@ git clone "https://"
 다른 프로젝트에 참여하려거나 Git 저장소를 복사하고 싶을 때 git clone 명령을 사용한다.
 git clone 을 실행하면 프로젝트 히스토리를 전부 받아온다.
 ### add
+```
+git add "filename.exe"
+```
+작업 디렉토리 상의 변경 내용을 스테이징 영역(staging area)에 추가하기 위한 명령어이다.
+```
+git add .
+```
+모든 변경 내용을 스테이징 영역에 추가한다.
 
 ### commit
 
