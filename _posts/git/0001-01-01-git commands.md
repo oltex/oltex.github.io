@@ -56,7 +56,7 @@ git add -p
 ```
 git commit
 ```
-작업 디렉토
+작업 디렉토리의 변경 내용을 기록한다 vim 사용
 ### push
 
 ### status
