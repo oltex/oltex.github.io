@@ -89,3 +89,13 @@ git log -p
 git log "commit id"
 ```
 커밋 아이디에 해당하는 커밋 이전의 로그만 보여준다.
+
+### diff
+```
+git diff
+```
+commit 된 파일 상태와 현재 수정중인 파일 상태 비교
+```
+git diff "commithash".."commithash"
+```
+commit간의 상태 비교
