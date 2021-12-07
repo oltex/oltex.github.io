@@ -10,14 +10,12 @@ tags:
 $ git config --global user.name "Your Name"
 $ git config --global user.email you@example.com
 ```
-깃의 정보에 name과 email을 입력한다.
+깃의 정보에 name과 email을 입력한다.  
 입력하지 않으면 commit을 할 수 없다.
-
 ```
 git config --global --list
 ```
 깃 정보 리스트 확인
-
 ```
 git config --unset user.name
 git config --unset user.email
@@ -55,7 +53,7 @@ git add .
 ```
 git status
 ```
-파일의 상태를 확인하려면 보통 git status 명령을 사용한다.
+파일의 상태를 확인하려면 status 명령을 사용한다.
 ### pull
 ```
 git pull origin master
