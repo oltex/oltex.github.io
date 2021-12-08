@@ -6,7 +6,7 @@ tags:
   - tag
 ---
 
-`-`
+`-` `--`  
 옵션
 
 ### config
@@ -62,6 +62,10 @@ git commit
 ```
 작업 디렉토리의 변경 내용을 기록한다 vim 사용
 ```
+git commit -m
+```
+커밋메세지를 vim 탐색기를 사용하지 않고 바로 작성
+```
 git commit -amend
 ```
 커밋 메세지를 잘못 적은 경우 커밋메세지를 변경한다.
@@ -90,9 +94,9 @@ git log -p
 ```
 각각의 커밋과 커밋 사이의 소스상의 차이점을 보여준다.
 ```
-git log "commit id"
+git log "commithash"
 ```
-커밋 아이디에 해당하는 커밋 이전의 로그만 보여준다.
+commithash에 해당하는 커밋 이전의 로그만 보여준다.
 
 ### diff
 ```
@@ -102,4 +106,4 @@ commit 된 파일 상태와 현재 수정중인 파일 상태 비교
 ```
 git diff "commithash".."commithash"
 ```
-commit간의 상태 비교
+commit간의 상태 비교 commithash사용
