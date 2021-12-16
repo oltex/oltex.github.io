@@ -20,8 +20,7 @@ GitHub는 스타일 가이드 표준을 유지 하지만 저장소 이름 자체
 ## 규칙
 - Git 저장소 이름에는 전부 소문자를 사용합니다.
 - Git 저장소 이름에 사용되는 Keyword 간의 구분은 '하이픈(-)'을 사용합니다.
-- Git 저장소 이름에 사용되는 Keyword 순서는 Project Name-Purpose를 사용합니다.
-- GitHub는 저장소 아래 사용 language를 표기해 주기 때문에 적지 않았습니다.
+- Git 저장소 이름에 사용되는 Keyword 순서는 Project Name-language-Purpose를 사용합니다.
 - 웹 사이트의 경우 특별히 명명한 프로젝트 명이 없을 경우 도메인(Domaion) 자체가 프로젝트 명이 될 수 있습니다. 
   - http://domain.com ➔ domain.com
   - http://sub.domain.com ➔ sub.domain.com
