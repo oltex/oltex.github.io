@@ -210,7 +210,8 @@ Windows Registry Editor Version 5.00
 bcdedit /set tscsyncpolicy legacy  
 bcdedit /set useplatformclock no  
 bcdedit /set useplatformtick no  
-bcdedit /set disabledynamictick yes
+bcdedit /set disabledynamictick yes  
+bcdedit /set disableelamdrivers yes
 
 ## Powercfg
 powercfg -h off  
