@@ -1,27 +1,3 @@
-/*{% assign _category = page.categories[0] %}
-{% assign _posts = site.categories[_category] %}
-<nav class="custom-page__pagination">
-  <div class="custom-page__pagination-display">
-    <h4 class="custom-page__pagination-title"> {{ _category }}카테고리의 다른 글</h4>
-    <h4 class="custom-page__pagination-title-right"><a href="/categories/#{{ _category }}">전체글 보기</a></h4>
-  </div>
-    <div class="custom-pagination-timeline">
-      <h1 class="custom-pagination-timeline-header">0 Posts<em> - Github</em></h1>
-      <div class="custom-comment">
-        <ul>
-          <li >
-            <h4 class="title">목차</h4>
-          </li>
-          {% for post in _posts %}
-            <li>
-              <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-</nav>*/
-
 {% if page.previous or page.next %}
   <nav class="pagination">
     {% if page.previous %}
