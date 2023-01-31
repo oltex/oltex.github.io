@@ -71,6 +71,7 @@ Creator 클래스를 구현하고 그안에 FactoryMethod 함수를 만들었습
 그 다음 Creator를 상속받은 BatCreator와 SpiderCreator 두 클래스에서 각각<br>
 Bat과 Spider를 생성할 수 있도록 재정의 했습니다.
 > ## 필요성
+
 언뜻 보면 이게 필요가 있나 싶어지는 구조입니다.<br>
 아래 예제는 팩토리 메드가 필요한 경우의 예시를 들어보았습니다.
 ### 생성이 복잡 할 경우
