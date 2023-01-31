@@ -102,11 +102,11 @@ void main(void) {
 	delete spider;
 }
 ```
-이렇게 되면 main코드의 결합도가 높아져서 유지보수가 힘든 코드가 돼 버렸습니다.
-만약 monster와 spider클래스를 생성하는 코드가 main함수가 아니라 다른 곳에도 작성 돼야 한다면,
-혹은 bat 코드의 생성 로직이 수정되어서 생성방식을 바꿔야한다면,
-코드 유지관리 측면에서 굉장히 힘들 수 있습니다.
-
+main코드가 담당하는 부분이 많아져 결합도가 높아졌습니다.
+만약 monster와 spider클래스를 생성하는 코드가 main함수가 아니라 다른 곳에도 작성 돼야 한다면 코드를 중복해서 사용해버리게 됩니다.
+혹은 main의 코드가 길어지고 그 후 bat 코드의 생성 로직이 수정되어서 생성방식을 바꿔야한다면 위치를 찾기 힘들 수 있습니다.
+다음과 같은 이유로 코드의 유지보수가 힘들어질 것입니다.
+ 
 이러한 경우 팩토리 메소드를 사용하면 코드를 간결하게 유지할 수 있습니다.
 ```cpp
 class Monster abstract {
@@ -156,6 +156,101 @@ void main(void) {
 ```
 main함수에서 사용되는 코드는 변하지 않았다는 것을 볼 수 있습니다.
 만약 bat 코드의 생성 로직이 수정되더라도 batCreator안에 있는 팩토리 메소드만 수정해주면 되는것입니다.
+또한 다른 곳에서 생성을 사용한다 하더라도 코드의 중복을 최소화 할 수 있습니다.
+> ## 주의점
 
-### 
+위 코드는 Bat과 Spider몬스터를 생성하기 위해 Creator라는 클래스를 정의하여 사용하였습니다.
+하지만 팩토리 메소드의 주된 개념은 메소드라는 점을 놓치면 안됩니다.
+즉 Creator라는 클래스를 생성하는것이 팩토리 메소드가 아니라,
+FactoryMethod라는 함수를 선언하는것이 팩토리 메소드입니다.
+(명확하게 하기위해 FactoryMethod라는 함수 이름을 사용했습니다.)
+
+Creator는 사실 중요한게 아니라는 것입니다.
+예시를 들기위해 Creator를 Dungeon으로 바꿔보겠습니다.
+```cpp
+class Dungeon abstract {
+public:
+	void Enter(void) { };
+	void Exit(void) { };
+	void Clear(void) { };
+	void Fail(void) { };
+	void Spawn(void) {
+		m_vecMonster.emplace_back(FactoryMethod());
+	}
+private:
+	virtual Monster* FactoryMethod(void) = 0;
+private:
+	std::vector<Monster*> m_vecMonster;
+};
+class BatDungeon final {
+private:
+	virtual Monster* FactoryMethod(void) {
+		return new Bat;
+	}
+};
+class SpiderDungeon final {
+private:
+	virtual Monster* FactoryMethod(void) {
+		return new Spider;
+	}
+};
+```
+던전 클래스에 여러가지 기능이 추가되었습니다.
+던전에 입장하기, 나가기, 성공, 실패 등 던전에는 다양한 함수들이 필요할 것입니다.
+그 중 스폰 함수는 몬스터를 스폰하는 함수입니다.
+던전에서 생성되는 몬스터가 한 종류라고 가정하고 각 던전마다 스폰되는 몬스터가 다르다고 할 때
+팩토리 메소드를 사용하여 각 던전에서 생성되는 몬스터를 다르게 설정하였습니다.
+
+이 코드의 Dungeon클래스는 오롯이 Monster를 생성하기 위한 클래스가 아닙니다.
+던전 클래스에서 다른 던전마다 생성되는 몬스터를 다르게 하기위한 방식이 필요했고
+그 방법으로 팩토리 메소드 함수를 만들었다고 봐야합니다.
+
+즉,
+1. Monster를 스폰하기 위해 Dungeon 클래스를 만든것이 아니라
+2. Dungeon클래스가 Monster를 다르게 스폰했다는것입니다.
+
+허나 1번의 방법이 팩토리 메소드가 아닌것 또한 아닙니다.
+단지 2번은 1번의 방법만이 팩토리 메소드를 사용하는 방법이 아니라는 하나의 반례일 뿐이니(또는 팩토리 메소드는 객체가 아니라 함수가 중심이라는 의미)
+1번과 2번 둘다 팩토리 메소드를 사용한것이 맞다는 점을 유의해야합니다.
+
+> ## 사용법
+
+팩토리 메소드의 여러가지 사용방법에 대해 서술하겠습니다.
+### 매개변수
+팩토리 메소드는 매개변수를 사용하여 다양한 형태의 객체를 생성하게 만들 수 있습니다.
+(날 수 있는 몬스터만 나오는 던전을 생성하자)
+```cpp
+class FlyDungeon final : public Dungeon {
+public:
+	virtual Monster* FactoryMethod(const int& index) override {
+		Monster* monster = nullptr;
+		switch (index) {
+		case 0: 
+			monster = new Bat;
+			break;
+		case 1:
+			monster = new Bird;
+		}
+		return monster;
+	};
+};
+```
+### 템플릿
+앞선 코드에서 몬스터의 종류가 추가될 때마다 크리에이터 클래스도 계속 추가 서브클래싱 되어야 했습니다.
+허나 템플릿 코드를 사용하면 이를 종류에 따라 좀더 간결하게 유지할 수 있습니다.
+(예를들어 땅에서 행동하는 몬스터는 초기화가 전부 동일하다 라고 한다면)
+```cpp
+class Creator abstract {
+public:
+	virtual Monster* FactoryMethod(void) = 0;
+};
+template<typename T>
+class GroundCreator final : public Creator {
+public:
+	virtual Monster* FactoryMethod(void) override {
+		return new T;
+	};
+};
+```
+
 > ## 정적 팩토리 메소드
