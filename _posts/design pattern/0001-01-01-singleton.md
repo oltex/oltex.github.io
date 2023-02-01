@@ -76,14 +76,14 @@ public:
 ```cpp
 class Graphic {
 private:
-	Graphic(void) = default; //생성자는 private 맴버 함수
+	Graphic(void) = default; //생성자
 	Graphic(const Graphic& rhs) = delete; //복사 생성자
 	Graphic& operator=(const Graphic& rhs) = delete; //복사 대입 연산자
 
 	Graphic(const Graphic&& rhs) noexcept = delete; //이동 생성자 (굳이 필요 없음)
 	Graphic& operator=(const Graphic&& rhs) noexcept = delete; //이동 대입 연산자 (굳이 필요 없음)
 
-	~Graphic(void) = default;
+	~Graphic(void) = default; //소멸자
 };
 void main(void) {
 	Graphic graphic; //생성자: private이라 호출 불가
