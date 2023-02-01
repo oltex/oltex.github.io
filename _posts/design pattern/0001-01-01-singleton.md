@@ -33,6 +33,12 @@ public:
 			m_pInstance = new Graphic;
 		return _instance;
 	}
+	static void Destory(void) {
+		if (nullptr != _instance) {
+			delete _instance;
+			_instance = nullptr;
+		}
+	}
 private:
 	static Graphic* _instance;
 };
@@ -41,15 +47,15 @@ void main(void) {
 	Graphic* graphic = Graphic::Instance();
 }
 ```
-static 맴버 변수를 선언하고 이것을 static 맴버 함수인 Instance() 호출 시점에서 생성 함으로써
-전역적인 Graphic instance를 가지게 되었습니다.
-두 번째 호출부터는 같은 instance를 호출하게 되어 인스턴스의 개수가 한개임을 보장합니다.
-물론 이후 프로그램 종료시 instance의 메모리 할당 해제 작업을 추가로 해줘야합니다.
-
-instance를 포인터로 선언하는 이유는 번역단위 초기화의 위험성에서 벗어나기 위해 늦은초기화를 사용함과
-(예를 들어 Graphic클래스가 필요한 Shader 클래스가 다른 파일에 존재할 때 Graphic가 포인터가 아니라면 초기화가 되어있지 않을 수 있다는 문제)
-Graphic클래스를 한번도 호출하지 않는다면 생성이 되지않아 메모리 낭비를 막을수 있다는 장점이 있기 때문입니다.
-
+static 맴버 변수를 선언하고 이것을 static 맴버 함수인 Instance() 호출 시점에서 생성 함으로써<br>
+전역적인 Graphic instance를 가지게 되었습니다.<br>
+두 번째 호출부터는 같은 instance를 호출하게 되어 인스턴스의 개수가 한개임을 보장합니다.<br>
+마지막으로 프로그램 종료시 instance의 메모리 할당 해제 작업을 추가로 해줘야합니다.<br>
+<br>
+instance를 포인터로 선언하는 이유는 번역단위 초기화의 위험성에서 벗어나기 위해 늦은초기화를 사용함과<br>
+(예를 들어 Graphic클래스가 필요한 Shader 클래스가 다른 파일에 존재할 때 Graphic가 포인터가 아니라면 초기화가 되어있지 않을 수 있다는 문제)<br>
+Graphic클래스를 한번도 호출하지 않는다면 생성이 되지않아 메모리 낭비를 막을수 있다는 장점이 있기 때문입니다.<br>
+<br>
 다른 방법으로 static 지역 변수로 집어넣는 방법이 존재합니다.
 ```cpp
 class Graphic {
@@ -115,12 +121,25 @@ private:
 	Singleton(const Singleton& rhs) = delete;
 	Singleton& operator=(const Singleton& rhs) = delete;
 public:
-	static T& Instance(void) {
-		static T _instance;
+	static T* Instance(void) {
+		if (nullptr == _instance)
+			_instance = new T;
 		return _instance;
 	}
+	static void Destory(void) {
+		if (nullptr != _instance) {
+			delete _instance;
+			_instance = nullptr;
+		}
+	}
+private:
+	static T* _instance;
 };
+template <typename T>
+T* Singleton<T>::_instance = nullptr;
 class Graphic final : public Singleton<Graphic> {
+	friend Graphic* Singleton<Graphic>::Instance();
+	friend void Singleton<Graphic>::Destory();
 private:
 	Graphic(void) = default;
 	virtual ~Graphic(void) override = default;
@@ -132,29 +151,22 @@ template<typename T>
 class Singleton {
 protected:
 	Singleton(void) = default;
+	virtual ~Singleton(void) = default;
+private:
 	Singleton(const Singleton& rhs) = delete;
 	Singleton& operator=(const Singleton& rhs) = delete;
-	virtual ~Singleton(void) = default;
 public:
-	static T* Instance(void) {
-		if (nullptr == _instance)
-			_instance = new T;
+	static T& Instance(void) {
+		static T _instance;
 		return _instance;
 	}
-private:
-	static T* _instance;
 };
-template <typename T>
-T* Singleton<T>::_instance = nullptr;
 class Graphic final : public Singleton<Graphic> {
-	friend Graphic* Singleton<Graphic>::Instance();
+	friend Singleton;
 private:
 	Graphic(void) = default;
 	virtual ~Graphic(void) override = default;
 };
-void main(void) {
-	Graphic* graphic = Graphic::Instance();
-}
 ```
 
 > ## 싱글톤을 사용하지 않는 이유
