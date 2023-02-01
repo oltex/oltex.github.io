@@ -123,12 +123,38 @@ public:
 class Graphic final : public Singleton<Graphic> {
 private:
 	Graphic(void) = default;
-	virtual ~Graphic(void) ovrride = default;
+	virtual ~Graphic(void) override = default;
 };
 ```
 
 ```cpp
-
+template<typename T>
+class Singleton {
+protected:
+	Singleton(void) = default;
+	Singleton(const Singleton& rhs) = delete;
+	Singleton& operator=(const Singleton& rhs) = delete;
+	virtual ~Singleton(void) = default;
+public:
+	static T* Instance(void) {
+		if (nullptr == _instance)
+			_instance = new T;
+		return _instance;
+	}
+private:
+	static T* _instance;
+};
+template <typename T>
+T* Singleton<T>::_instance = nullptr;
+class Graphic final : public Singleton<Graphic> {
+	friend Graphic* Singleton<Graphic>::Instance();
+private:
+	Graphic(void) = default;
+	virtual ~Graphic(void) override = default;
+};
+void main(void) {
+	Graphic* graphic = Graphic::Instance();
+}
 ```
 
 > ## 싱글톤을 사용하지 않는 이유
