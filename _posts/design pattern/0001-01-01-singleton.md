@@ -253,17 +253,15 @@ private:
 	static FileSystem* _instance;
 };
 FileSystem* FileSystem::_instance = nullptr;
-class PlayStationFileSystem : public FileSystem {
+class PlayStationFileSystem final : public FileSystem {
 public:
-	virtual void Function(void) override {
-	};
+	virtual void Function(void) override { };
 };
-class NintendoFileSystem : public FileSystem {
+class NintendoFileSystem final : public FileSystem {
 public:
-	virtual void Function(void) override {
-	};
+	virtual void Function(void) override { };
 };
-FileSystem* const& FileSystem::Instance(void){
+FileSystem* const& FileSystem::Instance(void) {
 	if (nullptr == _instance)
 #ifdef PLAYSTATION
 		_instance = new PlayStationFileSystem;
