@@ -70,7 +70,8 @@ public:
 멀티 스레드 사용 시의 문제에서도 벗어날 수 있다합니다.(C++11 이상)<br>
 멀티 스레드 문제점은 나중에 서술하겠습니다.<br>
 <br>
-단점은 프로그램이 끝날때까지 싱글톤 객체를 지울수 없다는 점이있습니다.
+단점은 프로그램이 끝날때까지 싱글톤 객체를 지울수 없다는 점과<br>
+다형성을 사용하지 못한다는 점이 있습니다.
 ### 생성 방지
 사실 위쪽 선언만으로 싱글톤 패턴을 완성했다고 보기 어렵습니다.<br>
 싱글톤 패턴의 특징중 하나인 인스턴스가 오직 하나여야함을 보장하지 않았기 때문입니다.<br>
@@ -112,23 +113,23 @@ void main(void) {
 이러한 이유로 매크로를 사용하여 싱글톤을 구현하는 방법이 존재합니다.<br>
 static 맴버 변수 버전
 ```cpp
-#define SINGLETON_DECLARE(Class) \
+#define SINGLETON_DECLARE(Singleton) \
 private: \
-	explicit Class(const Class& rhs) = delete; \
-	Class& operator=(const Class& rhs) = delete; \
+	explicit Singleton(const Singleton& rhs) = delete; \
+	Singleton& operator=(const Singleton& rhs) = delete; \
 public: \
-	static Class* const& Instance(void); \
+	static Singleton* const& Instance(void); \
 	static void Destroy(void); \
 private: \
-	static Class* _instance;
-#define SINGLETON_IMPLEMENT(Class) \
-Class* Class::_instance = nullptr; \
-Class* const& Class::Instance(void) { \
+	static Singleton* _instance;
+#define SINGLETON_IMPLEMENT(Singleton) \
+Singleton* Singleton::_instance = nullptr; \
+Singleton* const& Singleton::Instance(void) { \
 	if (nullptr == _instance) \
-		_instance = new Class; \
+		_instance = new Singleton; \
 	return _instance; \
 } \
-void Class::Destroy(void) {	\
+void Singleton::Destroy(void) {	\
 	if (nullptr == Instance) \
 		return; \
 	delete _instance; \
@@ -193,7 +194,7 @@ private:
 };
 template <typename T>
 T* Singleton<T>::_instance = nullptr;
-class Graphic final : public Singleton<Graphic> { //Singleton 템플릿 인자로 <Graphic>
+class Graphic final : public Singleton<Graphic> {
 	friend Graphic* Singleton<Graphic>::Instance(); //추가 설명: 1번
 	friend void Singleton<Graphic>::Destory();
 private:
@@ -235,7 +236,49 @@ Singelton<Graphic>::Instance()에서 생성되는 지역 변수인 static Graphi
 이것이 Singelton<Graphic>::Instance()함수가 아닌 다른 곳에서 이루어지는 것 같습니다.<br>
 따라서 friend 키워드를 Singleton<Graphic>::Instance()로 한정지으면 ~Graphic()에 접근하지 못해서 에러를 발생시킵니다.<br>
 그렇기에 해결책으로 Singleton<Graphic> 전역에 friend 키워드를 선언해준 것입니다.
+### 상속/다형성
+같은 상속을 이용하는 코드이지만 이번에는 생성이 아닌 다형성에 초점을 둔 코드입니다.<br>
+예를 들어 싱글톤으로 존재해야하는 FileSystem이라는 클래스가 존재한다고 가정해봅시다.<br>
+이 FileSystem을 PlayStation과 Nintendo 두 멀티플랫폼에서 지원해야 한다고 하면 어떻게 할 수 있을까요?<br>
+<br>
+다음과 같은 코드를 사용해보겠습니다.<br>
+(static 맴버 변수 방식만 가능합니다. 포인터/다형성)
+```cpp
+class FileSystem {
+	...
+public:
+	static FileSystem* const& Instance(void);
+	virtual void Function(void) = 0;
+private:
+	static FileSystem* _instance;
+};
+FileSystem* FileSystem::_instance = nullptr;
+class PlayStationFileSystem : public FileSystem {
+	...
+public:
+	virtual void Function(void) override {
+	};
+};
+class NintendoFileSystem : public FileSystem {
+	...
+public:
+	virtual void Function(void) override {
+	};
+};
+FileSystem* const& FileSystem::Instance(void){
+	if (nullptr == _instance)
+#ifdef PLAYSTATION
+		_instance = new PlayStationFileSystem;
+#elif NINTENDO
+		_instance = new NintendoFileSystem;
+#endif
+	return _instance;
+}
+```
+다형성을 사용해서 싱글톤 클래스를 멀티 플랫폼에 대응할 수 있게 만들었습니다.
 > ## 문제점
+
+싱글톤은 사실 굉장히 신중히 사용해야하거나 애초에 사용을 지양해야 한다고 합니다.
 
 ### 전역변수
 
