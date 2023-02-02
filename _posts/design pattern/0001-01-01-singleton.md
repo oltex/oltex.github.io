@@ -246,7 +246,6 @@ Singelton\<Graphic>::Instance()에서 생성되는 지역 변수인 static Graph
 (static 맴버 변수 방식만 가능합니다. 포인터/다형성)
 ```cpp
 class FileSystem {
-	...
 public:
 	static FileSystem* const& Instance(void);
 	virtual void Function(void) = 0;
@@ -255,13 +254,11 @@ private:
 };
 FileSystem* FileSystem::_instance = nullptr;
 class PlayStationFileSystem : public FileSystem {
-	...
 public:
 	virtual void Function(void) override {
 	};
 };
 class NintendoFileSystem : public FileSystem {
-	...
 public:
 	virtual void Function(void) override {
 	};
