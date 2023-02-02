@@ -109,7 +109,7 @@ void main(void) {
 싱글톤을 사용하는 여러가지 방법들에 대해 서술하겠습니다.
 ### 매크로
 사실 싱글톤은 그 생김새가 어떤 클래스라도 똑같은 경우가 많습니다.<br>
-이러한 이유로 매크로를 사용하여 싱글톤을 구현하는 방법이 존재합니다.
+이러한 이유로 매크로를 사용하여 싱글톤을 구현하는 방법이 존재합니다.<br>
 static 맴버 변수 버전
 ```cpp
 #define SINGLETON_DECLARE(Class) \
@@ -165,7 +165,7 @@ private:
 만약 매크로 사용을 하고싶지 않다면 아래 방법을 사용하는것도 생각해볼만 합니다.
 ### 상속/템플릿
 싱글톤 클래스를 만들고 상속과 템플릿을 이용하여 구현하는 방법입니다.<br>
-이 방법으로 구현시 조금 변경 사항이 있으니 주석을 잘 확인해야합니다.
+이 방법으로 구현시 조금 변경 사항이 있으니 주석을 잘 확인해야합니다.<br>
 static 맴버 변수 버전
 ```cpp
 template<typename T>
@@ -235,7 +235,7 @@ Singelton<Graphic>::Instance()에서 생성되는 지역 변수인 static Graphi
 이것이 Singelton<Graphic>::Instance()함수가 아닌 다른 곳에서 이루어지는 것 같습니다.<br>
 따라서 friend 키워드를 Singleton<Graphic>::Instance()로 한정지으면 ~Graphic()에 접근하지 못해서 에러를 발생시킵니다.<br>
 그렇기에 해결책으로 Singleton<Graphic> 전역에 friend 키워드를 선언해준 것입니다.
-> ## 
+> ## 문제점
 
 ### 전역변수
 
