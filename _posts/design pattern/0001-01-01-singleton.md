@@ -236,7 +236,7 @@ Singleton<Graphic>::Instance() 함수에서 new Graphic를 하기 위해서 Grap
 Singelton\<Graphic>::Instance()에서 생성되는 지역 변수인 static Graphic _instance가 프로그램 종료시 소멸을 위해 Graphic 소멸자를 호출하는데<br>
 이것이 Singelton\<Graphic>::Instance()함수가 아닌 다른 곳에서 이루어지는 것 같습니다.<br>
 따라서 friend 키워드를 Singleton\<Graphic>::Instance()로 한정지으면 ~Graphic()에 접근하지 못해서 에러를 발생시킵니다.<br>
-그렇기에 해결책으로 Singleton\<Graphic> 전역에 friend 키워드를 선언해준 것입니다.
+그렇기에 해결책으로 Singleton\<Graphic\> 전역에 friend 키워드를 선언해준 것입니다.
 ### 상속/다형성
 같은 상속을 이용하는 코드이지만 이번에는 생성이 아닌 다형성에 초점을 둔 코드입니다.<br>
 예를 들어 싱글톤으로 존재해야하는 FileSystem이라는 클래스가 존재한다고 가정해봅시다.<br>
