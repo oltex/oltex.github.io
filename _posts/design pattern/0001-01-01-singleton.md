@@ -226,15 +226,16 @@ private:
 };
 ```
 추가 설명<br>
-1번) Singleton<Graphic>::Instance() 함수에서 new Graphic를 하기 위해서 Graphic의 생성자에 접근할 필요가 존재합니다.<br>
+1번)<br>
+Singleton<Graphic>::Instance() 함수에서 new Graphic를 하기 위해서 Graphic의 생성자에 접근할 필요가 존재합니다.<br>
 하지만 Graphic의 생성자를 public으로 두면 외부에서 Graphic 객체가 생성 가능하기 때문에 friend키워드를 사용하여 한정적인 접근을 허용합니다.<br>
 같은 의미로 Singleton<Graphic>::Destory() 함수에서 delete Graphic을 하기 위해 Graphic의 소멸자에 접근해야 되기 때문에 friend키워드를 사용하였습니다.<br>
-<br>
-2번) 맴버 변수 버전과 다르게 friend 키워드의 접근범위를 Singleton클래스 전체로 바꾸었습니다.<br>
+2번)<br>
+맴버 변수 버전과 다르게 friend 키워드의 접근범위를 Singleton클래스 전체로 바꾸었습니다.<br>
 여기서부터는 추측입니다.(정보를 찾지 못했습니다.ㅠㅠ)<br>
-Singelton<Graphic>::Instance()에서 생성되는 지역 변수인 static Graphic _instance가 프로그램 종료시 소멸을 위해 Graphic 소멸자를 호출하는데<br>
-이것이 Singelton<Graphic>::Instance()함수가 아닌 다른 곳에서 이루어지는 것 같습니다.<br>
-따라서 friend 키워드를 Singleton<Graphic>::Instance()로 한정지으면 ~Graphic()에 접근하지 못해서 에러를 발생시킵니다.<br>
+Singelton\<Graphic>::Instance()에서 생성되는 지역 변수인 static Graphic _instance가 프로그램 종료시 소멸을 위해 Graphic 소멸자를 호출하는데<br>
+이것이 Singelton\<Graphic>::Instance()함수가 아닌 다른 곳에서 이루어지는 것 같습니다.<br>
+따라서 friend 키워드를 Singleton\<Graphic>::Instance()로 한정지으면 ~Graphic()에 접근하지 못해서 에러를 발생시킵니다.<br>
 그렇기에 해결책으로 Singleton\<Graphic> 전역에 friend 키워드를 선언해준 것입니다.
 ### 상속/다형성
 같은 상속을 이용하는 코드이지만 이번에는 생성이 아닌 다형성에 초점을 둔 코드입니다.<br>
