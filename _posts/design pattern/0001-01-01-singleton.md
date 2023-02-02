@@ -14,6 +14,9 @@ tags:
 어떤 클래스는 하나의 인스턴스만을 갖도록 하는 것이 좋습니다.<br>
 예를들어 응용 프로그램은 여러 클래스들로 이루어져 있지만 시스템과 통신하여 그래픽을 출력하는 클래스는<br>
 응용프로그램 내에 한개만 존재하면 충분할 것입니다.<br>
+
+두번째 예시는 디버그를 클래스가 있다고 하면 어느곳이든 다 접근이 가능해야 할 것입니다.
+이러한 경우 싱글턴을 사용하기에 적합합니다.
 <br>
 싱글톤 패턴은 다음과 같은 상황에서 사용하면 좋습니다.
 - 인스턴스가 오직 하나여야 함을 보장해야할 때
@@ -195,13 +198,17 @@ private:
 template <typename T>
 T* Singleton<T>::_instance = nullptr;
 class Graphic final : public Singleton<Graphic> {
-	friend Graphic* Singleton<Graphic>::Instance(); //추가 설명: 1번
-	friend void Singleton<Graphic>::Destory();
+	friend Graphic* Singleton<Graphic>::Instance(); //추가 설명
+	friend void Singleton<Graphic>::Destory(); //추가 설명
 private:
 	Graphic(void) = default;
 	virtual ~Graphic(void) override = default;
 };
 ```
+Singleton\<Graphic\>::Instance() 함수에서 new Graphic를 하기 위해서 Graphic의 생성자에 접근할 필요가 존재합니다.<br>
+하지만 Graphic의 생성자를 public으로 두면 외부에서 Graphic 객체가 생성 가능하기 때문에 friend키워드를 사용하여 한정적인 접근을 허용합니다.<br>
+같은 의미로 Singleton\<Graphic\>::Destory() 함수에서 delete Graphic을 하기 위해 Graphic의 소멸자에 접근해야 되기 때문에 friend키워드를 사용하였습니다.<br>
+<br>
 static 지역 변수 버전
 ```cpp
 template<typename T>
@@ -219,26 +226,23 @@ public:
 	}
 };
 class Graphic final : public Singleton<Graphic> {
-	friend Singleton<Grpahic>; //추가 설명: 2번
+	friend Singleton<Grpahic>; //추가 설명
 private:
 	Graphic(void) = default;
 	virtual ~Graphic(void) override = default;
 };
 ```
-추가 설명<br>
-1번)<br>
-Singleton<Graphic>::Instance() 함수에서 new Graphic를 하기 위해서 Graphic의 생성자에 접근할 필요가 존재합니다.<br>
-하지만 Graphic의 생성자를 public으로 두면 외부에서 Graphic 객체가 생성 가능하기 때문에 friend키워드를 사용하여 한정적인 접근을 허용합니다.<br>
-같은 의미로 Singleton<Graphic>::Destory() 함수에서 delete Graphic을 하기 위해 Graphic의 소멸자에 접근해야 되기 때문에 friend키워드를 사용하였습니다.<br>
-2번)<br>
-맴버 변수 버전과 다르게 friend 키워드의 접근범위를 Singleton클래스 전체로 바꾸었습니다.<br>
+맴버 변수 버전과 다르게 friend 키워드의 접근범위를 Singleton\<Grpahic\>클래스 전체로 바꾸었습니다.<br>
 여기서부터는 추측입니다.(정보를 찾지 못했습니다.ㅠㅠ)<br>
-Singelton\<Graphic>::Instance()에서 생성되는 지역 변수인 static Graphic _instance가 프로그램 종료시 소멸을 위해 Graphic 소멸자를 호출하는데<br>
+<br>
+Singelton\<Graphic\>::Instance()에서 생성되는 지역 변수인 static Graphic \_instance가 프로그램 종료시 소멸을 위해 Graphic 소멸자를 호출하는데<br>
 이것이 Singelton\<Graphic>::Instance()함수가 아닌 다른 곳에서 이루어지는 것 같습니다.<br>
 따라서 friend 키워드를 Singleton\<Graphic>::Instance()로 한정지으면 ~Graphic()에 접근하지 못해서 에러를 발생시킵니다.<br>
-그렇기에 해결책으로 Singleton\<Graphic\> 전역에 friend 키워드를 선언해준 것입니다.
+그렇기에 해결책으로 Singleton\<Graphic\> 전역에 friend 키워드를 선언해 주었습니다.
 ### 상속/다형성
 같은 상속을 이용하는 코드이지만 이번에는 생성이 아닌 다형성에 초점을 둔 코드입니다.<br>
+(사실 다형성이라 부르기 애매합니다.)<br>
+<br>
 예를 들어 싱글톤으로 존재해야하는 FileSystem이라는 클래스가 존재한다고 가정해봅시다.<br>
 이 FileSystem을 PlayStation과 Nintendo 두 멀티플랫폼에서 지원해야 한다고 하면 어떻게 할 수 있을까요?<br>
 <br>
@@ -247,7 +251,7 @@ Singelton\<Graphic>::Instance()에서 생성되는 지역 변수인 static Graph
 ```cpp
 class FileSystem {
 public:
-	static FileSystem* const& Instance(void);
+	static FileSystem* const& Instance(void); //구현부는 아래쪽에
 	virtual void Function(void) = 0;
 private:
 	static FileSystem* _instance;
@@ -261,7 +265,7 @@ class NintendoFileSystem final : public FileSystem {
 public:
 	virtual void Function(void) override { };
 };
-FileSystem* const& FileSystem::Instance(void) {
+FileSystem* const& FileSystem::Instance(void) { //구현부입니다.
 	if (nullptr == _instance)
 #ifdef PLAYSTATION
 		_instance = new PlayStationFileSystem;
@@ -275,9 +279,21 @@ FileSystem* const& FileSystem::Instance(void) {
 > ## 문제점
 
 싱글톤은 사실 굉장히 신중히 사용해야하거나 애초에 사용을 지양해야 한다고 합니다.
-
 ### 전역변수
+싱글톤의 강력한 효과중 하나가 전역 변수와 다를게 없다라는 것입니다.<br>
+때문에 전역 변수를 사용하게되면 생기는 문제를 같이 얹고 가게됩니다.
+### 의존성
+싱글톤은 인터페이스보다 구현 클래스에 더 집중하게되는 코드입니다.<br>
+인터페이스를 통하지 않으면 싱글톤을 사용하는 곳과 싱글톤 클래스간의 의존적인 관계가 생긴다는것을 의미합니다. (SOLID의 DIP)<br>
+또한 여러 클래스가 접근 가능하다는 점에서 클래스간의 결합도가 높아집니다.<br>
+또한 싱글턴을 사용하면 아무나 수정하고 공유되는 전역 상태가 존재한다는 것은 객채지향 프로그래밍에 맞지 않습니다.(SOLID의 OCP)
+### 테스트
+싱글톤은 테스트 또한 어렵게 만듭니다.<br>
+싱글톤의 생성은 굉장히 제한적이기 때문에 테스트를 위한 Mock객체를 만들기 어렵습니다.<br>
+테스트 코드를 작성하기 어렵다는 점은 개발에 큰 걸림돌이 됩니다.
+### 멀티 스래드
+싱글톤을 사용하면 멀티 스래드환경에서 전역변수가 생긴다는 것을 의미합니다.<br>
+이는 동기화 문제나 객체가 두개 생성되는 문제를 야기할 수 있습니다.
+> ## 멀티 스래드
 
-### 게으른 초기화
-
-> ## 멀티스래드
+싱글턴의 멀티 스래드 첫 번째 문제점은 두가지 객체가 만들어질 수 있는 상황이 존재한다는 것입니다.
