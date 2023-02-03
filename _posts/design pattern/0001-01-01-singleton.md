@@ -302,7 +302,7 @@ FileSystem* const& FileSystem::Instance(void) { //구현부입니다.
 > ## 멀티 스레드
 
 ### 문제
-싱글턴의 멀티 스레드 첫 번째 문제점은 두가지 객체가 만들어질 수 있는 상황이 존재한다는 것입니다.
+싱글턴의 멀티 스레드 문제점은 두가지 객체가 만들어질 수 있는 상황이 존재한다는 것입니다.
 다시 한번 코드를 보겠습니다. 싱글톤의 생성 부분입니다.
 ```cpp
 class Singleton final {
@@ -320,6 +320,9 @@ Singleton* Singleton::_instance = nullptr;
 만약 두 개의 스레드에서 동시에 Instance()함수를 호출했다고 가정해봅시다.<br>
 동시에 nullptr 검사를 진행한다면 두 스래드 전부 if문 안을 타고 들어가 동적 할당을 시작할 것입니다.<br>
 이런 방식으로 2개의 싱글톤 객체가 생길 수 있다는 문제가 존재합니다.
+
+추가로 static 지역 변수 버전 싱글톤은 멀티 스레드 문제에서 안전함을 보장받기 때문에 제외하였습니다.
+`If control enters the declaration concurrently while the variable is being initialized, the concurrent execution shall wait for completion of the initialization.`
 ### 해결
 이러한 문제를 해결하기위해 사용되는 여러 방법들이 존재합니다.
 #### 더블 체크 락킹(DCL)
@@ -398,15 +401,27 @@ volatile Singleton* volatile Singleton::_instance = nullptr;
 <br>
 먼저 싱글톤 클래스에 다른 변수인 int x, y, z가 존재한다라고 하면 이들도 캐시 메모리를 사용할 수 있기 때문에<br>
 모든 변수에 volatile 키워드를 붙여줘야합니다.<br>
-추가로 함수도 마찬가지로 모든 함수 또한 volatile 키워드를 붙여줘야함은 덤이지요.<br>
+추가로 함수도 마찬가지로 volatile 키워드를 전부 붙여줘야함은 덤이지요.<br>
 <br>
 단지 생성에서 문제를 막고싶었을 뿐인데 확장성이 엄청 떨어지는데다가<br>
 최적화를 전부 막아버린 클래스라니 듣기 만해도 성능 떨어지는 소리가 들립니다.<br>
 <br>
 이러한 이유에서 DCL 방식은 현재 사용을 권장하지 않는 방식이라고 합니다.
-### 이른 초기화
-이른 초기화 방식은 
-
+### 이른 초기화(Eager Initialization)
+이른 초기화 방식은 늦은 초기화를 포기함으로써 멀티 스레드 문제를 해결하려하는 방식입니다.
+```cpp
+class Singleton final {
+public:
+	static  Singleton* const& Instance(void) {
+		return _instance;
+	}
+private:
+	static Singleton* _instance;
+};
+ Singleton* Singleton::_instance = new Singleton;
+```
+이방식은 멀티 스레드 문제에서 안전함을 보장하기 때문에(Thread-safe) 싱글톤 클래스의 크기가 크지않다면
+고려해볼만한 방법입니다.
 ### LazyHolder
 
 
