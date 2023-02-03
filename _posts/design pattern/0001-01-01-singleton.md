@@ -325,6 +325,7 @@ Singleton* Singleton::_instance = nullptr;
 #### 더블 체크 락킹(DCL)
 Double Checked Locking 방식입니다.<br>
 두 번 체크를 하면서 lock을 해줘서 스레드의 동시 접근을 막는 방법입니다.
+##### DCL
 ```cpp
 class Singleton final {
 public:
@@ -365,6 +366,7 @@ new 키워드도 이러한 최적화 과정이 존재합니다. new 키워드는
 - 그러던 중에 초기화가 끝나면 unlock이 실행될 수 있는데
 - 일부가 캐시 메모리에 남아있는 중 스레드2에서 다시 lock을 걸고 완벽히 초기화되지 않은 공간에 접근해 버리게 됩니다.(캐시 일관성 문제)
 
+##### DCL + volatile
 이러한 과정은 전부 날려버리는 키워드가 존재합니다. 바로 volatile이라는 키워드입니다.<br>
 <br>
 volatile 키워드는 변수가 외부 요인에 의해 언제든지 변경될 수 있다라는 것을 알려주는 키워드입니다.<br>
