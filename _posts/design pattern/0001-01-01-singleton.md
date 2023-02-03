@@ -302,7 +302,8 @@ FileSystem* const& FileSystem::Instance(void) { //구현부입니다.
 > ## 멀티 스레드
 
 ### 문제
-싱글턴의 멀티 스레드 문제점은 두가지 객체가 만들어질 수 있는 상황이 존재한다는 것입니다.
+싱글턴의 멀티 스레드 문제점은 두가지 객체가 만들어질 수 있는 상황이 존재한다는 것입니다.<br>
+<br>
 (static 지역 변수 버전 싱글톤은 멀티 스레드 문제에서 안전함을 보장받기 때문에 제외하였습니다.)<br>
 ```
 If control enters the declaration concurrently while the variable is being initialized,
@@ -422,8 +423,10 @@ private:
 };
  Singleton* Singleton::_instance = new Singleton;
 ```
-이방식은 멀티 스레드 문제에서 안전함을 보장하기 때문에(Thread-safe) 싱글톤 클래스의 크기가 크지않다면
+이방식은 멀티 스레드 문제에서 안전함을 보장하기 때문에(Thread-safe) 싱글톤 클래스의 크기가 크지않다면<br>
 고려해볼만한 방법입니다.
 ### LazyHolder
+싱글톤을 늦은 초기화로 만들고 싶으면서도 멀티 스레드 문제에서 벗어나고 싶다면 이 방법을 고려해볼만 합니다.
+
 
 
