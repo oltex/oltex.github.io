@@ -33,7 +33,7 @@ class Graphic final {
 public:
 	static Graphic* const& Instance(void) {
 		if (nullptr == _instance)
-			m_pInstance = new Graphic;
+			_instance = new Graphic;
 		return _instance;
 	}
 	static void Destory(void) {
@@ -69,12 +69,10 @@ public:
 };
 ```
 이 방식 또한 함수가 실행되기 이전에는 지역 변수가 생성되지 않기 때문에 메모리 낭비 문제에서 벗어납니다.<br>
-또한 추가적으로 메모리 할당 해제 작업이 필요없으며,<br>
-멀티 스레드 사용 시의 문제에서도 벗어날 수 있다합니다.(C++11 이상)<br>
-멀티 스레드 문제점은 나중에 서술하겠습니다.<br>
+또한 추가적으로 메모리 할당 해제 작업이 필요없습니다.<br>
 <br>
 단점은 프로그램이 끝날때까지 싱글톤 객체를 지울수 없다는 점과<br>
-다형성을 사용하지 못한다는 점이 있습니다.
+포인터의 이점을 사용하지 못한다는 점이 있습니다.
 ### 생성 방지
 사실 위쪽 선언만으로 싱글톤 패턴을 완성했다고 보기 어렵습니다.<br>
 싱글톤 패턴의 특징중 하나인 인스턴스가 오직 하나여야함을 보장하지 않았기 때문입니다.<br>
@@ -205,9 +203,9 @@ private:
 	virtual ~Graphic(void) override = default;
 };
 ```
-Singleton\<Graphic\>::Instance() 함수에서 new Graphic를 하기 위해서 Graphic의 생성자에 접근할 필요가 존재합니다.<br>
+Instance() 함수에서 new Graphic를 하기 위해서 Graphic의 생성자에 접근할 필요가 존재합니다.<br>
 하지만 Graphic의 생성자를 public으로 두면 외부에서 Graphic 객체가 생성 가능하기 때문에 friend키워드를 사용하여 한정적인 접근을 허용합니다.<br>
-같은 의미로 Singleton\<Graphic\>::Destory() 함수에서 delete Graphic을 하기 위해 Graphic의 소멸자에 접근해야 되기 때문에 friend키워드를 사용하였습니다.<br>
+같은 의미로 Destory() 함수에서 delete Graphic을 하기 위해 Graphic의 소멸자에 접근해야 되기 때문에 friend키워드를 사용하였습니다.<br>
 <br>
 static 지역 변수 버전
 ```cpp
@@ -241,13 +239,15 @@ Singelton\<Graphic\>::Instance()에서 생성되는 지역 변수인 static Grap
 그렇기에 해결책으로 Singleton\<Graphic\> 전역에 friend 키워드를 선언해 주었습니다.
 ### 상속/다형성
 같은 상속을 이용하는 코드이지만 이번에는 생성이 아닌 다형성에 초점을 둔 코드입니다.<br>
-(사실 다형성이라 부르기 애매합니다.)<br>
+사실 다형성이라 부르기 좀 그렇습니다.<br>
+인터페이스를 통해 여러가지 객체를 만드는 것이 아니라 그중 하나의 객체만을 만드는 방법입니다.<br>
+허나 다형성 방식의 코딩을 응용하고 있으니 다형성이라 칭하겠습니다.<br>
 <br>
 예를 들어 싱글톤으로 존재해야하는 FileSystem이라는 클래스가 존재한다고 가정해봅시다.<br>
 이 FileSystem을 PlayStation과 Nintendo 두 멀티플랫폼에서 지원해야 한다고 하면 어떻게 할 수 있을까요?<br>
 <br>
 다음과 같은 코드를 사용해보겠습니다.<br>
-(static 맴버 변수 방식만 가능합니다. 포인터/다형성)
+(static 맴버 변수 방식만 가능합니다.)
 ```cpp
 class FileSystem {
 public:
@@ -275,10 +275,11 @@ FileSystem* const& FileSystem::Instance(void) { //구현부입니다.
 	return _instance;
 }
 ```
-다형성을 사용해서 싱글톤 클래스를 멀티 플랫폼에 대응할 수 있게 만들었습니다.
+싱글톤 클래스를 멀티 플랫폼에 대응할 수 있게 만들었습니다.
 > ## 문제점
 
 싱글톤은 사실 굉장히 신중히 사용해야하거나 애초에 사용을 지양해야 한다고 합니다.
+싱글톤을 사용함으로 인해 생기는 이점보다 단점이 더 많기때문이라고 합니다.
 ### 전역변수
 싱글톤의 강력한 효과중 하나가 전역 변수와 다를게 없다라는 것입니다.<br>
 때문에 전역 변수를 사용하게되면 생기는 문제를 같이 얹고 가게됩니다.
@@ -291,9 +292,33 @@ FileSystem* const& FileSystem::Instance(void) { //구현부입니다.
 싱글톤은 테스트 또한 어렵게 만듭니다.<br>
 싱글톤의 생성은 굉장히 제한적이기 때문에 테스트를 위한 Mock객체를 만들기 어렵습니다.<br>
 테스트 코드를 작성하기 어렵다는 점은 개발에 큰 걸림돌이 됩니다.
-### 멀티 스래드
-싱글톤을 사용하면 멀티 스래드환경에서 전역변수가 생긴다는 것을 의미합니다.<br>
+### 멀티 스레드
+싱글톤을 사용하면 멀티 스레드환경에서 전역변수가 생긴다는 것을 의미합니다.<br>
 이는 동기화 문제나 객체가 두개 생성되는 문제를 야기할 수 있습니다.
-> ## 멀티 스래드
+> ## 멀티 스레드
 
-싱글턴의 멀티 스래드 첫 번째 문제점은 두가지 객체가 만들어질 수 있는 상황이 존재한다는 것입니다.
+### 문제
+싱글턴의 멀티 스레드 첫 번째 문제점은 두가지 객체가 만들어질 수 있는 상황이 존재한다는 것입니다.
+다시 한번 코드를 보겠습니다. 싱글톤의 생성 부분입니다.
+```cpp
+class Singleton final {
+public:
+	static Singleton* const& Instance(void) {
+		if (nullptr == _instance) //두 개의 스레드가 동시접근!
+			_instance = new Singleton; //두 개의 스레드가 동시생성! 
+		return _instance;
+	}
+private:
+	static Singleton* _instance;
+};
+Singleton* Singleton::_instance = nullptr;
+```
+만약 두 개의 스레드에서 동시에 Instance()함수를 호출했다고 가정해봅시다.<br>
+동시에 nullptr 검사를 진행한다면 두 스래드 전부 if문 안을 타고 들어가 동적 할당을 시작할 것입니다.
+이런 방식으로 2개의 싱글톤 객체가 생길 수 있다는 문제가 존재합니다.
+
+### 해결
+이러한 문제를 해결하기위해 사용되는 여러 방법들이 존재합니다.
+
+#### DCLP
+
