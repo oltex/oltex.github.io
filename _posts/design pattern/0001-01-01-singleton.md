@@ -12,11 +12,12 @@ tags:
 > ## 필요성
 
 어떤 클래스는 하나의 인스턴스만을 갖도록 하는 것이 좋습니다.<br>
+<br>
 예를들어 응용 프로그램은 여러 클래스들로 이루어져 있지만 시스템과 통신하여 그래픽을 출력하는 클래스는<br>
 응용프로그램 내에 한개만 존재하면 충분할 것입니다.<br>
 
-두번째 예시는 디버그를 클래스가 있다고 하면 어느곳이든 다 접근이 가능해야 할 것입니다.
-이러한 경우 싱글턴을 사용하기에 적합합니다.
+두 번째로 디버그를 클래스가 있다고 하면 어느곳이든 다 접근이 가능해야 할 것입니다.<br>
+이러한 경우 싱글턴을 사용하기에 적합합니다.<br>
 <br>
 싱글톤 패턴은 다음과 같은 상황에서 사용하면 좋습니다.
 - 인스턴스가 오직 하나여야 함을 보장해야할 때
@@ -36,7 +37,7 @@ public:
 			_instance = new Graphic;
 		return _instance;
 	}
-	static void Destory(void) {
+	static void Destroy(void) {
 		if (nullptr != _instance) {
 			delete _instance;
 			_instance = nullptr;
@@ -51,9 +52,9 @@ void main(void) {
 }
 ```
 static 맴버 변수를 선언하고 이것을 static 맴버 함수인 Instance() 호출 시점에서 생성 함으로써<br>
-전역적인 Graphic instance를 가지게 되었습니다.<br>
+전역적인 instance를 가지게 되었습니다.<br>
 두 번째 호출부터는 같은 instance를 호출하게 되어 인스턴스의 개수가 한개임을 보장합니다.<br>
-마지막으로 프로그램 종료시 instance의 메모리 할당 해제 작업을 추가로 해줘야합니다.<br>
+마지막으로 프로그램 종료시 Destroy()로 메모리 할당 해제 작업을 추가로 해줘야합니다.<br>
 <br>
 instance를 포인터로 선언하는 이유는 번역 단위 초기화의 위험성에서 벗어나기 위해 게으른 초기화를 사용함과<br>
 Graphic클래스를 한번도 호출하지 않는다면 생성이 되지않아 메모리 낭비를 막을수 있다는 장점이 있기 때문입니다.<br>
@@ -164,6 +165,7 @@ private:
 ```
 사실 기존 코드를 단순히 매크로로 빼놓는 작업에 불과합니다.<br>
 매크로를 사용하여 싱글톤을 사용하면 Graphic클래스에 들어가는 코드의 양을 줄일 수 있습니다.<br>
+<br>
 만약 매크로 사용을 하고싶지 않다면 아래 방법을 사용하는것도 생각해볼만 합니다.
 ### 상속/템플릿
 싱글톤 클래스를 만들고 상속과 템플릿을 이용하여 구현하는 방법입니다.<br>
@@ -239,7 +241,7 @@ Singelton\<Graphic\>::Instance()에서 생성되는 지역 변수인 static Grap
 그렇기에 해결책으로 Singleton\<Graphic\> 전역에 friend 키워드를 선언해 주었습니다.
 ### 상속/다형성
 같은 상속을 이용하는 코드이지만 이번에는 생성이 아닌 다형성에 초점을 둔 코드입니다.<br>
-사실 다형성이라 부르기 좀 그렇습니다.<br>
+사실 다형성이라 부르기 애매합니다.<br>
 인터페이스를 통해 여러가지 객체를 만드는 것이 아니라 그중 하나의 객체만을 만드는 방법입니다.<br>
 허나 다형성 방식의 코딩을 응용하고 있으니 다형성이라 칭하겠습니다.<br>
 <br>
@@ -257,6 +259,7 @@ private:
 	static FileSystem* _instance;
 };
 FileSystem* FileSystem::_instance = nullptr;
+
 class PlayStationFileSystem final : public FileSystem {
 public:
 	virtual void Function(void) override { };
@@ -265,6 +268,7 @@ class NintendoFileSystem final : public FileSystem {
 public:
 	virtual void Function(void) override { };
 };
+
 FileSystem* const& FileSystem::Instance(void) { //구현부입니다.
 	if (nullptr == _instance)
 #ifdef PLAYSTATION
@@ -314,11 +318,93 @@ private:
 Singleton* Singleton::_instance = nullptr;
 ```
 만약 두 개의 스레드에서 동시에 Instance()함수를 호출했다고 가정해봅시다.<br>
-동시에 nullptr 검사를 진행한다면 두 스래드 전부 if문 안을 타고 들어가 동적 할당을 시작할 것입니다.
+동시에 nullptr 검사를 진행한다면 두 스래드 전부 if문 안을 타고 들어가 동적 할당을 시작할 것입니다.<br>
 이런 방식으로 2개의 싱글톤 객체가 생길 수 있다는 문제가 존재합니다.
-
 ### 해결
 이러한 문제를 해결하기위해 사용되는 여러 방법들이 존재합니다.
+#### 더블 체크 락킹(DCL)
+Double Checked Locking 방식입니다.<br>
+두 번 체크를 하면서 lock을 해줘서 스레드의 동시 접근을 막는 방법입니다.
+```cpp
+class Singleton final {
+public:
+	static  Singleton* const& Instance(void) {
+		if (nullptr == _instance) {
+			_mutex.lock(); //RAII 방식: std::lock_guard<std::mutex> lock{ _mutex }; 
+			if (nullptr == _instance)
+				_instance = new Singleton;
+			_mutex.unlock();
+		}
+		return _instance;
+	}
+private:
+	static Singleton* _instance;
+	static std::mutex _mutex;
+};
+Singleton* Singleton::_instance = nullptr;
+```
+nullptr 검사를 해주고 lock을 걸어 접근을 제한한 다음에 다시 nullptr 검사를 해주는 방식을 통해서<br>
+성능 하락또한 막으면서도 두 스레드의 동시 접근또한 막을 수 있습니다.<br>
+<br>
+이론상 완벽해보이는 코드이지만 여기에는 두 가지 문제점이 존재합니다.<br>
+첫 번째는 컴파일러 최적화이고 두 번째는 CPU의 메모리 아키텍처입니다.<br>
+<br>
+첫 번째 문제를 보면 컴파일러는 같은 결과를 보장하는 한해서 코드를 훨씬 빠르게 재배치(reordering)하는 기능이 존재하기 때문에<br>
+코드의 순서가 바뀔 수 있습니다. 문제는 이것이 멀티 스레드를 고려하지 않는다는 것이죠<br>
+<br>
+new 키워드도 이러한 최적화 과정이 존재합니다. new 키워드는 한줄이지만 3가지 단계로 구성되어있습니다.<br>
+- 메모리 할당 -> 객체 초기화 -> 메모리 주소를 변수에 저장
+이 과정에 최적화를 진행하게 되면 메모리를 할당하는 작업과 변수에 저장하는 작업을 합쳐버립니다.
+- 메모리 할당 -> 메모리 주소를 변수에 저장 -> 객체 초기화
+이로 인해서 초기화 과정 전에 메모리에 주소가 들어가있게 되는데 이는 아래 문제점과 겹쳐 문제를 일으킵니다.<br>
+<br>
+두 번째 문제는 CPU의 메모리 아키텍처인데 CPU에 캐시 메모리가 있다는 것을 생각해봅시다.<br>
+- 스레드1에서 lock을 걸고 메모리 할당을 성공하고 초기화도 시도하려 합니다.
+- 허나 할당된 주소값은 캐시 메모리를 거쳐 메모리에 들어가버렸지만
+- 초기화는 과정이 길고 복잡해 바로 메모리로 가지않고 일부가 캐시 메모리에 머무를 수 있습니다.
+- 그러던 중에 초기화가 끝나면 unlock이 실행될 수 있는데
+- 일부가 캐시 메모리에 남아있는 중 스레드2에서 다시 lock을 걸고 완벽히 초기화되지 않은 공간에 접근해 버리게 됩니다.(캐시 일관성 문제)
 
-#### DCLP
+이러한 과정은 전부 날려버리는 키워드가 존재합니다. 바로 volatile이라는 키워드입니다.<br>
+<br>
+volatile 키워드는 변수가 외부 요인에 의해 언제든지 변경될 수 있다라는 것을 알려주는 키워드입니다.<br>
+쉽게 말해 언제든 바뀔 수 있으니 허튼짓(최적화) 하지 말고 내가 짜둔 코드대로 진행하라는 것이죠.<br>
+게다가 이 키워드는 언제든 변경될 수 있으니 캐시로 만들지도 말라고 합니다.<br>
+위에서 나온 2가지 문제를 동시에 처리하는 키워드 입니다만 이것또한 문제가 존재합니다.<br>
+<br>
+먼저 코드를 보겠습니다.<br>
+```cpp
+class Singleton final {
+public:
+	static volatile Singleton* volatile const& Instance(void) {
+		if (nullptr == _instance) {
+			_mutex.lock();
+			if (nullptr == _instance)
+				_instance = new volatile Singleton;
+			_mutex.unlock();
+		}
+		return _instance;
+	}
+private:
+	static volatile Singleton* volatile _instance;
+	static std::mutex _mutex;
+};
+volatile Singleton* volatile Singleton::_instance = nullptr;
+```
+코드에 volatile 키워드가 엄청 많이 추가되었습니다.<br>
+이렇게 하면 캐시 메모리를 사용하지 않고 자체적인 최적화도 막기 때문에 문제가 없어보이지만 또다른 문제가 존재합니다.<br>
+<br>
+먼저 싱글톤 클래스에 다른 변수인 int x, y, z가 존재한다라고 하면 이들도 캐시 메모리를 사용할 수 있기 때문에<br>
+모든 변수에 volatile 키워드를 붙여줘야합니다.<br>
+추가로 함수도 마찬가지로 모든 함수 또한 volatile 키워드를 붙여줘야함은 덤이지요.<br>
+<br>
+단지 생성에서 문제를 막고싶었을 뿐인데 확장성이 엄청 떨어지는데다가<br>
+최적화를 전부 막아버린 클래스라니 듣기 만해도 성능 떨어지는 소리가 들립니다.<br>
+<br>
+이러한 이유에서 DCL 방식은 현재 사용을 권장하지 않는 방식이라고 합니다.
+### 이른 초기화
+이른 초기화 방식은 
+
+### LazyHolder
+
 
