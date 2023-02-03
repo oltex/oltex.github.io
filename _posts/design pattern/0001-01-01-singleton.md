@@ -321,7 +321,8 @@ Singleton* Singleton::_instance = nullptr;
 동시에 nullptr 검사를 진행한다면 두 스래드 전부 if문 안을 타고 들어가 동적 할당을 시작할 것입니다.<br>
 이런 방식으로 2개의 싱글톤 객체가 생길 수 있다는 문제가 존재합니다.
 
-추가로 static 지역 변수 버전 싱글톤은 멀티 스레드 문제에서 안전함을 보장받기 때문에 제외하였습니다.
+추가로 static 지역 변수 버전 싱글톤은 멀티 스레드 문제에서 안전함을 보장받기 때문에 제외하였습니다.<br>
+원문은 다음과 같습니다.<br>
 `If control enters the declaration concurrently while the variable is being initialized, the concurrent execution shall wait for completion of the initialization.`
 ### 해결
 이러한 문제를 해결하기위해 사용되는 여러 방법들이 존재합니다.
