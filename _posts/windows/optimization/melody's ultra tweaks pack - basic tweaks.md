@@ -1,10 +1,4 @@
----
-title: "Melody's Ultra Tweaks Pack - Basic Tweaks"
-categories:
-  - windows optimization
-tags:
-  - tag
----
+
 Basic Tweaks that are good to know and don't interfere with power saving features and other stuff.
 For people who don't want to perform deep tweaking.
 Updated Jul 15 2020. Windows Firewall Warning.
