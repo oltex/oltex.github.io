@@ -30,6 +30,7 @@ class Monster abstract { };
 class NormalMonster final : public Monster { };
 class Item abstract { };
 class NormalItem final : public Item { };
+
 class AbstractFactory final { //추상 팩토리
 public:
 	Monster* SpawnMonster(void) { //Monster 팩토리 메서드
@@ -39,6 +40,7 @@ public:
 		return new NormalItem;
 	}
 };
+
 void main(void) {
 	AbstractFactory abstractFactory;
 	Monster* normalMonster = abstractFactory.SpawnMonster();
@@ -64,6 +66,7 @@ class Item abstract { }; //아이템: 이지, 노말, 하드
 class EasyItem final : public Item { };
 class NormalItem final : public Item { };
 class HardItem final : public Item { };
+
 class AbstractFactory abstract { //추상 팩토리
 public:
 	virtual Monster* SpawnMonster(void) = 0;
@@ -87,6 +90,7 @@ public:
 		return new HardItem;
 	}
 };
+
 void main(void) {
 	EasyAbstractFactory easyAbstractFactory;
 	Monster* easyMonster = easyAbstractFactory.SpawnMonster();
