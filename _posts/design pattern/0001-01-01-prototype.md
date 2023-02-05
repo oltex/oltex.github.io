@@ -86,7 +86,7 @@ void main(void) {
 	Goblin* bowGoblinPrototype = new Goblin;
 	Goblin* shieldGoblinPrototype = new Goblin;
 	//프로토 타입 고블린들을 상태에 맞게 초기화합니다.
-  //각각 검, 활, 방패를 들게합니다.
+	//각각 검, 활, 방패를 들게합니다.
 	
 	Prototype* prototype = new Prototype; //고블린들을 프로토 타입에 등록합니다.
 	prototype->Add("SwordGoblin", swordGoblinPrototype);
