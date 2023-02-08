@@ -114,7 +114,22 @@ RAII패턴을 사용하면 미리 문제를 예방해 줍니다.<br>
 
 > ## 라이브러리
 
-C++에는 이러한 RAII패턴을 사용한 라이브러리가 존재합니다.
-### auto_ptr
-템플릿을 사용하여 아까와 같은 
+앞선 코드는 int형에 대한 RAII클래스였지만
+C++에는 이미 이러한 RAII패턴을 사용하게 만들어주는 템플릿 라이브러리가 존재합니다.
+### 스마트 포인터(중 auto_ptr)
+스마트 포인터라 불리는 방식입니다.
+원래 auto_ptr은 문제가 생겨 현재는 사용하지 않는 방식입니다.
+
+허나 예시로 들기에는 적합하여 
 ### lock_guard
+mutex또한 동적할당의 new, delete와 마찬가지로<br>
+lock을 해줬으면 꼭 unlock을 해줘야한다는 규약이 있습니다.<br>
+<br>
+이를 RAII 패턴을 사용하여 라이브러리로 지원해주었는데 이것이 lock_guard입니다.<br>
+사용법은 다음과 같습니다.
+```cpp
+	std::mutex mutex;
+	std::lock_guard<std::mutex> lock(mutex);
+```
+lock 객체는 생성자에서는 매개 변수로 받은 mutex의 lock()함수를 호출해주고<br>
+소멸자에서는 unlock()함수를 호출해 줍니다.
