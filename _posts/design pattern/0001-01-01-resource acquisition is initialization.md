@@ -29,7 +29,6 @@ stack영역의 객체처럼 사용 후 정리 할 수 있습니다.<br>
 또한 표준 라이브러리에서도 RAII 패턴을 사용하고 있습니다.
 > ## 구현
 
-### 동적 할당
 RAII패턴의 구현에 앞서 동적 할당을 하기 때문에<br>
 heap영역의 객체를 자원 관리 해야하는 코드를 먼저 작성해 보겠습니다.
 ```cpp
@@ -79,16 +78,16 @@ void function(void) {
 class RAII final { //RAII 클래스
 public:
 	RAII(int* ptr) :
-		num(ptr) {
+		_ptr(ptr) {
 	}
 	~RAII(void) {
-		delete num;
+		delete _ptr;
 	}
 	int& operator*() {
-		return *num;
+		return *_ptr;
 	}
 private:
-	int* num;
+	int* _ptr;
 };
 
 void function(void) {
@@ -112,6 +111,10 @@ void function(void) {
 <br>
 이러한 방식으로 사용자가 예측하지 못한 예외나 delete를 까먹는 일이 발생하더라도<br>
 RAII패턴을 사용하면 미리 문제를 예방해 줍니다.<br>
-### 스마트 포인터
 
-### 뮤텍스
+> ## 라이브러리
+
+C++에는 이러한 RAII패턴을 사용한 라이브러리가 존재합니다.
+### auto_ptr
+템플릿을 사용하여 아까와 같은 
+### lock_guard
