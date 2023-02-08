@@ -1,4 +1,3 @@
-
 ---
 title: "RAII(Resource Acquisition Is Initialization)"
 categories:
