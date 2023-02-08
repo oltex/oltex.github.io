@@ -128,8 +128,8 @@ lock을 해줬으면 꼭 unlock을 해줘야한다는 규약이 있습니다.<br
 이를 RAII 패턴을 사용하여 라이브러리로 지원해주었는데 이것이 lock_guard입니다.<br>
 사용법은 다음과 같습니다.
 ```cpp
-	std::mutex mutex;
-	std::lock_guard<std::mutex> lock(mutex);
+std::mutex mutex;
+std::lock_guard<std::mutex> lock(mutex);
 ```
 lock 객체는 생성자에서는 매개 변수로 받은 mutex의 lock()함수를 호출해주고<br>
 소멸자에서는 unlock()함수를 호출해 줍니다.
