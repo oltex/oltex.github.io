@@ -91,7 +91,7 @@ private:
 };
 
 void function(void) {
-	RAII num = new int; //RAII 
+	RAII num = new int; //RAII 객채
 	std::vector<int> nums{ 1 };
 
 	try {
