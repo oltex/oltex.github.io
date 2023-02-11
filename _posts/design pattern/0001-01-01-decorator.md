@@ -40,53 +40,20 @@ class DocWindow final : public Window {
 새로운 행동을 추가하기 위해서 가장 보편적인 방법은 상속을 이용하는 것입니다.
 허나 이는 정적이고 클래스구조가 복잡해진다는 단점이 존재합니다.
 ```cpp
-class Window abstract {
-public:
-	virtual void View(void) { }
-};
-class BorderWindow abstract : public Window {
-public:
-	void Border(void) { }
-};
-class ScrollWindow abstract : public Window {
-public:
-	void Scroll(void) { }
-};
+class Window abstract { public: virtual void View(void) { } };
+class BorderWindow abstract : public Window { public: void Border(void) { } };
+class ScrollWindow abstract : public Window { public: void Scroll(void) { } };
+class BorderScrollWindow abstract : public Window { public: void Scroll(void) { } void Border(void) { } };
 
-class TextWindow final : public Window {
-public:
-	virtual void View(void) override {
-	}
-};
-class BorderTextWindow final : public BorderWindow {
-public:
-	virtual void View(void) override {
-		Border();
-	}
-};
-class ScrollTextWindow final : public ScrollWindow {
-public:
-	virtual void View(void) override {
-		Scroll();
-	}
-};
-class DocWindow final : public Window {
-public:
-	virtual void View(void) override {
-	}
-};
-class BorderDocWindow final : public BorderWindow {
-public:
-	virtual void View(void) override {
-		Border();
-	}
-};
-class ScrollDocWindow final : public ScrollWindow {
-public:
-	virtual void View(void) override {
-		Scroll();
-	}
-};
+class TextWindow final : public Window { public: virtual void View(void) override { } };
+class BorderTextWindow final : public BorderWindow { public: virtual void View(void) override { Border(); } };
+class ScrollTextWindow final : public ScrollWindow { public: virtual void View(void) override { Scroll(); } };
+class ScrollTextWindow final : public BorderScrollWindow { public: virtual void View(void) override { Border(); Scroll(); } };
+
+class DocWindow final : public Window { public: virtual void View(void) override { } };
+class BorderDocWindow final : public BorderWindow { public: virtual void View(void) override { Border(); } };
+class ScrollDocWindow final : public ScrollWindow { public: virtual void View(void) override { Scroll(); } };
+class BorderScrollDocWindow final : public BorderScrollWindow { public: virtual void View(void) override { Border(); Scroll(); } };
 ```
 
 > ## 차이점
