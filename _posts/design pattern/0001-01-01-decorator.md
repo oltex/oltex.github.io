@@ -17,6 +17,7 @@ tags:
 장식자 패턴은 다음과 같은 상황에서 사용하면 좋습니다.
 - 동적으로 각각의 객체에 기능을 추가해야합니다.
 - 또한 동적으로 제거될 수 있는 기능입니다.
+- 기존 코드를 훼손하고 싶지 않습니다.
 
 화면에 창을 출력하기 위해 Window 클래스를 제작하였습니다.
 윈도우 클래스에는 화면을 출력하기 위한 View함수가 존재합니다.
@@ -35,10 +36,12 @@ class DocWindow final : public Window {
 ```
 이후 특정 윈도우 클래스 객체는
 두꺼운 테두리를 추가하거나 스크롤을 추가해줄 필요가 존재해집니다.
-(두 가지 기능을 전부 가지고 있는 객체도 존재하지만 코드가 너무 길어져서 제외했습니다.)
+(두 가지 기능을 전부 가지고 있는 객체도 존재합니다.)
 
 새로운 행동을 추가하기 위해서 가장 보편적인 방법은 상속을 이용하는 것입니다.
 허나 이는 정적이고 클래스구조가 복잡해진다는 단점이 존재합니다.
+
+코드가 쓸대없이 너무 길어져서 한줄로 작성했습니다. 클래스 개수에만 주목해주세요.
 ```cpp
 class Window abstract { public: virtual void View(void) { } };
 class BorderWindow abstract : public Window { public: void Border(void) { } };
@@ -55,7 +58,65 @@ class BorderDocWindow final : public BorderWindow { public: virtual void View(vo
 class ScrollDocWindow final : public ScrollWindow { public: virtual void View(void) override { Scroll(); } };
 class BorderScrollDocWindow final : public BorderScrollWindow { public: virtual void View(void) override { Border(); Scroll(); } };
 ```
+객체 합성을 이용하는 방법도 존재합니다.
+이는 클래스 개수를 줄일순 있지만 클래스에 코드가 결합된다는 단점이 여전히 존재합니다.
 
+장식자 패턴은 클래스끼리의 연결을 통해 클래스가 증가를 최소화하고 컴플링을 막습니다. 
+> ## 구현
+
+위 예제를 장식자 패턴을 사용하여 구현해 보겠습니다.
+(코드를 간략하게 만들기위해 소멸자, delete는 적지 않았습니다.)
+```cpp
+class Window abstract {
+public:
+	virtual void View(void) {
+	}
+};
+class BorderDecorator final : public Window { //Border 장식자
+public:
+	BorderDecorator(Window* window)
+		: _window(window) {
+	}
+	virtual void View(void) override {
+		//Border();
+		_window->View(); //연결된 윈도우의 View함수를 호출합니다.
+	}
+private:
+	Window* _window = nullptr; //연결할 윈도우
+};
+class ScrollDecorator final : public Window { //Scroll 장식자
+public:
+	ScrollDecorator(Window* window)
+		: _window(window) {
+	}
+	virtual void View(void) override {
+		//Scroll();
+		_window->View();
+	}
+private:
+	Window* _window = nullptr;
+};
+
+class TextWindow final : public Window {
+public:
+	virtual void View(void) override {
+	}
+};
+class DocWindow final : public Window {
+public:
+	virtual void View(void) override {
+	}
+};
+
+void main(void) {
+	Window* text = new BorderDecorator(new TextWindow); //텍스트 윈도우에 보더 장식자를 연결합니다.
+	Window* doc = new BorderDecorator(new ScrollDecorator(new DocWindow)); //문서 윈도우에 스크롤로 장식자, 보더 장식자를 연결합니다.
+
+	text->View(); //보더 장식자의 View호출->텍스트 윈도우의 View호출
+	doc->View(); //보더 장식자의 View호출->스크롤 장식자의 View호출->문서 윈도우의 View호출
+}
+```
+장식자로 연결되어 이제 
 > ## 차이점
 
 ### 복합체
