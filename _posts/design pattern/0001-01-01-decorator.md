@@ -7,11 +7,11 @@ tags:
 ---
 > ## 개요
 
-구조 디자인 패턴 중 하나인 장식자 패턴입니다.
-객체에 동적으로 새로운 행동을 추가할 수 있게 만듭니다.
-
-새로운 행동들을 포함한 장식자 객체를 추가하고 기존 객체와 연결하여 해당 행동을
-연결시키는 패턴입니다.
+구조 디자인 패턴 중 하나인 장식자 패턴입니다.<br>
+객체에 동적으로 새로운 행동을 추가할 수 있게 만듭니다.<br>
+<br>
+새로운 행동들을 포함한 장식자 객체를 추가하고 기존 객체와 연결하여 해당 행동을<br>
+연결시키는 패턴입니다.<br>
 > ## 필요성
 
 장식자 패턴은 다음과 같은 상황에서 사용하면 좋습니다.
@@ -19,9 +19,9 @@ tags:
 - 또한 동적으로 제거될 수 있는 기능입니다.
 - 기존 코드를 훼손하고 싶지 않습니다.
 
-화면에 창을 출력하기 위해 Window 클래스를 제작하였습니다.
-윈도우 클래스에는 화면을 출력하기 위한 View함수가 존재합니다.
-
+화면에 창을 출력하기 위해 Window 클래스를 제작하였습니다.<br>
+윈도우 클래스에는 화면을 출력하기 위한 View함수가 존재합니다.<br>
+<br>
 윈도우 클래스의 구체 클래스로 TextWindow와 DocWindow가 존재합니다.
 ```cpp
 class Window abstract {
@@ -34,14 +34,15 @@ class TextWindow final : public Window {
 class DocWindow final : public Window {
 };
 ```
-이후 특정 윈도우 클래스 객체는
-두꺼운 테두리를 추가하거나 스크롤을 추가해줄 필요가 존재해집니다.
-(두 가지 기능을 전부 가지고 있는 객체도 존재합니다.)
-
-새로운 행동을 추가하기 위해서 가장 보편적인 방법은 상속을 이용하는 것입니다.
-허나 이는 정적이고 클래스구조가 복잡해진다는 단점이 존재합니다.
-
-코드가 쓸대없이 너무 길어져서 한줄로 작성했습니다. 클래스 개수에만 주목해주세요.
+이후 특정 윈도우 클래스 객체는<br>
+두꺼운 테두리를 추가하거나 스크롤을 추가해줄 필요가 존재해집니다.<br>
+(두 가지 기능을 전부 가지고 있는 객체도 존재합니다.)<br>
+<br>
+새로운 행동을 추가하기 위해서 가장 보편적인 방법은 상속을 이용하는 것입니다.<br>
+허나 이는 정적이고 클래스 구조가 복잡해진다는 단점이 존재합니다.<br>
+<br>
+코드가 쓸대없이 너무 길어져서 한줄로 작성했습니다.<br>
+클래스 개수에만 주목해주세요.
 ```cpp
 class Window abstract { public: virtual void View(void) { } };
 class BorderWindow abstract : public Window { public: void Border(void) { } };
@@ -58,13 +59,16 @@ class BorderDocWindow final : public BorderWindow { public: virtual void View(vo
 class ScrollDocWindow final : public ScrollWindow { public: virtual void View(void) override { Scroll(); } };
 class BorderScrollDocWindow final : public BorderScrollWindow { public: virtual void View(void) override { Border(); Scroll(); } };
 ```
-객체 합성을 이용하는 방법도 존재합니다.
-이는 클래스 개수를 줄일순 있지만 클래스에 코드가 결합된다는 단점이 여전히 존재합니다.
-
-장식자 패턴은 클래스끼리의 연결을 통해 클래스가 증가를 최소화하고 컴플링을 막습니다. 
+클래스의 양이 엄청 증가되었습니다.<br>
+<br>
+이를 보완하기 위해<br>
+객체 합성을 이용하는 방법도 존재합니다.<br>
+이는 클래스 개수를 줄일순 있지만 클래스에 코드가 결합된다는 단점이 존재합니다.<br>
+<br>
+장식자 패턴을 사용하면 클래스량도 줄일 수 있고 컴플링을 최소화 할 수 있습니다. 
 > ## 구현
 
-위 예제를 장식자 패턴을 사용하여 구현해 보겠습니다.
+위 예제를 장식자 패턴을 사용하여 구현해 보겠습니다.<br>
 (코드를 간략하게 만들기위해 소멸자, delete는 적지 않았습니다.)
 ```cpp
 class Window abstract {
@@ -78,7 +82,7 @@ public:
 		: _window(window) {
 	}
 	virtual void View(void) override {
-		//Border();
+		//Border 처리 진행
 		_window->View(); //연결된 윈도우의 View함수를 호출합니다.
 	}
 private:
@@ -90,11 +94,11 @@ public:
 		: _window(window) {
 	}
 	virtual void View(void) override {
-		//Scroll();
-		_window->View();
+		//Scroll 처리 진행
+		_window->View();  //연결된 윈도우의 View함수를 호출합니다.
 	}
 private:
-	Window* _window = nullptr;
+	Window* _window = nullptr; //연결할 윈도우
 };
 
 class TextWindow final : public Window {
@@ -110,21 +114,22 @@ public:
 
 void main(void) {
 	Window* text = new BorderDecorator(new TextWindow); //텍스트 윈도우에 보더 장식자를 연결합니다.
-	Window* doc = new BorderDecorator(new ScrollDecorator(new DocWindow)); //문서 윈도우에 스크롤로 장식자, 보더 장식자를 연결합니다.
+	Window* doc = new BorderDecorator(new ScrollDecorator(new DocWindow)); //문서 윈도우에 보더, 스크롤 장식자를 연결합니다.
 
 	text->View(); //보더 장식자의 View호출->텍스트 윈도우의 View호출
 	doc->View(); //보더 장식자의 View호출->스크롤 장식자의 View호출->문서 윈도우의 View호출
 }
 ```
-장식자로 연결되어 이제 
-> ## 차이점
+장식자로 연결되어 이제 클래스의 양도 증가되지 않았습니다.<br>
+또 Text클래스와 Border클래스는 컴플링도 최소화 되어 있습니다.<br>
+> ## 주의
 
 ### 복합체
-장식자 패턴은 복합체 패턴과 생김새가 거의 동일합니다.
-
-기존 클래스와 장식자/복합체 클래스의 공동 인터페이스를 선언하고
-장식자/복합체 클래스에서 기존 클래스를 호출할 수 있게 만드는 점이라는 것은
-장식자 패턴은 한 구성요소만을 가지는 복합체 패턴으로 볼 수 있습니다.
-
-허나 복합체 패턴은 단일 객체와 복합 객체를 같이 제어하는데 초점을 둔것이고
+장식자 패턴은 복합체 패턴과 생김새가 거의 동일합니다.<br>
+<br>
+기존 클래스와 장식자/복합체 클래스의 공동 인터페이스를 선언하고<br>
+장식자/복합체 클래스에서 기존 클래스를 호출할 수 있게 만드는 점이라는 것은<br>
+장식자 패턴은 한 구성 요소만을 가지는 복합체 패턴으로 볼 수 있습니다.<br>
+<br>
+허나 복합체 패턴은 단일 객체와 복합 객체를 같이 제어하는데 초점을 둔것이고<br>
 장식자 패턴은 기존 단일 객체에 추가적인 기능을 집어넣기 위한 목적이라는 차이가 있습니다.
