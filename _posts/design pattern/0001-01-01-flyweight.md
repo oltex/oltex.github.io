@@ -27,11 +27,7 @@ model변수는 몇천개의 폴리곤으로 구성돼있어 상당히 무겁습�
 나무를 심고 실행해보니 상당히 무거워져 성능이 좋지못한 컴퓨터에서<br>
 랙이 발생하거나 충돌이 나게 됩니다.<br>
 <br>
-(간단하게 구현하기 위해 pos와 model은 필요한 점의 개수를 가지는 정수형 변수로 작성하였습니다.<br>
-그 만큼 많은 변수가 있다고 생각해주시면 되겠습니다.<br>
-점의 구조체는 다이렉트x에서 사용하는 XMFLOAT3(float x , y, z)를 사용했습니다.<br>
-int pos = 1 -> XMFLOAT3가 1개 있다 -> float 변수가 3개 있다.<br>
-int model = 1000 -> XMFLOAT3가 1000개 있다 -> float 변수가 3000개 있다.)
+(간단하게 구현하기 위해 pos와 model은 필요한 점의 개수를 가지는 정수형 변수로 작성하였습니다.)
 ```cpp
 class Tree final {
 public:
@@ -39,7 +35,7 @@ public:
 	}
 private:
 	int pos = 1;
-	long long model = 1000;
+	int model = 1000;
 };
 
 void main(void) {
@@ -47,10 +43,8 @@ void main(void) {
 
 	for (int i = 0; i < 100; i++)
 		trees.emplace_back(Tree{});
-	//Tree객체가 100개 생성된다는 말은 model에 들어가는 float의 개수가 1000 * 3 * 100 개 생성된다는 뜻입니다.
+	//Tree객체가 100개 생성된다는 말은 model에 들어가는 점의 개수가 100000개 생성된다는 뜻입니다.
 }
 ```
-
-
 > ## 구현
 
