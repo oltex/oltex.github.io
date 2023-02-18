@@ -30,12 +30,9 @@ model변수는 몇천개의 폴리곤으로 구성돼있어 상당히 무겁습�
 (간단하게 구현하기 위해 pos와 model은 필요한 점의 개수를 가지는 정수형 변수로 작성하였습니다.)
 ```cpp
 class Tree final {
-public:
-	void Render(void) {
-	}
 private:
-	int pos = 1;
-	int model = 1000;
+	int _pos = 1;
+	int _model = 1000;
 };
 
 void main(void) {
@@ -53,4 +50,41 @@ void main(void) {
 마지막으로 나무의 모델은 전부 같을텐데 데이터가 중복 생성되고 있습니다.
 > ## 구현
 
-이를 해결하기 위해서 
+이를 해결하기 위해서 경량 패턴을 사용해보겠습니다.
+경량패턴에서는 각 객체들이 가지는 상태를 두가지로 분리합니다.
+- 본질적/고유 상태(intrinsic)
+- 부가적/외부 상태(extrinsic)
+
+본질적 상태는 각 객체들이 처한 상황에 관계 없이 본질적인 상태를 유지해야하는 정보를 말합니다.
+이러한 정보는 공유될 수 있습니다. 코드에서는 model이 본질적 상태에 해당합니다.
+
+부가적 상태는 객체가 사용될 상황에 따라 달라질수 있고 그 상황에 종속적인 정보를 말합니다.
+이러한 정보는 공유될 수 없습니다. 코드에서는 pos가 부가적 상태에 해당합니다.
+
+경량 패턴은 본질적 상태에 해당하는 데이터를 공유하여 메모리 사용량을 감소시킵니다.
+```cpp
+class Model final {
+private:
+	int _model = 1000;
+};
+
+class Tree final {
+public:
+	Tree(Model* model) {
+		_model = model;
+	}
+private:
+	int _pos = 1;
+	Model* _model = nullptr;
+};
+
+void main(void) {
+	Model* model = new Model;
+	std::list<Tree> trees;
+
+	for (int i = 0; i < 100; i++)
+		trees.emplace_back(Tree{ model }); //이제 모든 나무는 하나의 모델 객체를 공유합니다.
+	//따라서 생성되는 model의 점의 개수는 1000개 입니다.
+	delete model;
+}
+```
