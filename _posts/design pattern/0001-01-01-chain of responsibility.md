@@ -94,10 +94,10 @@ public:
 	}
 	virtual bool process(void) = 0;
 protected:
-	Handler* _handler = nullptr;
+	Handler* _handler = nullptr; //다음 핸들을 가리키는 포인터입니다.
 };
 
-class Login final : public Handler {
+class Login final : public Handler { //핸들러를 상속받는 처리 클래스 입니다.
 public:
 	Login(Handler* handler) : //각 처리들은 생성자에서 다음 핸들을 받을 수 있습니다.
 		Handler(handler) {
