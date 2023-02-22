@@ -31,7 +31,7 @@ public:
 		return true;
 	}
 };
-class Power {
+class Power final {
 public:
 	bool process(void) {
 		return true;
@@ -106,57 +106,9 @@ public:
 			return false;
 	}
 };
-class Check final : public Handler {
-public:
-	Check(Handler* handler) :
-		Handler(handler) {
-	}
-	virtual bool process(void) override {
-		if (true) {
-			if (nullptr == _handler)
-				return true;
-			else
-				return _handler->process();
-		}
-		else
-			return false;
-	}
-};
-class Shield final : public Handler {
-public:
-	Shield(Handler* handler) :
-		Handler(handler) {
-	}
-	virtual bool process(void) override {
-		if (true) {
-			if (nullptr == _handler)
-				return true;
-			else
-				return _handler->process();
-		}
-		else
-			return false;
-	}
-};
-class Cache final : public Handler {
-public:
-	Cache(Handler* handler) :
-		Handler(handler) {
-	}
-	virtual bool process(void) override {
-		if (true) {
-			if (nullptr == _handler)
-				return true;
-			else
-				return _handler->process();
-		}
-		else
-			return false;
-	}
-};
 
 void main(void) {
-	Handler* handler = new Login{ new Power{new Check{ new Shield{new Check{nullptr}}}}};
+	Handler* handler = new Login{ new Power{ nullptr } };
 
 	//request
 
@@ -166,7 +118,8 @@ void main(void) {
 	//approval
 }
 ```
-이제 메인 함수와 각 처리들간의 커플링을 방지할 수 있습니다.<br>
-책임 연쇄 패턴의 장점은 각 처리들의 결합도를 낮추고 동적으로 결합할 수 있다는 점입니다.<br>
+이제 메인 함수는 handler의 process함수만 호출하면 되게 되었습니다.<br>
+이처럼 메인 함수와 각 처리들간의 커플링을 낮출 수 있습니다.<br>
 <br>
+추가로 책임 연쇄 패턴의 장점은 동적으로 결합할 수 있다는 점입니다.<br>
 예를 들어 위 코드에서 캐시가 필요 없다면 캐시를 체인에서 제외하기만 하면 될 것입니다.
