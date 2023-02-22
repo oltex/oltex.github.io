@@ -22,7 +22,8 @@ tags:
 실드: 외부에서 온 악의적인 공격이 아닌지 확인합니다.<br>
 캐시: 반복된 데이터 요청이라면 성능을 향상시킵니다.<br>
 <br>
-각 처리는 복잡한 절차를 거쳐야 합니다.
+각 처리는 복잡한 절차를 거쳐야 합니다.<br>
+(간단하게 만들기 위해 접속과 권한만 처리해보겠습니다.)
 ```cpp
 class Login final {
 public:
@@ -36,31 +37,10 @@ public:
 		return true;
 	}
 };
-class Check {
-public:
-	bool process(void) {
-		return true;
-	}
-};
-class Shield {
-public:
-	bool process(void) {
-		return true;
-	}
-};
-class Cache {
-public:
-	bool process(void) {
-		return true;
-	}
-};
 
 void main(void) {
 	Login login;
 	Power power;
-	Check check;
-	Shield shield;
-	Cache cache;
 
 	//request 요청
 
@@ -68,17 +48,14 @@ void main(void) {
 		return;
 	if (false == power.process()) //검사
 		return;
-	if (false == check.process()) //검사
-		return;
-	if (false == shield.process()) //검사
-		return;
-	if (false == cache.process()) //검사
-		return;
 
 	//approval 승인
 }
 ```
-요청과 처리 코드의 결합도가 높아져 수정하기 어려워졌습니다.<br>
+요청과 승인 코드 주석 사이에 두 가지 검사가 존재하게 되었습니다.
+만약 모든 처리에 대해 작성한다면 코드가 길어져
+메인 함수와 처리의 커플링이 증가해 수정하기 어려워질 것입니다.<br>
+<br>
 또한 이러한 검사코드를 다른 파트에도 적용하려 한다면 코드를 복제해야 할 것입니다.
 > ## 구현
 
