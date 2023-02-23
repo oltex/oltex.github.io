@@ -30,18 +30,18 @@ tags:
 구조를 쉽게 파악하기 위해<br>
 number를 +, - 연산하는 해석자를 예로 들어보겠습니다.
 ### Expression
-기호라는 뜻을 가진 추상 클래스입니다.
+기호라는 뜻을 가진 추상 클래스입니다.<br>
 추상 구문 트리를 생성하며 모든 노드에서 가져야 할 Interpret()연산을 정의합니다.
 ### Terminal
-단말 기호라는 뜻으로
-더 이상 해석할 수 없는 고정된 값을 가지는 기호를 의미합니다.
+단말 기호라는 뜻으로<br>
+더 이상 해석할 수 없는 고정된 값을 가지는 기호를 의미합니다.<br>
 위 예시로 number에 해당합니다.
 ### Nonterminal
-비단말 기호를 의미합니다.
-해석 연산을 할 수 있는 기호로 연산을 통해 다른 비단말 기호나 단말 기호를 도출해냅니다.
+비단말 기호를 의미합니다.<br>
+해석 연산을 할 수 있는 기호로 연산을 통해 다른 비단말 기호나 단말 기호를 도출해냅니다.<br>
 위 예시로 +, - 연산에 해당합니다.
 ### Context
-포괄적인 정보를 포함합니다.
+포괄적인 정보를 포함합니다.<br>
 해석자에 들어가는 문장을 가지고 있습니다.
 > ## 구현
 
@@ -54,12 +54,12 @@ public:
 };
 ```
 ```cpp
-class NumberTerminal final : public Expression {
+class NumberTerminal final : public Expression { //숫자를 담당하는 터미널입니다.
 public:
 	NumberTerminal(std::string str) :
 		_number(std::stoi(str)) {
 	}
-	virtual int Interpret(void) override {
+	virtual int Interpret(void) override { //숫자를 리턴합니다.
 		return _number;
 	}
 private:
@@ -67,13 +67,12 @@ private:
 };
 ```
 ```cpp
-class AddNonterminal final : public Expression {
+class AddNonterminal final : public Expression { //덧셈 연산을 담당하는 논터미널입니다.
 public:
 	AddNonterminal(Expression* exp0, Expression* exp1) :
-		_exp0(exp0),
-		_exp1(exp1) {
+		_exp0(exp0), _exp1(exp1) {
 	}
-	virtual int Interpret(void) override {
+	virtual int Interpret(void) override { //연산결과를 리턴합니다.
 		return _exp0->Interpret() + _exp1->Interpret();
 	}
 private:
@@ -82,7 +81,7 @@ private:
 };
 ```
 ```cpp
-class Context final {
+class Context final { //해석할 데이터를 담습니다.
 public:
 	Context(std::string str) {
 		_str = str;
@@ -109,7 +108,8 @@ void main(void) {
 	AddNonterminal* add4 = new AddNonterminal{ add2, number3 };
 
 	expression = add4;
-
+  
+	//해석 결과를 출력합니다.
 	std::cout << expression->Interpret() << std::endl;
 };
 ```
