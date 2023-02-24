@@ -113,7 +113,6 @@ void main(void) {
 	std::cout << expression->Interpret() << std::endl;
 };
 ```
-
 > ## 특징
 
 해석자 패턴은 다음과 같은 특징을 보입니다.
