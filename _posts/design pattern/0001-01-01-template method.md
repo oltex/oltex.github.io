@@ -33,6 +33,6 @@ tags:
 - Abstract: 부모 클래스로 행동에 대한 각 단계별 함수를 정의합니다.<br>
 만약 기본적으로 행해야할 행동가 있다면 기본 연산을 정의할 수 있습니다.<br>
 (순수 가상 함수가 아니여도 됩니다.)
-  -TemplateMethod:  
+  - TemplateMethod:  
 - Concrete:
 
