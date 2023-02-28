@@ -45,7 +45,8 @@ class Algorithm abstract {
 public:
 	virtual void Action(void) = 0;
 };
-
+```
+```cpp
 class Easy final : public Algorithm {
 public:
 	virtual void Action(void) override { //일부로 주석을 띄어쓰기 별로 나눴습니다!!!
@@ -54,7 +55,8 @@ public:
 		//사용합니다.
 	};
 };
-
+```
+```cpp
 class Hard final : public Algorithm {
 public:
 	virtual void Action(void) override {
@@ -105,14 +107,16 @@ protected: //스탭 함수는 protected범위를 가지는게 좋습니다.
 		//사용합니다.
 	}
 };
-
+```
+```cpp
 class Easy final : public Algorithm {
 protected:
 	virtual void Step0(void) override { //스탭0만 재정의 합니다.
 		//쉬운
 	};
 };
-
+```
+```cpp
 class Hard final : public Algorithm {
 protected:
 	virtual void Step0(void) override {
