@@ -6,11 +6,11 @@ categories:
 tags:
   - tag
 ---
+
 > ## 개요
 
 오브젝트 풀(객체 풀) 디자인 패턴입니다.
 객체를 매번 할당/해제 하지 않고 풀에 들어가 있는 객체를 재사용함으로써 성능을 향상시킵니다.
-
 > ## 필요성
 
 게임을 제작하다 보면 많은 수의 오브젝트들이 생성되야 되는 경우가 존재합니다.
@@ -73,7 +73,61 @@ void main(void) {
 이를 해결하기 위해 오브젝트 풀 방식을 사용할 수 있습니다.
 오브젝트 풀 방식이란 풀에 미리 오브젝트를 생성해 놓고 이를 사용함으로 써
 메모리 할당/해제를 지양하는 방식을 말합니다.
+```cpp
+class Bullet final {
+public:
+	bool Active(void) {
+		return _active;
+	}
+	void Init(void) {
+		_active = true;
+		//초기화를 진행합니다.
+	}
+	void Hit(void) {
+		_active = false;
+	}
+private:
+	bool _active = false;
+};
+```
+```cpp
+class ObjectPool final {
+public:
+	void Shot(void) {
+		for (auto& iter : _bullets)
+			if (false == iter->Active()) {
+				iter->Init();
+				return;
+			}
+	}
+	void Hit(void) {
+		for (auto& iter : _bullets)
+			iter->Hit();
+	}
+private:
+	std::vector<Bullet*> _bullets{ new Bullet, new Bullet, new Bullet, new Bullet, new Bullet };
+};
+```
+```cpp
+class Gun final {
+public:
+	bool Shot(void) {
+		return true;
+	}
+};
+```
+```cpp
+void main(void) {
+	std::vector<Gun*> guns{ new Gun, new Gun, new Gun, new Gun, new Gun };
+	ObjectPool* obectpool = new ObjectPool;
 
+	while (true) {
+		for (auto& iter : guns)
+			if (iter->Shot())
+				obectpool->Shot();
 
-
+		obectpool->Hit();
+	}
+};
+```
 > ## 주의
