@@ -1,4 +1,3 @@
-
 ---
 title: "객체 풀(Object Pool)"
 categories:
