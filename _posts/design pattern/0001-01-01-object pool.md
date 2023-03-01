@@ -170,8 +170,7 @@ gun.<br>
 구현 코드를 보면 사용 가능한 총알을 찾기 위해 탐색을 진행하는 것을 볼 수 있습니다.<br>
 오브젝트 풀이 작다면 문제없겠지만, 만약 크다면 할당/해제보다 탐색에 드는 비용이 더 많을 수 있습니다.<br>
 <br>
-이 문제를 해결하기 위해 몇가지 방법이 존재합니다.<br>
-<br>
+이 문제를 해결하기 위해 몇가지 방법이 존재합니다.
 #### 별도의 컬렉션
 컬렉션을 추가하는 방법입니다. 오브젝트 풀에 활성 상태가 아닌 컬렉션을 제공합니다.
 ```cpp
@@ -197,11 +196,11 @@ public:
 		}
 	}
 private:
-	std::list<Bullet*> _active_bullets;
-	std::list<Bullet*> _unactive_bullets{ new Bullet, new Bullet, new Bullet, new Bullet, new Bullet };
+	std::list<Bullet*> _active_bullets; //코드가 복잡하니 쉽게 말하자면, 사용중인 총알은 여기에
+	std::list<Bullet*> _unactive_bullets{ new Bullet, new Bullet, new Bullet, new Bullet, new Bullet }; //사용안하는 총알은 여기에 보관하는 방법입니다.
 };
 ```
 이렇게 하면 bullet에는 active변수도 필요하지 않습니다.<br>
 허나 이 방식의 문제점은 리스트의 push,pop이 자주 이루어진다는 것입니다.<br>
-<br>
-빈칸 컬렉션.
+#### 빈칸 리스트
+
