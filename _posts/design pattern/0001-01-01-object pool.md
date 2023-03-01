@@ -119,14 +119,14 @@ public:
 ```cpp
 void main(void) {
 	std::vector<Gun*> guns{ new Gun, new Gun, new Gun, new Gun, new Gun };
-	ObjectPool* obectpool = new ObjectPool;
+	ObjectPool obectpool;
 
 	while (true) {
 		for (auto& iter : guns)
 			if (iter->Shot())
-				obectpool->Shot();
+				obectpool.Shot();
 
-		obectpool->Hit();
+		obectpool.Hit();
 	}
 };
 ```
