@@ -1,4 +1,3 @@
-
 ---
 title: "타입 객체"
 categories:
