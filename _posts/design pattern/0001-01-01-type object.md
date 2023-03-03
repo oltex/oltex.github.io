@@ -55,13 +55,23 @@ public:
 성공적으로 잘 조정된것 같습니다.<br>
 허나 시간이 지나고난 후 문제가 발생하게 됩니다.<br>
 ```cpp
-class OtherMonster final : public Monster { ... };
-class OtherMonster final : public Monster { ... };
-class OtherMonster final : public Monster { ... };
-class OtherMonster final : public Monster { ... };
-class OtherMonster final : public Monster { ... };
+class Other final : public Monster {
+public:
+	Other(void) {
+		_attack = 10;
+		_hp = 10;
+	}
+};
 ```
-<br>
+```cpp
+...
+```
+```cpp
+...
+```
+```cpp
+...
+```
 수백종의 몬스터를 만드는것이 목적이다보니,<br>
 사용자는 몇 줄 안되는 하위 클래스를 하루종일 작성하고 컴파일 하게 됩니다.<br>
 <br>
