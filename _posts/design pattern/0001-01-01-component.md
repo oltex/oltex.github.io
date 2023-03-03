@@ -108,4 +108,95 @@ private:
 };
 ```
 이제 플레이어는 단순히 컴포넌트들의 컨테이너 역할만을 담당합니다.
-> ## 구현
+> ## 추가
+
+아직 해결되지 않은 문제가 남아있습니다.
+바로 각 컴포넌트들 끼리는 상호작용을 하는 경우가 있다는 것입니다.
+
+위의 예를 들어
+물리 컴포넌트는 플레이어가 물체와 부딛혔을때 위치를 밀어내야 할 것입니다.
+이를 위해서 Transform과 Collider 컴포넌트는 서로 상호작용이 필요합니다.
+
+해결 방안은 3가지가 존재합니다.
+### 컨테이너 이용
+컨테이너(Player)를 이용하는 방법입니다.
+각 컴포넌트는 기존 방식대로 행동하고 이에 대한 결과를 Player가 처리하는 방법입니다.
+```cpp
+class Player final {
+public:
+	void Update(void) {
+		if(_collider->IsCollision()) //1. 만약 충돌 했다면,
+			_transform->SetPos(); //2. 위치를 바꿉니다.
+	}
+};
+```
+이렇게 하면 컴포넌트들 끼리는 디커플링 상태를 유지할 수 있습니다.
+허나 컴포넌트들이 공유하는 정보를 컨테이너에 넣어야하고
+컴포넌트들의 실행 순서에 영향을 받게됩니다.
+### 컴포넌트 참조
+각 컴포넌트들이 객체를 통하지 않고 참조하는 방식입니다.
+Collider의 IsCollision함수에 매개변수로 Transform을 넘기는 방식입니다.
+```cpp
+class Collider final {
+public:
+	void IsCollision(Transform* transform) { //위치를 매개변수로 받습니다.
+		if (true) //1. 만약 충돌 했다면,
+			transform->SetPos(); //2. 위치를 바꿉니다. 
+	}
+};
+```
+컴포넌트들 끼리 상호작용 하기 때문에 상호 작용이 간단하고 빠릅니다.(제약이 없습니다.)
+허나 컴포넌트들끼리 강한 커플링이 생기게 됩니다.
+### 중재자
+중재자 패턴을 사용하는 방법도 존재합니다.
+
+중재자 패턴의 정의를 한번 살펴보겠습니다.
+객체들간의 직접적인 통신을 제한하고 중재자를 통해 통신함으로써 의존성을 줄입니다.
+
+여기서 객체들은 컴포넌트들이 될 것이고
+중재자는 이미 존재하는 플레이어 객체를 사용하면 될 것입니다.
+
+이를 위해 Player의 상위 클래스로 Object를
+컴포넌트들의 상위 클래스로 Component를 만들어보겠습니다.
+(맴버 변수들은 어떤 방식으로든 제대로 채워졌다고 가정하겠습니다.)
+```cpp
+class Component abstract { //컴포넌트 인터페이스
+public:
+	virtual void Notify(std::string message) = 0; //메세지를 받는 알림 함수입니다.
+protected:
+	Object* _object = nullptr; //본인을 가지고 있는 오브젝트(여기선 Player가 되겠습니다.)
+};
+```
+```cpp
+class Transform final : public Component { //위치 컴포넌트
+public:
+	virtual void Notify(std::string message) override { //알림 함수 재정의
+		if ("setpos" == message) //메세지가 setpos라면
+			SetPos(); //SetPos를 호출합니다.
+	}
+	void SetPos(void) {
+	}
+};
+```
+```cpp
+class Collider final : public Component { //물리 컴포넌트
+public:
+	virtual void Notify(std::string message) override {
+	}
+	void IsCollision(void) {
+		if (true) //만약 충돌 했다면
+			_object->notify("setpos"); //알림 함수로 메세지를 보냅니다.
+	}
+};
+```
+```cpp
+class Object abstract {
+public:
+	void notify(std::string message) { //메세지를 받는 알림 함수 입니다.
+		for (auto& iter : _components) //알림이 들어오면
+			iter->Notify(message); //모든 컴포넌트에 알림을 보냅니다.
+	}
+protected:
+	std::vector<Component*> _components; //자신의 모든 컴포넌트
+};
+```
