@@ -104,7 +104,7 @@ private:
 };
 ```
 ```cpp
-class Monster final {
+class Monster final { //몬스터 클래스입니다. 이제 몬스터의 하위 클래스는 없습니다.
 public:
 	Monster(Type& type) : //몬스터를 생성할 때 타입을 받습니다.
 		_type(type),
