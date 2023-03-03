@@ -26,6 +26,7 @@ tags:
 Superpower상위 클래스를 만들고 상속 관계를 형성할 수 있을 것입니다.
 ```cpp
 class Superpower abstract {
+public:
 	virtual void Action(void) = 0;
 };
 ```
@@ -51,7 +52,6 @@ public:
 	virtual void Action(void) override {
 		//망치를 던집니다.
 		//소리가 납니다.
-		//파티클이 튑니다.
 	};
 };
 ```
@@ -71,4 +71,71 @@ public:
 모든 초능력 클래스가 Sound 컴포넌트랑 커플링됩니다.
 > ## 구현
 
-이러한 문제를 해결하기 위해
+이러한 문제를 해결하기 위해<br>
+하위 클래스 샌드박스 패턴을 사용할 수 있습니다.<br>
+<br>
+상위 클래스에서 하위 클래스에 필요한 함수들을 정의합니다.<br>
+이들은 하위 클래스 전용 함수이기 때문에 protected 범위를 가집니다.<br>
+<br>
+상위 클래스에 active 샌드박스 메서드를 구현합니다.<br>
+이는 순수 가상 함수로 하위 클래스에서 반드시 재정의 되어야 합니다.<br>
+<br>
+이제 하위 클래스에서 active를 재정의 하고<br>
+protected 함수들을 호출하여 구현합니다.<br>
+```cpp
+class Superpower abstract {
+public:
+	virtual void Action(void) = 0; //하위 클래스 샌드박스 함수 입니다.
+protected:
+	void Sound(void) { //하위 클래스 전용 함수입니다.
+		//소리가 납니다.
+	}
+	void Particle(void) {
+		//파티클이 튑니다.
+	}
+};
+```
+```cpp
+class Ironman final : public Superpower {
+public:
+	virtual void Action(void) override { //샌드박스 함수를 재정의 합니다.
+		//레이저 빔을 쏩니다.
+		Sound();
+		Particle();
+	};
+};
+```
+```cpp
+class Hulk final :public Superpower {
+public:
+	virtual void Action(void) override {
+		//분노를 표출합니다.
+		Sound();
+		Particle();
+	};
+};
+```
+```cpp
+class Thor final : public Superpower {
+public:
+	virtual void Action(void) override {
+		//망치를 던집니다.
+		Sound();
+	};
+};
+```
+이제 각 함수들이 상위 클래스로 구현되었기 때문에<br>
+앞서 말한 문제들이 해결되었습니다.
+> ## 템플릿 메서드
+
+구조를 보면 템플릿 메서드 패턴과 꽤나 유사함을 알 수 있습니다.<br>
+허나 이 둘은 상반된 패턴입니다.<br>
+<br>
+샌드박스 또는 템플릿 메서드 함수를 Action이라 부르고<br>
+제공되는 함수들을 Step이라고 부른다면<br>
+<br>
+템플릿 메서드에서는.<br>
+Action함수는 재정의 되지 않고 Step 함수가 재정의 됩니다.<br>
+<br>
+하위 클래스 샌드박스에서는.<br>
+Action함수가 재정의 되고, Step 함수는 재정의되지 않습니다.
