@@ -1,4 +1,3 @@
-
 ---
 title: "하위 클래스 샌드박스(Subclass Sandbox)"
 categories:
