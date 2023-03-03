@@ -117,7 +117,7 @@ protected:
 ```
 ```cpp
 void main(void) {
-	Type dragon{ "dragon", 20, 20 }; //타입을 정의합니다.
+	Type dragon{ "dragon", 20, 20 }; //타입을 정의합니다. 이 행위를 Json등에 맏기면 됩니다.
 	Type slime{ "slime", 10, 10 };
 
 	std::vector<Monster*> monsters;
@@ -127,9 +127,11 @@ void main(void) {
 ```
 이제 몬스터의 하위 클래스가 사라졌습니다.<br>
 대신 타입 객체가 종족을 정의하게 됩니다.<br>
+이 후 몬스터를 생성할 때 원하는 타입을 사용하여 몬스터를 생성합니다.<br>
 <br>
-이 후 몬스터를 생성할 때 원하는 타입을 사용하여 몬스터를 생성합니다.
-> ## 단점
+타입을 생성하는 것도 코드가 들어가지만,<br>
+이것을 피하고 싶다면 외부파일(Json 등)을 읽어들여 생성하게 끔 만들 수 있을 것입니다.
+> ## 한계점
 
 타입 객체를 사용하면 몬스터 클래스의 서브 클래스를 늘리지 않고<br>
 새로운 몬스터 타입을 정의할 수 있습니다.<br>
@@ -174,4 +176,31 @@ void main(void) {
 };
 ```
 ### 상속
-
+추가적으로 구현해야될 사항이 있는데, 상속을 만드는 것입니다.<br>
+<br>
+몬스터의 종류를 타입 객체로 구현했다 하더라도 비슷한 종류가 존재할 수 있습니다.<br>
+예를 들어 트롤이 30종류가 넘을 가능성이 있습니다.<br>
+<br>
+모든 트롤이 체력이 10이라 가정한다면 만약 이것을 15로 고쳐달라는 요청이 오면<br>
+30번 반복 작업을 해야할 것입니다.<br>
+<br>
+이러한 상황을 코드적으로는 상속을 통해 해결했듯이<br>
+타입 객체또한 상속을 사용하여 해결합니다. 
+```cpp
+class Type final {
+public:
+	Type(std::string name, int attack, int hp, Type* parent = nullptr) :
+		_name(name), _attack(attack), _hp(hp), _parent(parent) {
+	}
+	int GetHp(void) {
+		if (nullptr != _parent) //부모 포인터가 존재한다면
+			return _parent->GetHp(); //부모의 체력 요청
+		return _hp;
+	}
+private:
+	Type* _parent = nullptr; //부모 포인터
+	std::string _name = "";
+	int _attack = 0;
+	int _hp = 0;
+};
+```
