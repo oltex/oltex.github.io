@@ -142,6 +142,36 @@ void main(void) {
 > ## 추가
 
 ### 템플릿 메서드
+템플릿 메서드 패턴을 알고 있다면 타입 객체에 이를 적용해 볼 수 있습니다.<br>
+타입 클래스와 메인 함수를 변경해 보겠습니다.
+```cpp
 
+class Type final {
+public:
+	Type(std::string name, int attack, int hp) :
+		_name(name), _attack(attack), _hp(hp) {
+	}
+	int GetHp(void) {
+		return _hp;
+	}
+	Monster* NewMonster(void) { //몬스터를 생성하는 팩토리 메서드
+		return new Monster(*this);
+	}
+private:
+	std::string _name = "";
+	int _attack = 0;
+	int _hp = 0;
+};
+```
+```cpp
+void main(void) {
+	Type dragon{ "dragon", 20, 20 };
+	Type slime{ "slime", 10, 10 };
+
+	std::vector<Monster*> monsters;
+	monsters.emplace_back(dragon.NewMonster()); //이제 팩토리 메서드를 사용하여 몬스터를 생성합니다.
+	monsters.emplace_back(slime.NewMonster());
+};
+```
 ### 상속
 
