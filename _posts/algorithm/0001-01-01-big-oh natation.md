@@ -1,7 +1,7 @@
 ---
 title: "빅-오 표기법(Big-Oh Natation)"
 categories:
-  - design pattern
+  - algorithm
 tags:
   - tag
 ---
