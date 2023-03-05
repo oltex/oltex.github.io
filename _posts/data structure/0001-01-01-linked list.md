@@ -54,7 +54,7 @@ struct Node {
 };
 
 void main(void) {
-	Node* last = new Node;
+	Node* first = new Node;
 
 	while (true) {
 		int data = 0;
@@ -62,8 +62,8 @@ void main(void) {
 
 		Node* node = new Node; //노드를 생성합니다.
 		node->_data = data; //노드에 값을 넣습니다.
-		last->_next = node; //마지막 노드의 다음 노드로 추가합니다.
-		last = node; //마지막 노드가 됩니다.
+		node->_next = first; //노드의 다음 노드에 첫번째 노드를 넣습니다.
+		first = node; //노드는 이제 첫번째 노드입니다.
 	}
 };
 ```
@@ -74,6 +74,92 @@ void main(void) {
 자료 구조를 형성하는 것을 볼 수 있습니다.<br>
 <br>
 이제 동적인 타이밍에 자료 구조의 크기를 늘릴 수 있게 되었습니다.
+### 접근
+노드의 특징에는 배열처럼 임의 접근이 불가능 하다는 점이 있습니다.<br>
+노드는 다음 노드를 가리키게 구현되어 있기 때문에<br>
+<br>
+배열처럼 몇번째 인덱스에 해당하는 작업을 요청받는다면<br>
+순회를 통한 방법을 사용해야 합니다.<br>
+<br>
+배열의 접근 방식입니다.
+```cpp
+void main(void) {
+	int arr[5];
+	memset(arr, 0, sizeof(int) * 5);
+
+	for (int i = 0; i < 5; ++i)
+		arr[i] = i;
+
+	std::cout << arr[2] << std::endl; //2번째 인덱스를 바로 가져올 수 있습니다.
+};
+```
+노드의 접근 방식입니다.
+```cpp
+void main(void) {
+	Node* first = new Node;
+
+	for (int i = 0; i < 5; ++i) {
+		Node* node = new Node;
+		node->_data = i;
+		node->_next = first;
+		first = node;
+	}
+	//--------------------
+	Node* node = first;
+	for (int i = 0; i < 2; ++i) //2번째 노드를 가져오기 위해 순회합니다.
+		node = node->_next;
+
+	std::cout << node->_data << std::endl; //순회가 끝난 노드의 데이터를 출력합니다.
+};
+```
+### 삽입/삭제
+노드의 특징에는 배열보다 삽입/삭제가 유용하다는 점이 있습니다.<br>
+위 코드를 본다면 배열과 노드는 삽입에 차이가 없어 보입니다.<br>
+<br>
+하지만 위치를 중간으로 옮기면 달라집니다.<br>
+삭제 과정도 동일 하니 삽입 과정만을 살펴보겠습니다.<br>
+<br>
+배열의 삽입 방식입니다.
+```cpp
+void main(void) {
+	int arr[5];
+	memset(arr, 0, sizeof(int) * 5);
+
+	for (int i = 0; i < 5; ++i)
+		arr[i] = i;
+	//--------------------
+	for (int i = 4; i > 2; --i) //삽입 전에 각 배열의 원소를 뒤로 미룹니다.
+		arr[i] = arr[i - 1];
+	arr[2] = 10; //배열에 값을 삽입합니다.
+};
+```
+노드의 삽입 방식입니다.
+```cpp
+void main(void) {
+	Node* first = new Node;
+
+	for (int i = 0; i < 5; ++i) {
+		Node* node = new Node;
+		node->_data = i;
+		node->_next = first;
+		first = node;
+	}
+	//--------------------
+	Node* node = new Node; //삽입할 A노드를 만듭니다.
+	node->_data = 10;
+
+	Node* index = first;
+	for (int i = 0; i < 2; ++i) //2노드를 찾습니다.
+		index = index->_next;
+
+	node->_next = index->_next; //A노드의 다음 노드로 3노드를 연결합니다.
+	index->_next = node; //2노드의 다음 노드로 A노드를 연결합니다.
+};
+```
+코드 자체는 노드가 더 복잡한것 같습니다.<br>
+하지만 만약 자료 구조의 크기가 10000개였다면 (인덱스로)2번째 원소를 옮기기 위해<br>
+배열은 9997번 대입 연산(이동)이 발생할 것입니다.<br>
+반면 노드는 위치만 찾는다면 2번의 대입 연산만 하면 됩니다.
 > ## 자료 구조
 
 이대로 마무리 짓기에는 무리가 있습니다.<br>
