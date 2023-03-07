@@ -101,11 +101,10 @@ void List<T>::Push_Back(const T& value) {
 	_tail = node;
 }
 ```
-push_front 함수는 value를 받아 새 노드를 만들고,<br>
-기존 노드의 가장 앞 즉 head에 추가하는 방법입니다.<br>
+push_front 함수는 value를 받아 새 노드를 만들고, 기존 노드의 가장 앞 즉 head에 추가하는 방법입니다.<br>
+설명에 맞춰 번호를 달아두었습니다.
 1. 먼저 받은 value로 새로운 node를 생성하고
-2. 만약 head가 nullptr이라면(기존 노드가 비었다면)<br>
-tail에 새로운 노드를 대입합니다.
+2. 만약 head가 nullptr이라면(기존 노드가 비었다면) tail에 node를 대입합니다.
 3. 만약 head가 nullptr이 아니라면(기존 노드가 존재한다면)
 head의 prev에 node를 대입해 주고<br>
 node의 next에 head를 대입해 줍니다.(head와 node를 연결하기)
@@ -132,17 +131,17 @@ public:
 //List.cpp
 template<typename T>
 void List<T>::Pop_Front(void) {
-	if (nullptr == _head) //head가 nullptr인지 검사합니다.
-		return; //기존 노드가 없다는 뜻이니 바로 리턴합니다.
+	if (nullptr == _head) //1
+		return;
 
-	Node<T>* node = _head->_next; //head의 next를 node라는 변수에 받습니다.
-	if (nullptr != node) //노드가 존재한다면
-		node->_prev = nullptr; //노드의 prev를 nullptr로 만듭니다.(head와 node의 연결끊기)
-	else //노드가 존재하지 않는다면(head가 노드의 마지막 즉, 기존 노드가 딱 1개 있었다.)
-		_tail = nullptr; //tail을 nullptr로 만듭니다.
+	Node<T>* node = _head->_next; //2
+	if (nullptr != node) //3
+		node->_prev = nullptr;
+	else //4
+		_tail = nullptr;
 
-	delete _head; //어찌 됐든 head는 삭제됩니다.
-	_head = node; //이제 node가 head가 됩니다.
+	delete _head; //5
+	_head = node; 
 }
 
 template<typename T>
@@ -160,15 +159,13 @@ void List<T>::Pop_Back(void) {
 	_tail = node;
 }
 ```
-pop_front함수는 리스트의 가장 뒷 부분을 즉, head를 제거하는 함수입니다.
+pop_front함수는 리스트의 가장 뒷 부분을 즉, head를 제거하는 함수입니다.<br>
+설명에 맞춰 번호를 달아두었습니다.
 1. 먼저 head가 nullptr이 아닌지 검사합니다.<br>
-만약 nullptr이라면 아무 행동도 하지 않습니다.
-2. head가 nullptr이 아니라면<br>
-head의 next를 node라는 변수에 저장합니다.
-3. 만약 node가 nullptr가 아니라면<br>
-node의 prev를 nullptr로 만듭니다.
-4. 만약 node가 nullptr이라면<br>
-tail을 nullptr로 만듭니다.
+만약 nullptr이라면 기존 노드가 없다는 뜻이니 바로 리턴합니다.
+2. head가 nullptr이 아니라면 head의 next를 node라는 변수에 받습니다.
+3. 만약 node가 nullptr가 아니라면 node의 prev를 nullptr로 만듭니다.(head와 node의 연결을 끊습니다.)
+4. 만약 node가 nullptr이라면(기존 노드가 딱 1개 있었다면)<br> tail을 nullptr로 만듭니다.
 5. head를 소멸시키고 head에 node를 대입합니다.
 
 이와 비슷한 과정을 pop_back도 반복합니다.<br>
