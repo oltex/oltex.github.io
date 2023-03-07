@@ -38,23 +38,10 @@ struct Node {
 //LinkedList.h
 template<typename T>
 class LinkedList final {
-public:
-	LinkedList(void);
-	~LinkedList(void);
 private:
 	Node<T>* _head = nullptr;
 	Node<T>* _tail = nullptr;
 };
-```
-```cpp
-//LinkedList.cpp
-template<typename T>
-LinkedList<T>::LinkedList(void) {
-}
-
-template<typename T>
-LinkedList<T>::~LinkedList(void) {
-}
 ```
 
 ### 삽입
