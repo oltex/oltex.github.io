@@ -158,3 +158,12 @@ public:
 	~LinkedList(void);
 };
 ```
+```cpp
+//LinkedList.cpp
+template<typename T>
+LinkedList<T>::~LinkedList(void) {
+	while (_head)
+		Pop_Front();
+}
+```
+이미 pop관련 함수가 구현되어 있었기 때문에, 이를 재사용해서 구현하였습니다.
