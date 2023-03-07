@@ -159,5 +159,15 @@ void LinkedList<T>::Pop_Back(void) {
 	delete _tail;
 	_tail = node;
 }
+```
 
+이번에는 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.
+클래스의 소멸자를 구현해 보겠습니다.
+```cpp
+//LinkedList.h
+template<typename T>
+class LinkedList final {
+public:
+	~LinkedList(void);
+};
 ```
