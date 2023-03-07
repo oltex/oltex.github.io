@@ -24,7 +24,7 @@ tags:
 
 ### 기본
 먼저 가장 기본이 되는
-node구조체와 linkedlist클래스를 구현해보겠습니다.
+node구조체와 list클래스를 구현해보겠습니다.
 ```cpp
 //Node.h
 template<typename T>
@@ -35,9 +35,9 @@ struct Node {
 };
 ```
 ```cpp
-//LinkedList.h
+//List.h
 template<typename T>
-class LinkedList final {
+class List final {
 private:
 	Node<T>* _head = nullptr;
 	Node<T>* _tail = nullptr;
@@ -49,7 +49,7 @@ private:
 이제 틀을 만들었으니 여기에 들어갈 기능을 구현해야합니다.
 가장 먼저 노드의 삽입을 구현해보겠습니다.
 
-가장 먼저 노드를 생성할 때 value를 받을 수 있게 노드의 생성자를 구현하였습니다.
+노드를 생성할 때 value를 받을 수 있게 노드의 생성자를 구현하였습니다.
 ```cpp
 //Node.h
 template<typename T>
@@ -62,18 +62,18 @@ struct Node {
 
 이제 클래스에 노드의 삽입을 위해 push_front와 push_back 함수를 만들었습니다.
 ```cpp
-//LinkedList.h
+//List.h
 template<typename T>
-class LinkedList final {
+class List final {
 public:
 	void Push_Front(const T& value);
 	void Push_Back(const T& value);
 };
 ```
 ```cpp
-//LinkedList.cpp
+//List.cpp
 template<typename T>
-void LinkedList<T>::Push_Front(const T& value) {
+void List<T>::Push_Front(const T& value) {
 	Node<T>* node = new Node<T>{ value };
 	if (nullptr == _tail)
 		_tail = node;
@@ -85,7 +85,7 @@ void LinkedList<T>::Push_Front(const T& value) {
 }
 
 template<typename T>
-void LinkedList<T>::Push_Back(const T& value) {
+void List<T>::Push_Back(const T& value) {
 	Node<T>* node = new Node<T>{ value };
 	if (nullptr == _head)
 		_head = node;
@@ -107,18 +107,18 @@ void LinkedList<T>::Push_Back(const T& value) {
 
 노드의 삭제를 위해 pop_front와 pop_back 함수를 만들어보겠습니다.
 ```cpp
-//LinkedList.h
+//List.h
 template<typename T>
-class LinkedList final {
+class List final {
 public:
 	void Pop_Front(void);
 	void Pop_Back(void);
 };
 ```
 ```cpp
-//LinkedList.cpp
+//List.cpp
 template<typename T>
-void LinkedList<T>::Pop_Front(void) {
+void List<T>::Pop_Front(void) {
 	if (nullptr == _head)
 		return;
 
@@ -133,7 +133,7 @@ void LinkedList<T>::Pop_Front(void) {
 }
 
 template<typename T>
-void LinkedList<T>::Pop_Back(void) {
+void List<T>::Pop_Back(void) {
 	if (nullptr == _tail)
 		return;
 
@@ -151,19 +151,24 @@ void LinkedList<T>::Pop_Back(void) {
 이번에는 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.
 클래스의 소멸자를 구현해 보겠습니다.
 ```cpp
-//LinkedList.h
+//List.h
 template<typename T>
-class LinkedList final {
+class List final {
 public:
-	~LinkedList(void);
+	~List(void);
 };
 ```
 ```cpp
-//LinkedList.cpp
+//List.cpp
 template<typename T>
-LinkedList<T>::~LinkedList(void) {
+List<T>::~List(void) {
 	while (_head)
 		Pop_Front();
 }
 ```
-이미 pop관련 함수가 구현되어 있었기 때문에, 이를 재사용해서 구현하였습니다.
+
+> ## 탐색
+
+노드의 삽입과 삭제 기능이 구현 되었습니다.
+이 자료구조를 사용하기 위해서는 저장된 노드를 탐색하는 기능이 필요할 것입니다.
+
