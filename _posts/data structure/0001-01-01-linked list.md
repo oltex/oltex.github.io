@@ -352,18 +352,47 @@ void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 	Node<_Ty>* cur = (*iter);
 	Node<_Ty>* next = cur->_next;
 
-	cur->_next = node;
+	if (nullptr != cur)
+		cur->_next = node;
 	node->_prev = cur;
 	node->_next = next;
-	next->_prev = node;
+	if (nullptr != next)
+		next->_prev = node;
 
 	++_size;
 }
 ```
 iter가 가리키는 cur노드와 그다음 next노드 사이에 새로운 node를 끼워넣습니다.
 이를 수행하기 위해 각 연결고리를 수정해줘야 합니다.
-위에 4줄되는 부분이 그에 해당하는데 순서에 맞춰 작성했습니다.
+위에 6줄되는 부분이 그에 해당하는데 순서에 맞춰 작성했습니다.
 간단한 코드기 때문에 설명은 넘어가겠습니다.
 
 ### erase
 삭제 함수의 이름은 erase입니다.
+```cpp
+//List.h
+template<typename _Ty>
+class List final {
+public:
+	Iterator<_Ty> Erase(const Iterator<_Ty>& iter);
+};
+```
+```cpp
+//List.cpp
+template<typename _Ty>
+Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
+
+	Node<_Ty>* cur = (*iter);
+	Node<_Ty>* prev = (*iter)->_prev;
+	Node<_Ty>* next = (*iter)->_next;
+
+	if (nullptr != prev)
+		prev->_next = next;
+	if (nullptr != next)
+		next->_prev = prev;
+
+	delete cur;
+	--size;
+	return Iterator<_Ty>{ next };
+}
+```
