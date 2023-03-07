@@ -26,11 +26,11 @@ tags:
 먼저 가장 기본이 되는 node구조체를 구현해보겠습니다.
 ```cpp
 //Node.h
-template<typename T>
+template<typename _Ty>
 struct Node {
-	T _value;
-	Node<T>* _prev = nullptr;
-	Node<T>* _next = nullptr;
+	_Ty _value;
+	Node<_Ty>* _prev = nullptr;
+	Node<_Ty>* _next = nullptr;
 };
 ```
 노드 구조체안에는 값을 저장할 value 변수와<br>
@@ -40,11 +40,11 @@ struct Node {
 List 클래스는 다양한 타입을 받기 위해 템플릿을 사용하였습니다.
 ```cpp
 //List.h
-template<typename T>
+template<typename _Ty>
 class List final {
 private:
-	Node<T>* _head = nullptr;
-	Node<T>* _tail = nullptr;
+	Node<_Ty>* _head = nullptr;
+	Node<_Ty>* _tail = nullptr;
 };
 ```
 리스트 클래스안에는 가장 앞 노드를 가리킬 head 포인터와<br>
@@ -58,9 +58,9 @@ private:
 노드를 생성할 때 값을 받을 수 있게 노드의 생성자를 구현하였습니다.
 ```cpp
 //Node.h
-template<typename T>
+template<typename _Ty>
 struct Node {
-	explicit Node(T& value) :
+	explicit Node(const _Ty& value) :
 		_value(value) {
 	}
 };
@@ -71,18 +71,18 @@ struct Node {
 이를 위해 push_front와 push_back 함수를 만들었습니다.
 ```cpp
 //List.h
-template<typename T>
+template<typename _Ty>
 class List final {
 public:
-	void Push_Front(const T& value);
-	void Push_Back(const T& value);
+	void Push_Front(const _Ty& value);
+	void Push_Back(const _Ty& value);
 };
 ```
 ```cpp
 //List.cpp
-template<typename T>
-void List<T>::Push_Front(const T& value) {
-	Node<T>* node = new Node<T>{ value }; //1
+template<typename _Ty>
+void List<_Ty>::Push_Front(const _Ty& value) {
+	Node<_Ty>* node = new Node<_Ty>{ value }; //1
 	if (nullptr == _head) //2
 		_tail = node;
 	else { //3
@@ -93,8 +93,8 @@ void List<T>::Push_Front(const T& value) {
 }
 
 template<typename T>
-void List<T>::Push_Back(const T& value) {
-	Node<T>* node = new Node<T>{ value };
+void List<_Ty>::Push_Back(const _Ty& value) {
+	Node<_Ty>* node = new Node<_Ty>{ value };
 	if (nullptr == _tail)
 		_head = node;
 	else {
@@ -125,7 +125,7 @@ node의 next에 head를 대입해 줍니다.(head와 node를 연결하기)
 노드의 삭제를 위해 리스트 클래스에 pop_front와 pop_back 함수를 만들어보겠습니다.
 ```cpp
 //List.h
-template<typename T>
+template<typename _Ty>
 class List final {
 public:
 	void Pop_Front(void);
@@ -134,12 +134,12 @@ public:
 ```
 ```cpp
 //List.cpp
-template<typename T>
-void List<T>::Pop_Front(void) {
+template<typename _Ty>
+void List<_Ty>::Pop_Front(void) {
 	if (nullptr == _head) //1
 		return;
 
-	Node<T>* node = _head->_next; //2
+	Node<_Ty>* node = _head->_next; //2
 	if (nullptr != node) //3
 		node->_prev = nullptr;
 	else //4
@@ -149,12 +149,12 @@ void List<T>::Pop_Front(void) {
 	_head = node; 
 }
 
-template<typename T>
-void List<T>::Pop_Back(void) {
+template<typename _Ty>
+void List<_Ty>::Pop_Back(void) {
 	if (nullptr == _tail)
 		return;
 
-	Node<T>* node = _tail->_prev;
+	Node<_Ty>* node = _tail->_prev;
 	if (nullptr != node)
 		node->_next = nullptr;
 	else
@@ -179,7 +179,7 @@ pop_front함수는 리스트의 가장 뒷 부분을 즉, head를 제거하는 �
 리스트 클래스의 소멸자를 구현해 보겠습니다.
 ```cpp
 //List.h
-template<typename T>
+template<typename _Ty>
 class List final {
 public:
 	~List(void);
@@ -187,8 +187,8 @@ public:
 ```
 ```cpp
 //List.cpp
-template<typename T>
-List<T>::~List(void) {
+template<typename _Ty>
+List<_Ty>::~List(void) {
 	while (nullptr != _head)
 		Pop_Front();
 }
