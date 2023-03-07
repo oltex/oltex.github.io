@@ -301,3 +301,68 @@ void Iterator<_Ty>::operator--(void) {
 cur의 next 또는 prev를 cur에 대입합니다.<br>
 <br>
 여기까지 반복자를 통해서 리스트의 노드를 탐색하는 기능을 완성하였습니다.
+
+> ## 추가
+
+자료 구조에서 가장 기본이 되는 삽입, 삭제, 탐색에 대해 구현하였습니다.
+여기에서는 몇가지 추가적인 기능들에대해 필요성을 제기하고 구현해보겠습니다.
+### 크기
+배열은 자신이 가지고 있는 크기가 고정적이지만 리스트는 크기가 유동적으로 변합니다.
+이에 리스트의 원소들을 탐색하지 않고 리스트의 사이즈만 알고 싶은 경우가 존재할 것입니다.
+
+이러한 상황에서 매번 리스트를 돌며 갯수를 세는 것은 불필요한 자원 낭비일 것입니다.
+따라서 size라는 변수를 추가하여 크기를 저장할 수 있습니다.
+```cpp
+//List.h
+template<typename _Ty>
+class List final {
+private:
+	size_t _size = 0;
+};
+```
+구현은 너무 간단하기 때문에 정의부만 보고 넘어가겠습니다.
+기존 push나 pop의 함수 끝에 증감 연산자를 사용해줍니다.
+### 중간 삽입/삭제
+리스트를 사용하다 보면 중간에 있는 값을 삭제하거나
+혹은 중간에 값을 삽입하고 싶은 경우가 존재합니다.
+
+이를 위해 중간 삽입/삭제 함수를 만들어 보겠습니다.
+
+중간이라는 지점에 접근하기 위해서는 반복자를 사용해야 합니다.
+허나 반복자 내에서 삭제가 이뤄지면 미리 만들어둔 size에 영향이 갑니다.
+
+따라서 반복자를 매개변수로 받는 리스트 맴버함수를 제작해야합니다.
+#### emplace
+삽입 함수의 이름은 emplace입니다.
+```cpp
+//List.h
+template<typename _Ty>
+class List final {
+public:
+	void Emplace(Iterator<_Ty>& iter, const _Ty value);
+};
+```
+```cpp
+//List.cpp
+template<typename _Ty>
+void List<_Ty>::Emplace( Iterator<_Ty>& iter, const _Ty value) {
+	Node<_Ty>* node = new Node<_Ty>{ value };
+
+	Node<_Ty>* cur = (*iter);
+	Node<_Ty>* next = cur->_next;
+
+	cur->_next = node;
+	node->_prev = cur;
+	node->_next = next;
+	next->_prev = node;
+
+	++_size;
+}
+```
+iter가 가리키는 cur노드와 그다음 next노드 사이에 새로운 node를 끼워넣습니다.
+이를 수행하기 위해 각 연결고리를 수정해줘야 합니다.
+위에 4줄되는 부분이 그에 해당하는데 순서에 맞춰 작성했습니다.
+간단한 코드기 때문에 설명은 넘어가겠습니다.
+
+### erase
+삭제 함수의 이름은 erase입니다.
