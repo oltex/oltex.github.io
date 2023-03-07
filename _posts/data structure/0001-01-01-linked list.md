@@ -340,13 +340,13 @@ private:
 template<typename _Ty>
 class List final {
 public:
-	void Emplace(const Iterator<_Ty>& iter, const _Ty value);
+	void Emplace(const Iterator<_Ty>& iter, const _Ty& value);
 };
 ```
 ```cpp
 //List.cpp
 template<typename _Ty>
-void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty value) {
+void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 	Node<_Ty>* node = new Node<_Ty>{ value };
 
 	Node<_Ty>* cur = (*iter);
