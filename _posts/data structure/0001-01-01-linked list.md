@@ -79,14 +79,14 @@ public:
 //List.cpp
 template<typename T>
 void List<T>::Push_Front(const T& value) {
-	Node<T>* node = new Node<T>{ value }; //받은 값으로 node를 생성합니다.
-	if (nullptr == _head) //만약 head가 nullptr이라면(기존 노드가 비었다.)
-		_tail = node; //꼬리에 node를 대입해줍니다.
-	else { //만약 head가 nullptr이 아니라면(기존 노드가 존재한다면)
-		_head->_prev = node; //head의 prev는 node이고
-		node->_next = _head; //node의 next는 head입니다.(head와 node를 연결하기)
+	Node<T>* node = new Node<T>{ value }; //1
+	if (nullptr == _head) //2
+		_tail = node;
+	else { //3
+		_head->_prev = node;
+		node->_next = _head;
 	}
-	_head = node; //무슨 경우든 node는 head가 됩니다.
+	_head = node; //4
 }
 
 template<typename T>
@@ -103,13 +103,13 @@ void List<T>::Push_Back(const T& value) {
 ```
 push_front 함수는 value를 받아 새 노드를 만들고,<br>
 기존 노드의 가장 앞 즉 head에 추가하는 방법입니다.<br>
-1. 먼저 받은 value로 새로운 노드를 생성하고
-2. tail이 nullptr이라면<br>
+1. 먼저 받은 value로 새로운 node를 생성하고
+2. 만약 head가 nullptr이라면(기존 노드가 비었다면)<br>
 tail에 새로운 노드를 대입합니다.
-3. tail이 nullptr이 아니라면<br>
-head의 prev에 새로운 노드를 대입해 주고<br>
-새로운 노드의 next에 head를 대입해 줍니다.
-4. 마지막으로 head에 새로운 노드를 대입해 줍니다.
+3. 만약 head가 nullptr이 아니라면(기존 노드가 존재한다면)
+head의 prev에 node를 대입해 주고<br>
+node의 next에 head를 대입해 줍니다.(head와 node를 연결하기)
+4. 무슨 경우든 node는 head가 됩니다.
 
 이와 비슷한 과정을 push_back도 반복합니다.
 ### 삭제
