@@ -48,7 +48,7 @@ head와 tail노드를 사용합니다. 보통 리스트를 구현하는데 사�
 ```cpp
 //Node.h
 template<typename _Ty>
-struct Node {
+struct Node final {
 	_Ty _value;
 	Node<_Ty>* _prev = nullptr;
 	Node<_Ty>* _next = nullptr;
@@ -369,9 +369,10 @@ public:
 //List.cpp
 template<typename _Ty>
 void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
-	Node<_Ty>* node = new Node<_Ty>{ value };
-
 	Node<_Ty>* cur = (*iter);
+	if(nullptr == cur)
+		return;
+	Node<_Ty>* node = new Node<_Ty>{ value };
 	Node<_Ty>* next = cur->_next;
 
 	if (nullptr != cur)
@@ -403,8 +404,9 @@ public:
 //List.cpp
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
-
 	Node<_Ty>* cur = (*iter);
+	if (nullptr == cur)
+		return Iterator<_Ty>{ cur };
 	Node<_Ty>* prev = cur->_prev;
 	Node<_Ty>* next = cur_next;
 
