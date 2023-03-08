@@ -383,16 +383,21 @@ template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 
 	Node<_Ty>* cur = (*iter);
-	Node<_Ty>* prev = (*iter)->_prev;
-	Node<_Ty>* next = (*iter)->_next;
+	Node<_Ty>* prev = cur->_prev;
+	Node<_Ty>* next = cur_next;
 
 	if (nullptr != prev)
 		prev->_next = next;
+	else
+		_head = next;
+
 	if (nullptr != next)
 		next->_prev = prev;
+	else
+		_tail = prev;
 
 	delete cur;
-	--size;
+	--_size;
 	return Iterator<_Ty>{ next };
 }
 ```
