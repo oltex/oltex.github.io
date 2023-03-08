@@ -338,12 +338,21 @@ cur의 next 또는 prev를 cur에 대입합니다.<br>
 //List.h
 template<typename _Ty>
 class List final {
+public:
+	size_t Size(void);
 private:
 	size_t _size = 0;
 };
 ```
-구현은 너무 간단하기 때문에 정의부만 보고 넘어가겠습니다.<br>
-기존 push나 pop의 함수 끝에 증감 연산자를 사용해줍니다.
+```cpp
+//List.cpp
+template<typename _Ty>
+size_t List<_Ty>::Size(void) {
+	return _size;
+}
+```
+이제 기존 push나 pop의 함수 끝에 증감 연산자를 사용해줍니다.<br>
+이 구현은 너무 간단하기 때문에 넘어가겠습니다.
 ### 중간 삽입/삭제
 리스트를 사용하다 보면 중간에 있는 값을 삭제하거나<br>
 혹은 중간에 값을 삽입하고 싶은 경우가 존재합니다.<br>
