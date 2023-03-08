@@ -52,4 +52,21 @@ void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 
 ### 더미 노드
 먼저 더미 노드를 만들어야합니다. 기존 노드 코드를 봐보겠습니다.
+```cpp
+template<typename _Ty>
+struct Node final {
+	explicit Node(const _Ty& value) :
+		_value(value) {
+	}
+	_Ty _value;
+	Node<_Ty>* _prev = nullptr;
+	Node<_Ty>* _next = nullptr;
+};
+```
+이 노드를 하나 만들어서 더미 노드로 사용할 수 있겠지만
+문제는 템플릿 Ty가 클래스이고 생성자가 무조껀 매개 변수를 받게 만들어져 있다면
+더미 노드 생성에 제한이 걸립니다.
+
+따라서 널 객체(null object) 패턴을 사용하여 이를 해결해 보겠습니다.
+
 
