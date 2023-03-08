@@ -84,7 +84,6 @@ struct ListNode final : public Node {
 	_Ty _value;
 };
 
-template<typename _Ty>
 struct NullNode final : public Node {
 };
 ```
@@ -97,4 +96,28 @@ struct NullNode final : public Node {
 더미 노드를 사용함에 맞게 리스트와 반복자 클래스를 수정해야 합니다.
 
 먼저 더미 노드보다 이들의 인터페이스에 맞게 Node를 전부 변경하는 작업부터 하겠습니다.
-또한 추가적인 변경 사항을 주석으로 작성하겠습니다.
+```cpp
+//List.h
+template<typename _Ty>
+class List final {
+public:
+	explicit List(void);
+	~List(void);
+public:
+	void Push_Front(const _Ty& value);
+	void Push_Back(const _Ty& value);
+
+	void Pop_Front(void);
+	void Pop_Back(void);
+
+	void Emplace(const Iterator<_Ty>& iter, const _Ty& value);
+	Iterator<_Ty> Erase(const Iterator<_Ty>& iter);
+public:
+	Iterator<_Ty> Begin(void);
+	Iterator<_Ty> End(void);
+private:
+	Node* _head = nullptr; //이제 노드는 Node*로 저장합니다.
+	Node* _tail = nullptr;
+	size_t _size = 0;
+};
+```
