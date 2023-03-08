@@ -370,26 +370,26 @@ public:
 template<typename _Ty>
 void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 	Node<_Ty>* cur = (*iter);
-	if(nullptr == cur)
+	if (nullptr == cur)
 		return;
+	Node<_Ty>* prev = cur->_prev;
 	Node<_Ty>* node = new Node<_Ty>{ value };
-	Node<_Ty>* next = cur->_next;
 
-	if (nullptr != cur)
-		cur->_next = node;
-	node->_prev = cur;
-	node->_next = next;
-	if (nullptr != next)
-		next->_prev = node;
+	if (nullptr != prev)
+		prev->_next = node;
 	else
-		_tail = node;
+		_head = node;
+
+	node->_prev = prev;
+	node->_next = cur;
+
+	cur->_prev = node;
 
 	++_size;
 }
 ```
-iter가 가리키는 cur노드와 그다음 next노드 사이에 새로운 node를 끼워넣습니다.<br>
+iter가 가리키는 cur노드와 이전 prev노드 사이에 새로운 node를 끼워넣습니다.<br>
 이를 수행하기 위해 각 연결고리를 수정해줘야 합니다.<br>
-위에 6줄되는 부분이 그에 해당하는데 순서에 맞춰 작성했습니다.<br>
 <br>
 (아직 해결되지 않은 문제가 남아있습니다. 이 부분은 더미 노드에서 설명하겠습니다.)
 ### erase
@@ -436,8 +436,8 @@ head를 next로 설정해 줍니다.<br>
 tail 또한 같은 과정을 반복합니다.
 ### 더미 노드
 삽입과 삭제에 대해 보면 삭제에는 head와 tail에 대한 처리가 존재하지만<br>
-삽입에는 tail에 대한 처리밖에 존재하지 않습니다.<br>
-이러한 이유는 삽입 함수가 head를 변경할 수 없는 상황이라서 그렇습니다.<br>
+삽입에는 head에 대한 처리밖에 존재하지 않습니다.<br>
+이러한 이유는 삽입 함수가 tail을 변경할 수 없는 상황이라서 그렇습니다.<br>
 <br>
 이를 더미 노드를 사용하여 해결해야 하는데 더미 노드의 설명보다,<br>
 이를 구현하는데 드는 기존 코드의 수정이 길기 때문에 때문에 글을 나눠서 설명하겠습니다.
