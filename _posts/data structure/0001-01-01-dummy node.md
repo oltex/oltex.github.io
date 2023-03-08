@@ -95,7 +95,7 @@ struct DummyNode final : public Node {
 };
 ```
 이제 노드를 생성할 때는 ListNode를
-더미 노드를 생성할 때는 NullNode를 사용하여 관리합니다.
+더미 노드를 생성할 때는 DummyNode를 사용하여 관리합니다.
 #### 클래스
 이제 더미 노드를 사용함에 맞게 클래스를 수정해야 합니다.
 ```cpp
@@ -110,8 +110,8 @@ private:
 };
 ```
 기존 리스트 헤더와 다른점은
-head와 tail이 노드 인터페이스를 참조하게 되었습니다.
-추가된 사항은 더미 노드를 참조할 dummy 변수가 생겼습니다.
+head와 tail이 Node 인터페이스를 참조하게 되었습니다.
+추가된 사항은 더미 노드를 참조할 dummy 맴버 변수가 생겼습니다.
 ### 생성
 기존 코드에는 없던 부분입니다.
 ```cpp
@@ -149,7 +149,6 @@ List<_Ty>::~List(void) {
 		Pop_Front();
 }
 ```
-
 ### 삽입
 삽입 함수입니다.
 삽입 함수에는 push_front, push_back, emplace가 존재합니다.
@@ -198,7 +197,7 @@ void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 }
 ```
 push_front와 push_back에서 각각 begin과 end를 사용해 emplace를 호출하고 있습니다.
-emplace함수는 변경된 사항이 거의 없습니다.
+의외로 emplace함수는 변경된 사항이 거의 없습니다.
 
 prev와 cur사이에 노드를 추가하는 코드는 그대로입니다.
 이러면 begin일 때는 head의 앞에,
@@ -208,3 +207,54 @@ tail일 때는 tail의 앞에지만 tail은 더미노드이니
 기존 코드와 똑같지만 tail이 dummy라는것 만으로 리스트의
 맨 앞과 맨 끝에 노드를 추가할 수 있게 되었습니다.
 
+### 삭제
+삭제 함수에는 pop_front, pop_back, erase가 존재합니다.
+삽입 함수와 마찬가지로 pop_front, pop_back 함수가 erase를 호출하도록 구현해보겠습니다.
+```cpp
+//List.h
+template<typename _Ty>
+class List final {
+public:
+	void Pop_Front(void);
+	void Pop_Back(void);
+	Iterator<_Ty> Erase(const Iterator<_Ty>& iter);
+};
+```
+```cpp
+//List.cpp
+template<typename _Ty>
+void List<_Ty>::Pop_Front(void) {
+	Erase(Begin());
+}
+
+template<typename _Ty>
+void List<_Ty>::Pop_Back(void) {
+	Iterator<_Ty> iter = End();
+	--iter;
+	Erase(iter);
+}
+
+template<typename _Ty>
+Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
+	Node* cur = (*iter);
+	if (nullptr == cur || _dummy == cur)
+		return Iterator<_Ty>{ cur };
+
+	Node* prev = cur->_prev;
+	Node* next = cur->_next;
+
+	if (nullptr != prev)
+		prev->_next = next;
+	else
+		_head = next;
+
+	if (nullptr != next)
+		next->_prev = prev;
+	else
+		_tail = prev;
+
+	delete cur;
+	--_size;
+	return Iterator<_Ty>{ next };
+}
+```
