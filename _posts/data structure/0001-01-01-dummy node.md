@@ -178,7 +178,7 @@ void List<_Ty>::Push_Back(const _Ty& value) {
 template<typename _Ty>
 void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 	Node* cur = (*iter);
-	if (nullptr == cur)
+	if (nullptr == cur || _dummy == cur) //더미 노드 검사 코드 추가
 		return;
 	Node* prev = cur->_prev;
 	Node* node = new ListNode<_Ty>{ value };
@@ -198,6 +198,7 @@ void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 ```
 push_front와 push_back에서 각각 begin과 end를 사용해 emplace를 호출하고 있습니다.
 의외로 emplace함수는 변경된 사항이 거의 없습니다.
+cur가 dummy라면 리턴하는 코드가 추가되었습니다.
 
 prev와 cur사이에 노드를 추가하는 코드는 그대로입니다.
 이러면 begin일 때는 head의 앞에,
@@ -237,7 +238,7 @@ void List<_Ty>::Pop_Back(void) {
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 	Node* cur = (*iter);
-	if (nullptr == cur || _dummy == cur)
+	if (nullptr == cur || _dummy == cur) //더미 노드 검사 코드 추가
 		return Iterator<_Ty>{ cur };
 
 	Node* prev = cur->_prev;
@@ -248,13 +249,15 @@ Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 	else
 		_head = next;
 
-	if (nullptr != next)
-		next->_prev = prev;
-	else
-		_tail = prev;
+	next->_prev = prev; //next의 nullptr 검사 삭제
 
 	delete cur;
 	--_size;
 	return Iterator<_Ty>{ next };
 }
 ```
+pop_front와 pop_back에서 각각 begin과 end를 사용해 erase를 호출하고 있습니다.
+pop_back에서 End는 더미 노드를 반환하니 그 이전 노드를 참조하기 위해 증감 연산자를 사용합니다.
+
+이제 erase를 살펴보면 cur가 dummy 노드라면 리턴하는 코드가 추가되었습니다.
+그리고 이제 next가 nullptr일 경우는 존재하지 않으니 next의 nullptr검사는 삭제되었습니다.
