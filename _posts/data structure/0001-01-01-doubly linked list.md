@@ -232,7 +232,7 @@ Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 head를 next로 설정해 줍니다.<br>
 <br>
 erase를 살펴보면 cur가 dummy 노드라면 리턴하는 코드가 존재합니다.<br>
-따라서 tail이 들어오는 경우는 없게 됩니다.<br>
+따라서 tail이 들어오는 경우는 없으니 next는 무조껀 존재합니다.<br>
 <br>
 리스트 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.<br>
 리스트 클래스의 소멸자를 구현해 보겠습니다.
