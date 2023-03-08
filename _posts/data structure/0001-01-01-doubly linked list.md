@@ -121,7 +121,7 @@ List<_Ty>::List(void) {
 생성자에서 할당된 더미 노드를 3가지 포인터에 전부 넣어줍니다.<br>
 <br>
 다음은 노드의 삽입을 구현해야 합니다.<br>
-이를 위해 push_front와 push_back, emplace 함수 내부를 구현해보겠습니다.
+이를 위해 push_front와 push_back 내부를 구현해보겠습니다.
 ```cpp
 template<typename _Ty>
 void List<_Ty>::Push_Front(const _Ty& value) {
@@ -132,7 +132,16 @@ template<typename _Ty>
 void List<_Ty>::Push_Back(const _Ty& value) {
 	Emplace(End(), value);
 }
-
+```
+코드 중복을 줄이기 위해 push_front와 push_back에서<br>
+각각 begin과 end를 사용해 emplace를 호출하게 만들었습니다.<br>
+<br>
+begin과 end는 각각 처음 노드와 마지막 노드에 대한 반복자를 호출한다고 생각하면 되겠습니다.<br>
+반복자는 탐색에서 설명하겠습니다.<br>
+<br>
+리스트를 사용하다 보면 중간에 있는 값을 삽입하고 싶은 경우가 존재합니다.<br>
+이를 위해 emplace 함수를 구현해 보겠습니다.
+```cpp
 template<typename _Ty>
 void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 	Node* cur = (*iter);
@@ -154,11 +163,21 @@ void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 	++_size;
 }
 ```
-코드 중복을 줄이기 위해 push_front와 push_back에서
-각각 begin과 end를 사용해 emplace를 호출하게 만들었습니다.
+중간이라는 지점에 접근하기 위해서는 반복자를 사용해야 합니다.<br>
+허나 반복자 내에서 삭제가 이뤄지면 미리 만들어둔 size에 영향이 갑니다.<br>
+게다가 삽입과 삭제를 담당해야 하는 것은 리스트 클래스 입니다.<br>
+<br>
+따라서 반복자를 매개변수로 받는 리스트 맴버함수를 제작해야합니다.<br>
+<br>
+iter가 가리키는 cur노드와 이전 prev노드 사이에 새로운 node를 끼워넣습니다.<br>
+이를 수행하기 위해 각 연결고리를 수정해주고 있습니다.<br>
 
-begin과 end는 각각 처음 노드와 마지막 노드에 대한 반복자를 호출한다고 생각하면 되겠습니다.
-반복자는 탐색에서 설명하겠습니다.
+여기서 더미 노드를 사용할 때의 이점이 드러납니다.
+- begin일 때는 head의 앞에 추가하여 가장 앞에 노드를 추가합니다.
+- end일 때는 tail의 앞에 추가하지만 tail은 더미 노드이니맨 마지막에 추가 하는 상황이 됩니다.
+
+tail이 dummy라는것 만으로
+하나의 함수로 리스트의 맨 앞과 맨 끝 양쪽에 노드를 추가하는 기능을 만들 수 있습니다.
 
 ---
 ### 삭제
@@ -181,7 +200,10 @@ void List<_Ty>::Pop_Back(void) {
 	--iter;
 	Erase(iter);
 }
-
+```
+마찬가지로 삭제 함수 또한 코드중복을 줄였습니다.<br>
+대신 pop_back에서 End는 더미 노드를 반환하니 이전 노드를 참조하기 위해 증감 연산자를 사용합니다.
+```cpp
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 	Node* cur = (*iter);
@@ -203,9 +225,16 @@ Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 	return Iterator<_Ty>{ next };
 }
 ```
-삭제 함수 또한 코드중복을 줄였습니다.<br>
+삭제 함수에서는 반복자가 가리키는 노드 cur를 삭제합니다.<br>
+그 과정에서 cur의 이전 노드 prev와 다음 노드 next를 연결합니다.<br>
 <br>
-이번에는 리스트 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.<br>
+만약 prev가 nullptr이라는 것은 cur가 head였다는 뜻이 되니<br>
+head를 next로 설정해 줍니다.<br>
+<br>
+erase를 살펴보면 cur가 dummy 노드라면 리턴하는 코드가 존재합니다.<br>
+따라서 tail이 들어오는 경우는 없게 됩니다.<br>
+<br>
+리스트 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.<br>
 리스트 클래스의 소멸자를 구현해 보겠습니다.
 ```cpp
 //List.cpp
@@ -254,7 +283,7 @@ Iterator<_Ty>::Iterator(Node<_Ty>* cur) :
 }
 ```
 매번 반복자를 생성할 때마다 리스트안의 노드의 헤드와 테일을 넘겨줄 순 없으니<br>
-반복자 클래스를 생성하는 팩토리 메서드를 리스트 클래스에 추가해 줍니다.
+반복자 클래스를 생성하는 팩토리 메서드를 리스트 클래스에 구현해 줍니다.
 ```cpp
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Begin(void) {
@@ -300,142 +329,10 @@ bool Iterator<_Ty>::operator!=(const Iterator<_Ty>& rhs) {
 }
 ```
 증감 연산자 오버로드는 cur의 next 또는 prev를 cur에 대입하게 하여 노드를 순회합니다.<br>
-
-비교 연산자의 오버로드는 반복자를 비교하여
-반복자가 가리키는 노드가 다르면 true 같으면 false을 보냅니다.
-
+<br>
+비교 연산자의 오버로드는 반복자를 비교하여<br>
+반복자가 가리키는 노드가 다르면 true 같으면 false을 보냅니다.<br>
+<br>
 이 두가지를 사용하여 반복자의 탐색을 구현할 수 있습니다.
 
 ---
-### 중간 삽입
-리스트를 사용하다 보면 중간에 있는 값을 삭제하거나<br>
-혹은 중간에 값을 삽입하고 싶은 경우가 존재합니다.<br>
-<br>
-이를 위해 중간 삽입/삭제 함수를 만들어 보겠습니다.<br>
-<br>
-중간이라는 지점에 접근하기 위해서는 반복자를 사용해야 합니다.<br>
-허나 반복자 내에서 삭제가 이뤄지면 미리 만들어둔 size에 영향이 갑니다.<br>
-게다가 삽입과 삭제를 담당해야 하는 것은 리스트 클래스 입니다.<br>
-<br>
-따라서 반복자를 매개변수로 받는 리스트 맴버함수를 제작해야합니다.
-
-삽입 함수의 이름은 emplace입니다.
-```cpp
-//List.h
-template<typename _Ty>
-class List final {
-public:
-	void Emplace(const Iterator<_Ty>& iter, const _Ty& value);
-};
-```
-```cpp
-//List.cpp
-template<typename _Ty>
-void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
-	Node<_Ty>* cur = (*iter);
-	if (nullptr == cur)
-		return;
-	Node<_Ty>* prev = cur->_prev;
-	Node<_Ty>* node = new Node<_Ty>{ value };
-
-	if (nullptr != prev)
-		prev->_next = node;
-	else
-		_head = node;
-
-	node->_prev = prev;
-	node->_next = cur;
-
-	cur->_prev = node;
-
-	++_size;
-}
-```
-iter가 가리키는 cur노드와 이전 prev노드 사이에 새로운 node를 끼워넣습니다.<br>
-이를 수행하기 위해 각 연결고리를 수정해줘야 합니다.<br>
-<br>
-(아직 해결되지 않은 문제가 남아있습니다. 이 부분은 더미 노드에서 설명하겠습니다.)
-
----
-### 중간 삭제
-삭제 함수의 이름은 erase입니다.
-```cpp
-//List.h
-template<typename _Ty>
-class List final {
-public:
-	Iterator<_Ty> Erase(const Iterator<_Ty>& iter);
-};
-```
-```cpp
-//List.cpp
-template<typename _Ty>
-Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
-	Node<_Ty>* cur = (*iter);
-	if (nullptr == cur)
-		return Iterator<_Ty>{ cur };
-	Node<_Ty>* prev = cur->_prev;
-	Node<_Ty>* next = cur->_next;
-
-	if (nullptr != prev)
-		prev->_next = next;
-	else
-		_head = next;
-
-	if (nullptr != next)
-		next->_prev = prev;
-	else
-		_tail = prev;
-
-	delete cur;
-	--_size;
-	return Iterator<_Ty>{ next };
-}
-```
-삭제 함수 또한 반복자가 가리키는 노드 cur를 삭제합니다.<br>
-그 과정에서 cur의 이전 노드 prev와 다음 노드 next를 연결합니다.<br>
-<br>
-또한 prev가 nullptr이라는 것은 cur가 head였다는 뜻이 되니<br>
-head를 next로 설정해 줍니다.<br>
-<br>
-tail 또한 같은 과정을 반복합니다.
-
-> ## 사용
-
-이제 메인 함수에서 이 연결 리스트를 사용해 보겠습니다.
-```cpp
-void main(void) {
-	List<int> list;
-
-	list.Push_Back(10);
-	list.Push_Back(20);
-	list.Push_Back(30);
-	list.Push_Back(40);
-	list.Push_Back(50);
-
-	list.Pop_Back();
-	list.Pop_Front();
-
-	Iterator<int> iter = list.Begin();
-
-	iter = list.Begin();
-	while ((*iter) != nullptr) {
-		std::cout << (*iter)->_value << std::endl;
-		++iter;
-	}
-
-	iter = list.Begin();
-	++iter;
-	++iter;
-	list.Emplace(iter, 1000);
-	list.Erase(iter);
-
-	iter = list.Begin();
-	for (int i = 0; i < list.Size(); ++i) {
-		std::cout << (*iter)->_value << std::endl;
-		++iter;
-	}
-
-	list.~List();
-}
-```
