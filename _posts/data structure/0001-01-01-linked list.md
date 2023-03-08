@@ -225,7 +225,9 @@ head가 nullptr이 될때까지 모든 노드를 삭제합니다.
 리스트에 이를 구현해도 좋지만<br>
 자료 구조의 탐색을 분리하기 위해 반복자 패턴을 사용하겠습니다.<br>
 <br>
-이를 위해 Iterator클래스를 구현해보겠습니다.
+이를 위해 Iterator클래스를 구현해보겠습니다.<br>
+(Iterator클래스는 인터페이스 클래스로 만들지만 여기서는<br>
+list하나만을 이야기하기 때문에 구체 클래스로 제작하겠습니다.)
 ```cpp
 //Iterator.h
 template<typename _Ty>
