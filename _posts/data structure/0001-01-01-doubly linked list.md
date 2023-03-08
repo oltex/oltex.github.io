@@ -176,13 +176,13 @@ iter가 가리키는 cur노드와 이전 prev노드 사이에 새로운 node를 
 - begin일 때는 head의 앞에 추가하여 가장 앞에 노드를 추가합니다.
 - end일 때는 tail의 앞에 추가하지만 tail은 더미 노드이니맨 마지막에 추가 하는 상황이 됩니다.
 
-tail이 dummy라는것 만으로
+tail이 dummy라는것 만으로<br>
 하나의 함수로 리스트의 맨 앞과 맨 끝 양쪽에 노드를 추가하는 기능을 만들 수 있습니다.
 
 ---
 ### 삭제
 노드를 삽입했으면 이를 삭제하는 방법도 존재해야 합니다.<br>
-삭제에는 3가지 경우가 있습니다.<br>
+삭제에는 3가지 경우가 있습니다.
 1. 노드의 머리와 꼬리부분을 삭제할 수 있어야 하고
 2. 노드의 중간 부분을 삭제할 수 있어야 합니다.
 3. 클래스를 삭제할 때는 모든 노드를 삭제하여야 합니다.
@@ -275,14 +275,14 @@ private:
 };
 ```
 반복자 클래스의 생성자는 본인이 탐색을 시작할 노드를 받아 맴버 변수로 저장합니다.<br>
-이 노드 맴버 변수는 리스트의 헤드 또는 테일을 받게됩니다.<br>
+이 노드 맴버 변수는 리스트의 head 또는 tail을 받게됩니다.<br>
 ```cpp
 template<typename _Ty>
 Iterator<_Ty>::Iterator(Node<_Ty>* cur) :
 	_cur(cur) {
 }
 ```
-매번 반복자를 생성할 때마다 리스트안의 노드의 헤드와 테일을 넘겨줄 순 없으니<br>
+매번 반복자를 생성할 때마다 리스트안의 노드의 head와 tail을 넘겨줄 순 없으니<br>
 반복자 클래스를 생성하는 팩토리 메서드를 리스트 클래스에 구현해 줍니다.
 ```cpp
 template<typename _Ty>
@@ -336,3 +336,41 @@ bool Iterator<_Ty>::operator!=(const Iterator<_Ty>& rhs) {
 이 두가지를 사용하여 반복자의 탐색을 구현할 수 있습니다.
 
 ---
+
+> ## 사용
+
+이제 구현한 이중 연결 리스트를 메인 함수에서 사용해 보겠습니다.
+```cpp
+void main(void) {
+	List<int> list;
+
+	list.Push_Back(10);
+	list.Push_Back(20);
+	list.Push_Back(30);
+	list.Push_Back(40);
+	list.Push_Back(50);
+
+	list.Pop_Back();
+	list.Pop_Front();
+
+	Iterator<int> iter = list.Begin();
+
+	iter = list.Begin();
+	for (int i = 0; i < list.Size(); ++i) {
+		std::cout << (*iter)->_value << std::endl;
+		++iter;
+	}
+
+	++iter;
+	++iter;
+	list.Emplace(iter, 1000);
+	list.Erase(iter);
+
+	for (Iterator<int> iter = list.Begin(); iter != list.End(); ++iter) {
+		std::cout << (*iter)->_value << std::endl;
+	}
+
+	list.~List();
+};
+
+```
