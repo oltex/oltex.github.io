@@ -53,6 +53,7 @@ void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 ### 더미 노드
 먼저 더미 노드를 만들어야합니다. 기존 노드 코드를 봐보겠습니다.
 ```cpp
+//Node.h
 template<typename _Ty>
 struct Node final {
 	explicit Node(const _Ty& value) :
@@ -68,5 +69,32 @@ struct Node final {
 더미 노드 생성에 제한이 걸립니다.
 
 따라서 널 객체(null object) 패턴을 사용하여 이를 해결해 보겠습니다.
+```cpp
+//Node.h
+struct Node abstract {
+	Node* _prev = nullptr;
+	Node* _next = nullptr;
+};
 
+template<typename _Ty>
+struct ListNode final : public Node {
+	explicit ListNode(const _Ty& value) :
+		_value(value) {
+	}
+	_Ty _value;
+};
 
+template<typename _Ty>
+struct NullNode final : public Node {
+};
+```
+이제 노드를 생성할 때는 ListNode를
+더미 노드를 생성할 때는 NullNode를 사용하여 관리합니다.
+
+#### 기존 코드 수정
+
+이를 더미 노드 기반 연결 리스트라고 부르는데
+더미 노드를 사용함에 맞게 리스트와 반복자 클래스를 수정해야 합니다.
+
+기본적으로 Node를 전부 변경하는 것을 잡고
+추가적인 변경사항은 주석으로 작성하겠습니다.
