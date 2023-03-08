@@ -16,12 +16,6 @@ tags:
 어떠한 리스트가 존재하고<br>
 여기에 데이터를 추가할 수 있는 함수가 존재한다고 가정해보겠습니다.
 ```cpp
-struct Node {
-	int _data = 0;
-	Node* _next = nullptr;
-};
-```
-```cpp
 struct Node final {
 	Node(int data) :
 		_data(data) {
