@@ -410,7 +410,7 @@ Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 	if (nullptr == cur)
 		return Iterator<_Ty>{ cur };
 	Node<_Ty>* prev = cur->_prev;
-	Node<_Ty>* next = cur_next;
+	Node<_Ty>* next = cur->_next;
 
 	if (nullptr != prev)
 		prev->_next = next;
