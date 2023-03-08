@@ -1,5 +1,5 @@
 ---
-title: "더미 노드(Node)"
+title: "더미 노드(Dummy Node)"
 categories:
   - data structure
 tags:
