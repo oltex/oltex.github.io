@@ -151,6 +151,26 @@ List<_Ty>::~List(void) {
 		Pop_Front();
 }
 ```
+### 크기
+크기 코드 또한 변한것이 없기 때문에 기존 코드를 남겨두겠습니다.
+```cpp
+//List.h
+template<typename _Ty>
+class List final {
+public:
+	size_t Size(void);
+private:
+	size_t _size = 0;
+};
+```
+```cpp
+//List.cpp
+template<typename _Ty>
+size_t List<_Ty>::Size(void) {
+	return _size;
+}
+```
+
 ### 삽입
 삽입 함수입니다.<br>
 삽입 함수에는 push_front, push_back, emplace가 존재합니다.<br>
@@ -265,8 +285,8 @@ pop_back에서 End는 더미 노드를 반환하니<br>
 <br>
 그리고 이제 next가 nullptr일 경우는 존재하지 않으니 next의 nullptr검사는 삭제되었습니다.
 ### 반복자
-탐색을 위해서 반복자 코드를 사용하였습니다.
-반복자 클래스 내에서 기존 코드는 변경된 사항이 거의 없습니다.
+탐색을 위해서 반복자 코드를 사용하였습니다.<br>
+반복자 클래스 내에서 기존 코드는 변경된 사항이 거의 없습니다.<br>
 (변경점은 주석으로 표시하겠습니다.)
 ```cpp
 //Iterator.h
@@ -329,8 +349,8 @@ Iterator<_Ty> List<_Ty>::End(void) {
 ```
 ### 탐색
 반복자 클래스 내에서 기존 코드는 변경된 사항이 거의 없지만<br>
-탐색을 위해 추가적인 함수를 정의할 수 있습니다.
-
+탐색을 위해 추가적인 함수를 정의할 수 있습니다.<br>
+<br>
 기존 메인 코드 탐색을 확인해 보겠습니다.
 ```cpp
 void main(void) {
@@ -347,12 +367,12 @@ void main(void) {
 	}
 }
 ```
-두 가지 방식을 사용했습니다.
-
-첫번째는 노드를 검사하여 nullptr이 나올 때까지 이고
-두번째는 size를 확인하여 size만큼 반복문을 돌립니다.
-
-여기에 추가할 탐색은 반복자부터 반복자 까지라는 탐색입니다.
+두 가지 방식을 사용했습니다.<br>
+<br>
+첫번째는 노드를 검사하여 nullptr이 나올 때까지 이고<br>
+두번째는 size를 확인하여 size만큼 반복문을 돌립니다.<br>
+<br>
+여기에 추가할 탐색은 반복자부터 반복자 까지라는 탐색입니다.<br>
 먼저 반복자에 다음과 같은 함수를 만들어줍니다.
 ```cpp
 //Iterator.h
@@ -370,25 +390,5 @@ bool Iterator<_Ty>::operator!=(const Iterator<_Ty>& rhs) {
 	return false;
 }
 ```
-반복자를 비교하여 반복자가 가리키는 노드가 다르면 true 같으면 false을 보냅니다.
+반복자를 비교하여 반복자가 가리키는 노드가 다르면 true 같으면 false을 보냅니다.<br>
 사용 절에서 이를 사용한 반복문을 작성해보겠습니다.
-
-### 크기
-크기 코드는 변한것이 없기 때문에 기존 코드를 남겨두겠습니다.
-```cpp
-//List.h
-template<typename _Ty>
-class List final {
-public:
-	size_t Size(void);
-private:
-	size_t _size = 0;
-};
-```
-```cpp
-//List.cpp
-template<typename _Ty>
-size_t List<_Ty>::Size(void) {
-	return _size;
-}
-```
