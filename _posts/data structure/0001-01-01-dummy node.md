@@ -330,3 +330,44 @@ Iterator<_Ty> List<_Ty>::End(void) {
 ### 탐색
 반복자 클래스 내에서 기존 코드는 변경된 사항이 거의 없지만<br>
 탐색을 위해 추가적인 함수를 정의할 수 있습니다.
+
+기존 메인 코드 탐색을 확인해 보겠습니다.
+```cpp
+void main(void) {
+	iter = list.Begin();
+	while ((*iter) != nullptr) {
+		std::cout << (*iter)->_value << std::endl;
+		++iter;
+	}
+
+	iter = list.Begin();
+	for (int i = 0; i < list.Size(); ++i) {
+		std::cout << (*iter)->_value << std::endl;
+		++iter;
+	}
+}
+```
+두 가지 방식을 사용했습니다.
+
+첫번째는 노드를 검사하여 nullptr이 나올 때까지 이고
+두번째는 size를 확인하여 size만큼 반복문을 돌립니다.
+
+여기에 추가할 탐색은 반복자부터 반복자 까지라는 탐색입니다.
+먼저 반복자에 다음과 같은 함수를 만들어줍니다.
+```cpp
+//Iterator.h
+template<typename _Ty>
+class Iterator final {
+public:
+	bool operator!=(const Iterator<_Ty>& rhs);
+};
+```
+```cpp
+template<typename _Ty>
+bool Iterator<_Ty>::operator!=(const Iterator<_Ty>& rhs) {
+	if (_cur != rhs._cur)
+		return true;
+	return false;
+}
+```
+반복자를 비교하여 반복자가 가리키는 노드가 다르면 true 같으면 false을 보냅니다.
