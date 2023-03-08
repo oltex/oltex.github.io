@@ -232,11 +232,10 @@ void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 push_front와 push_back에서 각각 begin과 end를 사용해 emplace를 호출하고 있습니다.<br>
 의외로 emplace함수는 변경된 사항이 거의 없습니다.<br>
 <br>
-prev와 cur사이에 노드를 추가하는 코드는 그대로입니다.<br>
-이러면 begin일 때는 head의 앞에,<br>
-end일 때는 tail의 앞에지만 tail은 더미노드이니<br>
-맨 마지막에 추가 하는 상황이 됩니다.<br>
-<br>
+prev와 cur사이에 node를 추가하는 코드는 그대로입니다.<br>
+- 이러면 begin일 때는 head의 앞에,
+- end일 때는 tail의 앞에지만 tail은 더미노드이니맨 마지막에 추가 하는 상황이 됩니다.
+
 기존 코드와 똑같지만 tail이 dummy라는것 만으로 리스트의<br>
 맨 앞과 맨 끝에 노드를 추가할 수 있게 되었습니다.
 
