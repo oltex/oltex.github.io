@@ -371,3 +371,24 @@ bool Iterator<_Ty>::operator!=(const Iterator<_Ty>& rhs) {
 }
 ```
 반복자를 비교하여 반복자가 가리키는 노드가 다르면 true 같으면 false을 보냅니다.
+사용 절에서 이를 사용한 반복문을 작성해보겠습니다.
+
+### 크기
+크기 코드는 변한것이 없기 때문에 기존 코드를 남겨두겠습니다.
+```cpp
+//List.h
+template<typename _Ty>
+class List final {
+public:
+	size_t Size(void);
+private:
+	size_t _size = 0;
+};
+```
+```cpp
+//List.cpp
+template<typename _Ty>
+size_t List<_Ty>::Size(void) {
+	return _size;
+}
+```
