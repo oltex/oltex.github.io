@@ -107,7 +107,6 @@ private:
 	Node* _head = nullptr; //이제 노드는 Node*로 저장합니다.
 	Node* _tail = nullptr;
 	Node* _dummy = nullptr;
-	size_t _size = 0;
 };
 ```
 기존 리스트 헤더와 다른점은<br>
@@ -181,7 +180,7 @@ void List<_Ty>::Push_Back(const _Ty& value) {
 template<typename _Ty>
 void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 	Node* cur = (*iter);
-	if (nullptr == cur || _dummy == cur) //더미 노드 검사 코드 추가
+	if (nullptr == cur)
 		return;
 	Node* prev = cur->_prev;
 	Node* node = new ListNode<_Ty>{ value };
@@ -201,7 +200,6 @@ void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 ```
 push_front와 push_back에서 각각 begin과 end를 사용해 emplace를 호출하고 있습니다.<br>
 의외로 emplace함수는 변경된 사항이 거의 없습니다.<br>
-cur가 dummy라면 리턴하는 코드가 추가되었습니다.<br>
 <br>
 prev와 cur사이에 노드를 추가하는 코드는 그대로입니다.<br>
 이러면 begin일 때는 head의 앞에,<br>
