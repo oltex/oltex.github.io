@@ -1,5 +1,5 @@
 ---
-title: "타입 객체"
+title: "타입 객체(Type Object)"
 categories:
   - design pattern
 tags:
