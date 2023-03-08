@@ -289,13 +289,12 @@ Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 }
 ```
 pop_front와 pop_back에서 각각 begin과 end를 사용해 erase를 호출하고 있습니다.<br>
-pop_back에서 End는 더미 노드를 반환하니<br>
-그 이전 노드를 참조하기 위해 증감 연산자를 사용합니다.<br>
+pop_back에서 End는 더미 노드를 반환하니 이전 노드를 참조하기 위해 증감 연산자를 사용합니다.<br>
 <br>
-이제 erase를 살펴보면 cur가 dummy 노드라면
+erase를 살펴보면 cur가 dummy 노드라면
 리턴하는 코드가 추가되었습니다.<br>
 <br>
-그리고 이제 next가 nullptr일 경우는 존재하지 않으니 next의 nullptr검사는 삭제되었습니다.
+그리고 next가 nullptr일 경우는 이제 존재하지 않으니 next의 nullptr검사는 삭제되었습니다.
 
 ---
 ### 반복자
