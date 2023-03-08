@@ -67,18 +67,39 @@ public:
 
 	void Pop_Front(void);
 	void Pop_Back(void);
-public:
+
 	Iterator<_Ty> Begin(void);
 	Iterator<_Ty> End(void);
+  
+	size_t Size(void);
 private:
 	Node* _head = nullptr;
 	Node* _tail = nullptr;
 	Node* _dummy = nullptr;
+	size_t _size = 0;
 };
 ```
 리스트 클래스안에는 가장 앞 노드를 가리킬 head 포인터와<br>
 가장 뒷 노드를 가리킬 tail 포인터가 존재합니다.<br>
-그리고 더미 노드를 판단하기 위한 dummy 포인터가 존재합니다.
+그리고 더미 노드를 판단하기 위한 dummy 포인터가 존재합니다.<br>
+마지막으로 리스트의 크기를 저장할 size 변수가 존재합니다.<br>
+<br>
+나머지 함수 들은 이후에 설명하겠습니다.
+
+---
+### 크기
+배열은 자신이 가지고 있는 크기가 고정적이지만 리스트는 크기가 유동적으로 변합니다.<br>
+이에 리스트의 원소들을 탐색하지 않고 리스트의 사이즈만 알고 싶은 경우가 존재할 것입니다.<br>
+<br>
+이러한 상황에서 매번 리스트를 돌며 갯수를 세는 것은 불필요한 자원 낭비일 것입니다.<br>
+따라서 size라는 변수를 추가하여 크기를 저장할 수 있습니다.
+```cpp
+template<typename _Ty>
+size_t List<_Ty>::Size(void) {
+	return _size;
+}
+```
+이제 삽입/삭제의 함수 끝에 증감 연산자를 사용해줍니다.
 
 ---
 ### 삽입
@@ -87,7 +108,7 @@ private:
 가장 먼저 노드의 삽입을 구현해보겠습니다.<br>
 노드의 삽입은 다음과 같은 경우가 존재합니다.
 1. 객체가 생성될 때 더미 노드를 삽입해야 합니다.
-2. 노드의 머리와 꼬리부분에 삽입할 수 있어야 합니다.
+2. 노드의 머리와 꼬리 부분에 삽입할 수 있어야 합니다.
 3. 노드의 중간 위치에 삽입할 수 있어야 합니다.
 
 먼저 생성자를 구현해보겠습니다. 
@@ -133,8 +154,11 @@ void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
 	++_size;
 }
 ```
-push_front와 push_back에서 각각 begin과 end를 사용해 emplace를 호출하고 있습니다.
+코드 중복을 줄이기 위해 push_front와 push_back에서
+각각 begin과 end를 사용해 emplace를 호출하게 만들었습니다.
+
 begin과 end는 각각 처음 노드와 마지막 노드에 대한 반복자를 호출한다고 생각하면 되겠습니다.
+반복자는 탐색에서 설명하겠습니다.
 
 ---
 ### 삭제
@@ -146,38 +170,40 @@ begin과 end는 각각 처음 노드와 마지막 노드에 대한 반복자를 
 
 노드의 삭제를 위해 pop_front, pop_back, erase 함수 내부를 구현해보겠습니다.
 ```cpp
-//List.cpp
 template<typename _Ty>
 void List<_Ty>::Pop_Front(void) {
-	if (nullptr == _head) //1
-		return;
-
-	Node<_Ty>* next = _head->_next; //2
-	if (nullptr != next) //3
-		next->_prev = nullptr;
-	else //4
-		_tail = nullptr;
-
-	delete _head; //5
-	_head = next; 
+	Erase(Begin());
 }
 
 template<typename _Ty>
 void List<_Ty>::Pop_Back(void) {
-	if (nullptr == _tail)
-		return;
+	Iterator<_Ty> iter = End();
+	--iter;
+	Erase(iter);
+}
 
-	Node<_Ty>* prev = _tail->_prev;
+template<typename _Ty>
+Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
+	Node* cur = (*iter);
+	if (nullptr == cur || _dummy == cur) 
+		return Iterator<_Ty>{ cur };
+
+	Node* prev = cur->_prev;
+	Node* next = cur->_next;
+
 	if (nullptr != prev)
-		prev->_next = nullptr;
+		prev->_next = next;
 	else
-		_head = nullptr;
+		_head = next;
 
-	delete _tail;
-	_tail = prev;
+	next->_prev = prev;
+
+	delete cur;
+	--_size;
+	return Iterator<_Ty>{ next };
 }
 ```
-
+삭제 함수 또한 코드중복을 줄였습니다.<br>
 <br>
 이번에는 리스트 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.<br>
 리스트 클래스의 소멸자를 구현해 보겠습니다.
@@ -213,6 +239,8 @@ public:
 
 	void operator++(void);
 	void operator--(void);
+
+	bool operator!=(const Iterator<_Ty>& rhs);
 private:
 	Node* _cur = nullptr;
 };
@@ -252,7 +280,7 @@ ListNode<_Ty>* Iterator<_Ty>::operator*(void) const {
 이 때 Node 추상 구조체(?)의 구체화를 위해 dynamic_cast를 사용했습니다.<br>
 반복자가 node를 반환할 수 있게 되었습니다.<br>
 <br>
-마지막으로 반복자라는 이름에 걸맞게 노드를 반복 즉 순회할 수 있어야 합니다.<br>
+마지막으로 반복자라는 이름에 걸맞게 노드를 반복 즉 순회할 수 있어야 합니다.
 ```cpp
 template<typename _Ty>
 void Iterator<_Ty>::operator++(void) {
@@ -263,42 +291,20 @@ template<typename _Ty>
 void Iterator<_Ty>::operator--(void) {
 	_cur = _cur->_prev;
 }
-```
-cur의 next 또는 prev를 cur에 대입합니다.<br>
 
----
-여기까지 반복자를 통해서 리스트의 노드를 탐색하는 기능을 완성하였습니다.
-> ## 추가
-
-자료 구조에서 가장 기본이 되는 삽입, 삭제, 탐색에 대해 구현하였습니다.<br>
-여기에서는 몇가지 추가적인 기능들에대해 필요성을 제기하고 구현해보겠습니다.
-
----
-### 크기
-배열은 자신이 가지고 있는 크기가 고정적이지만 리스트는 크기가 유동적으로 변합니다.<br>
-이에 리스트의 원소들을 탐색하지 않고 리스트의 사이즈만 알고 싶은 경우가 존재할 것입니다.<br>
-<br>
-이러한 상황에서 매번 리스트를 돌며 갯수를 세는 것은 불필요한 자원 낭비일 것입니다.<br>
-따라서 size라는 변수를 추가하여 크기를 저장할 수 있습니다.
-```cpp
-//List.h
 template<typename _Ty>
-class List final {
-public:
-	size_t Size(void);
-private:
-	size_t _size = 0;
-};
-```
-```cpp
-//List.cpp
-template<typename _Ty>
-size_t List<_Ty>::Size(void) {
-	return _size;
+bool Iterator<_Ty>::operator!=(const Iterator<_Ty>& rhs) {
+	if (_cur != rhs._cur)
+		return true;
+	return false;
 }
 ```
-이제 기존 push나 pop의 함수 끝에 증감 연산자를 사용해줍니다.<br>
-이 구현은 너무 간단하기 때문에 넘어가겠습니다.
+증감 연산자 오버로드는 cur의 next 또는 prev를 cur에 대입하게 하여 노드를 순회합니다.<br>
+
+비교 연산자의 오버로드는 반복자를 비교하여
+반복자가 가리키는 노드가 다르면 true 같으면 false을 보냅니다.
+
+이 두가지를 사용하여 반복자의 탐색을 구현할 수 있습니다.
 
 ---
 ### 중간 삽입
@@ -394,16 +400,6 @@ head를 next로 설정해 줍니다.<br>
 <br>
 tail 또한 같은 과정을 반복합니다.
 
----
-### 더미 노드
-삽입과 삭제에 대해 보면 삭제에는 head와 tail에 대한 처리가 존재하지만<br>
-삽입에는 head에 대한 처리밖에 존재하지 않습니다.<br>
-이러한 이유는 삽입 함수가 tail을 변경할 수 없는 상황이라서 그렇습니다.<br>
-<br>
-이를 더미 노드를 사용하여 해결해야 하는데 더미 노드의 설명보다,<br>
-이를 구현하는데 드는 기존 코드의 수정이 길기 때문에 때문에 글을 나눠서 설명하겠습니다.
-
----
 > ## 사용
 
 이제 메인 함수에서 이 연결 리스트를 사용해 보겠습니다.
