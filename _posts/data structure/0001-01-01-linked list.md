@@ -450,3 +450,43 @@ tail 또한 같은 과정을 반복합니다.
 <br>
 이를 더미 노드를 사용하여 해결해야 하는데 더미 노드의 설명보다,<br>
 이를 구현하는데 드는 기존 코드의 수정이 길기 때문에 때문에 글을 나눠서 설명하겠습니다.
+
+> ## 사용
+
+이제 메인 함수에서 이 연결 리스트를 사용해 보겠습니다.
+```cpp
+void main(void) {
+	List<int> list;
+
+	list.Push_Back(10);
+	list.Push_Back(20);
+	list.Push_Back(30);
+	list.Push_Back(40);
+	list.Push_Back(50);
+
+	list.Pop_Back();
+	list.Pop_Front();
+
+	Iterator<int> iter = list.Begin();
+
+	iter = list.Begin();
+	while ((*iter) != nullptr) {
+		std::cout << (*iter)->_value << std::endl;
+		++iter;
+	}
+
+	iter = list.Begin();
+	++iter;
+	++iter;
+	list.Emplace(iter, 1000);
+	list.Erase(iter);
+
+	iter = list.Begin();
+	for (int i = 0; i < list.Size(); ++i) {
+		std::cout << (*iter)->_value << std::endl;
+		++iter;
+	}
+
+	list.~List();
+}
+```
