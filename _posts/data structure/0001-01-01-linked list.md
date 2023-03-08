@@ -406,8 +406,7 @@ Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 또한 prev가 nullptr이라는 것은 cur가 head였다는 뜻이 되니<br>
 head를 next로 설정해 줍니다.<br>
 tail 또한 같은 과정을 반복합니다.
-> ## 더미 노드
-
+### 더미 노드
 삽입과 삭제에 대해 보면 삭제에는 head와 tail에 대한 처리가 존재하지만<br>
 삽입에는 존재하지 않습니다.<br>
 이러한 이유는 삽입 함수가 미완성된 함수라서 잠시 제외해 두었기 때문입니다.<br>
