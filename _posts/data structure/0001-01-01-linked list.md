@@ -113,7 +113,7 @@ void List<_Ty>::Push_Front(const _Ty& value) {
 	_head = node; //4
 }
 
-template<typename T>
+template<typename _Ty>
 void List<_Ty>::Push_Back(const _Ty& value) {
 	Node<_Ty>* node = new Node<_Ty>{ value };
 	if (nullptr == _tail)
@@ -160,14 +160,14 @@ void List<_Ty>::Pop_Front(void) {
 	if (nullptr == _head) //1
 		return;
 
-	Node<_Ty>* node = _head->_next; //2
-	if (nullptr != node) //3
-		node->_prev = nullptr;
+	Node<_Ty>* next = _head->_next; //2
+	if (nullptr != next) //3
+		next->_prev = nullptr;
 	else //4
 		_tail = nullptr;
 
 	delete _head; //5
-	_head = node; 
+	_head = next; 
 }
 
 template<typename _Ty>
@@ -175,14 +175,14 @@ void List<_Ty>::Pop_Back(void) {
 	if (nullptr == _tail)
 		return;
 
-	Node<_Ty>* node = _tail->_prev;
-	if (nullptr != node)
-		node->_next = nullptr;
+	Node<_Ty>* prev = _tail->_prev;
+	if (nullptr != prev)
+		prev->_next = nullptr;
 	else
 		_head = nullptr;
 
 	delete _tail;
-	_tail = node;
+	_tail = prev;
 }
 ```
 pop_front함수는 리스트의 가장 뒷 부분을 즉, head를 제거하는 함수입니다.<br>
