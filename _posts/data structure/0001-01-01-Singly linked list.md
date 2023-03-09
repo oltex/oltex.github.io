@@ -181,6 +181,135 @@ Iterator<_Ty> List<_Ty>::Erase(const Iterator& iter) {
 
 3.
 마지막으로 소멸자 입니다.
+소멸자 또한 코드를 재사용 하여 pop_front함수를 반복해서 호출합니다.
 ```cpp
+template<typename _Ty>
+List<_Ty>::~List(void) {
+	while (nullptr != _head->_next)
+		Pop_Front();
+	delete _head;
+}
 ```
 소멸시 head는 더미 노드이고 head의 다음 노드가 존재하지 않을 때까지 반복문을 돌립니다.
+이후 더미 노드인 head를 소멸시킵니다.
+
+### 탐색
+이제 단순 연결 리스트 자료 구조를 구현했으면
+탐색을 할 수 있게 만들어야 합니다.
+
+이를 위해 반복자 패턴을 사용하였습니다.
+반복자 패턴의 클래스인 Iterator 클래스를 구현하겠습니다.
+```cpp
+template<typename _Ty>
+class Iterator final {
+public:
+	explicit Iterator(void);
+	explicit Iterator(Node* prev, Node* cur);
+public:
+	ListNode<_Ty>* operator*(void) const;
+	void operator++(void);
+public:
+	Node* Prev(void) const;
+private:
+	Node* _prev = nullptr;
+	Node* _cur = nullptr;
+};
+```
+반복자 클래스의 구체적인 함수는 이후 설명과 함께 구현하겠습니다.
+반복자 클래스의 맴버 변수로 노드를 참조할 prev와 cur가 존재합니다.
+
+prev 노드를 참조하는 이유는
+단순 연결 리스트라도 중간 노드의 삭제를 위해서는
+어쩔 수 없이 이전 노드가 필요하기 때문입니다.
+
+이제 반복자 클래스의 내부를 구현해야 합니다.
+
+생성자.
+먼저 반복자 클래스의 생성자 입니다.
+노드를 아예 받지 않는 기본 생성자와 prev와 cur 노드를 받는 생성자가 존재합니다.
+```cpp
+template<typename _Ty>
+Iterator<_Ty>::Iterator(void) {
+}
+
+template<typename _Ty>
+Iterator<_Ty>::Iterator(Node* prev, Node* cur) :
+	_prev(prev), _cur(cur) {
+}
+```
+이러한 생성자를 호출하기 위해
+매번 리스트와 연동을 시켜주는 작업은 실수가 우려되기 때문에
+리스트 클래스 내에 반복자의 팩토리 메서드를 구현하겠습니다.
+```cpp
+template<typename _Ty>
+Iterator<_Ty> List<_Ty>::Begin(void) {
+	return Iterator{ _head, _head->_next };
+}
+```
+begin 함수는 반복자의 팩토리 메서드 입니다.
+자신의 head = prev로 head_next = cur로 설정합니다.
+
+참조.
+이제 반복자를 만들었으면 노드를 참조할 수 있어야 합니다.
+이를 위해 연산자 오버로딩을 사용하여 반환 함수를 구현합니다.
+```cpp
+template<typename _Ty>
+ListNode<_Ty>* Iterator<_Ty>::operator*(void) const {
+	return static_cast<ListNode<_Ty>*>(_cur);
+}
+
+template<typename _Ty>
+Node* Iterator<_Ty>::Prev(void) const {
+	return _prev;
+}
+```
+cur노드를 반환 하는 함수입니다.
+노드를 구체화 시키기 위해 static_cast를 사용하였습니다.
+
+추가로 이전 노드를 받아올 수 있는 함수가 존재해야 합니다.
+따라서 Prev함수를 구현하였습니다.
+
+증감.
+노드를 참조할 수 있게 되었으니 노드를 반복해야 합니다.
+이를 위해 증감 연산자를 오버로드하여 함수를 구현합니다.
+```cpp
+template<typename _Ty>
+void Iterator<_Ty>::operator++(void) {
+	_prev = _cur;
+	_cur = _cur->_next;
+}
+```
+함수가 호출 되면 cur노드를 다음 노드로 이전합니다.
+그 이전에 cur노드를 이전 노드에 저장하는 작업을 합니다.
+
+> ## 사용
+
+구현한 단순 연결 리스트를 사용해 보겠습니다.
+```cpp
+void main(void) {
+	List<int> list;
+	List<int>::Iterator iter;
+
+	list.Push_Front(50);
+	list.Push_Front(40);
+	list.Push_Front(30);
+	list.Push_Front(20);
+	list.Push_Front(10);
+
+	list.Pop_Front();
+	list.Pop_Front();
+
+	iter = list.Begin();
+	++iter;
+	iter = list.Emplace(iter, 1000);
+	iter = list.Erase(iter);
+
+	iter = list.Begin();
+	while (nullptr != (*iter)) {
+		std::cout << (*iter)->_value << std::endl;
+		++iter;
+	}
+
+	std::forward_list<int> t;
+}
+```
