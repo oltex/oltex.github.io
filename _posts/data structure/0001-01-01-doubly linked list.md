@@ -55,9 +55,10 @@ ListNode노드를 사용하여 더미 노드로 사용하려 한다면<br>
 그다음 노드 구조체를 관리하는 List 클래스를 구현해보겠습니다.<br>
 List 클래스는 다양한 타입을 받기 위해 템플릿을 사용하였습니다.
 ```cpp
-//List.h
 template<typename _Ty>
 class List final {
+public:
+	using Iterator = Iterator<_Ty>;
 public:
 	explicit List(void);
 	~List(void);
@@ -68,9 +69,12 @@ public:
 	void Pop_Front(void);
 	void Pop_Back(void);
 
-	Iterator<_Ty> Begin(void);
-	Iterator<_Ty> End(void);
-  
+	void Emplace(const Iterator& iter, const _Ty& value);
+	Iterator Erase(const Iterator& iter);
+
+	Iterator Begin(void);
+	Iterator End(void);
+
 	size_t Size(void);
 private:
 	Node* _head = nullptr;
@@ -143,7 +147,7 @@ begin과 end는 각각 처음 노드와 마지막 노드에 대한 반복자를 
 이를 위해 emplace 함수를 구현해 보겠습니다.
 ```cpp
 template<typename _Ty>
-void List<_Ty>::Emplace(const Iterator<_Ty>& iter, const _Ty& value) {
+void List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
 	Node* cur = (*iter);
 	if (nullptr == cur)
 		return;
@@ -196,7 +200,7 @@ void List<_Ty>::Pop_Front(void) {
 
 template<typename _Ty>
 void List<_Ty>::Pop_Back(void) {
-	Iterator<_Ty> iter = End();
+	Iterator iter = End();
 	--iter;
 	Erase(iter);
 }
@@ -205,10 +209,10 @@ void List<_Ty>::Pop_Back(void) {
 대신 pop_back에서 End는 더미 노드를 반환하니 이전 노드를 참조하기 위해 증감 연산자를 사용합니다.
 ```cpp
 template<typename _Ty>
-Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
+Iterator<_Ty> List<_Ty>::Erase(const Iterator& iter) {
 	Node* cur = (*iter);
-	if (nullptr == cur || _dummy == cur) 
-		return Iterator<_Ty>{ cur };
+	if (nullptr == cur || _dummy == cur)
+		return Iterator{ cur };
 
 	Node* prev = cur->_prev;
 	Node* next = cur->_next;
@@ -222,7 +226,7 @@ Iterator<_Ty> List<_Ty>::Erase(const Iterator<_Ty>& iter) {
 
 	delete cur;
 	--_size;
-	return Iterator<_Ty>{ next };
+	return Iterator{ next };
 }
 ```
 삭제 함수에서는 반복자가 가리키는 노드 cur를 삭제합니다.<br>
@@ -237,7 +241,6 @@ erase를 살펴보면 cur가 dummy 노드라면 리턴하는 코드가 존재합
 리스트 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.<br>
 리스트 클래스의 소멸자를 구현해 보겠습니다.
 ```cpp
-//List.cpp
 template<typename _Ty>
 List<_Ty>::~List(void) {
 	while (nullptr != _head)
@@ -268,7 +271,6 @@ public:
 
 	void operator++(void);
 	void operator--(void);
-
 	bool operator!=(const Iterator<_Ty>& rhs);
 private:
 	Node* _cur = nullptr;
@@ -278,7 +280,7 @@ private:
 이 노드 맴버 변수는 리스트의 head 또는 tail을 받게됩니다.<br>
 ```cpp
 template<typename _Ty>
-Iterator<_Ty>::Iterator(Node<_Ty>* cur) :
+Iterator<_Ty>::Iterator(Node* cur) :
 	_cur(cur) {
 }
 ```
@@ -287,12 +289,12 @@ Iterator<_Ty>::Iterator(Node<_Ty>* cur) :
 ```cpp
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Begin(void) {
-	return Iterator<_Ty>{ _head };
+	return Iterator{ _head };
 }
 
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::End(void) {
-	return Iterator<_Ty>{ _tail };
+	return Iterator{ _tail };
 }
 ```
 begin 함수는 리스트 클래스에 있는 반복자 팩토리 메서드 입니다.<br>
@@ -306,14 +308,14 @@ ListNode<_Ty>* Iterator<_Ty>::operator*(void) const {
 }
 ```
 반복자의 cur가 가리키는 node를 반환합니다.<br>
-이 때 Node 추상 구조체(?)의 구체화를 위해 dynamic_cast를 사용했습니다.<br>
+이 때 Node 추상 구조체(?)의 구체화를 위해 static_cast를 사용했습니다.<br>
 반복자가 node를 반환할 수 있게 되었습니다.<br>
 <br>
 마지막으로 반복자라는 이름에 걸맞게 노드를 반복 즉 순회할 수 있어야 합니다.
 ```cpp
 template<typename _Ty>
 void Iterator<_Ty>::operator++(void) {
- 	_cur = _cur->_next;
+	_cur = _cur->_next;
 }
 
 template<typename _Ty>
@@ -323,9 +325,7 @@ void Iterator<_Ty>::operator--(void) {
 
 template<typename _Ty>
 bool Iterator<_Ty>::operator!=(const Iterator<_Ty>& rhs) {
-	if (_cur != rhs._cur)
-		return true;
-	return false;
+	return _cur != rhs._cur;
 }
 ```
 증감 연산자 오버로드는 cur의 next 또는 prev를 cur에 대입하게 하여 노드를 순회합니다.<br>
