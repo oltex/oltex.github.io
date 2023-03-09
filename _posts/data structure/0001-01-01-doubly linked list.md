@@ -353,7 +353,7 @@ void main(void) {
 	list.Pop_Back();
 	list.Pop_Front();
 
-	Iterator<int> iter = list.Begin();
+	List<int>::Iterator iter = list.Begin();
 
 	iter = list.Begin();
 	for (int i = 0; i < list.Size(); ++i) {
@@ -361,16 +361,15 @@ void main(void) {
 		++iter;
 	}
 
+	iter = list.Begin();
 	++iter;
 	++iter;
 	list.Emplace(iter, 1000);
 	list.Erase(iter);
 
-	for (Iterator<int> iter = list.Begin(); iter != list.End(); ++iter) {
+	for (Iterator<int> iter = list.Begin(); iter != list.End(); ++iter)
 		std::cout << (*iter)->_value << std::endl;
-	}
 
 	list.~List();
 };
-
 ```
