@@ -243,12 +243,13 @@ erase를 살펴보면 cur가 dummy 노드라면 리턴하는 코드가 존재합
 ```cpp
 template<typename _Ty>
 List<_Ty>::~List(void) {
-	while (nullptr != _head)
+	while (_dummy != _head)
 		Pop_Front();
+	delete _dummy;
 }
 ```
 간단한 코드입니다. 기존 pop_front를 이용하여<br>
-head가 nullptr이 될때까지 모든 노드를 삭제합니다.
+head가 dummy가 될때까지 모든 노드를 삭제합니다. 이후 dummy를 삭제합니다.
 
 ---
 ### 탐색
@@ -265,6 +266,7 @@ list하나만을 이야기하기 때문에 구체 클래스로 제작하겠습�
 template<typename _Ty>
 class Iterator final {
 public:
+	explicit Iterator(void);
 	explicit Iterator(Node* cur);
 public:
 	ListNode<_Ty>* operator*(void) const;
@@ -276,9 +278,14 @@ private:
 	Node* _cur = nullptr;
 };
 ```
-반복자 클래스의 생성자는 본인이 탐색을 시작할 노드를 받아 맴버 변수로 저장합니다.<br>
-이 노드 맴버 변수는 리스트의 head 또는 tail을 받게됩니다.<br>
+반복자 클래스의 생성자는 기본 생성자와,<br>
+탐색을 시작할 노드를 받는 생성자가 존재합니다.<br>
+노드로는 리스트의 head 또는 tail을 받게됩니다.<br>
 ```cpp
+template<typename _Ty>
+Iterator<_Ty>::Iterator(void) {
+}
+
 template<typename _Ty>
 Iterator<_Ty>::Iterator(Node* cur) :
 	_cur(cur) {
@@ -342,34 +349,36 @@ bool Iterator<_Ty>::operator!=(const Iterator<_Ty>& rhs) {
 이제 구현한 이중 연결 리스트를 메인 함수에서 사용해 보겠습니다.
 ```cpp
 void main(void) {
-	List<int> list;
+	List<int> list; //리스트를 생성합니다.
+	List<int>::Iterator iter; //리스트의 반복자를 생성합니다.
 
-	list.Push_Back(10);
-	list.Push_Back(20);
-	list.Push_Back(30);
-	list.Push_Back(40);
+	list.Push_Front(30); //리스트에 삽입 연산을 합니다.
+	list.Push_Back(40); //결과: 10, 20, 30, 40, 50
+	list.Push_Front(20);
 	list.Push_Back(50);
+	list.Push_Front(10);
 
-	list.Pop_Back();
-	list.Pop_Front();
+	list.Pop_Front(); //리스트의 앞과 뒤 노드를 제거합니다.
+	list.Pop_Back(); //결과: 20, 30, 40
 
-	List<int>::Iterator iter = list.Begin();
 
-	iter = list.Begin();
-	for (int i = 0; i < list.Size(); ++i) {
+	iter = list.Begin(); //반복자에 첫번째 노드를 선택합니다.
+	for (int i = 0; i < list.Size(); ++i) { //반복자를 사용하여 size만큼 탐색하는 방법입니다.
 		std::cout << (*iter)->_value << std::endl;
 		++iter;
 	}
 
 	iter = list.Begin();
+	++iter; //반복자의 증감연산자
 	++iter;
-	++iter;
-	list.Emplace(iter, 1000);
-	list.Erase(iter);
+	--iter;
+	list.Emplace(iter, 1000); //반복자를 사용하여 리스트에 삽입합니다.
+	list.Erase(iter); //반복자를 사용하여 리스트를 삭제합니다.
 
-	for (Iterator<int> iter = list.Begin(); iter != list.End(); ++iter)
+	for (iter = list.Begin(); iter != list.End(); ++iter) //비교 연산자를 사용하여 탐색하는 방법입니다.
 		std::cout << (*iter)->_value << std::endl;
 
-	list.~List();
+	for (iter = list.Begin(); iter != list.End();)
+		iter = list.Erase(iter);
 };
 ```
