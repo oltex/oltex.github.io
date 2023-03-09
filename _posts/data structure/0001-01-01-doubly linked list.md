@@ -112,6 +112,7 @@ size_t List<_Ty>::Size(void) {
 2. 노드의 머리와 꼬리 부분에 삽입할 수 있어야 합니다.
 3. 노드의 중간 위치에 삽입할 수 있어야 합니다.
 
+1.<br>
 먼저 생성자를 구현해보겠습니다. 
 ```cpp
 template<typename _Ty>
@@ -121,6 +122,7 @@ List<_Ty>::List(void) {
 ```
 생성자에서 할당된 더미 노드를 3가지 포인터에 전부 넣어줍니다.<br>
 <br>
+2.<br>
 다음은 노드의 삽입을 구현해야 합니다.<br>
 이를 위해 push_front와 push_back 내부를 구현해보겠습니다.
 ```cpp
@@ -140,8 +142,9 @@ void List<_Ty>::Push_Back(const _Ty& value) {
 begin과 end는 각각 처음 노드와 마지막 노드에 대한 반복자를 호출한다고 생각하면 되겠습니다.<br>
 반복자는 탐색에서 설명하겠습니다.<br>
 <br>
+3.<br>
 리스트를 사용하다 보면 중간에 있는 값을 삽입하고 싶은 경우가 존재합니다.<br>
-이를 위해 emplace 함수를 구현해 보겠습니다.
+이를 위해 emplace 함수를 구현해 보겠습니다. emplace함수는 삽입할 위치의 반복자와 값을 받습니다. 
 ```cpp
 template<typename _Ty>
 void List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
@@ -188,7 +191,8 @@ tail이 dummy라는것 만으로<br>
 2. 노드의 중간 부분을 삭제할 수 있어야 합니다.
 3. 클래스를 삭제할 때는 모든 노드를 삭제하여야 합니다.
 
-노드의 삭제를 위해 pop_front, pop_back, erase 함수 내부를 구현해보겠습니다.
+1.<br>
+노드의 삭제를 위해 pop_front, pop_back 함수 내부를 구현해보겠습니다.
 ```cpp
 template<typename _Ty>
 void List<_Ty>::Pop_Front(void) {
@@ -203,7 +207,11 @@ void List<_Ty>::Pop_Back(void) {
 }
 ```
 마찬가지로 삭제 함수 또한 코드중복을 줄였습니다.<br>
-대신 pop_back에서 End는 더미 노드를 반환하니 이전 노드를 참조하기 위해 증감 연산자를 사용합니다.
+대신 pop_back에서 End는 더미 노드를 반환하니 이전 노드를 참조하기 위해 증감 연산자를 사용합니다.<br>
+<br>
+2.<br>
+다음은 중간 노드의 삭제 함수를 구현해야 합니다.<br>
+중간 삭제 함수의 이름은 erase입니다. 매개 변수로 삭제할 위치의 반복자를 받습니다.
 ```cpp
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Erase(const Iterator& iter) {
@@ -235,7 +243,8 @@ head를 next로 설정해 줍니다.<br>
 erase를 살펴보면 cur가 dummy 노드라면 리턴하는 코드가 존재합니다.<br>
 따라서 tail이 들어오는 경우는 없으니 next는 무조껀 존재합니다.<br>
 <br>
-리스트 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.<br>
+3.<br>
+마지막으로 리스트 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.<br>
 리스트 클래스의 소멸자를 구현해 보겠습니다.
 ```cpp
 template<typename _Ty>
@@ -275,6 +284,9 @@ private:
 	Node* _cur = nullptr;
 };
 ```
+반복자는 참조할 노드의 포인터인 cur 맴버 변수를 가지고 있습니다.<br>
+<br>
+생성자.<br>
 반복자 클래스의 생성자는 기본 생성자와,<br>
 탐색을 시작할 노드를 받는 생성자가 존재합니다.<br>
 노드로는 리스트의 head 또는 tail을 받게됩니다.<br>
@@ -304,6 +316,7 @@ Iterator<_Ty> List<_Ty>::End(void) {
 begin 함수는 리스트 클래스에 있는 반복자 팩토리 메서드 입니다.<br>
 자신의 head를 반복자의 생성자에 넘겨주어 반복자를 생성하고 이를 반환합니다.<br>
 <br>
+참조.<br>
 이제 반복자가 생성되었으니 반복자를 통해 node를 받아올 수 있게 만들어야 합니다.
 ```cpp
 template<typename _Ty>
@@ -315,7 +328,8 @@ ListNode<_Ty>* Iterator<_Ty>::operator*(void) const {
 이 때 Node 추상 구조체(?)의 구체화를 위해 static_cast를 사용했습니다.<br>
 반복자가 node를 반환할 수 있게 되었습니다.<br>
 <br>
-마지막으로 반복자라는 이름에 걸맞게 노드를 반복 즉 순회할 수 있어야 합니다.
+증감.<br>
+마지막으로 반복자라는 이름에 걸맞게 노드를 탐색 또는 순회할 수 있어야 합니다.
 ```cpp
 template<typename _Ty>
 void Iterator<_Ty>::operator++(void) {
