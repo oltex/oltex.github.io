@@ -293,7 +293,5 @@ void main(void) {
 		std::cout << (*iter)->_value << std::endl;
 		++iter;
 	}
-
-	std::forward_list<int> t;
 }
 ```
