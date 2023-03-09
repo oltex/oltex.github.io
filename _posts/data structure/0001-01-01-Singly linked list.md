@@ -134,7 +134,7 @@ Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
 
 여기도 마찬가지로 2번째 과정은 구현하지 않아도 됩니다.<br>
 STL 단순 연결 리스트인 forward_list는 이를 지원합니다.
-### 머리 삭제
+#### 머리 삭제
 가장 앞 노드를 삭제하는 함수의 이름은 pop_front입니다.
 ```cpp
 template<typename _Ty>
