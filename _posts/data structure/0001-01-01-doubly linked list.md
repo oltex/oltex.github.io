@@ -76,13 +76,11 @@ public:
 private:
 	Node* _head = nullptr;
 	Node* _tail = nullptr;
-	Node* _dummy = nullptr;
 	size_t _size = 0;
 };
 ```
 리스트 클래스안에는 가장 앞 노드를 가리킬 head 포인터와<br>
 가장 뒷 노드를 가리킬 tail 포인터가 존재합니다.<br>
-그리고 더미 노드를 판단하기 위한 dummy 포인터가 존재합니다.<br>
 마지막으로 리스트의 크기를 저장할 size 변수가 존재합니다.<br>
 <br>
 나머지 함수 들은 이후에 설명하겠습니다.
@@ -117,10 +115,10 @@ size_t List<_Ty>::Size(void) {
 ```cpp
 template<typename _Ty>
 List<_Ty>::List(void) {
-	_head = _tail = _dummy = new DummyNode;
+	_head = _tail = new DummyNode;
 }
 ```
-생성자에서 할당된 더미 노드를 3가지 포인터에 전부 넣어줍니다.
+생성자에서 할당된 더미 노드를 2가지 포인터에 전부 넣어줍니다.
 #### 머리와 꼬리 삽입
 다음은 노드의 처음과 끝의 삽입을 구현해야 합니다.<br>
 이를 위해 push_front와 push_back 내부를 구현해보겠습니다.
@@ -178,7 +176,7 @@ iter가 가리키는 cur노드와 이전 prev노드 사이에 새로운 node를 
 - begin일 때는 head의 앞에 추가하여 가장 앞에 노드를 추가합니다.
 - end일 때는 tail의 앞에 추가하지만 tail은 더미 노드이니맨 마지막에 추가 하는 상황이 됩니다.
 
-tail이 dummy라는것 만으로<br>
+tail이 더미 노드라는것 만으로<br>
 하나의 함수로 리스트의 맨 앞과 맨 끝 양쪽에 노드를 추가하는 기능을 만들 수 있습니다.
 
 ---
@@ -213,7 +211,7 @@ void List<_Ty>::Pop_Back(void) {
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Erase(const Iterator& iter) {
 	Node* cur = (*iter);
-	if (nullptr == cur || _dummy == cur)
+	if (nullptr == cur || _tail == cur)
 		return Iterator{ cur };
 
 	Node* prev = cur->_prev;
@@ -237,7 +235,7 @@ Iterator<_Ty> List<_Ty>::Erase(const Iterator& iter) {
 만약 prev가 nullptr이라는 것은 cur가 head였다는 뜻이 되니<br>
 head를 next로 설정해 줍니다.<br>
 <br>
-erase를 살펴보면 cur가 dummy 노드라면 리턴하는 코드가 존재합니다.<br>
+erase를 살펴보면 cur가 tail 노드라면 리턴하는 코드가 존재합니다.<br>
 따라서 tail이 들어오는 경우는 없으니 next는 무조껀 존재합니다.
 #### 소멸자
 마지막으로 리스트 클래스가 소멸할 때 노드를 같이 해제시켜줘야 합니다.<br>
@@ -245,13 +243,13 @@ erase를 살펴보면 cur가 dummy 노드라면 리턴하는 코드가 존재합
 ```cpp
 template<typename _Ty>
 List<_Ty>::~List(void) {
-	while (_dummy != _head)
+	while (_tail != _head)
 		Pop_Front();
-	delete _dummy;
+	delete _tail;
 }
 ```
 간단한 코드입니다. 기존 pop_front를 이용하여<br>
-head가 dummy가 될때까지 모든 노드를 삭제합니다. 이후 dummy를 삭제합니다.
+head가 tail이 될때까지 모든 노드를 삭제합니다. 이후 tail를 삭제합니다.
 
 ---
 ### 탐색
