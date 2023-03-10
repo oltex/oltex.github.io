@@ -66,7 +66,7 @@ public:
 	void Pop_Front(void);
 	void Pop_Back(void);
 
-	void Emplace(const Iterator& iter, const _Ty& value);
+	Iterator Emplace(const Iterator& iter, const _Ty& value);
 	Iterator Erase(const Iterator& iter);
 
 	Iterator Begin(void);
@@ -140,13 +140,18 @@ begin과 end는 각각 처음 노드와 마지막 노드에 대한 반복자를 
 반복자는 탐색에서 설명하겠습니다.
 #### 중간 삽입
 리스트를 사용하다 보면 중간에 있는 값을 삽입하고 싶은 경우가 존재합니다.<br>
-이를 위해 emplace 함수를 구현해 보겠습니다. emplace함수는 삽입할 위치의 반복자와 값을 받습니다. 
+이를 위해 emplace 함수를 구현해 보겠습니다. emplace함수는 삽입할 위치의 반복자와 값을 받습니다.<br>
+<br>
+참고: 중간이라는 지점에 접근하기 위해서는 반복자를 사용해야 합니다.<br>
+허나 반복자 내에서 삭제가 이뤄지면 미리 만들어둔 size에 영향이 갑니다.<br>
+게다가 삽입과 삭제를 담당해야 하는 것은 리스트 클래스 입니다.<br>
+따라서 반복자를 매개변수로 받는 리스트 맴버 함수를 제작해야합니다.
 ```cpp
 template<typename _Ty>
-void List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
+Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
 	Node* cur = (*iter);
 	if (nullptr == cur)
-		return;
+		return Iterator{};
 	Node* prev = cur->_prev;
 	Node* node = new ListNode<_Ty>{ value };
 
@@ -161,14 +166,9 @@ void List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
 	cur->_prev = node;
 
 	++_size;
+	return Iterator{ node };
 }
 ```
-중간이라는 지점에 접근하기 위해서는 반복자를 사용해야 합니다.<br>
-허나 반복자 내에서 삭제가 이뤄지면 미리 만들어둔 size에 영향이 갑니다.<br>
-게다가 삽입과 삭제를 담당해야 하는 것은 리스트 클래스 입니다.<br>
-<br>
-따라서 반복자를 매개변수로 받는 리스트 맴버함수를 제작해야합니다.<br>
-<br>
 iter가 가리키는 cur노드와 이전 prev노드 사이에 새로운 node를 끼워넣습니다.<br>
 이를 수행하기 위해 각 연결고리를 수정해주고 있습니다.<br>
 
@@ -177,7 +177,9 @@ iter가 가리키는 cur노드와 이전 prev노드 사이에 새로운 node를 
 - end일 때는 tail의 앞에 추가하지만 tail은 더미 노드이니맨 마지막에 추가 하는 상황이 됩니다.
 
 tail이 더미 노드라는것 만으로<br>
-하나의 함수로 리스트의 맨 앞과 맨 끝 양쪽에 노드를 추가하는 기능을 만들 수 있습니다.
+하나의 함수로 리스트의 맨 앞과 맨 끝 양쪽에 노드를 추가하는 기능을 만들 수 있습니다.<br>
+<br>
+마지막으로 삽입한 노드를 참조하는 반복자를 반환하고 있습니다.
 
 ---
 ### 삭제
