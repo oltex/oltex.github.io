@@ -117,14 +117,14 @@ Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
 
 	++_size;
 
-	return Iterator{ node, cur };
+	return Iterator{ prev, node };
 }
 ```
 함수의 삽입을 위해서 어쩔 수 없이 이전 노드인 prev와 cur을 받습니다.<br>
 그리고 이 사이에 node를 끼워 넣습니다.<br>
 <br>
 이 과정에서 사용된 반복자는 손상되기 때문에<br>
-모든 작업이 끝나면 node와 cur를 참조하는 반복자를 반환하게 만들었습니다.
+모든 작업이 끝나면 prev와 node를 참조하는 반복자를 반환하게 만들었습니다.
 ### 삭제
 다음은 삭제 함수를 작성해야합니다.<br>
 단 연결 리스트의 삭제에는 다음과 같은 경우가 존재합니다.
