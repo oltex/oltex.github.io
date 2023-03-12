@@ -1,5 +1,5 @@
 ---
-title: "원형 연결 리스트(Circular Linked List)"
+title: "이진 트리(Binary Tree)"
 categories:
   - data structure
 tags:
@@ -39,4 +39,4 @@ LCRS(left-child, right-sibling)방식을 통해 모든 트리를 이진 트리 �
 > ## 구현
 
 이진트리를 구현해 보겠습니다.
-이진 트리는 재귀적인 특성을 지니고 있기 때문에 일부 연산이 재귀호출의 형태를 띕니다.
+이진 트리는 재귀적인 특성을 지니고 있기 때문에 일부 연산이 재귀 호출의 형태를 띕니다.
