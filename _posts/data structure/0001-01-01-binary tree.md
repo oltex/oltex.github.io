@@ -84,53 +84,48 @@ struct Node final {
 노드 구조체입니다.<br>
 노드에는 저장할 자료를 담을 data변수와<br>
 자신의 자식 노드를 참조할 left, right 포인터가 존재합니다.
-
 ### 트리 클래스
 ```cpp
 template<typename _Ty>
 class Tree final {
 public:
-	enum class TRAVERSAL : unsigned char {
+	enum class Traversal : unsigned char {
 		PREORDER, INORDER, POSTORDER
 	};
+	using Iterator = Iterator<_Ty>;
 public:
-	Tree(const TRAVERSAL& _traversal, Node<_Ty>* root);
+	Tree(Node<_Ty>* root);
 	~Tree(void);
 public:
-	void Print(void);
+	Iterator* Begin(const Traversal& traversal);
 protected:
 	void Delete(const Node<_Ty>* node);
 private:
-	Traversal<_Ty>* _traversal = nullptr;
 	Node<_Ty>* _root = nullptr;
 };
 ```
 ```cpp
 template<typename _Ty>
-Tree<_Ty>::Tree(const TRAVERSAL& traversal, Node<_Ty>* root) :
+Tree<_Ty>::Tree(Node<_Ty>* root) :
 	_root(root) {
-	switch (traversal) {
-	case TRAVERSAL::PREORDER:
-		_traversal = new Preorder<_Ty>;
-		break;
-	case TRAVERSAL::INORDER:
-		_traversal = new Inorder<_Ty>;
-		break;
-	case TRAVERSAL::POSTORDER:
-		_traversal = new Postorder<_Ty>;
-		break;
-	}
 }
 
 template<typename _Ty>
 Tree<_Ty>::~Tree(void) {
 	Delete(_root);
-	delete _traversal;
 }
 
 template<typename _Ty>
-void Tree<_Ty>::Print(void) {
-	_traversal->Print(_root);
+Iterator<_Ty>* Tree<_Ty>::Begin(const Traversal& traversal) {
+	switch (traversal) {
+	case Traversal::PREORDER:
+		return new Preorder<_Ty>{ _root };
+	case Traversal::INORDER:
+		return new Inorder<_Ty>{ _root };
+	case Traversal::POSTORDER:
+		return new Postorder<_Ty>{ _root };
+	}
+	return nullptr;
 }
 
 template<typename _Ty>
@@ -145,42 +140,66 @@ void Tree<_Ty>::Delete(const Node<_Ty>* node) {
 트리 클래스 입니다.<br>
 트리에는 루트 노드를 저장할 root 포인터가 존재합니다.<br>
 <br>
-트리의 순회를 방법을 결정하기 위해 전략(strategy) 패턴을 사용하였습니다.<br>
-traversal는 전략 패턴의 인터페이스로<br>
-생성자에서 enum TRAVERSAL의 PREORDER, INORDER, POSTORDER 값에 따라<br>
-traversal 변수는 Preorder, Inorder, Postorder 중 하나의 구체 클래스를 갖게 됩니다.<br>
+트리의 순회를 방법을 결정하기 위해 반복자(iterator) 패턴을 사용하였습니다.<br>
+begin에서 enum TRAVERSAL의 PREORDER, INORDER, POSTORDER 값에 따라<br>
+iterator반환은 Preorder, Inorder, Postorder 중 하나의 구체 클래스를 갖게 됩니다.<br>
 <br>
-트리에는 두가지 함수가 존재합니다.<br>
-트리를 순회하면서 출력하는 Print함수는 traversal의 Print함수를 호출합니다.<br>
-트리를 순회하면서 삭제하는 Delete함수는 소멸자에서 호출됩니다.
-
-### 순회 클래스
+트리의 소멸자에 사용되는 delete함수가 존재합니다.<br>
+재귀 함수를 사용하여 후위 순회하면서 삭제하는 함수입니다.
+### 반복자 클래스
 ```cpp
 template<typename _Ty>
-class Traversal abstract {
+class Iterator abstract {
 public:
+	Iterator(Node<_Ty>* node);
+public:
+	void Print(void);
+protected:
 	virtual void Print(const Node<_Ty>* node) = 0;
+protected:
+	Node<_Ty>* _node;
 };
 
 template<typename _Ty>
-class Preorder final : public Traversal<_Ty> { //전위 순회
+class Preorder final : public Iterator<_Ty> {
 public:
+	Preorder(Node<_Ty>* node);
+protected:
 	virtual void Print(const Node<_Ty>* node) override;
 };
 
 template<typename _Ty>
-class Inorder final : public Traversal<_Ty> { //중위 순회
+class Inorder final : public Iterator<_Ty> {
 public:
+	Inorder(Node<_Ty>* node);
+protected:
 	virtual void Print(const Node<_Ty>* node) override;
 };
 
 template<typename _Ty>
-class Postorder final : public Traversal<_Ty> { //후위 순회
+class Postorder final : public Iterator<_Ty> {
 public:
+	Postorder(Node<_Ty>* node);
+protected:
 	virtual void Print(const Node<_Ty>* node) override;
 };
 ```
 ```cpp
+template<typename _Ty>
+Iterator<_Ty>::Iterator(Node<_Ty>* node) :
+	_node(node) {
+}
+
+template<typename _Ty>
+void Iterator<_Ty>::Print(void) {
+	Print(_node);
+}
+
+template<typename _Ty>
+Preorder<_Ty>::Preorder(Node<_Ty>* node) :
+	Iterator<_Ty>(node) {
+}
+
 template<typename _Ty>
 void Preorder<_Ty>::Print(const Node<_Ty>* node) {
 	if (nullptr == node)
@@ -191,12 +210,22 @@ void Preorder<_Ty>::Print(const Node<_Ty>* node) {
 }
 
 template<typename _Ty>
+Inorder<_Ty>::Inorder(Node<_Ty>* node) :
+	Iterator<_Ty>(node) {
+}
+
+template<typename _Ty>
 void Inorder<_Ty>::Print(const Node<_Ty>* node) {
 	if (nullptr == node)
 		return;
 	Print(node->_left);
 	std::cout << node->_data << std::endl;
 	Print(node->_right);
+}
+
+template<typename _Ty>
+Postorder<_Ty>::Postorder(Node<_Ty>* node) :
+	Iterator<_Ty>(node) {
 }
 
 template<typename _Ty>
