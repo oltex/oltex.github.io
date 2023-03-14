@@ -47,3 +47,36 @@ LCRS(left-child, right-sibling)방식을 통해 모든 트리를 이진 트리 �
 
 이진트리를 구현해 보겠습니다.
 이진 트리는 재귀적인 특성을 지니고 있기 때문에 일부 연산이 재귀 호출의 형태를 띕니다.
+
+### 노드
+```cpp
+template<typename _Ty>
+struct Node final {
+	explicit Node(const _Ty& data) :
+		_data(data) {
+	}
+	_Ty _data;
+	Node* _left = nullptr;
+	Node* _right = nullptr;
+};
+```
+
+### 메인
+```cpp
+void main(void) {
+	Node<int>* node = new Node<int>{ 10 };
+	Node<int>* left_node = new Node<int>{ 20 };
+	Node<int>* right_node = new Node<int>{ 30 };
+
+	node->_left = left_node;
+	node->_right = right_node;
+
+	std::cout << node->_data << std::endl;
+	std::cout << node->_left->_data << std::endl;
+	std::cout << node->_right->_data << std::endl;
+
+	delete left_node;
+	delete right_node;
+	delete node;
+}
+```
