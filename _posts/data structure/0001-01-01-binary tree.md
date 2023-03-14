@@ -245,7 +245,7 @@ void main(void) {
 ```
 메인 함수입니다.<br>
 <br>
-노드를 node left_node, right_node 총 3개 구현하였습니다.<br>
+노드를 node, left_node, right_node 총 3개 구현하였습니다.<br>
 이들에게 각각 10, 20, 30의 데이터를 담고<br>
 node의 자식 노드로 left_node와 right_node를 연결하였습니다.<br>
 <br>
