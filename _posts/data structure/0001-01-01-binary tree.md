@@ -167,6 +167,9 @@ root노드 포인터를 받게됩니다.<br>
 - 후위 순회(postorder traversal)
 
 이들의 명칭은 각각 root노드를 언제 탐색 하느냐에 따라 붙여졌습니다.<br>
+
+다음과 같은 트리가 있다고 가정해 보겠습니다.
+![alt](/assets/images/data-structure/0001-01-01-binary-tree/1.png)<br>
 중위 순회는 루트 노드를 중간에 탐색하는 순회 방법입니다.
 
 
