@@ -153,6 +153,63 @@ traversal 변수는 Preorder, Inorder, Postorder 중 하나의 구체 클래스�
 트리에는 두가지 함수가 존재합니다.<br>
 트리를 순회하면서 출력하는 Print함수는 traversal의 Print함수를 호출합니다.<br>
 트리를 순회하면서 삭제하는 Delete함수는 소멸자에서 호출됩니다.
+
+### 순회 클래스
+```cpp
+template<typename _Ty>
+class Traversal abstract {
+public:
+	virtual void Print(const Node<_Ty>* node) = 0;
+};
+
+template<typename _Ty>
+class Preorder final : public Traversal<_Ty> { //전위 순회
+public:
+	virtual void Print(const Node<_Ty>* node) override;
+};
+
+template<typename _Ty>
+class Inorder final : public Traversal<_Ty> { //중위 순회
+public:
+	virtual void Print(const Node<_Ty>* node) override;
+};
+
+template<typename _Ty>
+class Postorder final : public Traversal<_Ty> { //후위 순회
+public:
+	virtual void Print(const Node<_Ty>* node) override;
+};
+```
+```cpp
+template<typename _Ty>
+void Preorder<_Ty>::Print(const Node<_Ty>* node) {
+	if (nullptr == node)
+		return;
+	std::cout << node->_data << std::endl;
+	Print(node->_left);
+	Print(node->_right);
+}
+
+template<typename _Ty>
+void Inorder<_Ty>::Print(const Node<_Ty>* node) {
+	if (nullptr == node)
+		return;
+	Print(node->_left);
+	std::cout << node->_data << std::endl;
+	Print(node->_right);
+}
+
+template<typename _Ty>
+void Postorder<_Ty>::Print(const Node<_Ty>* node) {
+	if (nullptr == node)
+		return;
+	Print(node->_left);
+	Print(node->_right);
+	std::cout << node->_data << std::endl;
+}
+```
+트리의 순회 방식을 결정하는 순회 클래스 입니다.
+
 ### 메인 함수
 ```cpp
 void main(void) {
