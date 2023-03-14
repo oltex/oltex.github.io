@@ -68,6 +68,8 @@ B, C, A 순으로 순회를 진행합니다.<br>
 <br>
 이진 트리를 노드 구조체와 트리 클래스 + 반복자 패턴 그리고 메인 함수로<br>
 구성된 코드로 작성해보도록 하겠습니다.
+
+---
 ### 노드 구조체
 ```cpp
 template<typename _Ty>
@@ -83,6 +85,8 @@ struct Node final {
 노드 구조체입니다.<br>
 노드에는 저장할 자료를 담을 data변수와<br>
 자신의 자식 노드를 참조할 left, right 포인터가 존재합니다.
+
+---
 ### 트리 클래스
 ```cpp
 template<typename _Ty>
@@ -145,6 +149,8 @@ iterator반환으로 Preorder, Inorder, Postorder 중 하나의 구체 클래스
 <br>
 트리의 소멸자에 사용되는 delete함수가 존재합니다.<br>
 재귀 함수를 사용하여 후위 순회하면서 삭제하는 함수입니다.
+
+---
 ### 반복자 클래스
 ```cpp
 template<typename _Ty>
@@ -229,6 +235,8 @@ void Postorder<_Ty>::Print(const Node<_Ty>* node) {
 반복자 클래스는 총 3가지로 전위 중위 후위 순회를 구현하였습니다.<br>
 반복자 클래스의 Print함수를 실행하면 재귀 함수가 실행되며<br>
 내부의 노드를 순회하며 출력합니다.
+
+---
 ### 메인 함수
 ```cpp
 void main(void) {
@@ -239,8 +247,21 @@ void main(void) {
 	node->_left = left_node;
 	node->_right = right_node;
 
-	Tree<int> tree{ Tree<int>::TRAVERSAL::PREORDER, node }; //PREORDER, INORDER, POSTORDER 중 하나가 들어갈 수 있습니다.
-	tree.Print();
+	Tree<int> tree{ node };
+
+	Tree<int>::Iterator* preorder = tree.Begin(Tree<int>::Traversal::PREORDER);
+	Tree<int>::Iterator* inorder = tree.Begin(Tree<int>::Traversal::INORDER);
+	Tree<int>::Iterator* postorder = tree.Begin(Tree<int>::Traversal::POSTORDER);
+
+	preorder->Print();
+	std::cout << "----------" << std::endl;
+	inorder->Print();
+	std::cout << "----------" << std::endl;
+	postorder->Print();
+
+	delete preorder;
+	delete inorder;
+	delete postorder;
 }
 ```
 메인 함수입니다.<br>
@@ -251,12 +272,16 @@ node의 자식 노드로 left_node와 right_node를 연결하였습니다.<br>
 <br>
 이후 이를 사용하여 트리 클래스를 만듭니다.<br>
 트리 클래스는 root노드 포인터를 받게됩니다.<br>
+<br>
 트리 클래스의 노드들을 순회하기 위해 반복자 패턴을 사용했습니다.<br>
+이후 반복자의 Print함수를 호출해 순회 순서를 출력합니다.<br>
 <br>
 노드의 삽입이 연결 리스트와 다르게 트리에서 이루어지지 않는 이유는<br>
 트리의 목적이 존재하지 않기 때문에 어떤 방식으로 삽입할지<br>
 트리가 결정할 수 없기 때문입니다.<br>
 트리의 목적이 결정되면 트리가 제어할 수 있게 됩니다.
+
+---
 > ## 종류
 
 이진 트리에는 이진 트리의 특정 상태에 따라 불리는 이름들이 존재합니다.
