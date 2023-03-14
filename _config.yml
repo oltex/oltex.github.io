@@ -104,7 +104,7 @@ analytics:
 author:
   name             : "올텍스"
   avatar           : "/assets/images/avatar.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "복붙 메모장"
+  bio              : "공부한 내용을 정리하는 블로그입니다."
   location         :
   email            :
   links:
