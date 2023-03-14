@@ -151,7 +151,9 @@ iterator반환은 Preorder, Inorder, Postorder 중 하나의 구체 클래스를
 template<typename _Ty>
 class Iterator abstract {
 public:
-	Iterator(Node<_Ty>* node);
+	Iterator(Node<_Ty>* node) :
+		_node(node) {
+	}
 public:
 	void Print(void);
 protected:
@@ -163,7 +165,9 @@ protected:
 template<typename _Ty>
 class Preorder final : public Iterator<_Ty> {
 public:
-	Preorder(Node<_Ty>* node);
+	Preorder(Node<_Ty>* node) :
+		Iterator<_Ty>(node) {
+	}
 protected:
 	virtual void Print(const Node<_Ty>* node) override;
 };
@@ -171,7 +175,9 @@ protected:
 template<typename _Ty>
 class Inorder final : public Iterator<_Ty> {
 public:
-	Inorder(Node<_Ty>* node);
+	Inorder(Node<_Ty>* node) :
+		Iterator<_Ty>(node) {
+	}
 protected:
 	virtual void Print(const Node<_Ty>* node) override;
 };
@@ -179,25 +185,17 @@ protected:
 template<typename _Ty>
 class Postorder final : public Iterator<_Ty> {
 public:
-	Postorder(Node<_Ty>* node);
+	Postorder(Node<_Ty>* node) :
+		Iterator<_Ty>(node) {
+	}
 protected:
 	virtual void Print(const Node<_Ty>* node) override;
 };
 ```
 ```cpp
 template<typename _Ty>
-Iterator<_Ty>::Iterator(Node<_Ty>* node) :
-	_node(node) {
-}
-
-template<typename _Ty>
 void Iterator<_Ty>::Print(void) {
 	Print(_node);
-}
-
-template<typename _Ty>
-Preorder<_Ty>::Preorder(Node<_Ty>* node) :
-	Iterator<_Ty>(node) {
 }
 
 template<typename _Ty>
@@ -210,22 +208,12 @@ void Preorder<_Ty>::Print(const Node<_Ty>* node) {
 }
 
 template<typename _Ty>
-Inorder<_Ty>::Inorder(Node<_Ty>* node) :
-	Iterator<_Ty>(node) {
-}
-
-template<typename _Ty>
 void Inorder<_Ty>::Print(const Node<_Ty>* node) {
 	if (nullptr == node)
 		return;
 	Print(node->_left);
 	std::cout << node->_data << std::endl;
 	Print(node->_right);
-}
-
-template<typename _Ty>
-Postorder<_Ty>::Postorder(Node<_Ty>* node) :
-	Iterator<_Ty>(node) {
 }
 
 template<typename _Ty>
