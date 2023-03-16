@@ -45,13 +45,13 @@ public:
 	explicit List(void);
 	~List(void);
 public:
-	void Push_Front(const _Ty& value);
-	void Push_Back(const _Ty& value);
+	void Push_Front(const _Ty& data);
+	void Push_Back(const _Ty& data);
 
 	void Pop_Front(void);
 	void Pop_Back(void);
 
-	Iterator Emplace(const Iterator& iter, const _Ty& value);
+	Iterator Emplace(const Iterator& iter, const _Ty& data);
 	Iterator Erase(const Iterator& iter);
 
 	Iterator Begin(void);
@@ -113,13 +113,13 @@ List<_Ty>::List(void) {
 이를 위해 push_front와 push_back 내부를 구현해보겠습니다.
 ```cpp
 template<typename _Ty>
-void List<_Ty>::Push_Front(const _Ty& value) {
-	Emplace(Begin(), value);
+void List<_Ty>::Push_Front(const _Ty& data) {
+	Emplace(Begin(), data);
 }
 
 template<typename _Ty>
-void List<_Ty>::Push_Back(const _Ty& value) {
-	Emplace(End(), value);
+void List<_Ty>::Push_Back(const _Ty& data) {
+	Emplace(End(), data);
 }
 ```
 코드 중복을 줄이기 위해 push_front와 push_back에서<br>
@@ -137,12 +137,12 @@ begin과 end는 각각 처음 노드와 마지막 노드에 대한 반복자를 
 따라서 반복자를 매개변수로 받는 리스트 맴버 함수를 제작해야합니다.
 ```cpp
 template<typename _Ty>
-Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
+Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& data) {
 	Node<_Ty>* cur = (*iter);
 	if (nullptr == cur)
 		return Iterator{};
 	Node<_Ty>* prev = cur->_prev;
-	Node<_Ty>* node = new Node<_Ty>{ value };
+	Node<_Ty>* node = new Node<_Ty>{ data };
 
 	if (nullptr != prev)
 		prev->_next = node;
