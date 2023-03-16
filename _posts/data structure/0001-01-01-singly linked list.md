@@ -40,10 +40,10 @@ public:
 	explicit List(void);
 	~List(void);
 public:
-	void Push_Front(const _Ty& value);
+	void Push_Front(const _Ty& data);
 	void Pop_Front(void);
 
-	Iterator Emplace(const Iterator& iter, const _Ty& value);
+	Iterator Emplace(const Iterator& iter, const _Ty& data);
 	Iterator Erase(const Iterator& iter);
 
 	Iterator Begin(void);
@@ -87,8 +87,8 @@ List<_Ty>::List(void) :
 이를 위해 push_front 함수를 구현하였습니다.
 ```cpp
 template<typename _Ty>
-void List<_Ty>::Push_Front(const _Ty& value) {
-	Emplace(Begin(), value);
+void List<_Ty>::Push_Front(const _Ty& data) {
+	Emplace(Begin(), data);
 }
 ```
 코드 중복을 줄이기 위해 중간 노드 삽입 함수인 emplace를 재사용 했습니다.<br>
@@ -98,11 +98,11 @@ void List<_Ty>::Push_Front(const _Ty& value) {
 함수의 이름은 emplace로 매개 변수로 반복자와 값을 전달 받습니다.
 ```cpp
 template<typename _Ty>
-Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
+Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& data) {
 	Node<_Ty>* prev = iter.Prev();
 	if (nullptr == prev)
 		return Iterator{};
-	Node<_Ty>* node = new Node<_Ty>{ value };
+	Node<_Ty>* node = new Node<_Ty>{ data };
 	Node<_Ty>* cur = (*iter);
 
 	prev->_next = node;
