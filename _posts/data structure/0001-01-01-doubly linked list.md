@@ -17,40 +17,25 @@ tags:
 ### 구조체
 먼저 가장 기본이 되는 node구조체를 구현해보겠습니다.
 ```cpp
-//Node.h
-struct Node abstract {
+template<typename _Ty>
+struct Node final {
+	explicit Node(const _Ty& data) :
+		_data(data) {
+	}
+	_Ty _data;
 	Node* _prev = nullptr;
 	Node* _next = nullptr;
-};
-
-template<typename _Ty>
-struct ListNode final : public Node {
-	explicit ListNode(const _Ty& value) :
-		_value(value) {
-	}
-	_Ty _value;
-};
-
-struct DummyNode final : public Node {
 };
 ```
 Node라는 인터페이스를 생성하였습니다.<br>
 이전/다음 노드를 가리킬 prev, next 포인터가 존재합니다.<br>
- <br>
-ListNode 구조체안에는 값을 저장할 value 변수가 존재합니다.<br>
-노드를 생성할 때 값을 받을 수 있게 ListNode의 생성자를 구현하였습니다.<br>
-노드는 생성자를 통해 value를 받아 자신의 구조체 변수 안에 저장합니다.<br>
-<br>
-DummyNode 구조체는 널 객체(null object) 패턴을 사용하여 만들어진 구조체입니다.<br>
-ListNode노드를 사용하여 더미 노드로 사용하려 한다면<br>
-템플릿 Ty가 클래스이고 생성자가 무조껀 매개 변수를 받게 만들어져 있다면<br>
-더미 노드 생성에 제한이 걸립니다.<br>
-따라서 널 객체 패턴을 사용하여 이를 해결하였습니다.
+값을 저장할 data 변수가 존재합니다.<br>
+노드를 생성할 때 값을 받을 수 있게 Node의 생성자를 구현하였습니다.<br>
+노드는 생성자를 통해 data를 받아 자신의 구조체 변수 안에 저장합니다.<br>
 
 ---
 ### 클래스
-그다음 노드 구조체를 관리하는 List 클래스를 구현해보겠습니다.<br>
-List 클래스는 다양한 타입을 받기 위해 템플릿을 사용하였습니다.
+그다음 노드 구조체를 관리하는 List 클래스를 구현해보겠습니다.
 ```cpp
 template<typename _Ty>
 class List final {
@@ -74,8 +59,8 @@ public:
 
 	size_t Size(void);
 private:
-	Node* _head = nullptr;
-	Node* _tail = nullptr;
+	Node<_Ty>* _head = nullptr;
+	Node<_Ty>* _tail = nullptr;
 	size_t _size = 0;
 };
 ```
@@ -115,10 +100,14 @@ size_t List<_Ty>::Size(void) {
 ```cpp
 template<typename _Ty>
 List<_Ty>::List(void) {
-	_head = _tail = new DummyNode;
+	_head = _tail = static_cast<Node<_Ty>*>(calloc(sizeof(Node<_Ty>), sizeof(Node<_Ty>)));
 }
 ```
-생성자에서 할당된 더미 노드를 2가지 포인터에 전부 넣어줍니다.
+생성자에서 더미 노드를 만들어서 2가지 포인터(head, tail)에 전부 넣어줍니다.<br>
+앞으로 tail은 무조껀 더미 노드입니다.<br>
+<br>
+여기서 malloc(calloc)를 사용하는 이유는 노드가 기본 생성자를 지원하지<br>
+않을 경우를 대비한 것입니다. STL의 allocator를 사용해도 됩니다.
 #### 머리와 꼬리 삽입
 다음은 노드의 처음과 끝의 삽입을 구현해야 합니다.<br>
 이를 위해 push_front와 push_back 내부를 구현해보겠습니다.
@@ -149,11 +138,11 @@ begin과 end는 각각 처음 노드와 마지막 노드에 대한 반복자를 
 ```cpp
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
-	Node* cur = (*iter);
+	Node<_Ty>* cur = (*iter);
 	if (nullptr == cur)
 		return Iterator{};
-	Node* prev = cur->_prev;
-	Node* node = new ListNode<_Ty>{ value };
+	Node<_Ty>* prev = cur->_prev;
+	Node<_Ty>* node = new Node<_Ty>{ value };
 
 	if (nullptr != prev)
 		prev->_next = node;
@@ -212,12 +201,12 @@ void List<_Ty>::Pop_Back(void) {
 ```cpp
 template<typename _Ty>
 Iterator<_Ty> List<_Ty>::Erase(const Iterator& iter) {
-	Node* cur = (*iter);
+	Node<_Ty>* cur = (*iter);
 	if (nullptr == cur || _tail == cur)
 		return Iterator{ cur };
 
-	Node* prev = cur->_prev;
-	Node* next = cur->_next;
+	Node<_Ty>* prev = cur->_prev;
+	Node<_Ty>* next = cur->_next;
 
 	if (nullptr != prev)
 		prev->_next = next;
@@ -269,32 +258,32 @@ template<typename _Ty>
 class Iterator final {
 public:
 	explicit Iterator(void);
-	explicit Iterator(Node* cur);
+	explicit Iterator(Node<_Ty>* cur);
 public:
-	ListNode<_Ty>* operator*(void) const;
+	Node<_Ty>* operator*(void) const;
 
 	void operator++(void);
 	void operator--(void);
 	bool operator!=(const Iterator<_Ty>& rhs);
 private:
-	Node* _cur = nullptr;
+	Node<_Ty>* _cur = nullptr;
 };
 ```
 반복자는 참조할 노드의 포인터인 cur 맴버 변수를 가지고 있습니다.
 #### 생성자
 반복자 클래스의 생성자는 기본 생성자와,<br>
-탐색을 시작할 노드를 받는 생성자가 존재합니다.<br>
-노드로는 리스트의 head 또는 tail을 받게됩니다.<br>
+탐색을 시작할 노드를 받는 생성자가 존재합니다.
 ```cpp
 template<typename _Ty>
 Iterator<_Ty>::Iterator(void) {
 }
 
 template<typename _Ty>
-Iterator<_Ty>::Iterator(Node* cur) :
+Iterator<_Ty>::Iterator(Node<_Ty>* cur) :
 	_cur(cur) {
 }
 ```
+#### 팩토리 메서드
 매번 반복자를 생성할 때마다 리스트안의 노드의 head와 tail을 넘겨줄 순 없으니<br>
 반복자 클래스를 생성하는 팩토리 메서드를 리스트 클래스에 구현해 줍니다.
 ```cpp
@@ -314,13 +303,11 @@ begin 함수는 리스트 클래스에 있는 반복자 팩토리 메서드 입�
 이제 반복자가 생성되었으니 반복자를 통해 node를 받아올 수 있게 만들어야 합니다.
 ```cpp
 template<typename _Ty>
-ListNode<_Ty>* Iterator<_Ty>::operator*(void) const {
-	return static_cast<ListNode<_Ty>*>(_cur);
+Node<_Ty>* Iterator<_Ty>::operator*(void) const {
+	return _cur;
 }
 ```
-반복자의 cur가 가리키는 node를 반환합니다.<br>
-이 때 Node 추상 구조체(?)의 구체화를 위해 static_cast를 사용했습니다.<br>
-반복자가 node를 반환할 수 있게 되었습니다.
+반복자의 cur가 가리키는 node를 반환합니다.
 #### 증감
 마지막으로 반복자라는 이름에 걸맞게 노드를 탐색 또는 순회할 수 있어야 합니다.
 ```cpp
@@ -367,7 +354,7 @@ void main(void) {
 
 	iter = list.Begin(); //반복자에 첫번째 노드를 선택합니다.
 	for (int i = 0; i < list.Size(); ++i) { //반복자를 사용하여 size만큼 탐색하는 방법입니다.
-		std::cout << (*iter)->_value << std::endl;
+		std::cout << (*iter)->_data << std::endl;
 		++iter;
 	}
 
@@ -379,7 +366,7 @@ void main(void) {
 	list.Erase(iter); //반복자를 사용하여 리스트를 삭제합니다.
 
 	for (iter = list.Begin(); iter != list.End(); ++iter) //비교 연산자를 사용하여 탐색하는 방법입니다.
-		std::cout << (*iter)->_value << std::endl;
+		std::cout << (*iter)->_data << std::endl;
 
 	for (iter = list.Begin(); iter != list.End();)
 		iter = list.Erase(iter);
