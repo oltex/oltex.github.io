@@ -20,10 +20,10 @@ tags:
 ```cpp
 template<typename _Ty>
 struct Node final {
-	explicit Node(const _Ty& value) :
-		_value(value) {
+	explicit Node(const _Ty& data) :
+		_data(data) {
 	}
-	_Ty _value;
+	_Ty _data;
 	Node* _next = nullptr;
 };
 ```
@@ -40,11 +40,11 @@ public:
 	explicit List(void);
 	~List(void);
 public:
-	void Push_Front(const _Ty& value);
-	void Push_Back(const _Ty& value);
+	void Push_Front(const _Ty& data);
+	void Push_Back(const _Ty& data);
 	void Pop_Front(void);
 
-	Iterator Emplace(const Iterator& iter, const _Ty& value);
+	Iterator Emplace(const Iterator& iter, const _Ty& data);
 	Iterator Erase(const Iterator& iter);
 
 	Iterator Begin(void);
@@ -86,13 +86,13 @@ size_t List<_Ty>::Size(void) {
 먼저 리스트의 머리와 꼬리에 삽입하는 코드를 작성해 보겠습니다.
 ```cpp
 template<typename _Ty>
-void List<_Ty>::Push_Front(const _Ty& value) {
-	Emplace(Begin(), value);
+void List<_Ty>::Push_Front(const _Ty& data) {
+	Emplace(Begin(), data);
 }
 
 template<typename _Ty>
-void List<_Ty>::Push_Back(const _Ty& value) {
-	Iterator iter = Emplace(Begin(), value);
+void List<_Ty>::Push_Back(const _Ty& data) {
+	Iterator iter = Emplace(Begin(), data);
 	_tail = *iter;
 }
 ```
@@ -108,9 +108,9 @@ push_back 함수를 보면 머리 부분에 삽입을 진행한 다음<br>
 몇가지 조건문이 추가되었다는 것을 볼 수 있습니다.
 ```cpp
 template<typename _Ty>
-Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& value) {
+Iterator<_Ty> List<_Ty>::Emplace(const Iterator& iter, const _Ty& data) {
 	Node<_Ty>* prev = iter.Prev();
-	Node<_Ty>* node = new Node<_Ty>{ value };
+	Node<_Ty>* node = new Node<_Ty>{ data };
 	Node<_Ty>* cur = (*iter);
 
 	if (nullptr == _tail)
@@ -219,12 +219,12 @@ void main(void) {
 
 	iter = list.Begin();
 	for (int i = 0; i < list.Size(); ++i) {
-		std::cout << (*iter)->_value << std::endl;
+		std::cout << (*iter)->_data << std::endl;
 		++iter;
 	}
 
 	while (true) {
-		std::cout << (*iter)->_value << std::endl;
+		std::cout << (*iter)->_data << std::endl;
 		++iter;
 	}
 }
