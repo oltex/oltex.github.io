@@ -34,25 +34,25 @@ tags:
 ```cpp
 template<typename _Ty>
 struct Node final {
-	explicit Node(const _Ty& value) :
-		_value(value) {
+	explicit Node(const _Ty& data) :
+		_data(data) {
 	}
-	_Ty _value;
+	_Ty _data;
 	Node* _next = nullptr;
 };
 ```
 노드 구조체 입니다.<br>
 <br>
 다음 노드에 대한 정보를 가지는 next 포인터가 존재합니다.<br>
-노드의 데이터에 대한 변수인 value가 존재하고.<br>
-노드를 생성할 때 생성자에서 value를 초기화 합니다.
+노드의 데이터에 대한 변수인 data가 존재하고.<br>
+노드를 생성할 때 생성자에서 data를 초기화 합니다.
 ### 리스트
 ```cpp
 template<typename _Ty>
 class List final {
 public:
-	void Push(_Ty value) {
-		Node<_Ty>* node = new Node<_Ty>{ value };
+	void Push(_Ty data) {
+		Node<_Ty>* node = new Node<_Ty>{ data };
 
 		node->_next = _head;
 		_head = node;
