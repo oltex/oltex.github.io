@@ -51,17 +51,16 @@ tags:
 > ## 구현
 
 선택 정렬을 코드로 구현해 보겠습니다.
-오름차순 정렬을 진행하는 함수입니다.
 ```cpp
 void Selection_sort(int arr[], int size) {
 	for (int i = 0; i < size - 1; ++i) {
-		int k = i;
+		int index = i;
 		for (int j = i + 1; j < size; ++j)
-			if (arr[j] < arr[k])
-				k = j;
+			if (arr[j] < arr[index])
+				index = j;
 		int temp = arr[i];
-		arr[i] = arr[k];
-		arr[k] = temp;
+		arr[i] = arr[index];
+		arr[index] = temp;
 	}
 }
 ```
@@ -73,3 +72,22 @@ void main(void) {
 		std::cout << iter;
 };
 ```
+오름차순 정렬을 진행하는 선택정렬 함수입니다.
+매개 변수로 정렬할 배열인 arr과 그 배열의 사이즈인 size를 받고 있습니다.
+
+첫번째 for문은 정렬해야할 배열의 위치를 선택하기 위해 존재합니다.
+n개의 원소를 정렬할 때 n-1만큼 정렬 되었다면 나머지 1개도 자동으로 정렬되기 때문에
+size-1의 범위를 가집니다.
+
+index 변수는 내가 선택한 자리의 인덱스를 저장하고 있습니다.
+이를 다음 for문과 비교하여 최종적으로 i에 들어가야할 index를 찾습니다.
+
+두번째 for문은 모든 원소를 순회하며 선택 위치에 들어갈 원소를 찾습니다.
+j에 해당하는 원소가 index 변수에 존재하는 값보다 작다면 j를 index로 만듭니다.
+이때 j를 i+1로 정하는 이유는
+i보다 뒤에 존재하는 인덱스는 이미 정렬이 완료된 원소라 생략하기 위함입니다.
+
+원소를 찾았으면 i와 해당하는 index를 스왑합니다.
+
+> ## 성능
+
