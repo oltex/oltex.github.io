@@ -1,5 +1,5 @@
 ---
-title: "선택 정렬(Bubble Sort)"
+title: "선택 정렬(Selection Sort)"
 categories:
   - algorithm
 tags:
