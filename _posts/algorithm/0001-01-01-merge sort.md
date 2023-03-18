@@ -126,14 +126,61 @@ void main(void) {
 		std::cout << iter;
 };
 ```
-합병 정렬 합수의 매개 변수로
-정렬할 배열인 arr과 그 배열의 첫번째 인덱스인 left, 마지막 인덱스인 right를 받습니다.
-
-함수의 코드가 재귀적으로 구성되어 있기 때문에
-코드를 한줄씩 가져와 분석해 보겠습니다.
-
-`
-if (left >= right)<br>
+합병 정렬 합수의 매개 변수로<br>
+정렬할 배열인 arr과 그 배열의 첫번째 인덱스인 left, 마지막 인덱스인 right를 받습니다.<br>
+<br>
+함수의 코드가 재귀적으로 구성되어 있기 때문에<br>
+코드를 몇줄씩 가져와 분석해 보겠습니다.
+```cpp
+	if (left >= right)
 		return;
-    `
+```
+먼저 left와 right가 같다면 원소의 갯수가 한개라는 의미이므로<br>
+아무 작업도 수행하지 않고 리턴합니다.<br>
+(left가 > right인 경우는 이론상 없습니다.)
+```cpp
+	int mid = (left + right) / 2;
+	Merge_Sort(arr, left, mid);
+	Merge_Sort(arr, mid + 1, right);
+```
+이 코드는 현재 배열을 둘로 나누고 각각의 배열에 대해<br>
+병합 정렬 함수를 재귀호출 하는 코드입니다.<br>
+(0~9까지의 인덱스라면 0~4 5~9의 배열로 나뉘게 됩니다.)<br>
+<br>
+이 과정이 함수의 맨 앞에 와있기 때문에 뒤에오는 코드는 실행되지 않고<br>
+원소가 1개인 배열까지 계속해서 나뉘게 됩니다.
+```cpp
+	int left_index = left;
+	int right_index = mid + 1;
+	int* sort_arr = new int[right + 1];
+	int sort_index = left;
+```
+배열이 계속해서 나뉘어 졌다면 배열의 원소가 2개일 때부터<br>
+이 합병하는 코드가 실행되게 됩니다.<br>
+(위 예시에서는 left: 0, right: 1부터 시작합니다.<br>
+허나 중간 과정을 생략하고 left: 0, right: 9, mid: 4라고 생각하면 편합니다.)<br>
+<br>
+두 배열의 첫번째 인덱스를 각각 left_index, right_index로 잡고<br>
+두 배열의 크기를 합한 sort_arr 배열을 만듭니다.<br>
+(여기도 코드를 보기 편하게 만들기 위해 타협한 부분이 존재합니다.<br>
+배열의 크기를 합한 코드가 아니라 right+1을 받고있습니다.<br>
+메모리를 아끼려면 right-left+1이 와야합니다.)
+```cpp
+	while (left_index <= mid && right_index <= right)
+		sort_arr[sort_index++] = arr[left_index] < arr[right_index] ? arr[left_index++] : arr[right_index++];
+```
+이제 left_index, right_index 둘중 하나의 인덱스가 마지막에 닿을 때까지 sort_arr에<br>
+더 작은 값을 채워넣는 과정을 반복하게 됩니다.
+```cpp
+	int extra_index = left_index <= mid ? left_index : right_index;
+	while(sort_index <= right)
+		sort_arr[sort_index++] = arr[extra_index++];
+```
+둘중 하나의 인덱스가 마지막에 닿아서 끝났다면<br>
+남은 인덱스를 extra_index에 집어넣고 sort_arr에 채워줍니다.
+```cpp
+	for (int i = left; i <= right; ++i)
+		arr[i] = sort_arr[i];
+```
+정렬이 완료되었다면 기존 arr에 sort_arr을 집어넣습니다.
 > ## 복잡도
