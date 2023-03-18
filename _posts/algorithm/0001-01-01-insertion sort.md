@@ -75,3 +75,43 @@ tags:
 5. 배열의 마지막 원소까지 반복하여 정렬합니다.
 
 라고 볼 수 있습니다.
+> ## 구현
+
+삽입 정렬을 코드로 구현해 보겠습니다.<br>
+오름차순 정렬을 하는 삽입 정렬 함수입니다.
+```cpp
+void Insertion_Sort(int arr[], int size) {
+	for (int i = 1; i < size; ++i) {
+		int data = arr[i];
+		int j = i - 1;
+		for (; j >= 0; --j) {
+			if (arr[j] > data)
+				arr[j + 1] = arr[j];
+			else
+				break;
+		}
+		arr[j + 1] = data;
+	}
+}
+```
+```cpp
+void main(void) {
+	int arr[10] = { 3, 6, 2, 4, 1, 5, 7, 0, 9, 8 };
+	Insertion_Sort(arr, 10);
+	for (auto iter : arr)
+		std::cout << iter;
+};
+```
+삽입 정렬 합수의 매개 변수로<br>
+정렬할 배열인 arr과 그 배열의 사이즈인 size를 받습니다.<br>
+<br>
+첫번째 for문은 정렬할 원소를 선택하기 위해 존재합니다.<br>
+첫번째 원소는 이미 정렬되어 있다고 취급하기 때문에 i는 1부터 시작합니다.<br>
+정렬햐아할 원소의 값을 data변수에 저장합니다.<br>
+<br>
+두번째 for문은 삽입할 위치를 찾기 위해 이미 정렬된 배열을 탐색합니다.<br>
+j는 이미 정렬된 배열의 마지막 인덱스인 i-1을 가집니다. 이를 0까지 반복합니다.<br>
+만약 j번째 원소가 data보다 클 경우 j를 j+1(한칸 뒤)로 보냅니다.<br>
+만약 j번쨰 원소가 data보다 작을 경우 break로 빠져나옵니다.<br>
+<br>
+이후 선택된 위치인 j+1에 data를 삽입합니다.
