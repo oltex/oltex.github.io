@@ -132,6 +132,6 @@ void main(void) {
 함수의 코드가 재귀적으로 구성되어 있기 때문에
 코드를 한줄씩 가져와 분석해 보겠습니다.
 
-***	if (left >= right)
-		return;***
+`if (left >= right)
+		return;`
 > ## 복잡도
