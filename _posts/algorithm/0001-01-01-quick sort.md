@@ -318,12 +318,13 @@ CPU가 빠른 시간 내에 일정 구간의 메모리 영역을 반복적으로
 어떤 함수가 실행될 때 리턴 명령어를 만나기 직전에 특정 함수가 호출되는 것을 의미합니다.<br>
 현재 함수의 스택 프레임의 할당 해제가 일어나기 직전에 수행되는 경우를 의미합니다.
 ```cpp
-return function(--num) // 이것은 Tail Call 입니다. 
-return function(num--) // 이것은 Non-Tail Call이 아닙니다, 함수 실행 후 --연산 추가 실행!
+return function(--num); // 이것은 Tail Call 입니다. 
+return function(num--); // 이것은 Non-Tail Call이 아닙니다, 함수 실행 후 --연산 추가 실행!
 ```
 <br>
 2.Tail Recursion<br>
 Tail Call의 특수한 경우로 Tail Call이 재귀 호출로 일어나는 경우를 의미합니다.
+
 ```cpp
 void function(int num){
 	return function(--num);
