@@ -19,7 +19,7 @@ locale                   : "ko-KR"
 title                    : "블로그"
 title_separator          : "-"
 subtitle                 : "Verson 1.0" # site tagline that appears below site title in masthead
-name                     : "올텍스"
+name                     : "임준희"
 description              : "An amazing website."
 url                      : "https://oltex.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
