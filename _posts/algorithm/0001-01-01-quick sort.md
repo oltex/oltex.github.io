@@ -351,3 +351,21 @@ TCO는 이러한 문제를 해결하기 위한 최적화로 현재 함수의 스
 <br>
 그 중에서도 재귀 형태의 Tail Recursion을 TCO한 것을 가리켜<br>
 Tail Recursion Elimination이 적용된다고 부릅니다.
+```cpp
+void Tail_Recursion_Elimination(int num) {
+	if (num < 0)
+		return;
+	std::cout << num << " ";
+	Tail_Recursion_Elimination(num - 1);
+}
+```
+```cpp
+static void Tail_Recursion_Elimination(int num) {
+start:
+	if (num < 0)
+		return;
+	std::cout << num << " ";
+	num = num - 1;
+	goto start;
+}
+```
