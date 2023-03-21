@@ -101,8 +101,107 @@ high는 피벗에 해당되는 값보다 작은 경우가 올때까지 --를 시
 ```
 두 배열에 대해 다시금 맨 위로 올라가서 작업하는 과정을 거칩니다.
 
+> ## 구현
+퀵 정렬을 구현해 보겠습니다.<br>
+오름차순으로 배열을 정렬하는 퀵 정렬 함수입니다.
+```cpp
+
+void Quick_Sort(int arr[], int left, int right) {
+	if (left >= right)
+		return;
+
+	int pivot = arr[left];
+	int low = left + 1;
+	int high = right;
+
+	while (low <= high) {
+		while (pivot >= arr[low] && low <= right)
+			++low;
+		while (pivot <= arr[high] && high > left)
+			--high;
+		if (low > high)
+			break;
+		int temp = arr[low];
+		arr[low] = arr[high];
+		arr[high] = temp;
+	}
+	arr[left] = arr[high];
+	arr[high] = pivot;
+
+	Quick_Sort(arr, left, high - 1);
+	Quick_Sort(arr, low, right);
+}
+```
+```cpp
+void main(void) {
+	int arr[10] = { 3, 6, 2, 4, 1, 5, 7, 0, 9, 8 };
+	Quick_Sort(arr, 0, 9);
+	for (auto iter : arr)
+		std::cout << iter;
+};
+```
+퀵 정렬 합수의 매개 변수로<br>
+정렬할 배열인 arr과 그 배열의 첫번째 인덱스인 left, 마지막 인덱스인 right를 받습니다.<br>
+<br>
+함수의 코드가 재귀적으로 구성되어 있기 때문에<br>
+코드를 몇줄씩 가져와 분석해 보겠습니다.
+```cpp
+	if (left >= right)
+		return;
+```
+퀵 정렬은 분할 정복 알고리즘이기 때문에 배열이 계속해서<br>
+분할되는 과정을 거칩니다.<br>
+<br>
+이때 right보다 left가 같거나 크다면 배열이 존재하지 않거나<br>
+원소가 한개라는 의미가 되니 정렬 함수를 리턴합니다.
+```cpp
+	int pivot = arr[left];
+	int low = left + 1;
+	int high = right;
+```
+이제 본격적으로 퀵 정렬 함수에 들어갑니다.<br>
+pivot과 low, high를 선택해 줍니다. left와 right를 사용하여 간단하게 구현할 수 있습니다.
+```cpp
+	while (low <= high) {
+```
+이제 while문을 통해서 탐색하는 과정을 거쳐나갑니다.<br>
+low와 high가 서로 교차될 때까지 이 과정을 반복합니다.
+```cpp
+		while (pivot >= arr[low] && low <= right)
+			++low;
+		while (pivot <= arr[high] && high > left)
+			--high;
+```
+두 반복문을 통해서 low와 high를 증감시킵니다.<br>
+low로 예를 들어서 피벗의 크기보다 큰 상황이 오거나, low가 right를 넘어서는 상황이 올 때까지 진행합니다.
+```cpp
+		if (low > high)
+			break;
+		int temp = arr[low];
+		arr[low] = arr[high];
+		arr[high] = temp;
+```
+이제 선택된 두 low와 high를 스왑해주어야합니다.<br>
+이때 low가 high를 넘어섰다면 탐색이 종료된 상황이니 break문을 통해 스왑을 진행하지 않습니다.
+```cpp
+	}
+	arr[left] = arr[high];
+	arr[high] = pivot;
+```
+while문을 탈출하게 되면 모든 탐색과 스왑 과정이 끝났다는 의미입니다.
+이제 high와 pivot를 교체해 줍니다.
+```cpp
+	Quick_Sort(arr, left, high - 1);
+	Quick_Sort(arr, low, right);
+```
+이제 두개의 배열로 나눠서 같은 작업을 반복해줘야합니다.<br>
+피벗보다 작은 배열을 선택하는 방법은 high는 현재 피벗이 들어가있기 때문에 left에서 high까지<br>
+피벗보다 큰 배열을 선택하는 방법은 low는 high보다 하나 큰 상황이기 때문에 low에서 right까지<br>
+가 됩니다.
+
 > ## 피벗
 
+### 최악의 상황
 구현에 앞서 퀵 정렬의 최악의 상황에 대해 얘기해보겠습니다.
 ```
 [1 2 3 4 5 6 7 8]
@@ -112,7 +211,7 @@ high는 피벗에 해당되는 값보다 작은 경우가 올때까지 --를 시
 ```
 1 [2 3 4 5 6 7 8]
 ```
-위 과정을 거치게 된다면 최종적으로 1은 제 위치를 찾아가고
+정렬 과정을 거치게 된다면 최종적으로 1은 제 위치를 찾아가고
 배열을 두개로 나눠야 하지만 피벗의 아래 값은 없으니 한개만 존재하게 됩니다.
 
 이 상황을 반복한다면 다음 과정에서는 2 그 다음에는 3 이런식으로
@@ -122,9 +221,23 @@ high는 피벗에 해당되는 값보다 작은 경우가 올때까지 --를 시
 1 2 3 [4 5 6 7 8] ->
 1 2 3 4 [5 6 7 8] ...
 ```
+한번의 작업에서 배열의 원소중 한개의 위치를 찾기 위해
+모든 배열을 탐색하고 있는 모습을 볼 수 있습니다.
+
+즉, 퀵정렬 최악의 시간 복잡도는 O(n^2)이라 볼 수 있습니다.
+
+### 해결
+
+위 문제는 퀵 정렬에서 피벗을 선택할 때
+배열의 중간값을 알 수 없기 때문에 나타나는 문제입니다.
+
+따라서 몇가지 방법을 통해 해당 퀵소트의 문제를 해결할 수 있습니다.
+#### 랜덤 피벗
+첫번째는 랜덤 피벗 방법입니다.
+배열의 맨 앞 원소를 피벗으로 선택하지 않고 랜덤한 원소를 선택하게 만듭니다.
 
 
-> ## 구현
+#### Median Of Three Pivot
 
 
 > ## 성능
