@@ -312,7 +312,8 @@ CPU가 빠른 시간 내에 일정 구간의 메모리 영역을 반복적으로
 따라서 데이터 지역성, 캐시 적중률이 높은 쪽은 퀵 정렬이 됩니다.
 ### 꼬리 재귀 제거
 영어로 Tail Recursion Elimination 방식이라고 불립니다.<br>
-이를 이해하기 위해서 몇가지 용어를 먼저 알아야합니다.
+이를 이해하기 위해서 몇가지 용어를 먼저 알아야합니다.<br>
+<br>
 1.Tail Call<br>
 어떤 함수가 실행될 때 리턴 명령어를 만나기 직전에 특정 함수가 호출되는 것을 의미합니다.<br>
 현재 함수의 스택 프레임의 할당 해제가 일어나기 직전에 수행되는 경우를 의미합니다.
@@ -320,6 +321,7 @@ CPU가 빠른 시간 내에 일정 구간의 메모리 영역을 반복적으로
 return function(--num) // 이것은 Tail Call 입니다. 
 return function(num--) // 이것은 Non-Tail Call이 아닙니다, 함수 실행 후 --연산 추가 실행!
 ```
+<br>
 2.Tail Recursion<br>
 Tail Call의 특수한 경우로 Tail Call이 재귀 호출로 일어나는 경우를 의미합니다.
 ```cpp
@@ -327,6 +329,7 @@ void function(int num){
 	return function(--num);
 }
 ```
+<br>
 3.TCO(Tail Call Optimization)<br>
 Tail Call을 최적화 하는 작업을 의미합니다.<br>
 컴파일러 차원에서 지원됩니다. 지원하지 않는 컴파일러도 존재합니다.<br>
