@@ -313,32 +313,27 @@ CPU가 빠른 시간 내에 일정 구간의 메모리 영역을 반복적으로
 ### 꼬리 재귀 제거
 영어로 Tail Recursion Elimination 방식이라고 불립니다.<br>
 이를 이해하기 위해서 몇가지 용어를 먼저 알아야합니다.
-1. Tail Call
-
+1.Tail Call<br>
 어떤 함수가 실행될 때 리턴 명령어를 만나기 직전에 특정 함수가 호출되는 것을 의미합니다.<br>
 현재 함수의 스택 프레임의 할당 해제가 일어나기 직전에 수행되는 경우를 의미합니다.
 ```cpp
 return function(--num) // 이것은 Tail Call 입니다. 
 return function(num--) // 이것은 Non-Tail Call이 아닙니다, 함수 실행 후 --연산 추가 실행!
 ```
-
-2. Tail Recursion
-
+2.Tail Recursion<br>
 Tail Call의 특수한 경우로 Tail Call이 재귀 호출로 일어나는 경우를 의미합니다.
 ```cpp
 void function(int num){
 	return function(--num);
 }
 ```
-3. TCO(Tail Call Optimization)
-
+3.TCO(Tail Call Optimization)<br>
 Tail Call을 최적화 하는 작업을 의미합니다.<br>
 컴파일러 차원에서 지원됩니다. 지원하지 않는 컴파일러도 존재합니다.<br>
 Tail Call 호출에서 함수의 새 스택 프레임을 생성하지 않고<br>
-현재 함수에서, 호출된 함수의 진입점으로 goto하여 함수를 진행할 수 있게 만듭니다.
-
-4. Stack Frame
-
+현재 함수에서, 호출된 함수의 진입점으로 goto하여 함수를 진행할 수 있게 만듭니다.<br>
+<br>
+4.Stack Frame
 스택 프레임은 함수의 호출시 메모리 스택에<br>
 함수의 매개 변수, 반환 주소값, 지역 변수등이 저장되는데<br>
 이러한 스택 영역에 저장되는 정보를 가리켜 스택 프레임이라고 합니다.<br>
