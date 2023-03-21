@@ -108,7 +108,6 @@ high는 피벗에 해당되는 값보다 작은 경우가 올때까지 --를 시
 퀵 정렬을 구현해 보겠습니다.<br>
 오름차순으로 배열을 정렬하는 퀵 정렬 함수입니다.
 ```cpp
-
 void Quick_Sort(int arr[], int left, int right) {
 	if (left >= right)
 		return;
@@ -367,6 +366,38 @@ start:
 		return;
 	std::cout << num << " ";
 	num = num - 1;
+	goto start;
+}
+```
+이를 퀵 정렬 함수에 사용하면 이렇게 됩니다.
+```cpp
+void Quick_Sort(int arr[], int left, int right) {
+start:
+	if (left >= right)
+		return;
+
+	int pivot = arr[left];
+	int low = left + 1;
+	int high = right;
+
+	while (low <= high) {
+		while (pivot >= arr[low] && low <= right)
+			++low;
+		while (pivot <= arr[high] && high > left)
+			--high;
+		if (low > high)
+			break;
+		int temp = arr[low];
+		arr[low] = arr[high];
+		arr[high] = temp;
+	}
+	arr[left] = arr[high];
+	arr[high] = pivot;
+
+	Quick_Sort(arr, left, high - 1);
+  
+	left = low;
+	right = right;
 	goto start;
 }
 ```
