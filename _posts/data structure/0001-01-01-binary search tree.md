@@ -77,7 +77,7 @@ tags:
 > ## 구현
 
 이진 탐색 트리를 구현해 보겠습니다.
-#### 노드
+### 노드
 ```cpp
 template<typename _Kty, typename _Ty>
 struct Node final {
