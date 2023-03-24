@@ -76,6 +76,258 @@ tags:
 가장 크거나 작은 값을 찾아서 삭제할 노드의 위치에 넣어줘야 합니다.<br>
 (왼쪽 서브 트리를 선택했다면 가장 큰 값을,<br>
 오른쪽 서브 트리를 선택했다면 가장 작은 값을 넣어줍니다.)
+
+> ## 구현
+
+이진 탐색 트리를 구현해 보겠습니다.
+
+#### 노드
+```cpp
+template<typename _Kty, typename _Ty>
+struct Node final {
+	explicit Node(const _Kty& key, const _Ty& value) :
+		_key(key), _value(value) {
+	}
+	_Kty _key;
+	_Ty _value;
+	Node* _left = nullptr;
+	Node* _right = nullptr;
+};
+```
+이진 탐색 트리에 사용될 노드 구조체 입니다.
+
+노드 구조체에는 각 노드의 키와 벨류 값이 존재합니다.
+그리고 노드의 왼쪽과 오른쪽 자식 노드를 참조할 포인터가 존재합니다.
+
+### 트리
+```cpp
+template<typename _Kty, typename _Ty>
+class Tree final {
+public:
+	~Tree(void);
+public:
+	void Insert(const _Kty& key, const _Ty& data);
+	void Erase(const _Kty& key);
+	const _Ty Find(const _Kty& key);
+	void Traverse(void);
+protected:
+	void Traverse(Node<_Kty, _Ty>* node);
+	void Delete(Node<_Kty, _Ty>* node);
+private:
+	Node<_Kty, _Ty>* _root = nullptr;
+};
+```
+이진 탐색 트리 클래스 입니다.
+루트 노드를 저장하기 위한 root 포인터 변수가 존재합니다.
+
+구조 절에서 설명된 함수들은 public에
+Insert, Erase, Find, Traverse란 이름으로 존재합니다.
+
+추가로 protected로 존재하는 함수들은 다음과 같습니다.
+- Traverse: 중위 순회 재귀 함수입니다. 노드를 출력하기 위해 존재합니다. public Traverse에서 호출됩니다.
+- Delete: 후위 순회 재귀 함수입니다. 노드를 삭제하기 위해 존재합니다. 소멸자에서 호출됩니다.
+
+
+
+#### 삽입
+```cpp
+template<typename _Kty, typename _Ty>
+void Tree<_Kty, _Ty>::Insert(const _Kty& key, const _Ty& data) {
+	Node<_Kty, _Ty>* parent = nullptr;
+	Node<_Kty, _Ty>* child = _root;
+	while (nullptr != child) {
+		parent = child;
+		if (key == child->_key)
+			return;
+		else if (key < child->_key)
+			child = child->_left;
+		else
+			child = child->_right;
+	}
+
+	Node<_Kty, _Ty>* node = new Node<_Kty, _Ty>{ key, data };
+	if (nullptr == _root)
+		_root = node;
+	else
+		if (node->_key < parent->_key)
+			parent->_left = node;
+		else
+			parent->_right = node;
+}
+```
+노드의 삽입을 위한 Insert 함수입니다.
+child를 root로 설정하고 시작합니다.
+
+첫번째 while문을 통해 계속해서 child를 찾아 내려갑니다.
+만약 같은 key값을 가진 노드가 나온다면 삽입하지 않고 리턴합니다.
+
+만약 child가 nullptr이 된다면 넣을 자리를 찾았다는 얘기가 됩니다.
+따라서 노드 node를 생성하고 parent의 left나 right에 이를 삽입합니다.
+
+#### 탐색
+```cpp
+template<typename _Kty, typename _Ty>
+const _Ty Tree<_Kty, _Ty>::Find(const _Kty& key) {
+	Node<_Kty, _Ty>* find = _root;
+
+	while (nullptr != find) {
+		if (key == find->_key)
+			return find->_value;
+		else if (key < find->_key)
+			find = find->_left;
+		else
+			find = find->_right;
+	}
+	return _Ty{};
+}
+```
+노드의 탐색을 위한 Find 함수입니다.
+find를 root로 설정하고 시작합니다.
+
+첫번째 while문을 통해 계속해서 find를 찾아 내려갑니다.
+만약 같은 key값을 가진 노드가 나온다면 그 노드의 value를 리턴합니다.
+나오지 않는다면 빈 노드를 리턴합니다.
+
+#### 삭제
+```cpp
+template<typename _Kty, typename _Ty>
+void Tree<_Kty, _Ty>::Erase(const _Kty& key) {
+	Node<_Kty, _Ty>* parent = nullptr;
+	Node<_Kty, _Ty>* erase = _root;
+
+	while (nullptr != erase && key != erase->_key) {
+		parent = erase;
+		if (erase->_key > key)
+			erase = erase->_left;
+		else
+			erase = erase->_right;
+	}
+	if (nullptr == erase)
+		return;
+
+	Node<_Kty, _Ty>* child = nullptr;
+	if (nullptr != erase->_left && nullptr != erase->_right) {
+		child = erase->_right;
+		if (nullptr != child->_left) {
+			Node<_Kty, _Ty>* parent = nullptr;
+			while (nullptr != child->_left) {
+				parent = child;
+				child = child->_left;
+			}
+			parent->_left = child->_right;
+			child->_right = erase->_right;
+		}
+		child->_left = erase->_left;
+	}
+	else {
+		if (nullptr != erase->_left)
+			child = erase->_left;
+		else
+			child = erase->_right;
+	}
+
+	if (nullptr == parent)
+		_root = child;
+	else
+		if (parent->_left == erase)
+			parent->_left = child;
+		else
+			parent->_right = child;
+
+	delete erase;
+}
+```
+노드의 삭제를 위한 erase 함수입니다.
+erase를 root로 설정하고 시작합니다.
+
+세가지 과정으로 나눠서 설명하겠습니다.
+##### 탐색
+```cpp
+	while (nullptr != erase && key != erase->_key) {
+		parent = erase;
+		if (erase->_key > key)
+			erase = erase->_left;
+		else
+			erase = erase->_right;
+	}
+	if (nullptr == erase)
+		return;
+```
+while문을 통해 erase가 nullptr이 되거나,
+erase의 key가 삭제할 노드의 key와 맞을 때까지 반복합니다.
+
+만약 erase가 nullptr이 된다면
+삭제할 노드의 key를 찾지 못했다는 뜻이기 때문에 리턴합니다.
+
+##### 대체
+```cpp
+	Node<_Kty, _Ty>* child = nullptr;
+	if (nullptr != erase->_left && nullptr != erase->_right) {
+		child = erase->_right;
+		if (nullptr != child->_left) {
+			Node<_Kty, _Ty>* parent = nullptr;
+			while (nullptr != child->_left) {
+				parent = child;
+				child = child->_left;
+			}
+			parent->_left = child->_right;
+			child->_right = erase->_right;
+		}
+		child->_left = erase->_left;
+	}
+	else {
+		if (nullptr != erase->_left)
+			child = erase->_left;
+		else
+			child = erase->_right;
+	}
+```
+삭제할 노드 erase를 찾았다면 삭제를 잠시 미뤄두고
+대체할 노드 child를 찾아야 합니다.
+
+else 문 부터 설명하자면
+erase의 자식 노드가 0~1개인 경우입니다.
+이 때 erase의 left가 nullptr이라면 right를 child로 선택합니다.
+(만약 자식이 0개라도 right는 nullptr이기 때문에 nullptr로 선택한 것과 다름이 없습니다.)
+
+다음은 if문 입니다.
+erase의 자식 노드가 2개인 경우입니다.
+이 때는 child를 찾기 위해 왼쪽/오른족 중 한방향을 선택해야 하는데 무조껀 right를 선택해 주었습니다.
+따라서 child를 erase->\_right로 설정하고 시작합니다.
+
+1.
+erase의 left가 존재하므로 child의 left를 채워줘야합니다.
+child의 left를 erase의 left로 설정해 줍니다. (마지막 문단)
+
+2.
+erase의 right가 존재하므로 child의 right를 채워줘야합니다.
+만약 child가 erase의 오른쪽 자식 노드라면 이 작업이 이뤄지지 않습니다.
+
+만약 child가 erase의 오른쪽 자식 노드가 아니라면 (즉, child의 왼쪽 자식 노드가 있다면)
+while문을 통해 제일 마지막 왼쪽 자식 노드를 찾아 child로 설정해줍니다.
+이후 child의 right를 erase의 right로 설정해 줍니다.
+
+이 때 찾은 child의 parent의 left가 비어있게 되므로
+child의 right로 설정해 줘야 합니다.
+
+##### 연결
+```cpp
+	if (nullptr == parent)
+		_root = child;
+	else
+		if (parent->_left == erase)
+			parent->_left = child;
+		else
+			parent->_right = child;
+
+	delete erase;
+```
+찾은 child를 erase의 parent와 연결하고
+erase를 삭제하는 작업입니다.
+
+만약 parnet가 nullptr이라면 삭제할 erase가 root라는 뜻이 되므로
+child를 루트로 저장합니다.
+
 > ## 시간 복잡도
 
 이진 탐색 트리는 탐색이 한번 이루어질 때마다 
