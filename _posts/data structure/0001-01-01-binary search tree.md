@@ -278,12 +278,33 @@ erase의 key가 삭제할 노드의 key와 맞을 때까지 반복합니다.<br>
 ```
 삭제할 노드 erase를 찾았다면 삭제를 잠시 미뤄두고<br>
 대체할 노드 child를 찾아야 합니다.<br>
-<br>
+```cpp
+	else {
+		if (nullptr != erase->_left)
+			child = erase->_left;
+		else
+			child = erase->_right;
+	}
+```
 else 문 부터 설명하자면<br>
 erase의 자식 노드가 0~1개인 경우입니다.<br>
 이 때 erase의 left가 nullptr이라면 right를 child로 선택합니다.<br>
 (만약 자식이 0개라도 right는 nullptr이기 때문에 nullptr로 선택한 것과 다름이 없습니다.)<br>
-<br>
+```cpp
+	if (nullptr != erase->_left && nullptr != erase->_right) {
+		child = erase->_right;
+		if (nullptr != child->_left) {
+			Node<_Kty, _Ty>* parent = nullptr;
+			while (nullptr != child->_left) {
+				parent = child;
+				child = child->_left;
+			}
+			parent->_left = child->_right;
+			child->_right = erase->_right;
+		}
+		child->_left = erase->_left;
+	}
+```
 다음은 if문 입니다.<br>
 erase의 자식 노드가 2개인 경우입니다.<br>
 이 때는 child를 찾기 위해 왼쪽/오른족 중 한방향을 선택해야 하는데 무조껀 right를 선택해 주었습니다.<br>
