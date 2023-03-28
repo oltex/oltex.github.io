@@ -1,3 +1,12 @@
+---
+title: "해시 테이블(Hash Table)"
+categories:
+  - data structure
+tags:
+  - tag
+---
+> ## 개요
+
 ```cpp
 template<typename _Kty, typename _Ty>
 struct Node final {
