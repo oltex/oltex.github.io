@@ -7,6 +7,7 @@ tags:
 ---
 > ## 개요
 
+### 노드
 ```cpp
 template<typename _Kty, typename _Ty>
 struct Node final {
@@ -17,6 +18,7 @@ struct Node final {
 	_Ty _value;
 };
 ```
+### 테이블
 ```cpp
 template<typename _Kty, typename _Ty>
 class Table final {
